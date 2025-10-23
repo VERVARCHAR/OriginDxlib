@@ -1,0 +1,18 @@
+# VSCode / CMake
+.vscode/*
+!/.vscode/settings.json
+!/.vscode/launch.json
+!/.vscode/c_cpp_properties.json
+build/
+CMakeCache.txt
+CMakeFiles/
+
+# Windows / misc
+*.user
+*.log
+
+# DXLib（もし入れてしまっても無視）
+DXLib/
+dxlib/
+*.lib
+*.dll
