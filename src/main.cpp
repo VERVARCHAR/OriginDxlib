@@ -1,26 +1,31 @@
-#include "DxLib.h"
+#include "system/utils.hpp"
+#include "object/bomb.hpp"
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-    ChangeWindowMode(TRUE);
-    SetDrawScreen(DX_SCREEN_BACK);
-    SetWaitVSyncFlag(TRUE);
+    SetUp();
 
-    if (DxLib_Init() == -1)
-        return -1;
+    BombManager bombs;
+    int times = 0;
 
-    while (ProcessMessage() == 0)
+    while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
-        ClearDrawScreen();
+        if (!Update())
+        {
+            break;
+        }
 
-        // ★ ここを L"..." に
-        DrawString(16, 16, L"Hello DXLib", GetColor(255, 255, 255));
-        DrawFormatString(16, 40, GetColor(255, 255, 0), L"FPS: %f", GetFPS());
-        // ← 書式も L"..."
+        if (times % 60 == 0)
+        {
+            bombs.setBomb(bombs.getEmptyIndex(), 100, 100, 2, 2, 30, 10);
+        }
 
-        ScreenFlip();
+        bombs.drawBombs();
+        bombs.DEBUG_printAllBombs();
+        times++;
+        Draw();
+        Wait();
     }
-
     DxLib_End();
     return 0;
 }

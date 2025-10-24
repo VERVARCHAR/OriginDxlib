@@ -12,7 +12,9 @@
                 "_UNICODE"
             ],
             "includePath": [
-                "C:\\DxLib_VC\\libs"
+                "C:\\DxLib_VC\\libs",
+                "${workspaceFolder}/include/system",
+                "${workspaceFolder}/include"
             ]
         }
     ]

@@ -139,6 +139,9 @@ add_executable(${PROJECT_NAME} WIN32 ${SOURCES} ${HEADERS})
 # ---- 実行ファイル ----
 # add_executable(${PROJECT_NAME} WIN32 src/main.cpp)
 target_include_directories(${PROJECT_NAME} PRIVATE "${DXLIB_DIR}")
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+)
 
 # 構成ごとにリンク
 if(DX_DEBUG_LIBS)
@@ -167,4 +170,8 @@ if(MSVC)
   endif()
   set_property(TARGET ${PROJECT_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "${msvc_rt}")
   target_compile_options(${PROJECT_NAME} PRIVATE /utf-8 /W4 /permissive-)
+endif()
+
+if(MSVC)
+  target_compile_options(${PROJECT_NAME} PRIVATE /wd4828)  # DxLib.h の文字コード警告を無効化
 endif()
