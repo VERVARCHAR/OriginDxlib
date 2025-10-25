@@ -3,6 +3,11 @@
 #include "DxLib.h"
 #endif // _DXLIB_HPP_
 
+#ifndef _MATH_HPP_
+#define _MATH_HPP_
+#include "math.h"
+#endif // _MATH_HPP_
+
 #define MAX_BOMBS 100
 
 // 弾幕のクラス
