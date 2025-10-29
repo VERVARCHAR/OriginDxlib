@@ -1,37 +1,49 @@
-#ifndef __ENEMY_HPP_
+#ifndef _ENEMY_HPP_
+#define _ENEMY_HPP_
 #include "object/enemy.hpp"
-#endif // __ENEMY_HPP_
+#endif // __ENEMY_HPP_s
 
-#ifndef _BOMB_MANAGER_HPP_
+#ifndef _BOMB_HPP_
+#define _BOMB_HPP_
 #include "object/bomb.hpp"
-#endif // _BOMB_MANAGER_HPP_
+#endif // _BOMB_HPP_
 
-void BombType01(BombManager &bombManager, Enemy &enemy, int time,int dificulty)
+#define _USE_MATH_DEFINES // for C++
+#include <cmath>
+
+class EnemyShootScript
 {
-    for(int i = 0;i < dificulty * 4;i++){
-        enemy.usingBombs[bombManager.getEmptyIndex()];
-    }
+public:
+    // void getBombInfo(BombInfo _bInfo[MAX_BOMBS])
+    // {
+    //     for (int i = 0; i < MAX_BOMBS; i++)
+    //     {
+    //         _bInfo[i] = bInfo[i];
+    //     }
+    // }
 
-    if (index != -1)
+    void BombType01(Enemy &enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty)
     {
-        // 敵の位置に向かって真っ直ぐ進む弾を発射
-        int enemyX = 0; // 敵のX座標を取得する関数を呼び出す
-        int enemyY = 0; // 敵のY座標を取得する関数を呼び出す
+        double speed = 1.0 + dificulty; // doubleに
 
-        int startX = enemyX;
-        int startY = enemyY;
+        if (time % 20 == 0)
+        {
+            for (int i = 0; i < dificulty * 32; i++)
+            {
+                int idx = bMgr.getEmptyIndex(bombs);
+                bombs[idx].isUsing = true;
+                bombs[idx].time = 0;
+                bombs[idx].radius = 5;
+                bombs[idx].pos = enemy.getPosition();
 
-        int targetX = 500; // 画面中央のX座標
-        int targetY = 300; // 画面中央のY座標
-
-        // 速度計算
-        int speed = 5;
-        int dx = targetX - startX;
-        int dy = targetY - startY;
-        float length = sqrtf(dx * dx + dy * dy);
-        dx = static_cast<int>(dx / length * speed);
-        dy = static_cast<int>(dy / length * speed);
-
-        bombManager.setBomb(index, startX, startY, dx, dy, 10, 1);
+                double phi = (2.0 * M_PI * i) / (dificulty * 32.0); // 浮動小数割り算
+                bombs[idx].vel.y = speed * std::cos(phi);           // intにしない
+                bombs[idx].vel.x = speed * std::sin(phi);
+            }
+        }
     }
-}
+
+    void BombType02(Enemy &enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty)
+    {
+    }
+};

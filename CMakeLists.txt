@@ -175,3 +175,10 @@ endif()
 if(MSVC)
   target_compile_options(${PROJECT_NAME} PRIVATE /wd4828)  # DxLib.h の文字コード警告を無効化
 endif()
+
+if (MSVC)
+  add_compile_options(/execution-charset:utf-8)
+endif()
+
+# 例：dxlib_wrapper.cpp だけ Shift_JIS のヘッダを読む
+set_source_files_properties(dxlib_wrapper.cpp PROPERTIES COMPILE_OPTIONS "/source-charset:shift_jis")
