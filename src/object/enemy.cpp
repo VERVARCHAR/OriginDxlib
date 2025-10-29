@@ -7,7 +7,8 @@ Enemy::Enemy()
 {
     pos.x = 350;
     pos.y = 350;
-    hp = 1;
+    hp = 100;
+    radius = 10;
     type = 0;
     strcpy(name, "Default");
 }
@@ -21,13 +22,15 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager bMgr, BombInfo bom
 {
     // 敵の状態更新ロジックをここに実装
     DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(255, 0, 0), TRUE);
+    DrawCircle(pos.x, pos.y, radius, GetColor(255, 0, 255), TRUE);
+    for (int i = 0; i < MAX_BOMBS; i++)
+    {
+        if (bombs[i].isUsing && bombs[i].isPlayers && isHit(&bombs[i], pos, radius))
+        {
+            hp--;
+        }
+    }
 }
-
-// void Enemy::setPosition(int _x, int _y)
-// {
-//     x = _x;
-//     y = _y;
-// }
 
 Vec2d Enemy::getPosition()
 {

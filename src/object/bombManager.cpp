@@ -8,6 +8,7 @@ BombManager::BombManager(BombInfo bombs[MAX_BOMBS])
     for (int i = 0; i < MAX_BOMBS; i++)
     {
         bombs[i].isUsing = false;
+        bombs[i].isPlayers = false;
         bombs[i].pos.x = 0;
         bombs[i].pos.y = 0;
         bombs[i].vel.x = 0;
@@ -81,6 +82,7 @@ void BombManager::updateBombs(BombInfo bombs[MAX_BOMBS])
         if (!getOnScreen(bombs[i]))
         {
             bombs[i].isUsing = false;
+            bombs[i].isPlayers = false;
             bombs[i].pos.x = 0;
             bombs[i].pos.y = 0;
             bombs[i].vel.x = 0;
@@ -90,4 +92,19 @@ void BombManager::updateBombs(BombInfo bombs[MAX_BOMBS])
             bombs[i].time = 0;
         }
     }
+}
+
+bool isHit(BombInfo *bomb, Vec2d pos, int radius)
+{
+
+    if (bomb->isUsing)
+    {
+        if ((pos.x - bomb->pos.x) * (pos.x - bomb->pos.x) + (pos.y - bomb->pos.y) * (pos.y - bomb->pos.y) < (bomb->radius + radius) * (bomb->radius + radius))
+        {
+            bomb->isUsing = false;
+            return true;
+        }
+    }
+
+    return false;
 }

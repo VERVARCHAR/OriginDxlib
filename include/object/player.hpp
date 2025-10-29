@@ -8,7 +8,7 @@
 #include "object/bomb.hpp"
 #endif // _BOMB_MANAGER_HPP_
 
-class Enemy
+class Player
 {
 private:
     Vec2d pos;
@@ -21,8 +21,8 @@ protected:
 public:
     // usingBombStruct usingBombs[MAX_USING] = {{0, 0}}; // 使用中の弾幕数
 
-    Enemy();
-    ~Enemy();
+    Player();
+    ~Player();
 
     void setPosition(int _x, int _y);
     Vec2d getPosition();
@@ -33,6 +33,6 @@ public:
     // void getUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(_usingBombs, usingBombs, sizeof(usingBombs)); }
     // void setUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(usingBombs, _usingBombs, sizeof(usingBombs)); }
     void getBMgrData(BombManager &_BombManager);
-    void enemyUpdate(int, int, BombManager, BombInfo[MAX_BOMBS]);
+    void playerUpdate(BombManager, BombInfo[MAX_BOMBS]);
     void shootBomb();
 };

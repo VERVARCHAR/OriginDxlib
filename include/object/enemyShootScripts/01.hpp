@@ -14,14 +14,6 @@
 class EnemyShootScript
 {
 public:
-    // void getBombInfo(BombInfo _bInfo[MAX_BOMBS])
-    // {
-    //     for (int i = 0; i < MAX_BOMBS; i++)
-    //     {
-    //         _bInfo[i] = bInfo[i];
-    //     }
-    // }
-
     void BombType01(Enemy &enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty)
     {
         double speed = 1.0 + dificulty; // doubleに
@@ -35,6 +27,7 @@ public:
                 bombs[idx].time = 0;
                 bombs[idx].radius = 5;
                 bombs[idx].pos = enemy.getPosition();
+                bombs[idx].isPlayers = false;
 
                 double phi = (2.0 * M_PI * i) / (dificulty * 32.0); // 浮動小数割り算
                 bombs[idx].vel.y = speed * std::cos(phi);           // intにしない

@@ -15,6 +15,11 @@
 #include "object/enemyShootScripts/01.hpp"
 #endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
 
+#ifndef _PLAYER_HPP__
+#define _PLAYER_HPP_
+#include "object/player.hpp"
+#endif // _PLAYER_HPP_
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     SetUp();
@@ -22,9 +27,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     BombInfo bombs[MAX_BOMBS];
     BombManager bMgr(bombs);
     Enemy enemy;
+    Player player;
     EnemyShootScript enemyShootScript;
     int time = 0;
-    int difficulty = 4;
+    int difficulty = 1;
 
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
@@ -34,13 +40,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             break;
         }
 
-        enemyShootScript.BombType02(enemy, bMgr, bombs, time, difficulty);
+        enemyShootScript.BombType01(enemy, bMgr, bombs, time, difficulty);
         // enemyShootScript.getBombInfo(bombs);
-        printfDx(L"%lf\n", bombs[0].pos.x);
+        printfDx(L"%d\n", player.getHP());
+        printfDx(L"%d\n", enemy.getHP());
         enemy.enemyUpdate(time, difficulty, bMgr, bombs);
+        player.playerUpdate(bMgr, bombs);
         bMgr.updateBombs(bombs);
         bMgr.drawBombs(bombs);
-        bMgr.DEBUG_printAllBombs(bombs);
+        // bMgr.DEBUG_printAllBombs(bombs);
 
         time++;
         // printfDx(L"%d\n", time);
