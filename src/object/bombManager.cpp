@@ -7,15 +7,7 @@ BombManager::BombManager(BombInfo bombs[MAX_BOMBS])
 {
     for (int i = 0; i < MAX_BOMBS; i++)
     {
-        bombs[i].isUsing = false;
-        bombs[i].isPlayers = false;
-        bombs[i].pos.x = 0;
-        bombs[i].pos.y = 0;
-        bombs[i].vel.x = 0;
-        bombs[i].vel.y = 0;
-        bombs[i].radius = 0;
-        bombs[i].power = 1;
-        bombs[i].time = 0;
+        initBomb(&bombs[i]);
     }
 }
 BombManager::~BombManager()
@@ -65,7 +57,7 @@ void BombManager::DEBUG_printAllBombs(BombInfo bombs[MAX_BOMBS])
     {
         if (bombs[i].isUsing)
         {
-            printfDx(L"Bomb %d: Active", i);
+            // printfDx(L"Bomb %d: Active", i);
             cnt++;
         }
     }
@@ -81,17 +73,23 @@ void BombManager::updateBombs(BombInfo bombs[MAX_BOMBS])
         bombs[i].time += 1;
         if (!getOnScreen(bombs[i]))
         {
-            bombs[i].isUsing = false;
-            bombs[i].isPlayers = false;
-            bombs[i].pos.x = 0;
-            bombs[i].pos.y = 0;
-            bombs[i].vel.x = 0;
-            bombs[i].vel.y = 0;
-            bombs[i].radius = 0;
-            bombs[i].power = 1;
-            bombs[i].time = 0;
+            initBomb(&bombs[i]);
         }
     }
+}
+
+void BombManager::initBomb(BombInfo *bomb)
+{
+    bomb->isUsing = false;
+    bomb->isPlayers = false;
+    bomb->pos.x = 0;
+    bomb->pos.y = 0;
+    bomb->vel.x = 0;
+    bomb->vel.y = 0;
+    bomb->radius = 0;
+    bomb->power = 1;
+    bomb->time = 0;
+    bomb->id = -1;
 }
 
 bool isHit(BombInfo *bomb, Vec2d pos, int radius)
@@ -99,7 +97,7 @@ bool isHit(BombInfo *bomb, Vec2d pos, int radius)
 
     if (bomb->isUsing)
     {
-        if ((pos.x - bomb->pos.x) * (pos.x - bomb->pos.x) + (pos.y - bomb->pos.y) * (pos.y - bomb->pos.y) < (bomb->radius + radius) * (bomb->radius + radius))
+        if (POWER2(((bomb->pos.x) - (pos.x))) + POWER2(((bomb->pos.y) - (pos.y))) < POWER2(((bomb->radius) + (radius))))
         {
             bomb->isUsing = false;
             return true;

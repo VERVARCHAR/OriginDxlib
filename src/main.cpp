@@ -26,11 +26,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     BombInfo bombs[MAX_BOMBS];
     BombManager bMgr(bombs);
-    Enemy enemy;
+
+    Vec2d initPos = {350, 100};
+
+    Enemy enemy(initPos, 1, 100, 10, 0, 1, 0, (char *)"Name");
     Player player;
     EnemyShootScript enemyShootScript;
     int time = 0;
-    int difficulty = 1;
+    int difficulty = 4;
 
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
@@ -40,15 +43,20 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             break;
         }
 
-        enemyShootScript.BombType01(enemy, bMgr, bombs, time, difficulty);
+        // enemyShootScript.BombType01(enemy, bMgr, bombs, time, difficulty);
         // enemyShootScript.getBombInfo(bombs);
-        printfDx(L"%d\n", player.getHP());
+        player.debugStatus();
         printfDx(L"%d\n", enemy.getHP());
-        enemy.enemyUpdate(time, difficulty, bMgr, bombs);
+        enemy.enemyUpdate(time, difficulty, bMgr, bombs, enemyShootScript);
         player.playerUpdate(bMgr, bombs);
         bMgr.updateBombs(bombs);
         bMgr.drawBombs(bombs);
-        // bMgr.DEBUG_printAllBombs(bombs);
+
+        if (Key[KEY_INPUT_0] == 1)
+        {
+            player.setpower();
+        }
+        bMgr.DEBUG_printAllBombs(bombs);
 
         time++;
         // printfDx(L"%d\n", time);

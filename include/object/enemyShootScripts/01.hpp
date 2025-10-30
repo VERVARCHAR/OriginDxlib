@@ -11,32 +11,24 @@
 #define _USE_MATH_DEFINES // for C++
 #include <cmath>
 
+#ifndef _NORM_
+#define _NORM_
+// 角度正規化（0～2π）
+inline double normalizeAngle(double a)
+{
+    const double TWO_PI = 2.0 * M_PI;
+    a = std::fmod(a, TWO_PI);
+    if (a < 0)
+        a += TWO_PI;
+    return a;
+}
+#endif
+
+class Enemy;
+
 class EnemyShootScript
 {
 public:
-    void BombType01(Enemy &enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty)
-    {
-        double speed = 1.0 + dificulty; // doubleに
-
-        if (time % 20 == 0)
-        {
-            for (int i = 0; i < dificulty * 32; i++)
-            {
-                int idx = bMgr.getEmptyIndex(bombs);
-                bombs[idx].isUsing = true;
-                bombs[idx].time = 0;
-                bombs[idx].radius = 5;
-                bombs[idx].pos = enemy.getPosition();
-                bombs[idx].isPlayers = false;
-
-                double phi = (2.0 * M_PI * i) / (dificulty * 32.0); // 浮動小数割り算
-                bombs[idx].vel.y = speed * std::cos(phi);           // intにしない
-                bombs[idx].vel.x = speed * std::sin(phi);
-            }
-        }
-    }
-
-    void BombType02(Enemy &enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty)
-    {
-    }
+    void BombType01(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty);
+    void BombType02(Enemy &enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty);
 };

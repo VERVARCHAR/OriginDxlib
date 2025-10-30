@@ -8,6 +8,11 @@
 #include "math.h"
 #endif // _MATH_HPP_
 
+#ifndef _POWER2_
+#define _POWER2_
+#define POWER2(x) (x) * (x)
+#endif
+
 #define MAX_BOMBS 1000
 
 typedef struct Coordinate
@@ -25,6 +30,7 @@ typedef struct BombInfo
     int radius; // 半径
     int power;  // 威力(基本1)
     int time;
+    short id; // shooted_id,bombs_id
 } bombInfo;
 
 class BombManager
@@ -44,6 +50,8 @@ public:
     void DEBUG_printAllBombs(BombInfo bombs[MAX_BOMBS]);
 
     bool getOnScreen(BombInfo);
+
+    void initBomb(BombInfo *);
 };
 
 bool isHit(BombInfo *bomb, Vec2d pos, int radius);
