@@ -21,10 +21,11 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager bMgr, BombInfo bom
     DrawBox(enemyStatus.pos.x - 10, enemyStatus.pos.y - 10, enemyStatus.pos.x + 10, enemyStatus.pos.y + 10, GetColor(255, 0, 0), TRUE);
     DrawCircle(enemyStatus.pos.x, enemyStatus.pos.y, enemyStatus.radius, GetColor(255, 0, 255), TRUE);
 
-    shootBomb(enemyShootScript, bMgr, bombs, time, difficulty);
+    shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, difficulty);
 
     enemyStatus.pos.x += enemyStatus.vel.x;
     enemyStatus.pos.y += enemyStatus.vel.y;
+    enemyStatus.time++;
 
     for (int i = 0; i < MAX_BOMBS; i++)
     {
@@ -39,7 +40,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager bMgr, BombInfo bom
         enemyStatus.lives -= 1;
     }
 
-    if (enemyStatus.lives == 0)
+    if (enemyStatus.lives == 0 || !getOnScreen())
     {
         enemyStatus.isAlive = false;
     }
@@ -52,6 +53,18 @@ Vec2d Enemy::getPosition()
 
 void Enemy::getBMgrData(BombManager &_BombManager)
 {
+}
+
+bool Enemy::getOnScreen()
+{
+    // TODO 画面サイズ取得に変更
+    int screenWidth = 1000;
+    int screenHeight = 600;
+    if (enemyStatus.pos.x + enemyStatus.radius < 0 || enemyStatus.pos.y - enemyStatus.radius > screenWidth || enemyStatus.pos.y + enemyStatus.radius < 0 || enemyStatus.pos.y - enemyStatus.radius > screenHeight)
+    {
+        return false;
+    }
+    return true;
 }
 
 void Enemy::shootBomb(EnemyShootScript enemyShootScript, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty)

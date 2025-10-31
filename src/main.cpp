@@ -34,14 +34,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     StageManager sMgr(1, 0, 1);
 
-    // Vec2d initPos = {350, 100};
-
-    // Enemy enemy(initPos, 1, 100, 10, 0, 1, 0, (char *)"Name");
     Player player;
     EnemyShootScript enemyShootScript;
     int time = 0;
     int difficulty = 4;
 
+    bool flag = false;
+
+    sMgr.loadEnemy();
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
         clsDx();
@@ -50,26 +50,20 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             break;
         }
 
-        sMgr.updateStage(&bMgr, bombs, &player);
-
-        // enemyShootScript.BombType01(enemy, bMgr, bombs, time, difficulty);
-        // enemyShootScript.getBombInfo(bombs);
-
-        // player.debugStatus();
-        // // printfDx(L"%d\n", enemy.getHP());
-        // // enemy.enemyUpdate(time, difficulty, bMgr, bombs, enemyShootScript);
-        // player.playerUpdate(bMgr, bombs);
-        // bMgr.updateBombs(bombs);
-        // bMgr.drawBombs(bombs);
-
         if (Key[KEY_INPUT_0] == 1)
         {
             player.setpower();
         }
+        if (Key[KEY_INPUT_1] == 1)
+        {
+            flag = true;
+        }
+        if (flag)
+        {
+            sMgr.updateStage(&bMgr, bombs, &player);
+        }
         bMgr.DEBUG_printAllBombs(bombs);
 
-        // time++;
-        // printfDx(L"%d\n", time);
         Draw();
         Wait();
     }

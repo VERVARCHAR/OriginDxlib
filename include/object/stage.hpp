@@ -24,20 +24,29 @@
 
 class Enemy;
 
+typedef struct LoadEnemyStatus
+{
+    int time;
+    EnemyStatus enemyStatus;
+} loadEnemyStatus;
+
 class StageManager
 {
 private:
     int stage;
     int time;
     int difficulty;
+    int latestEnemyId;
     Enemy *enemys[MAX_ENEMYS];
     EnemyShootScript enemyShootScript;
+    LoadEnemyStatus loadEnemyStatus[MAX_ENEMYS];
 
 public:
     StageManager(int _stage, int _time, int _difficulty);
     ~StageManager();
 
-    void loadEnemy(int index, EnemyStatus enemyStatus);
+    void loadEnemy();
+    void spwanEnemy(int index, EnemyStatus enemyStatus);
     void deleteEnemy(int);
     void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player);
     int getEmptyIndex(); // 空いてる敵のインデックス取得

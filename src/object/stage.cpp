@@ -8,10 +8,12 @@ StageManager::StageManager(int _stage, int _time, int _difficulty)
     stage = _stage;
     time = _time;
     difficulty = _difficulty;
+    latestEnemyId = 0;
     Vec2d initVec2d = {0, 0};
     EnemyStatus init = {
         {0, 0},
         {0, 0},
+        0,
         0,
         0,
         0,
@@ -34,7 +36,28 @@ StageManager::~StageManager()
     }
 }
 
-void StageManager::loadEnemy(int index, EnemyStatus enemyStatus)
+void StageManager::loadEnemy()
+{
+    for (int i = 0; i < MAX_ENEMYS; i++)
+    {
+        EnemyStatus init = {
+            {300 + 10 * i, 200},
+            {0, 2},
+            0,
+            1,
+            1,
+            10,
+            0,
+            0,
+            i,
+            true,
+            "Name"};
+        loadEnemyStatus[i].enemyStatus = init;
+        loadEnemyStatus[i].time = i * 30;
+    }
+}
+
+void StageManager::spwanEnemy(int index, EnemyStatus enemyStatus)
 {
     enemys[index]->setStatus(enemyStatus);
 }
@@ -60,22 +83,16 @@ void StageManager::deleteEnemy(int index)
 }
 void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player)
 {
-    if (time % 60 == 0)
+
+    for (int i = 0; i < MAX_ENEMYS; i++)
     {
-        for (int i = 0; i < 10; i++)
+        if (enemys[i] != nullptr && !enemys[i]->getStatus().isAlive)
         {
-            EnemyStatus init = {
-                {300 + 10 * i, 200},
-                {0, 2},
-                0,
-                1,
-                1,
-                10,
-                0,
-                time + i,
-                true,
-                "Name"};
-            loadEnemy(getEmptyIndex(), init);
+            if (loadEnemyStatus[i].time == this->time)
+            {
+                spwanEnemy(latestEnemyId, loadEnemyStatus[i].enemyStatus);
+                latestEnemyId++;
+            }
         }
     }
 
@@ -83,8 +100,8 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     {
         if (enemys[i] != nullptr && enemys[i]->getStatus().isAlive)
         {
-            enemyShootScript.BombType01(*enemys[i], *bMgr, bombs, time, difficulty);
-            enemys[i]->enemyUpdate(time, difficulty, *bMgr, bombs, enemyShootScript);
+            enemyShootScript.BombType01(*enemys[i], *bMgr, bombs, enemys[i]->getTime(), difficulty);
+            enemys[i]->enemyUpdate(this->time, difficulty, *bMgr, bombs, enemyShootScript);
         }
     }
 

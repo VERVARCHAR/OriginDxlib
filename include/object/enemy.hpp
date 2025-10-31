@@ -26,6 +26,7 @@ typedef struct EnemyStatus
     int hp; // 体力
     int radius;
     int shootType;
+    int time;
     short id;
     bool isAlive;
     char name[32]; // 名前
@@ -54,6 +55,7 @@ public:
     {
         enemyStatus = _status;
     }
+    int getTime() { return enemyStatus.time; };
 
     int getId() { return enemyStatus.id; };
     void setIsAlive(bool flag) { enemyStatus.isAlive = flag; };
@@ -63,4 +65,5 @@ public:
     void getBMgrData(BombManager &_BombManager);
     void enemyUpdate(int, int, BombManager, BombInfo[MAX_BOMBS], EnemyShootScript);
     void shootBomb(EnemyShootScript, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty);
+    bool getOnScreen();
 };
