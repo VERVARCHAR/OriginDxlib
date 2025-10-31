@@ -13,7 +13,7 @@
 #define POWER2(x) (x) * (x)
 #endif
 
-#define MAX_BOMBS 1000
+#define MAX_BOMBS 5000
 
 typedef struct Coordinate
 {

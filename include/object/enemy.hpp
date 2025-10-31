@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef _DXLIB_HPP_
 #define _DXLIB_HPP_
 #include "DxLib.h"
@@ -15,32 +17,47 @@
 
 class EnemyShootScript;
 
+typedef struct EnemyStatus
+{
+    Vec2d pos;
+    Vec2d vel;
+    int type; // 種類
+    int lives;
+    int hp; // 体力
+    int radius;
+    int shootType;
+    short id;
+    bool isAlive;
+    char name[32]; // 名前
+} enemyStatus;
+
 class Enemy
 {
 private:
-    Vec2d pos;
-    int type; // 種類
-    int lives;
-    int hp;        // 体力
-    char name[50]; // 名前
-    int radius;
-    int shootType;
+    EnemyStatus enemyStatus;
 
 protected:
 public:
-    short id;
-
     // usingBombStruct usingBombs[MAX_USING] = {{0, 0}}; // 使用中の弾幕数
 
-    Enemy(Vec2d _pos, int lives, int _hp, int _radius, int _type, int _shootType, short _id, char *_name);
+    Enemy(EnemyStatus enemyStatus);
     ~Enemy();
 
     void setPosition(int _x, int _y);
     Vec2d getPosition();
-    int getHP()
+    EnemyStatus getStatus()
     {
-        return hp;
+        return enemyStatus;
     }
+
+    void setStatus(EnemyStatus _status)
+    {
+        enemyStatus = _status;
+    }
+
+    int getId() { return enemyStatus.id; };
+    void setIsAlive(bool flag) { enemyStatus.isAlive = flag; };
+    // void setData(EnemyStatus enemyStatus);
     // void getUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(_usingBombs, usingBombs, sizeof(usingBombs)); }
     // void setUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(usingBombs, _usingBombs, sizeof(usingBombs)); }
     void getBMgrData(BombManager &_BombManager);

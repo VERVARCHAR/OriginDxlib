@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef _DXLIB_HPP_
 #define _DXLIB_HPP_
 #include "DxLib.h"

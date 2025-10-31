@@ -3,16 +3,9 @@
 #include "object/enemy.hpp"
 #endif // _ENEMY_HPP__
 
-Enemy::Enemy(Vec2d _pos, int _lives, int _hp, int _radius, int _type, int _shootType, short _id, char *_name)
+Enemy::Enemy(EnemyStatus _enemyStatus)
 {
-    pos = _pos;
-    hp = _hp;
-    lives = _lives;
-    radius = _radius;
-    type = _type;
-    shootType = _shootType;
-    id = _id;
-    strcpy(name, _name);
+    enemyStatus = _enemyStatus;
 }
 
 Enemy::~Enemy()
@@ -22,31 +15,39 @@ Enemy::~Enemy()
 
 void Enemy::enemyUpdate(int time, int difficulty, BombManager bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript enemyShootScript)
 {
-    if (!lives)
+    if (!enemyStatus.isAlive)
         return;
     // 敵の状態更新ロジックをここに実装
-    DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(255, 0, 0), TRUE);
-    DrawCircle(pos.x, pos.y, radius, GetColor(255, 0, 255), TRUE);
+    DrawBox(enemyStatus.pos.x - 10, enemyStatus.pos.y - 10, enemyStatus.pos.x + 10, enemyStatus.pos.y + 10, GetColor(255, 0, 0), TRUE);
+    DrawCircle(enemyStatus.pos.x, enemyStatus.pos.y, enemyStatus.radius, GetColor(255, 0, 255), TRUE);
 
     shootBomb(enemyShootScript, bMgr, bombs, time, difficulty);
 
+    enemyStatus.pos.x += enemyStatus.vel.x;
+    enemyStatus.pos.y += enemyStatus.vel.y;
+
     for (int i = 0; i < MAX_BOMBS; i++)
     {
-        if (bombs[i].isUsing && bombs[i].isPlayers && isHit(&bombs[i], pos, radius))
+        if (bombs[i].isUsing && bombs[i].isPlayers && isHit(&bombs[i], enemyStatus.pos, enemyStatus.radius))
         {
-            hp--;
+            enemyStatus.hp--;
         }
     }
 
-    if (hp == 0)
+    if (enemyStatus.hp == 0)
     {
-        lives -= 1;
+        enemyStatus.lives -= 1;
+    }
+
+    if (enemyStatus.lives == 0)
+    {
+        enemyStatus.isAlive = false;
     }
 }
 
 Vec2d Enemy::getPosition()
 {
-    return pos;
+    return enemyStatus.pos;
 }
 
 void Enemy::getBMgrData(BombManager &_BombManager)
@@ -55,7 +56,7 @@ void Enemy::getBMgrData(BombManager &_BombManager)
 
 void Enemy::shootBomb(EnemyShootScript enemyShootScript, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty)
 {
-    switch (shootType)
+    switch (enemyStatus.shootType)
     {
     case 1:
         enemyShootScript.BombType01(*this, bMgr, bombs, time, dificulty);

@@ -20,6 +20,11 @@
 #include "object/player.hpp"
 #endif // _PLAYER_HPP_
 
+#ifndef _STAGE_HPP_
+#define _STAGE_HPP_
+#include "object/stage.hpp"
+#endif
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     SetUp();
@@ -27,9 +32,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     BombInfo bombs[MAX_BOMBS];
     BombManager bMgr(bombs);
 
-    Vec2d initPos = {350, 100};
+    StageManager sMgr(1, 0, 1);
 
-    Enemy enemy(initPos, 1, 100, 10, 0, 1, 0, (char *)"Name");
+    // Vec2d initPos = {350, 100};
+
+    // Enemy enemy(initPos, 1, 100, 10, 0, 1, 0, (char *)"Name");
     Player player;
     EnemyShootScript enemyShootScript;
     int time = 0;
@@ -43,14 +50,17 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             break;
         }
 
+        sMgr.updateStage(&bMgr, bombs, &player);
+
         // enemyShootScript.BombType01(enemy, bMgr, bombs, time, difficulty);
         // enemyShootScript.getBombInfo(bombs);
-        player.debugStatus();
-        printfDx(L"%d\n", enemy.getHP());
-        enemy.enemyUpdate(time, difficulty, bMgr, bombs, enemyShootScript);
-        player.playerUpdate(bMgr, bombs);
-        bMgr.updateBombs(bombs);
-        bMgr.drawBombs(bombs);
+
+        // player.debugStatus();
+        // // printfDx(L"%d\n", enemy.getHP());
+        // // enemy.enemyUpdate(time, difficulty, bMgr, bombs, enemyShootScript);
+        // player.playerUpdate(bMgr, bombs);
+        // bMgr.updateBombs(bombs);
+        // bMgr.drawBombs(bombs);
 
         if (Key[KEY_INPUT_0] == 1)
         {
@@ -58,7 +68,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         }
         bMgr.DEBUG_printAllBombs(bombs);
 
-        time++;
+        // time++;
         // printfDx(L"%d\n", time);
         Draw();
         Wait();

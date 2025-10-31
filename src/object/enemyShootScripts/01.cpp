@@ -34,7 +34,7 @@ void EnemyShootScript::BombType01(Enemy enemy, BombManager bMgr, BombInfo bombs[
 
     double speed = 1.0 + dificulty * 0.5; // doubleに
 
-    if (time % 20 == 0)
+    if (time % 120 == 0)
     {
         for (int i = 0; i < dificulty * 12; i++)
         {
@@ -44,7 +44,7 @@ void EnemyShootScript::BombType01(Enemy enemy, BombManager bMgr, BombInfo bombs[
             bombs[idx].radius = 5;
             bombs[idx].pos = enemy.getPosition();
             bombs[idx].isPlayers = false;
-            bombs[idx].id = enemy.id;
+            bombs[idx].id = enemy.getId();
 
             double phi = (2.0 * M_PI * i) / (dificulty * 12.0); // 浮動小数割り算
             bombs[idx].vel.x = speed * std::cos(phi);
@@ -56,10 +56,10 @@ void EnemyShootScript::BombType01(Enemy enemy, BombManager bMgr, BombInfo bombs[
     {
         if (bombs[i].isUsing)
         {
-            if (bombs[i].id == enemy.id)
+            if (bombs[i].id == enemy.getId())
             {
                 double phi = std::atan2(bombs[i].vel.y, bombs[i].vel.x);
-                phi = normalizeAngle(phi) + 0.001 * dificulty;
+                phi = normalizeAngle(phi) + 0.0001 * dificulty;
                 bombs[i].vel.x = speed * std::cos(phi);
                 bombs[i].vel.y = speed * std::sin(phi);
             }
