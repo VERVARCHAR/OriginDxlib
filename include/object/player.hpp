@@ -27,7 +27,7 @@ typedef struct Status
     bool isShoot;
     bool isShift;
     int invincibleTime;
-} status;
+} PlayerStatus;
 
 class Player
 {

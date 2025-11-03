@@ -142,8 +142,10 @@ void Player::shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
         bombs[idx].pos.x += (status.isShift ? -10 : -20) * (status.power - 1) + (status.isShift ? 20 : 40) * i;
         bombs[idx].pos.y += 20;
         bombs[idx].isPlayers = true;
+        bombs[idx].type = 2;
 
-        bombs[idx].vel.y = -speed;
+        bombs[idx]
+            .vel.y = -speed;
     }
 }
 

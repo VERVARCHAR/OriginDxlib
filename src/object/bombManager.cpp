@@ -45,7 +45,23 @@ void BombManager::drawBombs(BombInfo bombs[MAX_BOMBS])
     {
         if (bombs[i].isUsing)
         {
-            DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
+            switch (bombs[i].type)
+            {
+            case 0:
+                /* code */
+                DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
+                break;
+            case 1:
+                /* code */
+                DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 0, 255), TRUE);
+                break;
+            case 2:
+                /* code */
+                DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(0, 255, 255), TRUE);
+                break;
+            default:
+                break;
+            }
         }
     }
 }
@@ -90,6 +106,7 @@ void BombManager::initBomb(BombInfo *bomb)
     bomb->power = 1;
     bomb->time = 0;
     bomb->id = -1;
+    bomb->type = 0;
 }
 
 bool isHit(BombInfo *bomb, Vec2d pos, int radius)

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _DXLIB_HPP_
 #define _DXLIB_HPP_
 #include "DxLib.h"
@@ -31,6 +32,7 @@ typedef struct BombInfo
     int power;  // 威力(基本1)
     int time;
     short id; // shooted_id,bombs_id
+    short type;
 } bombInfo;
 
 class BombManager

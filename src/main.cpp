@@ -32,7 +32,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     BombInfo bombs[MAX_BOMBS];
     BombManager bMgr(bombs);
 
-    StageManager sMgr(1, 0, 1);
+    StageManager sMgr(1, 0, 4);
 
     Player player;
     EnemyShootScript enemyShootScript;

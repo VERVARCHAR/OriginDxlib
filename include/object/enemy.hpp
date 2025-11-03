@@ -12,8 +12,13 @@
 
 #ifndef _ENEMY_SHOOT_SCRIPT_01_HPP_
 #define _ENEMY_SHOOT_SCRIPT_01_HPP_
-#include "object/enemyShootScripts/01.hpp"
+#include "object/enemyShootScripts/enemyShootScripts.hpp"
 #endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
+
+#ifndef _PLAYER_HPP__
+#define _PLAYER_HPP_
+#include "object/player.hpp"
+#endif // _PLAYER_HPP_
 
 class EnemyShootScript;
 
@@ -39,8 +44,6 @@ private:
 
 protected:
 public:
-    // usingBombStruct usingBombs[MAX_USING] = {{0, 0}}; // 使用中の弾幕数
-
     Enemy(EnemyStatus enemyStatus);
     ~Enemy();
 
@@ -59,11 +62,8 @@ public:
 
     int getId() { return enemyStatus.id; };
     void setIsAlive(bool flag) { enemyStatus.isAlive = flag; };
-    // void setData(EnemyStatus enemyStatus);
-    // void getUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(_usingBombs, usingBombs, sizeof(usingBombs)); }
-    // void setUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(usingBombs, _usingBombs, sizeof(usingBombs)); }
     void getBMgrData(BombManager &_BombManager);
-    void enemyUpdate(int, int, BombManager, BombInfo[MAX_BOMBS], EnemyShootScript);
-    void shootBomb(EnemyShootScript, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty);
+    void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript, Player player);
+    void shootBomb(EnemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
     bool getOnScreen();
 };

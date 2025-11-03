@@ -1,3 +1,4 @@
+#pragma once
 #include "system/utils.hpp"
 
 #ifndef _BOMB_HPP_
@@ -12,7 +13,7 @@
 
 #ifndef _ENEMY_SHOOT_SCRIPT_01_HPP_
 #define _ENEMY_SHOOT_SCRIPT_01_HPP_
-#include "object/enemyShootScripts/01.hpp"
+#include "object/enemyShootScripts/enemyShootScripts.hpp"
 #endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
 
 #ifndef _PLAYER_HPP__

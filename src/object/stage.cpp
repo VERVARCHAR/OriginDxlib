@@ -43,11 +43,11 @@ void StageManager::loadEnemy()
         EnemyStatus init = {
             {300 + 10 * i, 200},
             {0, 2},
-            0,
+            i % 2,
             1,
             1,
             10,
-            0,
+            i % 2,
             0,
             i,
             true,
@@ -100,8 +100,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     {
         if (enemys[i] != nullptr && enemys[i]->getStatus().isAlive)
         {
-            enemyShootScript.BombType01(*enemys[i], *bMgr, bombs, enemys[i]->getTime(), difficulty);
-            enemys[i]->enemyUpdate(this->time, difficulty, *bMgr, bombs, enemyShootScript);
+            enemys[i]->enemyUpdate(this->time, difficulty, bMgr, bombs, enemyShootScript, *player);
         }
     }
 
