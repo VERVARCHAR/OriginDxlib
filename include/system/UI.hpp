@@ -33,11 +33,20 @@
 class UI
 {
 private:
+    int titleHandle;
+    int UIImageHandle;
+    int gameImageHandle[7];
+
 public:
     UI();
     ~UI();
+    int bombsImageHandle[16];
 
+    void getImage(bool *);
     void drawUI();
+    void loadingScreen();
     PlayerStatus getPlayerStatus();
     EnemyStatus getEnemyStatus();
 };
+
+void ShowLoadingTest();

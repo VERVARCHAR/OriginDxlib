@@ -48,15 +48,12 @@ void BombManager::drawBombs(BombInfo bombs[MAX_BOMBS])
             switch (bombs[i].type)
             {
             case 0:
-                /* code */
                 DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
                 break;
             case 1:
-                /* code */
                 DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 0, 255), TRUE);
                 break;
             case 2:
-                /* code */
                 DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(0, 255, 255), TRUE);
                 break;
             default:
@@ -107,6 +104,14 @@ void BombManager::initBomb(BombInfo *bomb)
     bomb->time = 0;
     bomb->id = -1;
     bomb->type = 0;
+}
+
+void BombManager::setBombsHandle(int _bombsHandle[16])
+{
+    for (int i = 0; i < 16; i++)
+    {
+        bombsHandle[i] = _bombsHandle[i];
+    }
 }
 
 bool isHit(BombInfo *bomb, Vec2d pos, int radius)

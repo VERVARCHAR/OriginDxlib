@@ -28,9 +28,16 @@
 #include "object/stage.hpp"
 #endif
 
+#ifndef _UI_HPP_
+#define _UI_HPP_
+#include "system/UI.hpp"
+#endif
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     SetUp();
+
+    UI ui;
 
     BombInfo bombs[MAX_BOMBS];
     BombManager bMgr(bombs);
@@ -42,34 +49,61 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     int time = 0;
     int difficulty = 4;
 
+    bool title = true;
     bool flag = false;
 
-    sMgr.loadEnemy();
+    ui.getImage(&title);
+
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
-        clsDx();
+        // if (title == true)
+
         if (!Update())
         {
             break;
         }
+        clsDx();
 
-        if (Key[KEY_INPUT_0] == 1)
-        {
-            player.setpower();
-        }
-        if (Key[KEY_INPUT_1] == 1)
-        {
-            flag = true;
-        }
-        if (flag)
-        {
-            sMgr.updateStage(&bMgr, bombs, &player);
-        }
-        bMgr.DEBUG_printAllBombs(bombs);
-
-        Draw();
+        printfDx(L"DEBUG");
+        // ui.drawUI();
+        // Draw();
         Wait();
     }
+
+    // while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
+    // {
+    //     if (!Update())
+    //     {
+    //         break;
+    //     }
+
+    //     if (title == true)
+    //     {
+    //         ui.getImage(&title);
+    //     }
+
+    //     // bMgr.setBombsHandle(ui.bombsImageHandle);
+    //     // sMgr.loadEnemy();
+    //     // ui.drawUI();
+
+    //     if (Key[KEY_INPUT_0] == 1)
+    //     {
+    //         player.setpower();
+    //     }
+    //     if (Key[KEY_INPUT_1] == 1)
+    //     {
+    //         flag = true;
+    //     }
+    //     if (flag)
+    //     {
+    //         sMgr.updateStage(&bMgr, bombs, &player);
+    //     }
+    //     bMgr.DEBUG_printAllBombs(bombs);
+
+    //     Draw();
+    //     Wait();
+    // }
+
     DxLib_End();
     return 0;
 }

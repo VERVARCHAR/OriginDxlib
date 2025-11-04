@@ -37,11 +37,16 @@ typedef struct BombInfo
 
 class BombManager
 {
+private:
+    int bombsHandle[16];
+
 public:
     BombManager(BombInfo bombs[MAX_BOMBS]);
     ~BombManager();
 
     int getEmptyIndex(BombInfo bombs[MAX_BOMBS]); // 空いてる弾幕のインデックス取得
+
+    void setBombsHandle(int bombsHandle[16]);
 
     // 画面外判定とリセット
     void drawBombs(BombInfo bombs[MAX_BOMBS]);

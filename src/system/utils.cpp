@@ -10,9 +10,12 @@ int Key[256];
 
 void SetUp()
 {
-    SetGraphMode(1280, 720, 32);
-    SetWindowSize(1280, 720);
-    ChangeWindowMode(TRUE);
+    // フルスクリーンモード時の解像度モードをモニターの最大解像度を使用するモードに設定
+    SetFullScreenResolutionMode(DX_FSRESOLUTIONMODE_DESKTOP);
+
+    SetGraphMode(1920, 1080, 32);
+    SetWindowSize(1920, 1080);
+
     DxLib_Init();
     SetDrawScreen(DX_SCREEN_BACK);
 }
