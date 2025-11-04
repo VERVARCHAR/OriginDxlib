@@ -52,57 +52,51 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     bool title = true;
     bool flag = false;
 
-    ui.getImage(&title);
+    ui.getImage();
 
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
-        // if (title == true)
-
         if (!Update())
         {
             break;
         }
-        clsDx();
-
-        printfDx(L"DEBUG");
-        // ui.drawUI();
-        // Draw();
+        ui.loadingScreen();
+        if (GetASyncLoadNum() == 0 && ui.minLoadingTime > 120)
+        {
+            bMgr.setBombsHandle(ui.bombsImageHandle);
+            break;
+        }
         Wait();
     }
 
-    // while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
-    // {
-    //     if (!Update())
-    //     {
-    //         break;
-    //     }
+    while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
+    {
+        clsDx();
+        if (!Update())
+        {
+            break;
+        }
 
-    //     if (title == true)
-    //     {
-    //         ui.getImage(&title);
-    //     }
+        sMgr.loadEnemy();
+        ui.drawUI();
 
-    //     // bMgr.setBombsHandle(ui.bombsImageHandle);
-    //     // sMgr.loadEnemy();
-    //     // ui.drawUI();
+        if (Key[KEY_INPUT_0] == 1)
+        {
+            player.setpower();
+        }
+        if (Key[KEY_INPUT_1] == 1)
+        {
+            flag = true;
+        }
+        if (flag)
+        {
+            sMgr.updateStage(&bMgr, bombs, &player);
+        }
+        bMgr.DEBUG_printAllBombs(bombs);
 
-    //     if (Key[KEY_INPUT_0] == 1)
-    //     {
-    //         player.setpower();
-    //     }
-    //     if (Key[KEY_INPUT_1] == 1)
-    //     {
-    //         flag = true;
-    //     }
-    //     if (flag)
-    //     {
-    //         sMgr.updateStage(&bMgr, bombs, &player);
-    //     }
-    //     bMgr.DEBUG_printAllBombs(bombs);
-
-    //     Draw();
-    //     Wait();
-    // }
+        Draw();
+        Wait();
+    }
 
     DxLib_End();
     return 0;

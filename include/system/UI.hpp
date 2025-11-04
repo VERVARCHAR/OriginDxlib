@@ -40,9 +40,10 @@ private:
 public:
     UI();
     ~UI();
+    int minLoadingTime;
     int bombsImageHandle[16];
 
-    void getImage(bool *);
+    void getImage();
     void drawUI();
     void loadingScreen();
     PlayerStatus getPlayerStatus();

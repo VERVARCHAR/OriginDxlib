@@ -31,12 +31,12 @@ inline double normalizeAngle(double a)
 
 class Enemy;
 
-int EnemyShootScript::InitBombShoot(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player)
+int EnemyShootScript::InitBombShoot(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player, double radius)
 {
     int idx = bMgr.getEmptyIndex(bombs);
     bombs[idx].isUsing = true;
     bombs[idx].time = 0;
-    bombs[idx].radius = 5;
+    bombs[idx].radius = radius;
     bombs[idx].pos = enemy.getPosition();
     bombs[idx].isPlayers = false;
     bombs[idx].id = enemy.getId();
@@ -57,7 +57,7 @@ void EnemyShootScript::BombType00(Enemy enemy, BombManager bMgr, BombInfo bombs[
     {
         for (int i = 0; i < dificulty * 12; i++)
         {
-            int idx = InitBombShoot(enemy, bMgr, bombs, time, dificulty, player);
+            int idx = InitBombShoot(enemy, bMgr, bombs, time, dificulty, player, 15);
 
             double phi = (2.0 * M_PI * i) / (dificulty * 12.0); // 浮動小数割り算
             bombs[idx].vel.x = speed * std::cos(phi);
@@ -92,7 +92,7 @@ void EnemyShootScript::BombType01(Enemy enemy, BombManager bMgr, BombInfo bombs[
             Vec2d playerPos = player.getPosition();
             Vec2d enemyPos = enemy.getPosition();
 
-            int idx = InitBombShoot(enemy, bMgr, bombs, time, dificulty, player);
+            int idx = InitBombShoot(enemy, bMgr, bombs, time, dificulty, player, 20);
             bombs[idx].type = 1;
 
             double phi = std::atan2((playerPos.y - enemyPos.y), (playerPos.x - enemyPos.x));

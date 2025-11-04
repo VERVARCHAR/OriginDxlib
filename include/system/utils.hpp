@@ -15,6 +15,9 @@
 #include "system/utils.hpp"
 #endif
 
+#define WINDOW_HEIGHT 1080
+#define WINDOW_WIDTH 1920
+
 void SetUp();
 bool Update();
 void Draw();

@@ -31,13 +31,15 @@ bool BombManager::getOnScreen(BombInfo bomb)
 {
     // TODO 画面サイズ取得に変更
     int screenWidth = 1000;
-    int screenHeight = 600;
-    if (bomb.pos.x + bomb.radius < 0 || bomb.pos.y - bomb.radius > screenWidth || bomb.pos.y + bomb.radius < 0 || bomb.pos.y - bomb.radius > screenHeight)
+    int screenHeight = 1050;
+    if (bomb.pos.x + bomb.radius < 0 || bomb.pos.x - bomb.radius > screenWidth || bomb.pos.y + bomb.radius < 0 || bomb.pos.y - bomb.radius > screenHeight)
     {
         return false;
     }
     return true;
 }
+
+#define SQRT2 1.414
 
 void BombManager::drawBombs(BombInfo bombs[MAX_BOMBS])
 {
@@ -48,13 +50,14 @@ void BombManager::drawBombs(BombInfo bombs[MAX_BOMBS])
             switch (bombs[i].type)
             {
             case 0:
-                DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
+                // DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
+                DrawExtendGraph(bombs[i].pos.x - bombs[i].radius * SQRT2, bombs[i].pos.y - bombs[i].radius * SQRT2, bombs[i].pos.x + bombs[i].radius * SQRT2, bombs[i].pos.y + bombs[i].radius * SQRT2, bombsHandle[0], TRUE);
                 break;
             case 1:
-                DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 0, 255), TRUE);
+                DrawExtendGraph(bombs[i].pos.x - bombs[i].radius * SQRT2, bombs[i].pos.y - bombs[i].radius * SQRT2, bombs[i].pos.x + bombs[i].radius * SQRT2, bombs[i].pos.y + bombs[i].radius * SQRT2, bombsHandle[1], TRUE);
                 break;
             case 2:
-                DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(0, 255, 255), TRUE);
+                DrawExtendGraph(bombs[i].pos.x - bombs[i].radius * SQRT2, bombs[i].pos.y - bombs[i].radius * SQRT2, bombs[i].pos.x + bombs[i].radius * SQRT2, bombs[i].pos.y + bombs[i].radius * SQRT2, bombsHandle[2], TRUE);
                 break;
             default:
                 break;
