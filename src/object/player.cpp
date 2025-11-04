@@ -144,8 +144,7 @@ void Player::shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
         bombs[idx].isPlayers = true;
         bombs[idx].type = 2;
 
-        bombs[idx]
-            .vel.y = -speed;
+        bombs[idx].vel.y = -speed;
     }
 }
 

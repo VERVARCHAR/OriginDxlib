@@ -1,0 +1,43 @@
+#pragma once
+
+#ifndef _UTILS_HPP_
+#define _UTILS_HPP_
+#include "system/utils.hpp"
+#endif
+
+#ifndef _BOMB_HPP_
+#define _BOMB_HPP_
+#include "object/bomb.hpp"
+#endif // _BOMB_MANAGER_HPP_
+
+#ifndef __ENEMY_HPP_
+#define _ENEMY_HPP_
+#include "object/enemy.hpp"
+#endif // __ENEMY_HPP_s
+
+#ifndef _ENEMY_SHOOT_SCRIPT_01_HPP_
+#define _ENEMY_SHOOT_SCRIPT_01_HPP_
+#include "object/enemyShootScripts/01.hpp"
+#endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
+
+#ifndef _PLAYER_HPP__
+#define _PLAYER_HPP_
+#include "object/player.hpp"
+#endif // _PLAYER_HPP_
+
+#ifndef _STAGE_HPP_
+#define _STAGE_HPP_
+#include "object/stage.hpp"
+#endif
+
+class UI
+{
+private:
+public:
+    UI();
+    ~UI();
+
+    void drawUI();
+    PlayerStatus getPlayerStatus();
+    EnemyStatus getEnemyStatus();
+};

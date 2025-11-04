@@ -1,4 +1,7 @@
+#ifndef _UTILS_HPP_
+#define _UTILS_HPP_
 #include "system/utils.hpp"
+#endif
 
 #ifndef _BOMB_HPP_
 #define _BOMB_HPP_
