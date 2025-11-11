@@ -10,10 +10,10 @@
 #include "object/bomb.hpp"
 #endif // _BOMB_HPP_
 
-#ifndef _ENEMY_SHOOT_SCRIPT_01_HPP_
-#define _ENEMY_SHOOT_SCRIPT_01_HPP_
-#include "object/enemyShootScripts/enemyShootScripts.hpp"
-#endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
+// #ifndef _ENEMY_SHOOT_SCRIPT_01_HPP_
+// #define _ENEMY_SHOOT_SCRIPT_01_HPP_
+// #include "object/enemyShootScripts/EnemyShootScripts.hpp"
+// #endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
 
 #ifndef _PLAYER_HPP_
 #define _PLAYER_HPP_
@@ -23,16 +23,18 @@
 #ifndef _USE_MATH_DEFINES
 #define _USE_MATH_DEFINES // for C++
 #include <cmath>
+
+#endif
+
 constexpr double PI = 3.14159265358979323846;
 constexpr double TWO_PI = 2.0 * PI; // ← 必ず初期化
-#endif
 
 #ifndef _NORM_
 #define _NORM_
 // 角度正規化（0～2π）
 inline double normalizeAngle(double a)
 {
-    const double TWO_PI = 2.0 * M_PI;
+    const double TWO_PI = 2.0 * PI;
     a = std::fmod(a, TWO_PI);
     if (a < 0)
         a += TWO_PI;

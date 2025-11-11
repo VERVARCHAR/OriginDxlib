@@ -8,6 +8,8 @@
 #include "system/enemyIO.hpp"
 #endif
 
+#include <algorithm>
+
 StageManager::StageManager(int _stage, int _time, int _difficulty)
 {
     stage = _stage;
@@ -109,7 +111,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
 
     player->debugStatus();
 
-    player->playerUpdate(*bMgr, bombs);
+    player->playerUpdate(*bMgr, bombs, *this);
     bMgr->updateBombs(bombs);
     bMgr->drawBombs(bombs);
     printfDx(L"times : %d\n", time);

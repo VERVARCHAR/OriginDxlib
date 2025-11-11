@@ -12,7 +12,7 @@
 
 #ifndef _ENEMY_SHOOT_SCRIPT_01_HPP_
 #define _ENEMY_SHOOT_SCRIPT_01_HPP_
-#include "object/enemyShootScripts/enemyShootScripts.hpp"
+#include "object/enemyShootScripts/EnemyShootScripts.hpp"
 #endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
 
 #ifndef _PLAYER_HPP_
@@ -21,6 +21,7 @@
 #endif // _PLAYER_HPP_
 
 class EnemyShootScript;
+class Player;
 
 typedef struct EnemyStatus
 {
@@ -63,8 +64,8 @@ public:
     int getId() { return enemyStatus.id; };
     void setIsAlive(bool flag) { enemyStatus.isAlive = flag; };
     void getBMgrData(BombManager &_BombManager);
-    void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript, Player player);
-    void shootBomb(EnemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
+    void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript *, Player player);
+    void shootBomb(EnemyShootScript *, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
     bool getOnScreen();
     bool getIsAlive(int index);
     Vec2d getPos(int index);

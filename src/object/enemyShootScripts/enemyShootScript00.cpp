@@ -1,6 +1,8 @@
+#pragma once
+
 #ifndef _ENEMY_SHOOT_SCRIPT_01_HPP_
 #define _ENEMY_SHOOT_SCRIPT_01_HPP_
-#include "object/enemyShootScripts/enemyShootScripts.hpp"
+#include "object/enemyShootScripts/EnemyShootScripts.hpp"
 #endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
 
 #ifndef _ENEMY_HPP_
@@ -43,7 +45,7 @@ void EnemyShootScript::BombType00(Enemy enemy, BombManager bMgr, BombInfo bombs[
             int idx = InitBombShoot(enemy, bMgr, bombs, time, dificulty, player, 15);
             bombs[idx].type = 0;
 
-            double phi = (2.0 * M_PI * i) / (dificulty * 12.0); // 浮動小数割り算
+            double phi = (2.0 * PI * i) / (dificulty * 12.0); // 浮動小数割り算
             bombs[idx].vel.x = speed * std::cos(phi);
             bombs[idx].vel.y = speed * std::sin(phi);
         }

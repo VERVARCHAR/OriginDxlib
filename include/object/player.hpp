@@ -25,6 +25,7 @@ extern int Key[256];
 class Enemy;
 class EnemyShootScript;
 class StageManager;
+struct EnemyStatus;
 
 typedef struct Status
 {
@@ -65,13 +66,13 @@ public:
     // void getUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(_usingBombs, usingBombs, sizeof(usingBombs)); }
     // void setUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(usingBombs, _usingBombs, sizeof(usingBombs)); }
     void getBMgrData(BombManager &_BombManager);
-    void playerUpdate(BombManager, BombInfo[MAX_BOMBS]);
+    void playerUpdate(BombManager, BombInfo[MAX_BOMBS], StageManager);
     void shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS]);
     void getKeyInput();
     void SpelCard(BombManager, BombInfo[MAX_BOMBS]);
     void ShootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS]);
     void Dead();
-    // bool isHitEnemy(StageManager sMgr);
+    bool isHitEnemy(StageManager sMgr);
     void debugStatus()
     {
         printfDx(L"lives : %d\n", status.lives);
