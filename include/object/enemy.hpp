@@ -15,7 +15,7 @@
 #include "object/enemyShootScripts/enemyShootScripts.hpp"
 #endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
 
-#ifndef _PLAYER_HPP__
+#ifndef _PLAYER_HPP_
 #define _PLAYER_HPP_
 #include "object/player.hpp"
 #endif // _PLAYER_HPP_

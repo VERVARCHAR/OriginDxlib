@@ -1,4 +1,4 @@
-#ifndef _PLAYER_HPP__
+#ifndef _PLAYER_HPP_
 #define _PLAYER_HPP_
 #include "object/player.hpp"
 #endif // _PLAYER_HPP_
@@ -25,7 +25,7 @@ Player::~Player()
     ;
 }
 
-void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS], StageManager sMgr)
+void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 {
     getKeyInput();
     DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
@@ -40,7 +40,7 @@ void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS], StageMana
     {
         for (int i = 0; i < MAX_BOMBS; i++)
         {
-            if (bombs[i].isUsing && !bombs[i].isPlayers && isHitBomb(&bombs[i], pos, radius) && isHitEnemy(sMgr))
+            if (bombs[i].isUsing && !bombs[i].isPlayers && isHitBomb(&bombs[i], pos, radius))
             {
                 Dead();
             }
@@ -159,22 +159,22 @@ void Player::SpelCard(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
     }
 }
 
-bool Player::isHitEnemy(StageManager sMgr)
-{
-    Vec2d enmeyPos = {0, 0};
-    int enemyRadius = 0;
+// bool Player::isHitEnemy(StageManager sMgr)
+// {
+//     Vec2d enmeyPos = {0, 0};
+//     int enemyRadius = 0;
 
-    for (int i = 0; i < MAX_ENEMIES; i++)
-    {
-        if (sMgr.enemys[i]->enemyStatus.isAlive)
-        {
-            enmeyPos = sMgr.enemys[i]->enemyStatus.pos;
-            enemyRadius = sMgr.enemys[i]->enemyStatus.radius;
+//     for (int i = 0; i < MAX_ENEMIES; i++)
+//     {
+//         if (sMgr.enemys[i]->enemyStatus.isAlive)
+//         {
+//             enmeyPos = sMgr.enemys[i]->enemyStatus.pos;
+//             enemyRadius = sMgr.enemys[i]->enemyStatus.radius;
 
-            if (POWER2(((enmeyPos.x) - (pos.x))) + POWER2(((enmeyPos.y) - (pos.y))) < POWER2(((enemyRadius) + (radius))))
-            {
-                return true;
-            }
-        }
-    }
-}
+//             if (POWER2(((enmeyPos.x) - (pos.x))) + POWER2(((enmeyPos.y) - (pos.y))) < POWER2(((enemyRadius) + (radius))))
+//             {
+//                 return true;
+//             }
+//         }
+//     }
+// }

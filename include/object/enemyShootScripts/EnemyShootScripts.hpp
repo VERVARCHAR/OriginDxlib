@@ -1,8 +1,9 @@
 #pragma once
+
 #ifndef _ENEMY_HPP_
 #define _ENEMY_HPP_
 #include "object/enemy.hpp"
-#endif // __ENEMY_HPP_s
+#endif // _ENEMY_HPP_s
 
 #ifndef _BOMB_HPP_
 #define _BOMB_HPP_
@@ -14,13 +15,17 @@
 #include "object/enemyShootScripts/enemyShootScripts.hpp"
 #endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
 
-#ifndef _PLAYER_HPP__
+#ifndef _PLAYER_HPP_
 #define _PLAYER_HPP_
 #include "object/player.hpp"
 #endif // _PLAYER_HPP_
 
+#ifndef _USE_MATH_DEFINES
 #define _USE_MATH_DEFINES // for C++
 #include <cmath>
+constexpr double PI = 3.14159265358979323846;
+constexpr double TWO_PI = 2.0 * PI; // ← 必ず初期化
+#endif
 
 #ifndef _NORM_
 #define _NORM_

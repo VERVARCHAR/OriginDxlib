@@ -6,7 +6,7 @@
 #ifndef _ENEMY_HPP_
 #define _ENEMY_HPP_
 #include "object/enemy.hpp"
-#endif // __ENEMY_HPP_s
+#endif // _ENEMY_HPP_s
 
 #ifndef _BOMB_HPP_
 #define _BOMB_HPP_
