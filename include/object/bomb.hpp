@@ -61,4 +61,4 @@ public:
     void initBomb(BombInfo *);
 };
 
-bool isHit(BombInfo *bomb, Vec2d pos, int radius);
+bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius);

@@ -3,6 +3,11 @@
 #include "object/bomb.hpp"
 #endif // _BOMB_HPP_
 
+#ifndef _UTILS_HPP_
+#define _UTILS_HPP_
+#include "system/utils.hpp"
+#endif
+
 BombManager::BombManager(BombInfo bombs[MAX_BOMBS])
 {
     for (int i = 0; i < MAX_BOMBS; i++)
@@ -30,8 +35,8 @@ int BombManager::getEmptyIndex(BombInfo bombs[MAX_BOMBS])
 bool BombManager::getOnScreen(BombInfo bomb)
 {
     // TODO 画面サイズ取得に変更
-    int screenWidth = 1000;
-    int screenHeight = 1050;
+    int screenWidth = (WINDOW_WIDTH * 0.6) - 30;
+    int screenHeight = WINDOW_HEIGHT - 30;
     if (bomb.pos.x + bomb.radius < 0 || bomb.pos.x - bomb.radius > screenWidth || bomb.pos.y + bomb.radius < 0 || bomb.pos.y - bomb.radius > screenHeight)
     {
         return false;
@@ -84,12 +89,15 @@ void BombManager::updateBombs(BombInfo bombs[MAX_BOMBS])
 {
     for (int i = 0; i < MAX_BOMBS; i++)
     {
-        bombs[i].pos.x += bombs[i].vel.x;
-        bombs[i].pos.y += bombs[i].vel.y;
-        bombs[i].time += 1;
-        if (!getOnScreen(bombs[i]))
+        if (bombs[i].isUsing)
         {
-            initBomb(&bombs[i]);
+            bombs[i].pos.x += bombs[i].vel.x;
+            bombs[i].pos.y += bombs[i].vel.y;
+            bombs[i].time += 1;
+            if (!getOnScreen(bombs[i]))
+            {
+                initBomb(&bombs[i]);
+            }
         }
     }
 }
@@ -98,15 +106,15 @@ void BombManager::initBomb(BombInfo *bomb)
 {
     bomb->isUsing = false;
     bomb->isPlayers = false;
-    bomb->pos.x = 0;
-    bomb->pos.y = 0;
+    bomb->pos.x = -1000;
+    bomb->pos.y = -1000;
     bomb->vel.x = 0;
     bomb->vel.y = 0;
-    bomb->radius = 0;
+    bomb->radius = -1;
     bomb->power = 1;
-    bomb->time = 0;
+    bomb->time = -1;
     bomb->id = -1;
-    bomb->type = 0;
+    bomb->type = -1;
 }
 
 void BombManager::setBombsHandle(int _bombsHandle[16])
@@ -117,7 +125,7 @@ void BombManager::setBombsHandle(int _bombsHandle[16])
     }
 }
 
-bool isHit(BombInfo *bomb, Vec2d pos, int radius)
+bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius)
 {
 
     if (bomb->isUsing)

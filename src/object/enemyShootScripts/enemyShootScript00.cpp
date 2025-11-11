@@ -16,19 +16,6 @@
 #define _USE_MATH_DEFINES // for C++
 #include <cmath>
 
-#ifndef _NORM_
-#define _NORM_
-// 角度正規化（0～2π）
-inline double normalizeAngle(double a)
-{
-    const double TWO_PI = 2.0 * M_PI;
-    a = std::fmod(a, TWO_PI);
-    if (a < 0)
-        a += TWO_PI;
-    return a;
-}
-#endif
-
 class Enemy;
 
 int EnemyShootScript::InitBombShoot(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player, double radius)
@@ -40,10 +27,6 @@ int EnemyShootScript::InitBombShoot(Enemy enemy, BombManager bMgr, BombInfo bomb
     bombs[idx].pos = enemy.getPosition();
     bombs[idx].isPlayers = false;
     bombs[idx].id = enemy.getId();
-
-    // double phi = (2.0 * M_PI * i) / (dificulty * 12.0); // 浮動小数割り算
-    // bombs[idx].vel.x = speed * std::cos(phi);
-    // bombs[idx].vel.y = speed * std::sin(phi);
 
     return idx;
 }
@@ -58,6 +41,7 @@ void EnemyShootScript::BombType00(Enemy enemy, BombManager bMgr, BombInfo bombs[
         for (int i = 0; i < dificulty * 12; i++)
         {
             int idx = InitBombShoot(enemy, bMgr, bombs, time, dificulty, player, 15);
+            bombs[idx].type = 0;
 
             double phi = (2.0 * M_PI * i) / (dificulty * 12.0); // 浮動小数割り算
             bombs[idx].vel.x = speed * std::cos(phi);

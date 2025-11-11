@@ -68,7 +68,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         }
         Wait();
     }
-
+    sMgr.loadEnemy();
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
         clsDx();
@@ -77,7 +77,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             break;
         }
 
-        sMgr.loadEnemy();
         ui.drawUI();
 
         if (Key[KEY_INPUT_0] == 1)
@@ -93,7 +92,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             sMgr.updateStage(&bMgr, bombs, &player);
         }
         bMgr.DEBUG_printAllBombs(bombs);
-
+        // sMgr.DEBUG_print_enemies();
         Draw();
         Wait();
     }

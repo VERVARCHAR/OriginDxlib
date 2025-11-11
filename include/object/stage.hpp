@@ -1,5 +1,9 @@
 #pragma once
+
+#ifndef _UTILS_HPP_
+#define _UTILS_HPP_
 #include "system/utils.hpp"
+#endif
 
 #ifndef _BOMB_HPP_
 #define _BOMB_HPP_
@@ -21,15 +25,18 @@
 #include "object/player.hpp"
 #endif // _PLAYER_HPP_
 
-#define MAX_ENEMYS 128
+#include <fstream>
+#include <stdexcept>
+#include <nlohmann/json.hpp>
+
+#define NOMINMAX
+#include <windows.h>
+// using namespace std;
+using json = nlohmann::json;
+
+#define MAX_ENEMIES 128
 
 class Enemy;
-
-typedef struct LoadEnemyStatus
-{
-    int time;
-    EnemyStatus enemyStatus;
-} loadEnemyStatus;
 
 class StageManager
 {
@@ -38,13 +45,16 @@ private:
     int time;
     int difficulty;
     int latestEnemyId;
-    Enemy *enemys[MAX_ENEMYS];
+    Enemy *enemys[MAX_ENEMIES];
     EnemyShootScript enemyShootScript;
-    LoadEnemyStatus loadEnemyStatus[MAX_ENEMYS];
+    std::vector<enemyStatus> loadEnemies;
+    int enemyCount;
 
 public:
     StageManager(int _stage, int _time, int _difficulty);
     ~StageManager();
+
+    void LoadFromVector(const std::vector<EnemyStatus> &src);
 
     void loadEnemy();
     void spwanEnemy(int index, EnemyStatus enemyStatus);

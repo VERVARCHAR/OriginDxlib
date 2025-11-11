@@ -31,6 +31,7 @@ typedef struct EnemyStatus
     int hp; // 体力
     int radius;
     int shootType;
+    int spwanTime;
     int time;
     short id;
     bool isAlive;
@@ -40,8 +41,6 @@ typedef struct EnemyStatus
 class Enemy
 {
 private:
-    EnemyStatus enemyStatus;
-
 protected:
 public:
     Enemy(EnemyStatus enemyStatus);
@@ -49,6 +48,7 @@ public:
 
     void setPosition(int _x, int _y);
     Vec2d getPosition();
+    EnemyStatus enemyStatus;
     EnemyStatus getStatus()
     {
         return enemyStatus;
@@ -66,4 +66,6 @@ public:
     void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript, Player player);
     void shootBomb(EnemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
     bool getOnScreen();
+    bool getIsAlive(int index);
+    Vec2d getPos(int index);
 };

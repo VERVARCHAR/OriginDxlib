@@ -1,0 +1,66 @@
+{
+    "stage_name": "stage1",
+    "fps": 60,
+    "enemies": [
+        {
+            "name": "Red-1",
+            "id": 1,
+            "type": 0,
+            "lives": 1,
+            "hp": 15,
+            "radius": 12,
+            "shootType": 0,
+            "time": 0,
+            "spwanTime": 60,
+            "isAlive": 0,
+            "pos": {
+                "x": 320.0,
+                "y": -32.0
+            },
+            "vel": {
+                "x": 0.0,
+                "y": 2.0
+            }
+        },
+        {
+            "name": "Blue-L",
+            "id": 2,
+            "type": 1,
+            "lives": 1,
+            "hp": 20,
+            "radius": 12,
+            "shootType": 1,
+            "spwanTime": 60,
+            "time": 0,
+            "isAlive": 0,
+            "pos": {
+                "x": 100.0,
+                "y": -32.0
+            },
+            "vel": {
+                "x": 0.0,
+                "y": 2.0
+            }
+        },
+        {
+            "name": "Blue-R",
+            "id": 3,
+            "type": 1,
+            "lives": 1,
+            "hp": 20,
+            "radius": 12,
+            "shootType": 1,
+            "time": 0,
+            "spwanTime": 120,
+            "isAlive": 0,
+            "pos": {
+                "x": 540.0,
+                "y": -32.0
+            },
+            "vel": {
+                "x": 0.0,
+                "y": 2.0
+            }
+        }
+    ]
+}

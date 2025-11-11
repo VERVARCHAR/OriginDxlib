@@ -51,7 +51,7 @@ void UI::loadingScreen()
 void UI::drawUI()
 {
     DrawGraph(0, 0, titleHandle, TRUE);
-    DrawBox(30, 30, 1000, 1050, GetColor(0, 0, 0), TRUE);
+    DrawBox(30, 30, (int)(WINDOW_WIDTH * 0.6) - 30, WINDOW_HEIGHT - 30, GetColor(0, 0, 0), TRUE);
 }
 
 // PlayerStatus UI::getPlayerStatus()

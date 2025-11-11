@@ -25,7 +25,7 @@ Player::~Player()
     ;
 }
 
-void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
+void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS], StageManager sMgr)
 {
     getKeyInput();
     DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
@@ -40,7 +40,7 @@ void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
     {
         for (int i = 0; i < MAX_BOMBS; i++)
         {
-            if (bombs[i].isUsing && !bombs[i].isPlayers && isHit(&bombs[i], pos, radius))
+            if (bombs[i].isUsing && !bombs[i].isPlayers && isHitBomb(&bombs[i], pos, radius) && isHitEnemy(sMgr))
             {
                 Dead();
             }
@@ -155,6 +155,26 @@ void Player::SpelCard(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
         if (!bombs[i].isPlayers && POWER2((pos.x) - (bombs[i].pos.x)) + POWER2((pos.y) - (bombs[i].pos.y)) < POWER2(250))
         {
             bMgr.initBomb(&bombs[i]);
+        }
+    }
+}
+
+bool Player::isHitEnemy(StageManager sMgr)
+{
+    Vec2d enmeyPos = {0, 0};
+    int enemyRadius = 0;
+
+    for (int i = 0; i < MAX_ENEMIES; i++)
+    {
+        if (sMgr.enemys[i]->enemyStatus.isAlive)
+        {
+            enmeyPos = sMgr.enemys[i]->enemyStatus.pos;
+            enemyRadius = sMgr.enemys[i]->enemyStatus.radius;
+
+            if (POWER2(((enmeyPos.x) - (pos.x))) + POWER2(((enmeyPos.y) - (pos.y))) < POWER2(((enemyRadius) + (radius))))
+            {
+                return true;
+            }
         }
     }
 }

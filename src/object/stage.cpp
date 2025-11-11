@@ -3,6 +3,11 @@
 #include "object/stage.hpp"
 #endif
 
+#ifndef _ENEMY_IO_HPP_
+#define _ENEMY_IO_HPP_
+#include "system/enemyIO.hpp"
+#endif
+
 StageManager::StageManager(int _stage, int _time, int _difficulty)
 {
     stage = _stage;
@@ -11,50 +16,55 @@ StageManager::StageManager(int _stage, int _time, int _difficulty)
     latestEnemyId = 0;
     Vec2d initVec2d = {0, 0};
     EnemyStatus init = {
-        {0, 0},
-        {0, 0},
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        false,
+        {-1000, -1000},
+        {-1000, -1000},
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
         "Default"};
-    for (int i = 0; i < MAX_ENEMYS; i++)
+
+    for (int i = 0; i < MAX_ENEMIES; i++)
     {
         enemys[i] = new Enemy(init);
     }
 }
 StageManager::~StageManager()
 {
-    for (int i = 0; i < MAX_ENEMYS; ++i)
+    for (int i = 0; i < MAX_ENEMIES; ++i)
     {
         delete enemys[i]; // メモリ解放を忘れずに
         enemys[i] = nullptr;
     }
 }
 
+void StageManager::LoadFromVector(const std::vector<EnemyStatus> &src)
+{
+    enemyCount = min(static_cast<int>(src.size()), MAX_ENEMIES);
+    for (int i = 0; i < enemyCount; ++i)
+    {
+        enemys[i]->setStatus(src[i]);
+    }
+    std::cout << "[EnemyManager]" << enemyCount << " enemies registered\n";
+}
+
 void StageManager::loadEnemy()
 {
-    for (int i = 0; i < MAX_ENEMYS; i++)
+    // TODO : ローディング画面
+    if (LoadEnemyDataFromJson("../../stageInfos/stage01/stage01.json", loadEnemies))
     {
-        EnemyStatus init = {
-            {300 + 10 * i, 200},
-            {0, 2},
-            i % 2,
-            1,
-            1,
-            10,
-            i % 2,
-            0,
-            i,
-            true,
-            "Name"};
-        loadEnemyStatus[i].enemyStatus = init;
-        loadEnemyStatus[i].time = i * 30;
+        LoadFromVector(loadEnemies);
     }
+    else
+    {
+        DrawFormatString(200, 200, GetColor(255, 255, 255), L"[ERROR]");
+    }
+    // return 1;
 }
 
 void StageManager::spwanEnemy(int index, EnemyStatus enemyStatus)
@@ -64,7 +74,7 @@ void StageManager::spwanEnemy(int index, EnemyStatus enemyStatus)
 
 int StageManager::getEmptyIndex()
 {
-    for (int i = 0; i < MAX_ENEMYS; i++)
+    for (int i = 0; i < MAX_ENEMIES; i++)
     {
 
         if (!enemys[i]->getStatus().isAlive)
@@ -81,36 +91,29 @@ void StageManager::deleteEnemy(int index)
     tmp.isAlive = false;
     enemys[index]->setStatus(tmp);
 }
+
 void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player)
 {
-
-    for (int i = 0; i < MAX_ENEMYS; i++)
+    int count = 0;
+    for (int i = 0; i < MAX_ENEMIES; i++)
     {
-        if (enemys[i] != nullptr && !enemys[i]->getStatus().isAlive)
+        if (enemys[i]->enemyStatus.spwanTime == this->time)
         {
-            if (loadEnemyStatus[i].time == this->time)
-            {
-                spwanEnemy(latestEnemyId, loadEnemyStatus[i].enemyStatus);
-                latestEnemyId++;
-            }
+            enemys[i]->setIsAlive(true);
         }
-    }
-
-    for (int i = 0; i < MAX_ENEMYS; i++)
-    {
-        if (enemys[i] != nullptr && enemys[i]->getStatus().isAlive)
+        if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
         {
             enemys[i]->enemyUpdate(this->time, difficulty, bMgr, bombs, enemyShootScript, *player);
         }
     }
 
     player->debugStatus();
-    // printfDx(L"%d\n", enemy.getHP());
 
-    player->playerUpdate(*bMgr, bombs);
+    player->playerUpdate(*bMgr, bombs, this);
     bMgr->updateBombs(bombs);
     bMgr->drawBombs(bombs);
     printfDx(L"times : %d\n", time);
+    printfDx(L"count : %d\n", count);
 
     time++;
 }
