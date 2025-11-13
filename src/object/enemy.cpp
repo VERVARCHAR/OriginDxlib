@@ -13,7 +13,7 @@ Enemy::~Enemy()
     ;
 }
 
-void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript *enemyShootScript, Player player)
+void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript enemyShootScript, Player player)
 {
     if (!enemyStatus.isAlive)
     {
@@ -73,17 +73,17 @@ bool Enemy::getOnScreen()
     return true;
 }
 
-void Enemy::shootBomb(EnemyShootScript *enemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player)
+void Enemy::shootBomb(EnemyShootScript enemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player)
 {
 
     switch (enemyStatus.shootType)
     {
     case 0:
-        enemyShootScript->BombType00(*this, *bMgr, bombs, time, dificulty, player);
+        enemyShootScript.BombType00(*this, *bMgr, bombs, time, dificulty, player);
         break;
 
     case 1:
-        enemyShootScript->BombType01(*this, *bMgr, bombs, time, dificulty, player);
+        enemyShootScript.BombType01(*this, *bMgr, bombs, time, dificulty, player);
         break;
     default:
 

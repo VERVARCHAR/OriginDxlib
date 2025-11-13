@@ -55,7 +55,7 @@ private:
     int time;
     int difficulty;
     int latestEnemyId;
-    Enemy *enemys[MAX_ENEMIES];
+    // Enemy *enemys[MAX_ENEMIES];
     EnemyShootScript enemyShootScript;
     std::vector<EnemyStatus> loadEnemies;
     int enemyCount;
