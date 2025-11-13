@@ -10,17 +10,17 @@
 #include "object/bomb.hpp"
 #endif // _BOMB_MANAGER_HPP_
 
-#ifndef __ENEMY_HPP_
+#ifndef _ENEMY_HPP_
 #define _ENEMY_HPP_
 #include "object/enemy.hpp"
-#endif // __ENEMY_HPP_s
+#endif // _ENEMY_HPP_s
 
 #ifndef _ENEMY_SHOOT_SCRIPT_01_HPP_
 #define _ENEMY_SHOOT_SCRIPT_01_HPP_
-#include "object/enemyShootScripts/enemyShootScripts.hpp"
+#include "object/enemyShootScripts/EnemyShootScripts.hpp"
 #endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
 
-#ifndef _PLAYER_HPP__
+#ifndef _PLAYER_HPP_
 #define _PLAYER_HPP_
 #include "object/player.hpp"
 #endif // _PLAYER_HPP_
@@ -47,7 +47,7 @@ private:
     int latestEnemyId;
     Enemy *enemys[MAX_ENEMIES];
     EnemyShootScript enemyShootScript;
-    std::vector<enemyStatus> loadEnemies;
+    std::vector<EnemyStatus> loadEnemies;
     int enemyCount;
 
 public:

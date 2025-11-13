@@ -15,10 +15,10 @@
 #include "system/utils.hpp"
 #endif
 
-#ifndef _STAGE_HPP_
-#define _STAGE_HPP_
-#include "object/stage.hpp"
-#endif
+// #ifndef _STAGE_HPP_
+// #define _STAGE_HPP_
+// #include "object/stage.hpp"
+// #endif
 
 extern int Key[256];
 
@@ -61,13 +61,13 @@ public:
     // void getUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(_usingBombs, usingBombs, sizeof(usingBombs)); }
     // void setUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(usingBombs, _usingBombs, sizeof(usingBombs)); }
     void getBMgrData(BombManager &_BombManager);
-    void playerUpdate(BombManager, BombInfo[MAX_BOMBS], StageManager sMgr);
+    void playerUpdate(BombManager, BombInfo[MAX_BOMBS]);
     void shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS]);
     void getKeyInput();
     void SpelCard(BombManager, BombInfo[MAX_BOMBS]);
     void ShootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS]);
     void Dead();
-    bool isHitEnemy(StageManager sMgr);
+    // bool isHitEnemy(StageManager sMgr);
     void debugStatus()
     {
         printfDx(L"lives : %d\n", status.lives);
