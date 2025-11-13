@@ -64,9 +64,10 @@ public:
     int getId() { return enemyStatus.id; };
     void setIsAlive(bool flag) { enemyStatus.isAlive = flag; };
     void getBMgrData(BombManager &_BombManager);
-    void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript, Player player);
+    void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript, Player *player);
     void shootBomb(EnemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
     bool getOnScreen();
     bool getIsAlive(int index);
+    bool isHitPlayer(Player *player);
     Vec2d getPos(int index);
 };

@@ -13,7 +13,7 @@ Enemy::~Enemy()
     ;
 }
 
-void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript enemyShootScript, Player player)
+void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript enemyShootScript, Player *player)
 {
     if (!enemyStatus.isAlive)
     {
@@ -25,7 +25,11 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         DrawBox(enemyStatus.pos.x - 10, enemyStatus.pos.y - 10, enemyStatus.pos.x + 10, enemyStatus.pos.y + 10, GetColor(255, 0, 0), TRUE);
         DrawCircle(enemyStatus.pos.x, enemyStatus.pos.y, enemyStatus.radius, GetColor(255, 0, 255), TRUE);
 
-        shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, difficulty, player);
+        shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, difficulty, *player);
+        if ((!player->getStatus().invincible) && isHitPlayer(player))
+        {
+            player->Dead();
+        }
 
         enemyStatus.pos.x += enemyStatus.vel.x;
         enemyStatus.pos.y += enemyStatus.vel.y;
@@ -90,4 +94,19 @@ void Enemy::shootBomb(EnemyShootScript enemyShootScript, BombManager *bMgr, Bomb
         printfDx(L"[DEBUG]:shootBomb %d\n", enemyStatus.shootType);
         break;
     }
+}
+
+bool Enemy::isHitPlayer(Player *player)
+{
+    Vec2d playerPos = player->getPosition();
+    int playerRadius = player->getRadius();
+
+    if (enemyStatus.isAlive)
+    {
+        if (POWER2(((playerPos.x) - (enemyStatus.pos.x))) + POWER2(((playerPos.y) - (enemyStatus.pos.y))) < POWER2(((playerRadius) + (enemyStatus.radius))))
+        {
+            return true;
+        }
+    }
+    return false;
 }

@@ -24,8 +24,10 @@ extern int Key[256];
 
 class Enemy;
 class EnemyShootScript;
-class StageManager;
 struct EnemyStatus;
+
+// 使用不可
+// class StageManager;
 
 typedef struct Status
 {
@@ -59,6 +61,10 @@ public:
 
     void setPosition(int _x, int _y);
     Vec2d getPosition();
+    int getRadius()
+    {
+        return radius;
+    }
     Status getStatus()
     {
         return status;
@@ -72,7 +78,6 @@ public:
     void SpelCard(BombManager, BombInfo[MAX_BOMBS]);
     void ShootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS]);
     void Dead();
-    // bool isHitEnemy(StageManager sMgr);
     void debugStatus()
     {
         printfDx(L"lives : %d\n", status.lives);

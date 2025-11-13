@@ -105,7 +105,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
         }
         if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
         {
-            enemys[i]->enemyUpdate(this->time, difficulty, bMgr, bombs, enemyShootScript, *player);
+            enemys[i]->enemyUpdate(this->time, difficulty, bMgr, bombs, enemyShootScript, player);
         }
     }
 
