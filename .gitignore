@@ -3,9 +3,12 @@
 !/.vscode/settings.json
 !/.vscode/launch.json
 !/.vscode/c_cpp_properties.json
-build/
+# build/
 CMakeCache.txt
 CMakeFiles/
+
+build/*
+!build/bin
 
 # Windows / misc
 *.user
