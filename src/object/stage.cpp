@@ -111,7 +111,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
 
     player->debugStatus();
 
-    player->playerUpdate(*bMgr, bombs, *this);
+    player->playerUpdate(*bMgr, bombs);
     bMgr->updateBombs(bombs);
     bMgr->drawBombs(bombs);
     printfDx(L"times : %d\n", time);

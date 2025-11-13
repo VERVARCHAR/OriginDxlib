@@ -1,7 +1,7 @@
 #ifndef _ENEMY_HPP_
 #define _ENEMY_HPP_
 #include "object/enemy.hpp"
-#endif // _ENEMY_HPP__
+#endif // _ENEMY_HPP_
 
 Enemy::Enemy(EnemyStatus _enemyStatus)
 {

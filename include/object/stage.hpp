@@ -17,6 +17,11 @@
 #include "object/enemy.hpp"
 #endif // _ENEMY_HPP_s
 
+#ifndef _ENEMY_SHOOT_SCRIPT_01_HPP_
+#define _ENEMY_SHOOT_SCRIPT_01_HPP_
+#include "object/enemyShootScripts/EnemyShootScripts.hpp"
+#endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
+
 #ifndef _PLAYER_HPP_
 #define _PLAYER_HPP_
 #include "object/player.hpp"
@@ -50,7 +55,8 @@ private:
     int time;
     int difficulty;
     int latestEnemyId;
-    EnemyShootScript *enemyShootScript = nullptr;
+    Enemy *enemys[MAX_ENEMIES];
+    EnemyShootScript enemyShootScript;
     std::vector<EnemyStatus> loadEnemies;
     int enemyCount;
 

@@ -37,7 +37,7 @@ typedef struct EnemyStatus
     short id;
     bool isAlive;
     char name[32]; // 名前
-} enemyStatus;
+};
 
 class Enemy
 {

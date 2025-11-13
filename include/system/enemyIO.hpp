@@ -39,7 +39,7 @@ using json = nlohmann::json;
 #endif
 
 // JSONから敵情報を読み取る関数
-inline bool LoadEnemyDataFromJson(const std::string &path, std::vector<enemyStatus> &outEnemies)
+inline bool LoadEnemyDataFromJson(const std::string &path, std::vector<EnemyStatus> &outEnemies)
 {
     outEnemies.clear();
     std::ifstream ifs(path);
@@ -68,7 +68,7 @@ inline bool LoadEnemyDataFromJson(const std::string &path, std::vector<enemyStat
 
     for (const auto &item : j["enemies"])
     {
-        enemyStatus e{};
+        EnemyStatus e{};
         e.pos.x = item.value("pos", json{{"x", 0.0}, {"y", 0.0}})["x"];
         e.pos.y = item.value("pos", json{{"x", 0.0}, {"y", 0.0}})["y"];
         e.vel.x = item.value("vel", json{{"x", 0.0}, {"y", 0.0}})["x"];

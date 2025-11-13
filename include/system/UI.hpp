@@ -10,7 +10,7 @@
 #include "object/bomb.hpp"
 #endif // _BOMB_MANAGER_HPP_
 
-#ifndef ENEMY_HPP_
+#ifndef _ENEMY_HPP_
 #define _ENEMY_HPP_
 #include "object/enemy.hpp"
 #endif // _ENEMY_HPP_s
