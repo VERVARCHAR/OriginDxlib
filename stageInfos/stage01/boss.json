@@ -1,0 +1,26 @@
+{
+    "stage_name": "stage1",
+    "fps": 60,
+    "enemies": [
+        {
+            "name": "Boss01",
+            "id": 1,
+            "type": 0,
+            "lives": 5,
+            "hp": 200,
+            "radius": 12,
+            "shootType": 0,
+            "time": 0,
+            "spwanTime": 60,
+            "isAlive": 0,
+            "pos": {
+                "x": 320.0,
+                "y": -32.0
+            },
+            "vel": {
+                "x": 0.0,
+                "y": 2.0
+            }
+        }
+    ]
+}

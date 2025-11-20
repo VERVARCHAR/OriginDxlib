@@ -13,6 +13,9 @@
             "time": 0,
             "spwanTime": 60,
             "isAlive": 0,
+            "isSpell": 0,
+            "isInvicible": 0,
+            "invicibleTime": 0,
             "pos": {
                 "x": 320.0,
                 "y": -32.0
@@ -33,6 +36,9 @@
             "spwanTime": 60,
             "time": 0,
             "isAlive": 0,
+            "isSpell": 0,
+            "isInvicible": 0,
+            "invicibleTime": 0,
             "pos": {
                 "x": 100.0,
                 "y": -32.0
@@ -53,6 +59,32 @@
             "time": 0,
             "spwanTime": 120,
             "isAlive": 0,
+            "isSpell": 0,
+            "isInvicible": 0,
+            "invicibleTime": 0,
+            "pos": {
+                "x": 540.0,
+                "y": -32.0
+            },
+            "vel": {
+                "x": 0.0,
+                "y": 2.0
+            }
+        },
+        {
+            "name": "Boss",
+            "id": 3,
+            "type": 100,
+            "lives": 3,
+            "hp": 200,
+            "radius": 12,
+            "shootType": 2,
+            "time": 0,
+            "spwanTime": 420,
+            "isAlive": 0,
+            "isSpell": 0,
+            "isInvicible": 0,
+            "invicibleTime": 0,
             "pos": {
                 "x": 540.0,
                 "y": -32.0

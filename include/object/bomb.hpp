@@ -33,6 +33,8 @@ typedef struct BombInfo
     int time;
     short id; // shooted_id,bombs_id
     short type;
+    bool isVanishing = false;
+    int vanishTime;
 } bombInfo;
 
 class BombManager
@@ -59,6 +61,8 @@ public:
     bool getOnScreen(BombInfo);
 
     void initBomb(BombInfo *);
+
+    void removeBomb(BombInfo bombs[MAX_BOMBS]);
 };
 
 bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius);

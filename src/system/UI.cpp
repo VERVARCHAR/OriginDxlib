@@ -54,6 +54,21 @@ void UI::drawUI()
     DrawBox(30, 30, (int)(WINDOW_WIDTH * 0.6) - 30, WINDOW_HEIGHT - 30, GetColor(0, 0, 0), TRUE);
 }
 
+void UI::talkUI(string talkString, int talkWho)
+{
+    if (talkWho == 0)
+    {
+        DrawBox(330, 200, (int)(WINDOW_WIDTH * 0.6) - 30, 500, GetColor(255, 0, 0), TRUE);
+    }
+    else
+    {
+        DrawBox(30, 150, 330, 450, GetColor(0, 255, 0), TRUE);
+    }
+    std::wstring talkW = std::wstring(talkString.begin(), talkString.end());
+    printfDx(talkW.c_str());
+    DrawFormatString(100, 600, GetColor(255, 255, 255), talkW.c_str());
+}
+
 // PlayerStatus UI::getPlayerStatus()
 // {
 // }

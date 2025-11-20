@@ -36,6 +36,9 @@ typedef struct EnemyStatus
     int time;
     short id;
     bool isAlive;
+    bool isSpell;
+    bool isInvicible;
+    int invicibleTime;
     char name[32]; // 名前
 };
 
@@ -44,6 +47,7 @@ class Enemy
 private:
 protected:
 public:
+    bool isTalking = false;
     Enemy(EnemyStatus enemyStatus);
     ~Enemy();
 
@@ -64,10 +68,12 @@ public:
     int getId() { return enemyStatus.id; };
     void setIsAlive(bool flag) { enemyStatus.isAlive = flag; };
     void getBMgrData(BombManager &_BombManager);
+    void enemyDraw();
     void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript, Player *player);
     void shootBomb(EnemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
     bool getOnScreen();
     bool getIsAlive(int index);
     bool isHitPlayer(Player *player);
+    void enemyMove();
     Vec2d getPos(int index);
 };

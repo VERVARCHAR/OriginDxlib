@@ -14,12 +14,22 @@ StageManager::StageManager(int _stage, int _time, int _difficulty)
 {
     stage = _stage;
     time = _time;
+    isTalk = false;
     difficulty = _difficulty;
     latestEnemyId = 0;
+    isTalk = false;
+    talkCount = 0;
+    // string talkString[20] = {'\0'};
+    // talkWho[20] = {0};
+
     Vec2d initVec2d = {0, 0};
+
     EnemyStatus init = {
         {-1000, -1000},
         {-1000, -1000},
+        -1,
+        -1,
+        -1,
         -1,
         -1,
         -1,
@@ -61,6 +71,7 @@ void StageManager::loadEnemy()
     if (LoadEnemyDataFromJson("../../stageInfos/stage01/stage01.json", loadEnemies))
     {
         LoadFromVector(loadEnemies);
+        talk(100);
     }
     else
     {
@@ -97,18 +108,36 @@ void StageManager::deleteEnemy(int index)
 void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player)
 {
     int count = 0;
-    for (int i = 0; i < MAX_ENEMIES; i++)
+    if (time == 480)
     {
-        if (enemys[i]->enemyStatus.spwanTime == this->time)
-        {
-            enemys[i]->setIsAlive(true);
-        }
-        if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
-        {
-            enemys[i]->enemyUpdate(this->time, difficulty, bMgr, bombs, enemyShootScript, player);
-        }
+        isTalk = true;
+        bMgr->removeBomb(bombs);
     }
 
+    if (!isTalk)
+    {
+        for (int i = 0; i < MAX_ENEMIES; i++)
+        {
+            if (enemys[i]->enemyStatus.spwanTime == this->time)
+            {
+                enemys[i]->setIsAlive(true);
+            }
+            if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
+            {
+                enemys[i]->enemyUpdate(this->time, difficulty, bMgr, bombs, enemyShootScript, player);
+            }
+        }
+        time++;
+    }
+
+    for (int i = 0; i < MAX_ENEMIES; i++)
+    {
+        if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
+        {
+            enemys[i]->enemyDraw();
+            printfDx(L"enemy type:%d", enemys[i]->enemyStatus.type);
+        }
+    }
     player->debugStatus();
 
     player->playerUpdate(*bMgr, bombs);
@@ -116,6 +145,30 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     bMgr->drawBombs(bombs);
     printfDx(L"times : %d\n", time);
     printfDx(L"count : %d\n", count);
+}
 
-    time++;
+void StageManager::talk(int type)
+{
+    switch (type)
+    {
+    case 100:
+        talkString[0] = "talk01";
+        talkWho[0] = 0;
+        talkString[1] = "talk02";
+        talkWho[1] = 0;
+        talkString[2] = "talk03";
+        talkWho[2] = 1;
+        talkString[3] = "talk04";
+        talkWho[3] = 0;
+        talkString[4] = "talk05";
+        talkWho[4] = 1;
+        talkString[5] = "talk06";
+        talkWho[5] = 0;
+        talkString[6] = "talk07";
+        talkWho[6] = 1;
+        break;
+
+    default:
+        break;
+    }
 }

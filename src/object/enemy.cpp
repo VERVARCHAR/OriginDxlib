@@ -10,7 +10,21 @@ Enemy::Enemy(EnemyStatus _enemyStatus)
 
 Enemy::~Enemy()
 {
-    ;
+    // if();
+}
+void Enemy::enemyDraw()
+{
+    // 敵の状態更新ロジックをここに実装
+    DrawBox(enemyStatus.pos.x - 10, enemyStatus.pos.y - 10, enemyStatus.pos.x + 10, enemyStatus.pos.y + 10, GetColor(255, 0, 0), TRUE);
+    DrawCircle(enemyStatus.pos.x, enemyStatus.pos.y, enemyStatus.radius, GetColor(255, 0, 255), TRUE);
+
+    if (enemyStatus.type >= 100)
+    {
+        printfDx(L"EnemyLives:%d\n", enemyStatus.lives);
+        printfDx(L"EnemyHP:%d\n", enemyStatus.hp);
+        printfDx(L"EnemyisSpell:%d\n", enemyStatus.isSpell);
+        printfDx(L"EnemyTime:%d\n", enemyStatus.time);
+    }
 }
 
 void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript enemyShootScript, Player *player)
@@ -21,23 +35,27 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
     }
     else
     {
-        // 敵の状態更新ロジックをここに実装
-        DrawBox(enemyStatus.pos.x - 10, enemyStatus.pos.y - 10, enemyStatus.pos.x + 10, enemyStatus.pos.y + 10, GetColor(255, 0, 0), TRUE);
-        DrawCircle(enemyStatus.pos.x, enemyStatus.pos.y, enemyStatus.radius, GetColor(255, 0, 255), TRUE);
-
-        shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, difficulty, *player);
         if ((!player->getStatus().invincible) && isHitPlayer(player))
         {
             player->Dead();
         }
-
-        enemyStatus.pos.x += enemyStatus.vel.x;
-        enemyStatus.pos.y += enemyStatus.vel.y;
+        if (enemyStatus.isSpell)
+        {
+            DrawFormatString(100, 40, GetColor(255, 255, 255), L"Spell");
+            // TODO effect
+            enemyShootScript.Boss01Spell01(*this, *bMgr, bombs, time, difficulty, *player);
+        }
+        else
+        {
+            shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, difficulty, *player);
+        }
+        // TODO 敵の動きも関数にしたいかなぁ
+        enemyMove();
         enemyStatus.time++;
 
         for (int i = 0; i < MAX_BOMBS; i++)
         {
-            if (bombs[i].isUsing && bombs[i].isPlayers && isHitBomb(&bombs[i], enemyStatus.pos, enemyStatus.radius))
+            if (bombs[i].isUsing && bombs[i].isPlayers && !enemyStatus.isInvicible && isHitBomb(&bombs[i], enemyStatus.pos, enemyStatus.radius))
             {
                 enemyStatus.hp--;
             }
@@ -46,11 +64,31 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         if (enemyStatus.hp == 0)
         {
             enemyStatus.lives -= 1;
+            if (enemyStatus.isSpell == true)
+            {
+                enemyStatus.isSpell = true;
+                enemyStatus.isInvicible = true;
+                enemyStatus.invicibleTime = 120;
+            }
         }
 
         if (enemyStatus.lives == 0 || !getOnScreen())
         {
             enemyStatus.isAlive = false;
+        }
+
+        if (enemyStatus.type >= 100)
+        {
+            if (enemyStatus.hp <= 100 && !enemyStatus.isSpell)
+            {
+                enemyStatus.isSpell = true;
+                enemyStatus.time = 0;
+            }
+        }
+
+        if (enemyStatus.invicibleTime >= 0)
+        {
+            enemyStatus.invicibleTime -= 1;
         }
     }
 }
@@ -109,4 +147,22 @@ bool Enemy::isHitPlayer(Player *player)
         }
     }
     return false;
+}
+
+void Enemy::enemyMove()
+{
+    switch (enemyStatus.type)
+    {
+    case 100:
+        if (enemyStatus.time == 60)
+        {
+            enemyStatus.vel = {0, 0};
+        }
+    default:
+
+        printfDx(L"[DEBUG]:shootBomb %d\n", enemyStatus.shootType);
+        break;
+    }
+    enemyStatus.pos.x += enemyStatus.vel.x;
+    enemyStatus.pos.y += enemyStatus.vel.y;
 }

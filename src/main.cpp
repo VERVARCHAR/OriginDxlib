@@ -91,6 +91,20 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         {
             sMgr.updateStage(&bMgr, bombs, &player);
         }
+
+        if (sMgr.isTalk)
+        {
+            ui.talkUI(sMgr.getTalkString(sMgr.talkCount), sMgr.getTalkWho(sMgr.talkCount));
+            if (Key[KEY_INPUT_RETURN] == 1)
+            {
+                sMgr.talkCount++;
+            }
+            if (sMgr.talkCount == 7)
+            {
+                sMgr.endTalk();
+            }
+        }
+
         bMgr.DEBUG_printAllBombs(bombs);
         // sMgr.DEBUG_print_enemies();
         Draw();

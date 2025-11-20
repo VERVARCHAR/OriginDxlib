@@ -31,10 +31,11 @@
 #include <fstream>
 #include <stdexcept>
 #include <nlohmann/json.hpp>
+#include <string>
 
 #define NOMINMAX
 #include <windows.h>
-// using namespace std;
+using namespace std;
 using json = nlohmann::json;
 
 #define MAX_ENEMIES 128
@@ -61,6 +62,11 @@ private:
     int enemyCount;
 
 public:
+    bool isTalk;
+    int talkCount;
+    string talkString[20];
+    int talkWho[20];
+
     StageManager(int _stage, int _time, int _difficulty);
     ~StageManager();
     Enemy *enemys[MAX_ENEMIES];
@@ -73,4 +79,13 @@ public:
     void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player);
     // Enemy getEnemy(int index) { return enemys[i]; };
     int getEmptyIndex(); // 空いてる敵のインデックス取得
+
+    void talk(int type);
+    string getTalkString(int talkCount) { return talkString[talkCount]; };
+    int getTalkWho(int talkCount) { return talkWho[talkCount]; };
+    void endTalk()
+    {
+        isTalk = false;
+        time += 1;
+    };
 };

@@ -115,6 +115,8 @@ void BombManager::initBomb(BombInfo *bomb)
     bomb->time = -1;
     bomb->id = -1;
     bomb->type = -1;
+    bomb->isVanishing = false;
+    bomb->vanishTime = 0;
 }
 
 void BombManager::setBombsHandle(int _bombsHandle[16])
@@ -138,4 +140,15 @@ bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius)
     }
 
     return false;
+}
+
+void BombManager::removeBomb(BombInfo bombs[MAX_BOMBS])
+{
+    for (int i = 0; i < MAX_BOMBS; i++)
+    {
+        if (bombs[i].isUsing)
+        {
+            initBomb(&bombs[i]);
+        }
+    }
 }

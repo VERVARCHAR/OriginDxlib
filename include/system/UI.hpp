@@ -46,6 +46,7 @@ public:
     void getImage();
     void drawUI();
     void loadingScreen();
+    void talkUI(string, int);
     PlayerStatus getPlayerStatus();
     EnemyStatus getEnemyStatus();
 };
