@@ -53,4 +53,6 @@ public:
     void BombType01(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
 
     void Boss01Spell01(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
+    void Boss01Spell02(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
+    void Boss01Spell03(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
 };

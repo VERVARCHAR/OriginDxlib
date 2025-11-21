@@ -153,7 +153,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     }
 
     // TODO
-    if (!isTalk)
+    if (!isTalk && time >= 0)
     {
         for (int i = 0; i < MAX_ENEMIES; i++)
         {
@@ -191,9 +191,14 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
         bMgr->removeBomb(bombs);
         // TODO ステージクリア処理
         stage += 1;
-        time = 0;
-        loadEnemy();
+        time = -120;
         isClearStage = false;
+        loadEnemy();
+    }
+    if (time < 0)
+    {
+        DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
+        time++;
     }
 
     printfDx(L"times : %d\n", time);

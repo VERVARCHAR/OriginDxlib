@@ -55,7 +55,22 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         {
             DrawFormatString(100, 40, GetColor(255, 255, 255), L"Spell");
             // TODO effect
-            enemyShootScript.Boss01Spell01(*this, *bMgr, bombs, time, difficulty, *player);
+            switch (enemyStatus.shootType)
+            {
+            case 1:
+                enemyShootScript.Boss01Spell01(*this, *bMgr, bombs, time, difficulty, *player);
+                /* code */
+                break;
+            case 2:
+                enemyShootScript.Boss01Spell02(*this, *bMgr, bombs, time, difficulty, *player);
+
+                break;
+            case 3:
+                enemyShootScript.Boss01Spell03(*this, *bMgr, bombs, time, difficulty, *player);
+
+            default:
+                break;
+            }
         }
         else
         {
@@ -77,6 +92,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         if (enemyStatus.hp <= 0)
         {
             enemyStatus.lives -= 1;
+            enemyStatus.shootType += 1;
             if (enemyStatus.isSpell == true)
             {
                 enemyStatus.isSpell = false;
