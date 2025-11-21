@@ -49,11 +49,11 @@ void UI::loadingScreen()
     // DrawBox(32, 90, 32 + 4 * percent, 110, GetColor(180, 220, 255), TRUE);
     // DrawFormatString(440, 88, GetColor(255, 255, 255), L"%3d%%  remain=%d", percent, remain);
 
-    std::wstring loadStr = "少女祈祷中";
-    printfDx(talkW.c_str());
+    // std::wstring loadStr = "少女祈祷中";
+    // printfDx(loadStr.c_str());
     DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, GetColor(255, 255, 255), L"少女祈祷中");
     // TODO この処理行ける???
-    DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 50, GetColor(255, 255, 255), for (int i = 0; i < (int)(minLoadingTime / 10) % 30) L".");
+    // DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 50, GetColor(255, 255, 255), for (int i = 0; i < (int)(minLoadingTime / 10) % 30) L".");
 
     minLoadingTime++;
 }

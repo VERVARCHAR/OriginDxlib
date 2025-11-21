@@ -51,9 +51,9 @@ struct EnemyStatus;     // 実体は enemy.hpp 内
 
 typedef struct TalkData
 {
-    string talkString[20];
+    string talkString;
     bool isTalkEnemy;
-}
+};
 
 class StageManager
 {

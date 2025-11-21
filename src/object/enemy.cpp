@@ -12,13 +12,16 @@ Enemy::~Enemy()
 {
     // if();
 }
+
+// TODO どこかで定義されてるはず
+#define SQRT2 1.414
 void Enemy::enemyDraw()
 {
     // 敵の状態更新ロジックをここに実装
-    DrawExtendGraph(enemyStatus.pos.x - enemyStatus.radius * SQRT2, enemyStatus.pos.y - enemyStatus.radius * SQRT2, enemyStatus.pos.x + enemyStatus.radius * SQRT2, enemyStatus.pos.y + enemyStatus.radius * SQRT2, enemy[0], TRUE);
-
+    DrawExtendGraph(enemyStatus.pos.x - enemyStatus.radius * SQRT2, enemyStatus.pos.y - enemyStatus.radius * SQRT2, enemyStatus.pos.x + enemyStatus.radius * SQRT2, enemyStatus.pos.y + enemyStatus.radius * SQRT2, imageHandle, TRUE);
+    printfDx(L"enemy image handle %d\n", imageHandle);
     // DrawBox(enemyStatus.pos.x - 10, enemyStatus.pos.y - 10, enemyStatus.pos.x + 10, enemyStatus.pos.y + 10, GetColor(255, 0, 0), TRUE);
-    DrawCircle(enemyStatus.pos.x, enemyStatus.pos.y, enemyStatus.radius, GetColor(255, 0, 255), TRUE);
+    // DrawCircle(enemyStatus.pos.x, enemyStatus.pos.y, enemyStatus.radius, GetColor(255, 0, 255), TRUE);
 
     if (enemyStatus.type >= 100)
     {

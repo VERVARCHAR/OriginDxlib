@@ -75,7 +75,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         }
         Wait();
     }
-    sMgr.loadPlayerImage();
+    // TODO うまくいってないポイ??
+    player.loadPlayerImage();
     sMgr.loadEnemy();
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {

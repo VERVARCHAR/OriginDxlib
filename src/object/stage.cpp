@@ -65,16 +65,16 @@ void StageManager::LoadFromVector(const std::vector<EnemyStatus> &src)
     std::cout << "[EnemyManager]" << enemyCount << " enemies registered\n";
 }
 
-void StageManager::loadPlayerImage()
-{
-    // TODO : ローディング画面
+// void StageManager::loadPlayerImage()
+// {
+//     // TODO : ローディング画面
 
-    // minLoadingTime = 0;
-    // 非同期ON → 一度だけ投入
-    SetUseASyncLoadFlag(TRUE);
-    LoadDivGraph(L"../../img/Bombs.png", 16, 4, 4, 256, 256, bombsImageHandle);
-    SetUseASyncLoadFlag(FALSE);
-}
+//     // minLoadingTime = 0;
+//     // 非同期ON → 一度だけ投入
+//     SetUseASyncLoadFlag(TRUE);
+//     LoadDivGraph(L"../../img/Bombs.png", 16, 4, 4, 256, 256, bombsImageHandle);
+//     SetUseASyncLoadFlag(FALSE);
+// }
 
 void StageManager::loadEnemy()
 {
@@ -92,7 +92,8 @@ void StageManager::loadEnemy()
     }
 
     // LoadEnemyImage("../../img/EnemyProtoType01.png", enemyImageHandle);
-    LoadDivGraph(L"../../img/Enemypng", 16, 4, 4, 256, 256, enemyImageHandle);
+    LoadDivGraph(L"../../img/Enemy.png", 16, 4, 4, 256, 256, enemyImageHandle);
+
     // return 1;
 }
 
@@ -137,7 +138,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
             if (enemys[i]->enemyStatus.spwanTime == this->time)
             {
                 enemys[i]->setIsAlive(true);
-                enemys[i]->setImageHandle(enemys[i]->enemyStatus.type);
+                enemys[i]->setImageHandle(enemyImageHandle[enemys[i]->enemyStatus.type]);
             }
             if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
             {

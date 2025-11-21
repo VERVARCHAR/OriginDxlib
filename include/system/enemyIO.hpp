@@ -126,15 +126,13 @@ inline bool LoadTalkDataFromJson(const std::string &path, std::vector<TalkData> 
     for (const auto &item : j["talks"])
     {
         TalkData t{};
-        std::string str = item.value("talkStr", "");
-        std::strncpy(t.talkString, str.c_str(), sizeof(t.talkString) - 1);
-        e.name[sizeof(t.talkString) - 1] = '\0';
+        t.talkString = item.value("talkStr", "");
 
         // t.talkString = item.value("pos", json{{"x", 0.0}, {"y", 0.0}})["x"];
         t.isTalkEnemy = item.value("isTalkEnemy", 0);
 
         // TODO type > 100ならスペル情報や会話内容を取得したい
-        talkData.push_back(e);
+        talkData.push_back(t);
     }
 
     std::cout << L"[INFO] " << talkData.size() << L"loaded enemies\n";
@@ -143,8 +141,8 @@ inline bool LoadTalkDataFromJson(const std::string &path, std::vector<TalkData> 
 }
 
 // J敵の画像データ取得
-inline bool LoadEnemyImage(const std::string &path, int enemyImageHandle[32])
-{
-
-    return true;
-}
+// inline bool LoadEnemyImage(const std::string &path, int enemyImageHandle[32])
+// {
+//     enemyImageHandle[0] = LoadGraph(L"../../img/Enemy.png");
+//     return true;
+// }

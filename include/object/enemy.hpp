@@ -45,7 +45,7 @@ typedef struct EnemyStatus
 class Enemy
 {
 private:
-    int ImageHandle;
+    int imageHandle;
 
 protected:
 public:
@@ -71,7 +71,7 @@ public:
     void setIsAlive(bool flag) { enemyStatus.isAlive = flag; };
     void getBMgrData(BombManager &_BombManager);
     void enemyDraw();
-    void setImageHandle(int handle) { this->ImageHandle = handle; };
+    void setImageHandle(int handle) { this->imageHandle = handle; };
     void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript, Player *player);
     void shootBomb(EnemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
     bool getOnScreen();
