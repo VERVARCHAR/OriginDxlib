@@ -49,6 +49,12 @@ class Enemy;            // ポインタ保持のため前方宣言
 class EnemyShootScript; // 前方宣言（実体は .cpp で include）
 struct EnemyStatus;     // 実体は enemy.hpp 内
 
+typedef struct TalkData
+{
+    string talkString[20];
+    bool isTalkEnemy;
+}
+
 class StageManager
 {
 private:
@@ -64,8 +70,12 @@ private:
 public:
     bool isTalk;
     int talkCount;
+    // TODO
     string talkString[20];
     int talkWho[20];
+    TalkData talkData[20];
+
+    int enemyImageHandle[32];
 
     StageManager(int _stage, int _time, int _difficulty);
     ~StageManager();

@@ -37,7 +37,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     SetUp();
 
+    // 各クラスの宣言
     UI ui;
+    ui.getImage();
+
+    // TODO 以下,タイトル追加で変わりそう??
 
     BombInfo bombs[MAX_BOMBS];
     BombManager bMgr(bombs);
@@ -46,14 +50,17 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     Player player;
     EnemyShootScript *enemyShootScript;
+
     int time = 0;
     int difficulty = 4;
 
     bool title = true;
     bool flag = false;
 
-    ui.getImage();
+    // TODO タイトルはここかな?
+    // Title Function()...
 
+    // TODO これをそのまま関数にしたいね
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
         if (!Update())
@@ -68,6 +75,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         }
         Wait();
     }
+    sMgr.loadPlayerImage();
     sMgr.loadEnemy();
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {

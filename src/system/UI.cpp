@@ -26,24 +26,34 @@ void UI::getImage()
     SetUseASyncLoadFlag(FALSE);
 }
 
+void loadTitleImages()
+{
+}
+
 void UI::loadingScreen()
 {
 
     int remain = GetASyncLoadNum();
-    bool r1 = (CheckHandleASyncLoad(titleHandle) == 0);
-    bool r2 = (CheckHandleASyncLoad(bombsImageHandle[15]) == 0);
+    // bool r1 = (CheckHandleASyncLoad(titleHandle) == 0);
+    // bool r2 = (CheckHandleASyncLoad(bombsImageHandle[15]) == 0);
 
     // ログ＆プログレス
-    DrawBox(24, 24, 640, 140, GetColor(40, 40, 60), TRUE);
-    DrawBox(24, 24, 640, 140, GetColor(120, 120, 160), FALSE);
-    DrawString(32, 40, L"Loading...", GetColor(255, 255, 255));
+    // DrawBox(24, 24, 640, 140, GetColor(40, 40, 60), TRUE);
+    // DrawBox(24, 24, 640, 140, GetColor(120, 120, 160), FALSE);
+    // DrawString(32, 40, L"Loading...", GetColor(255, 255, 255));
 
-    int ready = (r1 ? 1 : 0) + (r2 ? 1 : 0);
-    int percent = ready * 50; // 2リソース=100%
+    // int ready = (r1 ? 1 : 0) + (r2 ? 1 : 0);
+    // int percent = ready * 50; // 2リソース=100%
 
-    DrawBox(32, 90, 432, 110, GetColor(60, 60, 70), TRUE);
-    DrawBox(32, 90, 32 + 4 * percent, 110, GetColor(180, 220, 255), TRUE);
-    DrawFormatString(440, 88, GetColor(255, 255, 255), L"%3d%%  remain=%d", percent, remain);
+    // DrawBox(32, 90, 432, 110, GetColor(60, 60, 70), TRUE);
+    // DrawBox(32, 90, 32 + 4 * percent, 110, GetColor(180, 220, 255), TRUE);
+    // DrawFormatString(440, 88, GetColor(255, 255, 255), L"%3d%%  remain=%d", percent, remain);
+
+    std::wstring loadStr = "少女祈祷中";
+    printfDx(talkW.c_str());
+    DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, GetColor(255, 255, 255), L"少女祈祷中");
+    // TODO この処理行ける???
+    DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 50, GetColor(255, 255, 255), for (int i = 0; i < (int)(minLoadingTime / 10) % 30) L".");
 
     minLoadingTime++;
 }

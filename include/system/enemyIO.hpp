@@ -87,9 +87,64 @@ inline bool LoadEnemyDataFromJson(const std::string &path, std::vector<EnemyStat
         std::strncpy(e.name, name.c_str(), sizeof(e.name) - 1);
         e.name[sizeof(e.name) - 1] = '\0';
 
+        // TODO type > 100ならスペル情報や会話内容を取得したい
         outEnemies.push_back(e);
     }
 
     std::cout << L"[INFO] " << outEnemies.size() << L"loaded enemies\n";
+
+    return true;
+}
+
+inline bool LoadTalkDataFromJson(const std::string &path, std::vector<TalkData> &talkData)
+{
+    talkData.clear();
+    std::ifstream ifs(path);
+    if (!ifs.is_open())
+    {
+        std::cerr << L"[ERROR] cant open file " << path << std::endl;
+        return false;
+    }
+
+    json j;
+    try
+    {
+        ifs >> j;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << L"[ERROR] JSON Parsing Error:" << e.what() << std::endl;
+        return false;
+    }
+
+    if (!j.contains("talks") || !j["talks"].is_array())
+    {
+        std::cerr << L"[WARN] is not exist array \"enemies\"\n";
+        return false;
+    }
+
+    for (const auto &item : j["talks"])
+    {
+        TalkData t{};
+        std::string str = item.value("talkStr", "");
+        std::strncpy(t.talkString, str.c_str(), sizeof(t.talkString) - 1);
+        e.name[sizeof(t.talkString) - 1] = '\0';
+
+        // t.talkString = item.value("pos", json{{"x", 0.0}, {"y", 0.0}})["x"];
+        t.isTalkEnemy = item.value("isTalkEnemy", 0);
+
+        // TODO type > 100ならスペル情報や会話内容を取得したい
+        talkData.push_back(e);
+    }
+
+    std::cout << L"[INFO] " << talkData.size() << L"loaded enemies\n";
+
+    return true;
+}
+
+// J敵の画像データ取得
+inline bool LoadEnemyImage(const std::string &path, int enemyImageHandle[32])
+{
+
     return true;
 }

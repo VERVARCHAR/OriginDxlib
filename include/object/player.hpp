@@ -57,7 +57,12 @@ public:
     Player();
     ~Player();
 
-    void setpower() { status.power += 1; };
+    int charaImageHandle[16] = {0};
+
+    void setpower()
+    {
+        status.power += 1;
+    };
 
     void setPosition(int _x, int _y);
     Vec2d getPosition();
@@ -71,6 +76,8 @@ public:
     }
     // void getUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(_usingBombs, usingBombs, sizeof(usingBombs)); }
     // void setUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(usingBombs, _usingBombs, sizeof(usingBombs)); }
+    void loadPlayerImage();
+
     void getBMgrData(BombManager &_BombManager);
     void playerUpdate(BombManager, BombInfo[MAX_BOMBS]);
     void shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS]);

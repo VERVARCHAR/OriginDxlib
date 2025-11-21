@@ -44,6 +44,7 @@ public:
     int bombsImageHandle[16];
 
     void getImage();
+    void loadTitleImages();
     void drawUI();
     void loadingScreen();
     void talkUI(string, int);

@@ -25,10 +25,15 @@ Player::~Player()
     ;
 }
 
+// TODO どっかで宣言してそう???
+#define SQRT2 1.414
+
 void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 {
     getKeyInput();
-    DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
+    // DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
+    DrawExtendGraph(pos.x - radius * SQRT2, pos.y - radius * SQRT2, pos.x + radius * SQRT2, pos.y + radius * SQRT2, charaImageHandle[0], TRUE);
+
     DrawCircle(pos.x, pos.y, radius, GetColor(255, 0, 255), TRUE);
 
     if (status.isShoot)
@@ -159,22 +164,9 @@ void Player::SpelCard(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
     }
 }
 
-// bool Player::isHitEnemy(StageManager sMgr)
-// {
-//     Vec2d enmeyPos = {0, 0};
-//     int enemyRadius = 0;
-
-//     for (int i = 0; i < MAX_ENEMIES; i++)
-//     {
-//         if (sMgr.enemys[i]->enemyStatus.isAlive)
-//         {
-//             enmeyPos = sMgr.enemys[i]->enemyStatus.pos;
-//             enemyRadius = sMgr.enemys[i]->enemyStatus.radius;
-
-//             if (POWER2(((enmeyPos.x) - (pos.x))) + POWER2(((enmeyPos.y) - (pos.y))) < POWER2(((enemyRadius) + (radius))))
-//             {
-//                 return true;
-//             }
-//         }
-//     }
-// }
+void Player::loadPlayerImage()
+{
+    // TODO スプライトシートに変えたい
+    charaImageHandle[0] = LoadGraph(L"../../img/CharacterProtoType01.png");
+    // LoadDivGraph(L"../../img/CharacterPrototype01.png", 16, 4, 4, 256, 256, bombsImageHandle);
+}
