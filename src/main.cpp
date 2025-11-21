@@ -57,10 +57,23 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     bool title = true;
     bool flag = false;
 
-    // TODO タイトルはここかな?
-    // Title Function()...
+    // TODO :Loading
+    // Title
+    while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
+    {
+        if (!Update())
+        {
+            break;
+        }
+        if (Key[KEY_INPUT_1] == 1)
+        {
+            break;
+        }
+        DrawFormatString(30, 30, GetColor(255, 255, 255), L"Title");
 
-    // TODO これをそのまま関数にしたいね
+        Wait();
+    }
+
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
         if (!Update())
@@ -75,6 +88,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         }
         Wait();
     }
+
     // TODO うまくいってないポイ??
     player.loadPlayerImage();
     sMgr.loadEnemy();
@@ -92,14 +106,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         {
             player.setpower();
         }
-        if (Key[KEY_INPUT_1] == 1)
-        {
-            flag = true;
-        }
-        if (flag)
-        {
-            sMgr.updateStage(&bMgr, bombs, &player);
-        }
 
         if (sMgr.isTalk)
         {
@@ -113,7 +119,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 sMgr.endTalk();
             }
         }
-
+        sMgr.updateStage(&bMgr, bombs, &player);
         bMgr.DEBUG_printAllBombs(bombs);
         // sMgr.DEBUG_print_enemies();
         Draw();

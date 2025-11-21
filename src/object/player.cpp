@@ -32,8 +32,8 @@ void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 {
     getKeyInput();
     // DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
-    DrawExtendGraph(pos.x - radius * SQRT2, pos.y - radius * SQRT2, pos.x + radius * SQRT2, pos.y + radius * SQRT2, charaImageHandle[0], TRUE);
-
+    DrawExtendGraph(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, charaImageHandle[0], TRUE);
+    printfDx(L"characterHandle : %d\n", charaImageHandle[0]);
     DrawCircle(pos.x, pos.y, radius, GetColor(255, 0, 255), TRUE);
 
     if (status.isShoot)
@@ -167,6 +167,6 @@ void Player::SpelCard(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 void Player::loadPlayerImage()
 {
     // TODO スプライトシートに変えたい
-    charaImageHandle[0] = LoadGraph(L"../../img/CharacterProtoType01.png");
-    // LoadDivGraph(L"../../img/CharacterPrototype01.png", 16, 4, 4, 256, 256, bombsImageHandle);
+    // charaImageHandle[0] = LoadGraph(L"../../img/CharacterProtoType01.png");
+    LoadDivGraph(L"../../img/reimu_img.jpg", 18, 6, 3, 32, 48, charaImageHandle);
 }

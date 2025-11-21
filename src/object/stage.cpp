@@ -78,11 +78,22 @@ void StageManager::LoadFromVector(const std::vector<EnemyStatus> &src)
 
 void StageManager::loadEnemy()
 {
+    char Paths[8][256] = {
+        "../../stageInfos/stage00/stage00.json",
+        "../../stageInfos/stage01/stage01.json",
+        "../../stageInfos/stage02/stage02.json",
+        "../../stageInfos/stage03/stage03.json",
+        "../../stageInfos/stage04/stage04.json",
+        "../../stageInfos/stage05/stage05.json",
+        "../../stageInfos/stage06/stage06.json",
+        "../../stageInfos/stage07/stage07.json",
+    };
     // TODO : ローディング画面
     // TODO : stageの値によってパスを変える(関数を別にしてもいいかも???)
-    if (LoadEnemyDataFromJson("../../stageInfos/stage01/stage01.json", loadEnemies))
+    if (LoadEnemyDataFromJson(Paths[stage], loadEnemies))
     {
         LoadFromVector(loadEnemies);
+        // TODO 会話内容もいろいろしないとなぁ
         // Bossのtypeを取得してtalk()に渡すかな??
         talk(100);
     }

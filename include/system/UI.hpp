@@ -41,7 +41,7 @@ public:
     UI();
     ~UI();
     int minLoadingTime;
-    int bombsImageHandle[16];
+    int bombsImageHandle[32];
 
     void getImage();
     void loadTitleImages();
