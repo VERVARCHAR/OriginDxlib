@@ -140,6 +140,11 @@ void Player::shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
     for (int i = 0; i < status.power; i++)
     {
         int idx = bMgr.getEmptyIndex(bombs);
+        if (idx < 0)
+        {
+            // 弾がこれ以上出せないときの対処（何もしない・ログを出すなど）
+            printfDx(L"[WARN] player bullet overflow\n");
+        }
         bombs[idx].isUsing = true;
         bombs[idx].time = 0;
         bombs[idx].radius = 5;

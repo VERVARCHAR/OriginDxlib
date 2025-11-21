@@ -23,6 +23,11 @@ class Enemy;
 int EnemyShootScript::InitBombShoot(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player, double radius)
 {
     int idx = bMgr.getEmptyIndex(bombs);
+    if (idx < 0)
+    {
+        // 弾がこれ以上出せないときの対処（何もしない・ログを出すなど）
+        printfDx(L"[WARN] player bullet overflow\n");
+    }
     bombs[idx].isUsing = true;
     bombs[idx].time = 0;
     bombs[idx].radius = radius;

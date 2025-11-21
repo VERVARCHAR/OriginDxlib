@@ -57,7 +57,7 @@ public:
     Player();
     ~Player();
 
-    int charaImageHandle[16] = {0};
+    int charaImageHandle[24] = {0};
 
     void setpower()
     {
