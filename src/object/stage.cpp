@@ -93,6 +93,15 @@ void StageManager::loadEnemy()
     if (LoadEnemyDataFromJson(Paths[stage], loadEnemies))
     {
         LoadFromVector(loadEnemies);
+
+        for (int i = 0; i < MAX_ENEMIES; i++)
+        {
+            if (enemys[i]->enemyStatus.type >= 100)
+            {
+                bossIndex = i;
+            }
+        }
+
         // TODO 会話内容もいろいろしないとなぁ
         // Bossのtypeを取得してtalk()に渡すかな??
         talk(100);
@@ -136,12 +145,14 @@ void StageManager::deleteEnemy(int index)
 void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player)
 {
     int count = 0;
+    // TODO 会話するフレームも受け取りたいねぇ
     if (time == 480)
     {
         isTalk = true;
         bMgr->removeBomb(bombs);
     }
 
+    // TODO
     if (!isTalk)
     {
         for (int i = 0; i < MAX_ENEMIES; i++)
@@ -149,7 +160,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
             if (enemys[i]->enemyStatus.spwanTime == this->time)
             {
                 enemys[i]->setIsAlive(true);
-                enemys[i]->setImageHandle(enemyImageHandle[enemys[i]->enemyStatus.type]);
+                enemys[i]->setImageHandle(enemyImageHandle[enemys[i]->enemyStatus.type % 100]);
             }
             if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
             {
@@ -167,16 +178,41 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
             printfDx(L"enemy type:%d", enemys[i]->enemyStatus.type);
         }
     }
+
     player->debugStatus();
 
     player->playerUpdate(*bMgr, bombs);
     bMgr->updateBombs(bombs);
     bMgr->drawBombs(bombs);
+    getClearStage();
+
+    if (isClearStage)
+    {
+        bMgr->removeBomb(bombs);
+        // TODO ステージクリア処理
+        stage += 1;
+        time = 0;
+        loadEnemy();
+        isClearStage = false;
+    }
+
     printfDx(L"times : %d\n", time);
     printfDx(L"count : %d\n", count);
+
+    printfDx(L"Boss Index : %d\n", bossIndex);
+    printfDx(L"Clear : %d\n", isClearStage);
 }
 
-// TOOD : 会話データをJSONでもなんでもいいから外部から取得しないとだね
+// TODO ステージクリア処理
+void StageManager::getClearStage()
+{
+    if (enemys[bossIndex]->enemyStatus.lives == 0)
+    {
+        isClearStage = true;
+    }
+}
+
+// TODO : 会話データをJSONでもなんでもいいから外部から取得しないとだね
 void StageManager::talk(int type)
 {
     switch (type)

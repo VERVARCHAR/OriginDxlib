@@ -17,8 +17,15 @@ Enemy::~Enemy()
 #define SQRT2 1.414
 void Enemy::enemyDraw()
 {
-    // 敵の状態更新ロジックをここに実装
-    DrawExtendGraph(enemyStatus.pos.x - enemyStatus.radius * SQRT2, enemyStatus.pos.y - enemyStatus.radius * SQRT2, enemyStatus.pos.x + enemyStatus.radius * SQRT2, enemyStatus.pos.y + enemyStatus.radius * SQRT2, imageHandle, TRUE);
+    if (imageHandle < 0)
+    {
+        DrawBox(enemyStatus.pos.x - enemyStatus.radius * SQRT2, enemyStatus.pos.y - enemyStatus.radius * SQRT2, enemyStatus.pos.x + enemyStatus.radius * SQRT2, enemyStatus.pos.y + enemyStatus.radius * SQRT2, GetColor(0, 25, 255), TRUE);
+    }
+    else
+    {
+        // 敵の状態更新ロジックをここに実装
+        DrawExtendGraph(enemyStatus.pos.x - enemyStatus.radius * SQRT2, enemyStatus.pos.y - enemyStatus.radius * SQRT2, enemyStatus.pos.x + enemyStatus.radius * SQRT2, enemyStatus.pos.y + enemyStatus.radius * SQRT2, imageHandle, TRUE);
+    }
     printfDx(L"enemy image handle %d\n", imageHandle);
     // DrawBox(enemyStatus.pos.x - 10, enemyStatus.pos.y - 10, enemyStatus.pos.x + 10, enemyStatus.pos.y + 10, GetColor(255, 0, 0), TRUE);
     // DrawCircle(enemyStatus.pos.x, enemyStatus.pos.y, enemyStatus.radius, GetColor(255, 0, 255), TRUE);
@@ -54,6 +61,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         {
             shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, difficulty, *player);
         }
+
         // TODO 敵の動きも関数にしたいかなぁ
         enemyMove();
         enemyStatus.time++;
@@ -66,15 +74,16 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             }
         }
 
-        if (enemyStatus.hp == 0)
+        if (enemyStatus.hp <= 0)
         {
             enemyStatus.lives -= 1;
             if (enemyStatus.isSpell == true)
             {
-                enemyStatus.isSpell = true;
+                enemyStatus.isSpell = false;
                 enemyStatus.isInvicible = true;
                 enemyStatus.invicibleTime = 120;
             }
+            enemyStatus.hp = 200;
         }
 
         if (enemyStatus.lives == 0 || !getOnScreen())
@@ -94,6 +103,10 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         if (enemyStatus.invicibleTime >= 0)
         {
             enemyStatus.invicibleTime -= 1;
+        }
+        else
+        {
+            enemyStatus.isInvicible = false;
         }
     }
 }

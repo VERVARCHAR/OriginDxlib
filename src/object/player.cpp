@@ -32,7 +32,7 @@ void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 {
     getKeyInput();
     // DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
-    DrawExtendGraph(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, charaImageHandle[0], TRUE);
+    DrawExtendGraph(pos.x - 20, pos.y - 20, pos.x + 20, pos.y + 20, charaImageHandle[0], TRUE);
     printfDx(L"characterHandle : %d\n", charaImageHandle[0]);
     DrawCircle(pos.x, pos.y, radius, GetColor(255, 0, 255), TRUE);
 

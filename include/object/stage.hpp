@@ -75,7 +75,10 @@ public:
     int talkWho[20];
     TalkData talkData[20];
 
+    bool isClearStage = false;
+
     int enemyImageHandle[32];
+    int bossIndex = 0;
 
     StageManager(int _stage, int _time, int _difficulty);
     ~StageManager();
@@ -89,6 +92,8 @@ public:
     void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player);
     // Enemy getEnemy(int index) { return enemys[i]; };
     int getEmptyIndex(); // 空いてる敵のインデックス取得
+
+    void getClearStage();
 
     void talk(int type);
     string getTalkString(int talkCount) { return talkString[talkCount]; };
