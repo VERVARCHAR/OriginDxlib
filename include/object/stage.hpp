@@ -49,18 +49,39 @@ class Enemy;            // ポインタ保持のため前方宣言
 class EnemyShootScript; // 前方宣言（実体は .cpp で include）
 struct EnemyStatus;     // 実体は enemy.hpp 内
 
+enum Scene
+{
+    PRELOADING,
+    TITLE,
+    LOADING,
+    INGAME,
+    RESULT,
+};
+
 typedef struct TalkData
 {
     string talkString;
     bool isTalkEnemy;
 };
 
+typedef struct StageInfo
+{
+    int stage;
+    int difficulty;
+    int score;
+    PlayerStatus nowStatus;
+};
+
 class StageManager
 {
 private:
+    // TODO StageInfoへの移行
     int stage;
-    int time;
     int difficulty;
+
+    StageInfo stageInfo;
+
+    int time;
     int latestEnemyId;
     // Enemy *enemys[MAX_ENEMIES];
     EnemyShootScript enemyShootScript;
@@ -68,6 +89,7 @@ private:
     int enemyCount;
 
 public:
+    bool isPause = false;
     bool isTalk;
     int talkCount;
     // TODO
@@ -89,15 +111,15 @@ public:
     void loadEnemy();
     void spwanEnemy(int index, EnemyStatus enemyStatus);
     void deleteEnemy(int);
-    void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player);
+    void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player, bool isPause);
     // Enemy getEnemy(int index) { return enemys[i]; };
     int getEmptyIndex(); // 空いてる敵のインデックス取得
 
     void getClearStage();
 
-    int getDifficuly()
+    StageInfo getStageInfo()
     {
-        return difficulty;
+        return stageInfo;
     }
 
     void talk(int type);

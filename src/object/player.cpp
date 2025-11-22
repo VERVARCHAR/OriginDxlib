@@ -28,14 +28,16 @@ Player::~Player()
 // TODO どっかで宣言してそう???
 #define SQRT2 1.414
 
+void Player::playerDraw()
+{
+    DrawExtendGraph(pos.x - 30, pos.y - 30, pos.x + 30, pos.y + 30, charaImageHandle[0], TRUE);
+    DrawCircle(pos.x, pos.y - radius, radius, GetColor(255, 255, 255), TRUE);
+}
+
 void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 {
 
     getKeyInput();
-
-    // TODO Draw関連をまとめてもいいかも??
-    DrawExtendGraph(pos.x - 30, pos.y - 30, pos.x + 30, pos.y + 30, charaImageHandle[0], TRUE);
-    DrawCircle(pos.x, pos.y - radius, radius, GetColor(255, 255, 255), TRUE);
 
     // DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
     printfDx(L"characterHandle : %d\n", charaImageHandle[0]);
@@ -58,9 +60,19 @@ void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
     else
     {
         status.invincibleTime -= 1;
+
+        // ボム発動中
         if (status.isSpel)
         {
             SpelCard(bMgr, bombs);
+        }
+        // 死んだ後の無敵時間
+        else
+        {
+            if (status.invincibleTime % 5)
+            {
+                
+            }
         }
         if (status.invincibleTime == 0)
         {

@@ -18,12 +18,12 @@ UI::~UI()
 
 void UI::getImage()
 {
-    minLoadingTime = 0;
     // 非同期ON → 一度だけ投入
     SetUseASyncLoadFlag(TRUE);
     titleHandle = LoadGraph(L"../../img/BackGround03.png");
     LoadDivGraph(L"../../img/little_bomb.png", 14, 14, 1, 24, 24, bombsImageHandle);
     LoadDivGraph(L"../../img/large_bomb.png", 14, 3, 4, 48, 48, &bombsImageHandle[14]);
+    logoHandle = LoadGraph(L"../../img/logos.png");
     SetUseASyncLoadFlag(FALSE);
 }
 
@@ -59,7 +59,7 @@ void UI::loadingScreen()
     minLoadingTime++;
 }
 
-void UI::drawUI(StageManager sMgr)
+void UI::drawUI(StageInfo stageInfo)
 {
     // Play Screen
     DrawGraph(0, 0, titleHandle, TRUE);
@@ -67,10 +67,12 @@ void UI::drawUI(StageManager sMgr)
 
     // TODO
     // Score Screen
+    DrawFormatString(WINDOW_WIDTH - 400, 50, GetColor(255, 255, 255), L"%d", stageInfo.difficulty);
+    DrawFormatString(WINDOW_WIDTH - 400, 100, GetColor(255, 255, 255), L"score\t: %d", stageInfo.score);
+    DrawFormatString(WINDOW_WIDTH - 400, 150, GetColor(255, 255, 255), L"残機\t: %d", stageInfo.nowStatus.lives);
+    DrawFormatString(WINDOW_WIDTH - 400, 200, GetColor(255, 255, 255), L"ボム\t: %d", stageInfo.nowStatus.spels);
 
-    DrawFormatString(WINDOW_WIDTH - 400, 100, GetColor(255, 255, 255), L"%d", sMgr.getDifficuly());
-    DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, GetColor(255, 255, 255), L"少女祈祷中");
-    DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, GetColor(255, 255, 255), L"少女祈祷中");
+    DrawGraph(WINDOW_WIDTH - 400, WINDOW_HEIGHT - 400, logoHandle, TRUE);
 }
 
 void UI::talkUI(string talkString, int talkWho)
@@ -87,12 +89,3 @@ void UI::talkUI(string talkString, int talkWho)
     printfDx(talkW.c_str());
     DrawFormatString(100, 600, GetColor(255, 255, 255), talkW.c_str());
 }
-
-// PlayerStatus UI::getPlayerStatus()
-// {
-// }
-
-// EnemyStatus UI::getEnemyStatus()
-// {
-//     return
-// }

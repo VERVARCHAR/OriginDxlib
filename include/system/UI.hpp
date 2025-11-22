@@ -30,11 +30,17 @@
 #include "object/stage.hpp"
 #endif
 
+#ifndef _STAGE_HPP_
+#define _STAGE_HPP_
+#include "object/stage.hpp"
+#endif
+
 class UI
 {
 private:
     int titleHandle;
     int UIImageHandle;
+    int logoHandle;
     int gameImageHandle[7];
 
 public:
@@ -43,9 +49,13 @@ public:
     int minLoadingTime;
     int bombsImageHandle[32];
 
+    void startLoading()
+    {
+        minLoadingTime = 0;
+    }
     void getImage();
     void loadTitleImages();
-    void drawUI(StageManager sMgr);
+    void drawUI(StageInfo stageInfo);
     void loadingScreen();
     void talkUI(string, int);
     PlayerStatus getPlayerStatus();

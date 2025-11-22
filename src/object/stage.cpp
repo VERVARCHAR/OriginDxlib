@@ -12,10 +12,12 @@
 
 StageManager::StageManager(int _stage, int _time, int _difficulty)
 {
-    stage = _stage;
+    stageInfo.stage = _stage;
+    stageInfo.difficulty = _difficulty;
+    stageInfo.score = 0;
+
     time = _time;
     isTalk = false;
-    difficulty = _difficulty;
     latestEnemyId = 0;
     isTalk = false;
     talkCount = 0;
@@ -65,17 +67,6 @@ void StageManager::LoadFromVector(const std::vector<EnemyStatus> &src)
     std::cout << "[EnemyManager]" << enemyCount << " enemies registered\n";
 }
 
-// void StageManager::loadPlayerImage()
-// {
-//     // TODO : ローディング画面
-
-//     // minLoadingTime = 0;
-//     // 非同期ON → 一度だけ投入
-//     SetUseASyncLoadFlag(TRUE);
-//     LoadDivGraph(L"../../img/Bombs.png", 16, 4, 4, 256, 256, bombsImageHandle);
-//     SetUseASyncLoadFlag(FALSE);
-// }
-
 void StageManager::loadEnemy()
 {
     char Paths[8][256] = {
@@ -88,9 +79,10 @@ void StageManager::loadEnemy()
         "../../stageInfos/stage06/stage06.json",
         "../../stageInfos/stage07/stage07.json",
     };
+
     // TODO : ローディング画面
     // TODO : stageの値によってパスを変える(関数を別にしてもいいかも???)
-    if (LoadEnemyDataFromJson(Paths[stage], loadEnemies))
+    if (LoadEnemyDataFromJson(Paths[stageInfo.stage], loadEnemies))
     {
         LoadFromVector(loadEnemies);
 
@@ -142,7 +134,7 @@ void StageManager::deleteEnemy(int index)
     enemys[index]->setStatus(tmp);
 }
 
-void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player)
+void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player, bool isPause)
 {
     int count = 0;
     // TODO 会話するフレームも受け取りたいねぇ
@@ -153,7 +145,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     }
 
     // TODO
-    if (!isTalk && time >= 0)
+    if (!isTalk && time >= 0 && !isPause)
     {
         for (int i = 0; i < MAX_ENEMIES; i++)
         {
@@ -164,9 +156,10 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
             }
             if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
             {
-                enemys[i]->enemyUpdate(this->time, difficulty, bMgr, bombs, enemyShootScript, player);
+                enemys[i]->enemyUpdate(this->time, this->stageInfo.difficulty, bMgr, bombs, enemyShootScript, player);
             }
         }
+        stageInfo.score += 10;
         time++;
     }
 
@@ -179,10 +172,16 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
         }
     }
 
+    stageInfo.nowStatus = player->getStatus();
     player->debugStatus();
 
-    player->playerUpdate(*bMgr, bombs);
-    bMgr->updateBombs(bombs);
+    if (!isPause)
+    {
+        player->playerUpdate(*bMgr, bombs);
+        bMgr->updateBombs(bombs);
+    }
+
+    player->playerDraw();
     bMgr->drawBombs(bombs);
     getClearStage();
 
@@ -190,7 +189,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     {
         bMgr->removeBomb(bombs);
         // TODO ステージクリア処理
-        stage += 1;
+        stageInfo.stage += 1;
         time = -120;
         isClearStage = false;
         loadEnemy();

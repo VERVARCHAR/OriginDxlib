@@ -80,6 +80,7 @@ public:
 
     void getBMgrData(BombManager &_BombManager);
     void playerUpdate(BombManager, BombInfo[MAX_BOMBS]);
+    void playerDraw();
     void shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS]);
     void getKeyInput();
     void SpelCard(BombManager, BombInfo[MAX_BOMBS]);

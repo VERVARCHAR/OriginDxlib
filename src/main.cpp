@@ -37,9 +37,28 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     SetUp();
 
+    Scene scene = PRELOADING;
+
     // 各クラスの宣言
     UI ui;
+    ui.startLoading();
     ui.getImage();
+
+    while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
+    {
+        if (!Update())
+        {
+            break;
+        }
+        ui.loadingScreen();
+        if (GetASyncLoadNum() == 0 && ui.minLoadingTime > 120)
+        {
+            scene = TITLE;
+            break;
+        }
+        Wait();
+        Draw();
+    }
 
     // TODO 以下,タイトル追加で変わりそう??
 
@@ -52,7 +71,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     EnemyShootScript *enemyShootScript;
 
     int time = 0;
-    int difficulty = 4;
+    // int difficulty = 4;
 
     bool title = true;
     bool flag = false;
@@ -61,67 +80,76 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     // Title
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
-        if (!Update())
-        {
-            break;
-        }
-        if (Key[KEY_INPUT_1] == 1)
-        {
-            break;
-        }
-        DrawFormatString(30, 30, GetColor(255, 255, 255), L"Title");
-
-        Wait();
-    }
-
-    while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
-    {
-        if (!Update())
-        {
-            break;
-        }
-        ui.loadingScreen();
-        if (GetASyncLoadNum() == 0 && ui.minLoadingTime > 120)
-        {
-            bMgr.setBombsHandle(ui.bombsImageHandle);
-            break;
-        }
-        Wait();
-    }
-
-    // TODO うまくいってないポイ??
-    player.loadPlayerImage();
-    sMgr.loadEnemy();
-    while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
-    {
         clsDx();
+
         if (!Update())
         {
             break;
         }
-
-        ui.drawUI(sMgr);
-
-        if (Key[KEY_INPUT_0] == 1)
+        switch (scene)
         {
-            player.setpower();
+        case TITLE:
+            if (Key[KEY_INPUT_1] == 1)
+            {
+                ui.startLoading();
+                player.loadPlayerImage();
+                sMgr.loadEnemy();
+                bMgr.setBombsHandle(ui.bombsImageHandle);
+                scene = LOADING;
+                break;
+            }
+            DrawFormatString(30, 30, GetColor(255, 255, 255), L"Title");
+            break;
+
+        case LOADING:
+            ui.loadingScreen();
+            if (GetASyncLoadNum() == 0 && ui.minLoadingTime > 120)
+            {
+                scene = INGAME;
+                break;
+            }
+            break;
+        case INGAME:
+
+            ui.drawUI(sMgr.getStageInfo());
+
+            if (Key[KEY_INPUT_ESCAPE] == 1)
+            {
+                sMgr.isPause = !sMgr.isPause;
+            }
+
+            if (Key[KEY_INPUT_0] == 1)
+            {
+                player.setpower();
+            }
+
+            if (sMgr.isTalk)
+            {
+                ui.talkUI(sMgr.getTalkString(sMgr.talkCount), sMgr.getTalkWho(sMgr.talkCount));
+                if (Key[KEY_INPUT_RETURN] == 1)
+                {
+                    sMgr.talkCount++;
+                }
+                if (sMgr.talkCount == 7)
+                {
+                    sMgr.endTalk();
+                }
+            }
+            sMgr.updateStage(&bMgr, bombs, &player, sMgr.isPause);
+            if (sMgr.isPause)
+            {
+                DrawString(200, 200, L"PAUSE", GetColor(255, 255, 0));
+            }
+            bMgr.DEBUG_printAllBombs(bombs);
+            // sMgr.DEBUG_print_enemies();
+
+            break;
+        case RESULT:
+            break;
+        default:
+            break;
         }
 
-        if (sMgr.isTalk)
-        {
-            ui.talkUI(sMgr.getTalkString(sMgr.talkCount), sMgr.getTalkWho(sMgr.talkCount));
-            if (Key[KEY_INPUT_RETURN] == 1)
-            {
-                sMgr.talkCount++;
-            }
-            if (sMgr.talkCount == 7)
-            {
-                sMgr.endTalk();
-            }
-        }
-        sMgr.updateStage(&bMgr, bombs, &player);
-        bMgr.DEBUG_printAllBombs(bombs);
-        // sMgr.DEBUG_print_enemies();
         Draw();
         Wait();
     }
