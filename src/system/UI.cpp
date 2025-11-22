@@ -59,10 +59,18 @@ void UI::loadingScreen()
     minLoadingTime++;
 }
 
-void UI::drawUI()
+void UI::drawUI(StageManager sMgr)
 {
+    // Play Screen
     DrawGraph(0, 0, titleHandle, TRUE);
     DrawBox(30, 30, (int)(WINDOW_WIDTH * 0.6) - 30, WINDOW_HEIGHT - 30, GetColor(0, 0, 0), TRUE);
+
+    // TODO
+    // Score Screen
+
+    DrawFormatString(WINDOW_WIDTH - 400, 100, GetColor(255, 255, 255), L"%d", sMgr.getDifficuly());
+    DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, GetColor(255, 255, 255), L"少女祈祷中");
+    DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, GetColor(255, 255, 255), L"少女祈祷中");
 }
 
 void UI::talkUI(string talkString, int talkWho)

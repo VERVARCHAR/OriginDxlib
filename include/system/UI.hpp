@@ -45,7 +45,7 @@ public:
 
     void getImage();
     void loadTitleImages();
-    void drawUI();
+    void drawUI(StageManager sMgr);
     void loadingScreen();
     void talkUI(string, int);
     PlayerStatus getPlayerStatus();

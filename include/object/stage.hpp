@@ -95,6 +95,11 @@ public:
 
     void getClearStage();
 
+    int getDifficuly()
+    {
+        return difficulty;
+    }
+
     void talk(int type);
     string getTalkString(int talkCount) { return talkString[talkCount]; };
     int getTalkWho(int talkCount) { return talkWho[talkCount]; };

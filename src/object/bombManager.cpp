@@ -112,6 +112,7 @@ void BombManager::initBomb(BombInfo *bomb)
     bomb->pos.x = -1000;
     bomb->pos.y = -1000;
     bomb->vel.x = 0;
+
     bomb->vel.y = 0;
     bomb->radius = -1;
     bomb->power = 1;

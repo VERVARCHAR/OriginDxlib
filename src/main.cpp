@@ -100,7 +100,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             break;
         }
 
-        ui.drawUI();
+        ui.drawUI(sMgr);
 
         if (Key[KEY_INPUT_0] == 1)
         {
