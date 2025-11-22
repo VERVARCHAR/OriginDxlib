@@ -175,7 +175,7 @@ bool Enemy::isHitPlayer(Player *player)
 
     if (enemyStatus.isAlive)
     {
-        if (POWER2(((playerPos.x) - (enemyStatus.pos.x))) + POWER2(((playerPos.y) - (enemyStatus.pos.y))) < POWER2(((playerRadius) + (enemyStatus.radius))))
+        if (POWER2(((playerPos.x) - (enemyStatus.pos.x))) + POWER2(((playerPos.y) - (enemyStatus.pos.y - playerRadius))) < POWER2(((playerRadius) + (enemyStatus.radius))))
         {
             return true;
         }

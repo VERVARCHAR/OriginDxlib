@@ -15,7 +15,7 @@ Player::Player()
     status.invincibleTime = 0;
     status.isShoot = false;
     status.isShift = false;
-    radius = 3;
+    radius = 8;
     type = 0;
     strcpy(name, "Default");
 }
@@ -30,11 +30,15 @@ Player::~Player()
 
 void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 {
+
     getKeyInput();
+
+    // TODO Draw関連をまとめてもいいかも??
+    DrawExtendGraph(pos.x - 30, pos.y - 30, pos.x + 30, pos.y + 30, charaImageHandle[0], TRUE);
+    DrawCircle(pos.x, pos.y - radius, radius, GetColor(255, 255, 255), TRUE);
+
     // DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
-    DrawExtendGraph(pos.x - 20, pos.y - 20, pos.x + 20, pos.y + 20, charaImageHandle[0], TRUE);
     printfDx(L"characterHandle : %d\n", charaImageHandle[0]);
-    DrawCircle(pos.x, pos.y, radius, GetColor(255, 0, 255), TRUE);
 
     if (status.isShoot)
     {
@@ -80,6 +84,8 @@ void Player::getKeyInput()
     if (Key[KEY_INPUT_LSHIFT] > 1)
     {
         status.isShift = true;
+
+        // TODO effect
         moveSpeed = 1.5;
     }
     else
@@ -172,6 +178,6 @@ void Player::SpelCard(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 void Player::loadPlayerImage()
 {
     // TODO スプライトシートに変えたい
-    // charaImageHandle[0] = LoadGraph(L"../../img/CharacterProtoType01.png");
-    LoadDivGraph(L"../../img/reimu_img.jpg", 18, 6, 3, 32, 48, charaImageHandle);
+    charaImageHandle[0] = LoadGraph(L"../../img/player.png");
+    // LoadDivGraph(L"../../img/reimu_img.jpg", 18, 6, 3, 32, 48, charaImageHandle);
 }
