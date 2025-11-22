@@ -53,6 +53,8 @@ public:
     Enemy(EnemyStatus enemyStatus);
     ~Enemy();
 
+    void init(EnemyStatus _enemyStatus);
+
     void setPosition(int _x, int _y);
     Vec2d getPosition();
     EnemyStatus enemyStatus;

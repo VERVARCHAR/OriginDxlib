@@ -46,6 +46,8 @@ public:
     BombManager(BombInfo bombs[MAX_BOMBS]);
     ~BombManager();
 
+    void init(BombInfo bombs[MAX_BOMBS]);
+
     int getEmptyIndex(BombInfo bombs[MAX_BOMBS]); // 空いてる弾幕のインデックス取得
 
     void setBombsHandle(int bombsHandle[16]);

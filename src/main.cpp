@@ -92,9 +92,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             if (Key[KEY_INPUT_1] == 1)
             {
                 ui.startLoading();
-                player.loadPlayerImage();
-                sMgr.loadEnemy();
-                bMgr.setBombsHandle(ui.bombsImageHandle);
                 scene = LOADING;
                 break;
             }
@@ -102,6 +99,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             break;
 
         case LOADING:
+            if (ui.minLoadingTime == 0)
+            {
+                player.init();
+                bMgr.init(bombs);
+                sMgr.init(1, 0, 1);
+
+                player.loadPlayerImage();
+                sMgr.loadEnemy();
+                bMgr.setBombsHandle(ui.bombsImageHandle);
+            }
             ui.loadingScreen();
             if (GetASyncLoadNum() == 0 && ui.minLoadingTime > 120)
             {
@@ -135,10 +142,20 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                     sMgr.endTalk();
                 }
             }
-            sMgr.updateStage(&bMgr, bombs, &player, sMgr.isPause);
-            if (sMgr.isPause)
+            sMgr.updateStage(&bMgr, bombs, &player);
+            if (sMgr.isPause && !sMgr.isGameOver)
             {
                 DrawString(200, 200, L"PAUSE", GetColor(255, 255, 0));
+            }
+
+            if (sMgr.isGameOver)
+            {
+                DrawString(200, 200, L"Game Over...", GetColor(255, 255, 0));
+                if (Key[KEY_INPUT_R] == 1)
+                {
+                    ui.startLoading();
+                    scene = LOADING;
+                }
             }
             bMgr.DEBUG_printAllBombs(bombs);
             // sMgr.DEBUG_print_enemies();

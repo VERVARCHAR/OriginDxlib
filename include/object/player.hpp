@@ -49,6 +49,7 @@ private:
     Status status;
     char name[50]; // 名前
     int radius;
+    bool isDraw = true;
 
 protected:
 public:
@@ -58,6 +59,8 @@ public:
     ~Player();
 
     int charaImageHandle[24] = {0};
+
+    void init();
 
     void setpower()
     {

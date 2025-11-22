@@ -98,24 +98,29 @@ public:
     TalkData talkData[20];
 
     bool isClearStage = false;
+    bool isGameOver = false;
 
     int enemyImageHandle[32];
     int bossIndex = 0;
 
     StageManager(int _stage, int _time, int _difficulty);
     ~StageManager();
+
     Enemy *enemys[MAX_ENEMIES];
+
+    void init(int _stage, int _time, int _difficulty);
 
     void LoadFromVector(const std::vector<EnemyStatus> &src);
 
     void loadEnemy();
     void spwanEnemy(int index, EnemyStatus enemyStatus);
     void deleteEnemy(int);
-    void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player, bool isPause);
+    void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player);
     // Enemy getEnemy(int index) { return enemys[i]; };
     int getEmptyIndex(); // 空いてる敵のインデックス取得
 
     void getClearStage();
+    void getGameOver(Player *player);
 
     StageInfo getStageInfo()
     {

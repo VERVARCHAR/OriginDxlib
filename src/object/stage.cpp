@@ -12,6 +12,19 @@
 
 StageManager::StageManager(int _stage, int _time, int _difficulty)
 {
+    init(_stage, _time, _difficulty);
+}
+StageManager::~StageManager()
+{
+    for (int i = 0; i < MAX_ENEMIES; ++i)
+    {
+        delete enemys[i]; // メモリ解放を忘れずに
+        enemys[i] = nullptr;
+    }
+}
+
+void StageManager::init(int _stage, int _time, int _difficulty)
+{
     stageInfo.stage = _stage;
     stageInfo.difficulty = _difficulty;
     stageInfo.score = 0;
@@ -47,14 +60,11 @@ StageManager::StageManager(int _stage, int _time, int _difficulty)
     {
         enemys[i] = new Enemy(init);
     }
-}
-StageManager::~StageManager()
-{
-    for (int i = 0; i < MAX_ENEMIES; ++i)
-    {
-        delete enemys[i]; // メモリ解放を忘れずに
-        enemys[i] = nullptr;
-    }
+
+    isPause = false;
+    isTalk = false;
+    isClearStage = false;
+    isGameOver = false;
 }
 
 void StageManager::LoadFromVector(const std::vector<EnemyStatus> &src)
@@ -134,9 +144,8 @@ void StageManager::deleteEnemy(int index)
     enemys[index]->setStatus(tmp);
 }
 
-void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player, bool isPause)
+void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player)
 {
-    int count = 0;
     // TODO 会話するフレームも受け取りたいねぇ
     if (time == 480)
     {
@@ -145,7 +154,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     }
 
     // TODO
-    if (!isTalk && time >= 0 && !isPause)
+    if (!isTalk && time >= 0 && !isPause && !isGameOver)
     {
         for (int i = 0; i < MAX_ENEMIES; i++)
         {
@@ -175,15 +184,16 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     stageInfo.nowStatus = player->getStatus();
     player->debugStatus();
 
-    if (!isPause)
+    if (!isPause && !isGameOver)
     {
         player->playerUpdate(*bMgr, bombs);
         bMgr->updateBombs(bombs);
+        getClearStage();
+        getGameOver(player);
     }
 
     player->playerDraw();
     bMgr->drawBombs(bombs);
-    getClearStage();
 
     if (isClearStage)
     {
@@ -194,6 +204,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
         isClearStage = false;
         loadEnemy();
     }
+
     if (time < 0)
     {
         DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
@@ -201,18 +212,24 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     }
 
     printfDx(L"times : %d\n", time);
-    printfDx(L"count : %d\n", count);
 
     printfDx(L"Boss Index : %d\n", bossIndex);
     printfDx(L"Clear : %d\n", isClearStage);
 }
 
-// TODO ステージクリア処理
 void StageManager::getClearStage()
 {
     if (enemys[bossIndex]->enemyStatus.lives == 0)
     {
         isClearStage = true;
+    }
+}
+
+void StageManager::getGameOver(Player *player)
+{
+    if (player->getStatus().lives == 0)
+    {
+        isGameOver = true;
     }
 }
 

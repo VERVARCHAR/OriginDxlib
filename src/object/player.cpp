@@ -5,6 +5,16 @@
 
 Player::Player()
 {
+    init();
+}
+
+Player::~Player()
+{
+    ;
+}
+
+void Player::init()
+{
     pos.x = 350;
     pos.y = 500;
     status.lives = 2;
@@ -20,18 +30,25 @@ Player::Player()
     strcpy(name, "Default");
 }
 
-Player::~Player()
-{
-    ;
-}
-
 // TODO どっかで宣言してそう???
 #define SQRT2 1.414
 
 void Player::playerDraw()
 {
-    DrawExtendGraph(pos.x - 30, pos.y - 30, pos.x + 30, pos.y + 30, charaImageHandle[0], TRUE);
-    DrawCircle(pos.x, pos.y - radius, radius, GetColor(255, 255, 255), TRUE);
+
+    if (!status.isSpel && status.invincible && status.lives != 0)
+    {
+        if (status.invincibleTime % 10 == 0)
+        {
+            isDraw = !isDraw;
+        }
+    }
+
+    if (isDraw)
+    {
+        DrawExtendGraph(pos.x - 30, pos.y - 30, pos.x + 30, pos.y + 30, charaImageHandle[0], TRUE);
+        DrawCircle(pos.x, pos.y - radius, radius, GetColor(255, 255, 255), TRUE);
+    }
 }
 
 void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
@@ -66,16 +83,10 @@ void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
         {
             SpelCard(bMgr, bombs);
         }
-        // 死んだ後の無敵時間
-        else
-        {
-            if (status.invincibleTime % 5)
-            {
-                
-            }
-        }
+
         if (status.invincibleTime == 0)
         {
+            isDraw = true;
             status.invincible = false;
             if (status.isSpel)
             {
@@ -178,6 +189,7 @@ void Player::shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 
 void Player::SpelCard(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 {
+    DrawCircle(pos.x, pos.y, 250, GetColor(128, 128, 128), FALSE);
     for (int i = 0; i < MAX_BOMBS; i++)
     {
         if (!bombs[i].isPlayers && POWER2((pos.x) - (bombs[i].pos.x)) + POWER2((pos.y) - (bombs[i].pos.y)) < POWER2(250))

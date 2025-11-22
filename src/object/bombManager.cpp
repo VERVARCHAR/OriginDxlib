@@ -10,14 +10,19 @@
 
 BombManager::BombManager(BombInfo bombs[MAX_BOMBS])
 {
-    for (int i = 0; i < MAX_BOMBS; i++)
-    {
-        initBomb(&bombs[i]);
-    }
+    init(bombs);
 }
 BombManager::~BombManager()
 {
     ;
+}
+
+void BombManager::init(BombInfo bombs[MAX_BOMBS])
+{
+    for (int i = 0; i < MAX_BOMBS; i++)
+    {
+        initBomb(&bombs[i]);
+    }
 }
 
 int BombManager::getEmptyIndex(BombInfo bombs[MAX_BOMBS])

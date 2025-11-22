@@ -5,12 +5,17 @@
 
 Enemy::Enemy(EnemyStatus _enemyStatus)
 {
-    enemyStatus = _enemyStatus;
+    init(_enemyStatus);
 }
 
 Enemy::~Enemy()
 {
     // if();
+}
+
+void Enemy::init(EnemyStatus _enemyStatus)
+{
+    enemyStatus = _enemyStatus;
 }
 
 // TODO どこかで定義されてるはず
