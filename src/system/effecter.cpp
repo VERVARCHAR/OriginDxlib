@@ -1,0 +1,178 @@
+
+#ifndef _EFFECTER_HPP_
+#define _EFFECTER_HPP_
+#include "system/effecter.hpp"
+#endif
+
+Effecter::Effecter()
+{
+    for (int i = 0; i < MAX_EFFECTS; ++i)
+    {
+        effects[i].isAlive = false;
+    }
+}
+
+Effecter::~Effecter()
+{
+    // 今は特に何もしない（DxLib_End で解放）
+}
+
+void Effecter::loadEffecter()
+{
+    SetUseASyncLoadFlag(TRUE);
+
+    // TODO: 実際のパスはプロジェクト構成に合わせて
+    // hitSparkHandle = LoadGraph("../../../img/effect/hitSpark.png");
+    LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadEffect01.png", 10, 10, 1, 240, 240, enemyExplodeHandle[0]);
+    LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadEffect02.png", 10, 10, 1, 240, 240, enemyExplodeHandle[1]);
+    LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadEffect03.png", 10, 10, 1, 240, 240, enemyExplodeHandle[2]);
+    // bulletVanishHandle = LoadGraph("../../../img/effect/bulletVanish.png");
+    LoadDivGraph(L"..\\..\\assets\\effects\\playerDeadEffect.png", 10, 10, 1, 360, 360, playerExplodeHandle);
+
+    seShot = LoadSoundMem(L"..\\..\\assets\\SE\\se_beam05.mp3");
+    ChangeVolumeSoundMem(128, seShot);
+    seEnemyDead = LoadSoundMem(L"..\\..\\assets\\SE\\enemy_dead.mp3");
+    sePlayerDead = LoadSoundMem(L"..\\..\\assets\\SE\\player_dead.wav");
+    // seBomb = LoadSoundMem("../../../se/bomb.wav");
+    SetUseASyncLoadFlag(FALSE);
+}
+
+void Effecter::effecterUpdate()
+{
+    for (int i = 0; i < MAX_EFFECTS; ++i)
+    {
+        if (!effects[i].isAlive)
+            continue;
+
+        Effect &e = effects[i];
+        e.time++;
+
+        // アニメコマ進行
+        if (e.divNum > 1 && e.time % e.frameInterval == 0)
+        {
+            e.frame++;
+        }
+
+        if (e.time > e.lifeTime)
+        {
+            e.isAlive = false;
+        }
+    }
+}
+
+void Effecter::effecterDraw()
+{
+    for (int i = 0; i < MAX_EFFECTS; ++i)
+    {
+        if (!effects[i].isAlive)
+            continue;
+        const Effect &e = effects[i];
+
+        int handle = -1;
+        switch (e.type)
+        {
+        case EffectType::HitSpark:
+            // handle = hitSparkHandle;
+            break;
+        case EffectType::EnemyExplode:
+            handle = enemyExplodeHandle[0][(int)(e.time / 6)];
+            break;
+        case EffectType::BulletVanish:
+            // handle = bulletVanishHandle;
+            break;
+        case EffectType::PlayerExplode:
+            handle = playerExplodeHandle[(int)(e.time / 6)];
+            break;
+        default:
+            break;
+        }
+        if (handle < 0)
+            continue;
+
+        // 単純に DrawRotaGraph で描画
+        DrawRotaGraphF(
+            (float)e.pos.x,
+            (float)e.pos.y,
+            e.scale,
+            0.0,
+            handle,
+            TRUE);
+    }
+}
+
+int Effecter::getEmptyIndex()
+{
+    for (int i = 0; i < MAX_EFFECTS; ++i)
+    {
+        if (!effects[i].isAlive)
+            return i;
+    }
+    return -1;
+}
+
+void Effecter::spawnEffect(EffectType type, const Vec2d &pos)
+{
+    int idx = getEmptyIndex();
+    if (idx < 0)
+        return;
+
+    Effect &e = effects[idx];
+    e.isAlive = true;
+    e.type = type;
+    e.pos = pos;
+    e.time = 0;
+    e.frame = 0;
+    e.divNum = 1; // 暫定
+    e.frameInterval = 3;
+    e.scale = 1.0f;
+    e.alpha = 255;
+
+    switch (type)
+    {
+    case EffectType::HitSpark:
+        e.lifeTime = 60;
+        break;
+    case EffectType::EnemyExplode:
+        e.lifeTime = 60;
+        break;
+    case EffectType::BulletVanish:
+        e.lifeTime = 60;
+        break;
+    case EffectType::PlayerExplode:
+        e.lifeTime = 60;
+        break;
+    default:
+        e.lifeTime = 60;
+        break;
+    }
+}
+
+void Effecter::playHitSpark(const Vec2d &pos)
+{
+    spawnEffect(EffectType::HitSpark, pos);
+    PlaySoundMem(seShot, DX_PLAYTYPE_BACK); // 例: 被弾音でもOK
+}
+
+void Effecter::playEnemyExplode(const Vec2d &pos)
+{
+    spawnEffect(EffectType::EnemyExplode, pos);
+    PlaySoundMem(seEnemyDead, DX_PLAYTYPE_BACK);
+}
+
+void Effecter::playBulletVanish(const Vec2d &pos)
+{
+    spawnEffect(EffectType::BulletVanish, pos);
+    // 消滅音を鳴らすならここ
+}
+
+void Effecter::playPlayerExplode(const Vec2d &pos)
+{
+    spawnEffect(EffectType::PlayerExplode, pos);
+    PlaySoundMem(sePlayerDead, DX_PLAYTYPE_BACK);
+}
+
+// SE だけ鳴らすAPIも一応用意
+void Effecter::playSE_Shot() { PlaySoundMem(seShot, DX_PLAYTYPE_BACK); }
+void Effecter::playSE_EnemyDead() { PlaySoundMem(seEnemyDead, DX_PLAYTYPE_BACK); }
+void Effecter::playSE_PlayerDead() { PlaySoundMem(sePlayerDead, DX_PLAYTYPE_BACK); }
+void Effecter::playSE_Bomb() { PlaySoundMem(seBomb, DX_PLAYTYPE_BACK); }

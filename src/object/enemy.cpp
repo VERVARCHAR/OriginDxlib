@@ -44,7 +44,7 @@ void Enemy::enemyDraw()
     }
 }
 
-void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript enemyShootScript, Player *player)
+void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript enemyShootScript, Player *player, Effecter *effecter)
 {
     if (!enemyStatus.isAlive)
     {
@@ -94,26 +94,36 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             }
         }
 
+        // 敵のHPが0になった時の処理
         if (enemyStatus.hp <= 0)
         {
             enemyStatus.lives -= 1;
             enemyStatus.shootType += 1;
+
+            // もし敵がボスで，HPが0になったらスペルフラグをfalseにし，無敵時間を付与
             if (enemyStatus.isSpell == true)
             {
                 enemyStatus.isSpell = false;
                 enemyStatus.isInvicible = true;
                 enemyStatus.invicibleTime = 120;
+                enemyStatus.hp = 200;
             }
-            enemyStatus.hp = 200;
         }
 
+        // 敵のHPが0になるか，画面外に出た場合の処理
         if (enemyStatus.lives == 0 || !getOnScreen())
         {
             enemyStatus.isAlive = false;
+            if (enemyStatus.lives == 0)
+            {
+                effecter->playEnemyExplode(enemyStatus.pos);
+            }
         }
 
+        // 敵のtypeが100以上のとき，敵はボス
         if (enemyStatus.type >= 100)
         {
+            // ボスのHPが100を下回ったらスペル発動
             if (enemyStatus.hp <= 100 && !enemyStatus.isSpell)
             {
                 enemyStatus.isSpell = true;
@@ -121,6 +131,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             }
         }
 
+        // 無敵時間の処理
         if (enemyStatus.invicibleTime >= 0)
         {
             enemyStatus.invicibleTime -= 1;

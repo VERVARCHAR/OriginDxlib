@@ -33,6 +33,11 @@
 #include "system/UI.hpp"
 #endif
 
+#ifndef _EFFECTER_HPP_
+#define _EFFECTER_HPP_
+#include "system/effecter.hpp"
+#endif
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     SetUp();
@@ -41,8 +46,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     // 各クラスの宣言
     UI ui;
+    Effecter effecter;
+
     ui.startLoading();
+    SetUseASyncLoadFlag(TRUE);
     ui.getImage();
+    effecter.loadEffecter();
+    SetUseASyncLoadFlag(FALSE);
 
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
@@ -95,6 +105,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 scene = LOADING;
                 break;
             }
+            if (Key[KEY_INPUT_D] == 1)
+            {
+                scene = DEBUG;
+                break;
+            }
             DrawFormatString(30, 30, GetColor(255, 255, 255), L"Title");
             break;
 
@@ -120,16 +135,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
             ui.drawUI(sMgr.getStageInfo());
 
+            // メニュー画面のキー入力
             if (Key[KEY_INPUT_ESCAPE] == 1)
             {
                 sMgr.isPause = !sMgr.isPause;
             }
 
+            // [DEBUG] パワーを1増やす
             if (Key[KEY_INPUT_0] == 1)
             {
                 player.setpower();
             }
 
+            // 会話中の処理
             if (sMgr.isTalk)
             {
                 ui.talkUI(sMgr.getTalkString(sMgr.talkCount), sMgr.getTalkWho(sMgr.talkCount));
@@ -142,12 +160,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                     sMgr.endTalk();
                 }
             }
-            sMgr.updateStage(&bMgr, bombs, &player);
+
+            // 基本的なゲーム処理
+            sMgr.updateStage(&bMgr, bombs, &player, &effecter);
+
+            // ゲームオーバーでなく，ポーズ中ならばポーズ画面を表示
+            // TODO ポーズ処理
             if (sMgr.isPause && !sMgr.isGameOver)
             {
                 DrawString(200, 200, L"PAUSE", GetColor(255, 255, 0));
             }
 
+            // ゲームオーバー時の処理
             if (sMgr.isGameOver)
             {
                 DrawString(200, 200, L"Game Over...", GetColor(255, 255, 0));
@@ -157,11 +181,28 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                     scene = LOADING;
                 }
             }
+
+            // [DEBUG]
             bMgr.DEBUG_printAllBombs(bombs);
             // sMgr.DEBUG_print_enemies();
 
             break;
         case RESULT:
+            break;
+        case DEBUG:
+            effecter.effecterUpdate();
+            effecter.effecterDraw();
+            DrawFormatString(10, 10, GetColor(255, 255, 255), L"[DEBUG] Effect");
+            if (Key[KEY_INPUT_0] == 1)
+            {
+                Vec2d p = {100, 100};
+                effecter.playEnemyExplode(p);
+            }
+            if (Key[KEY_INPUT_1] == 1)
+            {
+                Vec2d p = {200, 100};
+                effecter.playPlayerExplode(p);
+            }
             break;
         default:
             break;

@@ -20,6 +20,11 @@
 #include "object/player.hpp"
 #endif // _PLAYER_HPP_
 
+#ifndef _EFFECTER_HPP_
+#define _EFFECTER_HPP_
+#include "system/effecter.hpp"
+#endif
+
 class EnemyShootScript;
 class Player;
 
@@ -74,7 +79,7 @@ public:
     void getBMgrData(BombManager &_BombManager);
     void enemyDraw();
     void setImageHandle(int handle) { this->imageHandle = handle; };
-    void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript, Player *player);
+    void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript, Player *player, Effecter *effecter);
     void shootBomb(EnemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
     bool getOnScreen();
     bool getIsAlive(int index);

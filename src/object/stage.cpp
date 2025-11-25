@@ -114,7 +114,7 @@ void StageManager::loadEnemy()
     }
 
     // LoadEnemyImage("../../img/EnemyProtoType01.png", enemyImageHandle);
-    LoadDivGraph(L"..\\..\\img\\Enemy.png", 16, 4, 4, 256, 256, enemyImageHandle);
+    LoadDivGraph(L"..\\..\\assets\\enemy\\Enemy.png", 16, 4, 4, 256, 256, enemyImageHandle);
 
     // return 1;
 }
@@ -144,7 +144,7 @@ void StageManager::deleteEnemy(int index)
     enemys[index]->setStatus(tmp);
 }
 
-void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player)
+void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player, Effecter *effecter)
 {
     // TODO 会話するフレームも受け取りたいねぇ
     if (time == 480)
@@ -165,7 +165,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
             }
             if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
             {
-                enemys[i]->enemyUpdate(this->time, this->stageInfo.difficulty, bMgr, bombs, enemyShootScript, player);
+                enemys[i]->enemyUpdate(this->time, this->stageInfo.difficulty, bMgr, bombs, enemyShootScript, player, effecter);
             }
         }
         stageInfo.score += 10;
@@ -184,16 +184,21 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     stageInfo.nowStatus = player->getStatus();
     player->debugStatus();
 
+    player->getKeyInput(isTalk);
+
     if (!isPause && !isGameOver)
     {
-        player->playerUpdate(*bMgr, bombs);
+        player->playerUpdate(*bMgr, bombs, effecter);
         bMgr->updateBombs(bombs);
+        effecter->effecterUpdate();
+
         getClearStage();
         getGameOver(player);
     }
 
     player->playerDraw();
     bMgr->drawBombs(bombs);
+    effecter->effecterDraw();
 
     if (isClearStage)
     {

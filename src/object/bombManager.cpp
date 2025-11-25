@@ -62,15 +62,15 @@ void BombManager::drawBombs(BombInfo bombs[MAX_BOMBS])
             case 0:
                 // DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
                 DrawExtendGraph(bombs[i].pos.x - bombs[i].radius * SQRT2, bombs[i].pos.y - bombs[i].radius * SQRT2, bombs[i].pos.x + bombs[i].radius * SQRT2, bombs[i].pos.y + bombs[i].radius * SQRT2, bombsHandle[0], TRUE);
-                DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
+                // DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
                 break;
             case 1:
                 DrawExtendGraph(bombs[i].pos.x - bombs[i].radius * SQRT2, bombs[i].pos.y - bombs[i].radius * SQRT2, bombs[i].pos.x + bombs[i].radius * SQRT2, bombs[i].pos.y + bombs[i].radius * SQRT2, bombsHandle[1], TRUE);
-                DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
+                // DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
                 break;
             case 2:
                 DrawExtendGraph(bombs[i].pos.x - bombs[i].radius * SQRT2, bombs[i].pos.y - bombs[i].radius * SQRT2, bombs[i].pos.x + bombs[i].radius * SQRT2, bombs[i].pos.y + bombs[i].radius * SQRT2, bombsHandle[2], TRUE);
-                DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
+                // DrawCircle(bombs[i].pos.x, bombs[i].pos.y, bombs[i].radius, GetColor(255, 255, 0), TRUE);
                 break;
             default:
                 break;

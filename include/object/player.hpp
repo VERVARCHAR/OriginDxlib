@@ -15,6 +15,11 @@
 #include "system/utils.hpp"
 #endif
 
+#ifndef _EFFECTER_HPP_
+#define _EFFECTER_HPP_
+#include "system/effecter.hpp"
+#endif
+
 // #ifndef _STAGE_HPP_
 // #define _STAGE_HPP_
 // #include "object/stage.hpp"
@@ -82,10 +87,10 @@ public:
     void loadPlayerImage();
 
     void getBMgrData(BombManager &_BombManager);
-    void playerUpdate(BombManager, BombInfo[MAX_BOMBS]);
+    void playerUpdate(BombManager, BombInfo[MAX_BOMBS], Effecter *effecter);
     void playerDraw();
     void shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS]);
-    void getKeyInput();
+    void getKeyInput(bool isTalk);
     void SpelCard(BombManager, BombInfo[MAX_BOMBS]);
     void ShootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS]);
     void Dead();

@@ -27,6 +27,11 @@
 #include "object/player.hpp"
 #endif // _PLAYER_HPP_
 
+#ifndef _EFFECTER_HPP_
+#define _EFFECTER_HPP_
+#include "system/effecter.hpp"
+#endif
+
 #include <vector>
 #include <fstream>
 #include <stdexcept>
@@ -56,6 +61,7 @@ enum Scene
     LOADING,
     INGAME,
     RESULT,
+    DEBUG,
 };
 
 typedef struct TalkData
@@ -115,7 +121,7 @@ public:
     void loadEnemy();
     void spwanEnemy(int index, EnemyStatus enemyStatus);
     void deleteEnemy(int);
-    void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player);
+    void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player, Effecter *effecter);
     // Enemy getEnemy(int index) { return enemys[i]; };
     int getEmptyIndex(); // 空いてる敵のインデックス取得
 

@@ -18,12 +18,12 @@ UI::~UI()
 
 void UI::getImage()
 {
-    // 非同期ON → 一度だけ投入
     SetUseASyncLoadFlag(TRUE);
-    titleHandle = LoadGraph(L"..\\..\\img\\BackGround03.png");
-    LoadDivGraph(L"..\\..\\img\\little_bomb.png", 14, 14, 1, 24, 24, bombsImageHandle);
-    LoadDivGraph(L"..\\..\\img\\large_bomb.png", 12, 3, 4, 48, 48, &bombsImageHandle[14]);
-    logoHandle = LoadGraph(L"..\\..\\img\\logos.png");
+
+    titleHandle = LoadGraph(L"..\\..\\assets\\background\\BackGround03.png");
+    LoadDivGraph(L"..\\..\\assets\\bombs\\MiddleBomb.png", 8, 8, 1, 512, 512, bombsImageHandle);
+    LoadDivGraph(L"..\\..\\assets\\bombs\\LargeBomb.png", 8, 8, 1, 512, 512, &bombsImageHandle[8]);
+    logoHandle = LoadGraph(L"..\\..\\assets\\logos.png");
     SetUseASyncLoadFlag(FALSE);
 }
 
@@ -50,11 +50,7 @@ void UI::loadingScreen()
     // DrawBox(32, 90, 32 + 4 * percent, 110, GetColor(180, 220, 255), TRUE);
     // DrawFormatString(440, 88, GetColor(255, 255, 255), L"%3d%%  remain=%d", percent, remain);
 
-    // std::wstring loadStr = "少女祈祷中";
-    // printfDx(loadStr.c_str());
     DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, GetColor(255, 255, 255), L"少女祈祷中");
-    // TODO この処理行ける???
-    // DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 50, GetColor(255, 255, 255), for (int i = 0; i < (int)(minLoadingTime / 10) % 30) L".");
 
     minLoadingTime++;
 }

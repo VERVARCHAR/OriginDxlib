@@ -51,10 +51,8 @@ void Player::playerDraw()
     }
 }
 
-void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
+void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS], Effecter *effecter)
 {
-
-    getKeyInput();
 
     // DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
     printfDx(L"characterHandle : %d\n", charaImageHandle[0]);
@@ -62,6 +60,7 @@ void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
     if (status.isShoot)
     {
         shootBomb(bMgr, bombs);
+        effecter->playSE_Shot();
     }
 
     if (!status.invincible)
@@ -71,6 +70,7 @@ void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
             if (bombs[i].isUsing && !bombs[i].isPlayers && isHitBomb(&bombs[i], pos, radius))
             {
                 Dead();
+                effecter->playPlayerExplode(pos);
             }
         }
     }
@@ -101,7 +101,7 @@ Vec2d Player::getPosition()
     return pos;
 }
 
-void Player::getKeyInput()
+void Player::getKeyInput(bool isTalk)
 {
     double moveSpeed = 0;
     if (Key[KEY_INPUT_LSHIFT] > 1)
@@ -140,13 +140,15 @@ void Player::getKeyInput()
         status.invincible = true;
         status.invincibleTime = 5 * 60;
     }
-
     if (Key[KEY_INPUT_Z] > 0 && Key[KEY_INPUT_Z] % 5 == 0)
     {
-        // 無敵時間でない もしくは、無敵時間だがスペル使用時なら打てる
-        if (!status.invincible || (status.invincible && status.isSpel))
+        if (!isTalk)
         {
-            status.isShoot = true;
+            // 無敵時間でない もしくは、無敵時間だがスペル使用時なら打てる
+            if (!status.invincible || (status.invincible && status.isSpel))
+            {
+                status.isShoot = true;
+            }
         }
     }
     else
@@ -202,6 +204,6 @@ void Player::SpelCard(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 void Player::loadPlayerImage()
 {
     // TODO スプライトシートに変えたい
-    charaImageHandle[0] = LoadGraph(L"..\\..\\img\\player.png");
+    charaImageHandle[0] = LoadGraph(L"..\\..\\assets\\player\\player.png");
     // LoadDivGraph(L"../../img/reimu_img.jpg", 18, 6, 3, 32, 48, charaImageHandle);
 }
