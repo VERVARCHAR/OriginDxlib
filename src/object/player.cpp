@@ -202,6 +202,6 @@ void Player::SpelCard(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
 void Player::loadPlayerImage()
 {
     // TODO スプライトシートに変えたい
-    charaImageHandle[0] = LoadGraph(L"../../img/player.png");
+    charaImageHandle[0] = LoadGraph(L"..\\..\\img\\player.png");
     // LoadDivGraph(L"../../img/reimu_img.jpg", 18, 6, 3, 32, 48, charaImageHandle);
 }

@@ -114,7 +114,7 @@ void StageManager::loadEnemy()
     }
 
     // LoadEnemyImage("../../img/EnemyProtoType01.png", enemyImageHandle);
-    LoadDivGraph(L"../../img/Enemy.png", 16, 4, 4, 256, 256, enemyImageHandle);
+    LoadDivGraph(L"..\\..\\img\\Enemy.png", 16, 4, 4, 256, 256, enemyImageHandle);
 
     // return 1;
 }

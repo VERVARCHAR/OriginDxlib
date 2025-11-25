@@ -20,10 +20,10 @@ void UI::getImage()
 {
     // 非同期ON → 一度だけ投入
     SetUseASyncLoadFlag(TRUE);
-    titleHandle = LoadGraph(L"../../img/BackGround03.png");
-    LoadDivGraph(L"../../img/little_bomb.png", 14, 14, 1, 24, 24, bombsImageHandle);
-    LoadDivGraph(L"../../img/large_bomb.png", 14, 3, 4, 48, 48, &bombsImageHandle[14]);
-    logoHandle = LoadGraph(L"../../img/logos.png");
+    titleHandle = LoadGraph(L"..\\..\\img\\BackGround03.png");
+    LoadDivGraph(L"..\\..\\img\\little_bomb.png", 14, 14, 1, 24, 24, bombsImageHandle);
+    LoadDivGraph(L"..\\..\\img\\large_bomb.png", 12, 3, 4, 48, 48, &bombsImageHandle[14]);
+    logoHandle = LoadGraph(L"..\\..\\img\\logos.png");
     SetUseASyncLoadFlag(FALSE);
 }
 
