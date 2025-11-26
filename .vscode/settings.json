@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.tex": "latex",
         "cctype": "cpp",
         "cmath": "cpp",
         "compare": "cpp",
@@ -70,7 +71,8 @@
         "xlocmon": "cpp",
         "xlocnum": "cpp",
         "xloctime": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "codecvt": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "C_Cpp.default.intelliSenseMode": "windows-msvc-x64",

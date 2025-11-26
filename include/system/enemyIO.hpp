@@ -37,20 +37,27 @@
 #endif
 
 // JSONから敵情報を読み取る関数
-inline bool LoadEnemyDataFromJson(const std::string &path, std::vector<EnemyStatus> &outEnemies)
+inline bool LoadEnemyDataFromJson(const std::string &stageInfoPath, const std::string &bossInfoPath, std::vector<EnemyStatus> &outEnemies, std::vector<SpellInfo> &spells)
 {
     outEnemies.clear();
-    std::ifstream ifs(path);
-    if (!ifs.is_open())
+    std::ifstream stageInfoFile(stageInfoPath);
+    if (!stageInfoFile.is_open())
     {
-        std::cerr << L"[ERROR] cant open file " << path << std::endl;
+        std::cerr << L"[ERROR] cant open file " << stageInfoPath << std::endl;
         return false;
     }
 
-    json j;
+    std::ifstream bossInfoFile(bossInfoPath);
+    if (!bossInfoFile.is_open())
+    {
+        std::cerr << L"[ERROR] cant open file " << bossInfoPath << std::endl;
+        return false;
+    }
+
+    json j1, j2;
     try
     {
-        ifs >> j;
+        stageInfoFile >> j1;
     }
     catch (const std::exception &e)
     {
@@ -58,13 +65,25 @@ inline bool LoadEnemyDataFromJson(const std::string &path, std::vector<EnemyStat
         return false;
     }
 
-    if (!j.contains("enemies") || !j["enemies"].is_array())
+    try
+    {
+        bossInfoFile >> j2;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << L"[ERROR] JSON Parsing Error:" << e.what() << std::endl;
+        return false;
+    }
+
+    if (!j1.contains("enemies") || !j1["enemies"].is_array())
     {
         std::cerr << L"[WARN] is not exist array \"enemies\"\n";
         return false;
     }
 
-    for (const auto &item : j["enemies"])
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+
+    for (const auto &item : j1["enemies"])
     {
         EnemyStatus e{};
         e.pos.x = item.value("pos", json{{"x", 0.0}, {"y", 0.0}})["x"];
@@ -82,15 +101,29 @@ inline bool LoadEnemyDataFromJson(const std::string &path, std::vector<EnemyStat
         e.isAlive = item.value("isAlive", 0);
 
         std::string name_str = item.value("name", "");
-        // std::strncpy(e.name, name.c_str(), sizeof(e.name) - 1);
-        // e.name[sizeof(e.name) - 1] = '\0';
-
-        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
         std::wstring name_w = converter.from_bytes(name_str);
         e.name = name_w;
+        e.spellCount = 0;
 
         // TODO type > 100ならスペル情報や会話内容を取得したい
         outEnemies.push_back(e);
+
+        if (e.id >= 100)
+        {
+
+            for (const auto &sItems : j2["spells"])
+            {
+                SpellInfo s{};
+                std::string spellName_str = sItems.value("spellName", "");
+                std::wstring spellName_w = converter.from_bytes(spellName_str);
+
+                s.spellName = spellName_w;
+                s.spellType = sItems.value("spellType", 0);
+                s.isDurability = sItems.value("isDurability", 0);
+                s.durabilityTime = sItems.value("durabilityTime", 0);
+                spells.push_back(s);
+            }
+        }
     }
 
     std::cout << L"[INFO] " << outEnemies.size() << L"loaded enemies\n";

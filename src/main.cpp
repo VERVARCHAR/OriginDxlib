@@ -93,6 +93,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     SetMouseDispFlag(TRUE);
     int x, y;
 
+    EnemyStatus bossStatus;
+
     // TODO :Loading
     // Title
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
@@ -152,7 +154,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
             // UIの表示
             ui.drawUI(sMgr.getStageInfo());
-            ui.drawBossStatus(sMgr.enemys[sMgr.bossIndex]->getStatus());
+
+            bossStatus = sMgr.enemys[sMgr.bossIndex]->getStatus();
+
+            if (bossStatus.isAlive)
+            {
+                ui.drawBossStatus(bossStatus);
+                ui.drawSpellCardText(bossStatus, sMgr.enemys[sMgr.bossIndex]->getSpellInfo(), time);
+            }
 
             GetMousePoint(&x, &y);
             DrawFormatString(500, 500, GetColor(255, 0, 255), L"Mouse : %d,%d", x, y);

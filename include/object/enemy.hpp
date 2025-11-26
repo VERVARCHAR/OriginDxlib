@@ -48,9 +48,19 @@ typedef struct EnemyStatus
     short id;
     bool isAlive;
     bool isSpell;
+    int spellCount;
+    int spellStartTime;
     bool isInvicible;
     int invicibleTime;
     std::wstring name; // 名前
+};
+
+typedef struct SpellInfo
+{
+    std::wstring spellName;
+    int spellType;
+    bool isDurability;
+    int durabilityTime;
 };
 
 class Enemy
@@ -69,15 +79,26 @@ public:
     void setPosition(int _x, int _y);
     Vec2d getPosition();
     EnemyStatus enemyStatus;
+    std::vector<SpellInfo> spellInfo;
     EnemyStatus getStatus()
     {
         return enemyStatus;
+    }
+    SpellInfo getSpellInfo()
+    {
+        return spellInfo.at(0);
     }
 
     void setStatus(EnemyStatus _status)
     {
         enemyStatus = _status;
     }
+
+    void setSpellData(SpellInfo _spellInfo)
+    {
+        spellInfo.push_back(_spellInfo);
+    }
+
     int getTime() { return enemyStatus.time; };
 
     int getId() { return enemyStatus.id; };

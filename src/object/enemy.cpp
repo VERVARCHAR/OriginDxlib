@@ -58,7 +58,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         }
         if (enemyStatus.isSpell)
         {
-            DrawFormatString(100, 40, GetColor(255, 255, 255), L"Spell");
+            // DrawFormatString(100, 40, GetColor(255, 255, 255), L"Spell");
             // TODO effect
             switch (enemyStatus.shootType)
             {
@@ -107,6 +107,8 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
                 enemyStatus.isInvicible = true;
                 enemyStatus.invicibleTime = 120;
                 enemyStatus.hp = enemyStatus.maxHp;
+                enemyStatus.spellCount += 1;
+                enemyStatus.spellStartTime = time;
             }
         }
 

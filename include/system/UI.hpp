@@ -69,6 +69,7 @@ public:
     void loadTitleImages();
     void drawUI(StageInfo stageInfo);
     void drawBossStatus(EnemyStatus enemyStatus);
+    void drawSpellCardText(EnemyStatus enemyStatus, SpellInfo spellInfo, int time);
     void loadingScreen();
     void talkUI(string, int);
     PlayerStatus getPlayerStatus();

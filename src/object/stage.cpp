@@ -56,6 +56,8 @@ void StageManager::init(int _stage, int _time, Difficulty _difficulty)
         -1,
         -1,
         -1,
+        -1,
+        -1,
         L"Default"};
 
     for (int i = 0; i < MAX_ENEMIES; i++)
@@ -69,12 +71,18 @@ void StageManager::init(int _stage, int _time, Difficulty _difficulty)
     isGameOver = false;
 }
 
-void StageManager::LoadFromVector(const std::vector<EnemyStatus> &src)
+void StageManager::LoadFromVector(const std::vector<EnemyStatus> &srcEnemyStatus, const std::vector<SpellInfo> &srcSpellInfo)
 {
-    enemyCount = min(static_cast<int>(src.size()), MAX_ENEMIES);
+    enemyCount = min(static_cast<int>(srcEnemyStatus.size()), MAX_ENEMIES);
     for (int i = 0; i < enemyCount; ++i)
     {
-        enemys[i]->setStatus(src[i]);
+        enemys[i]->setStatus(srcEnemyStatus[i]);
+    }
+
+    int spellCount = min(static_cast<int>(srcSpellInfo.size()), MAX_ENEMIES);
+    for (int i = 0; i < spellCount; ++i)
+    {
+        enemys[bossIndex]->setSpellData(srcSpellInfo[i]);
     }
     std::cout << "[EnemyManager]" << enemyCount << " enemies registered\n";
 }
@@ -82,7 +90,7 @@ void StageManager::LoadFromVector(const std::vector<EnemyStatus> &src)
 void StageManager::loadEnemy()
 {
     // TODO 敵情報のパスのやり方変えたいね
-    char Paths[8][256] = {
+    char stageInfoPaths[8][256] = {
         "../../stageInfos/stage00/stage00.json",
         "../../stageInfos/stage01/stage01.json",
         "../../stageInfos/stage02/stage02.json",
@@ -93,17 +101,31 @@ void StageManager::loadEnemy()
         "../../stageInfos/stage07/stage07.json",
     };
 
+    char bossInfoPaths[8][256] = {
+        "../../stageInfos/stage00/boss.json",
+        "../../stageInfos/stage01/boss.json",
+        "../../stageInfos/stage02/boss.json",
+        "../../stageInfos/stage03/boss.json",
+        "../../stageInfos/stage04/boss.json",
+        "../../stageInfos/stage05/boss.json",
+        "../../stageInfos/stage06/boss.json",
+        "../../stageInfos/stage07/boss.json",
+    };
+
     // TODO : ローディング画面
     // TODO : stageの値によってパスを変える(関数を別にしてもいいかも???)
-    if (LoadEnemyDataFromJson(Paths[stageInfo.stage], loadEnemies))
+    if (LoadEnemyDataFromJson(stageInfoPaths[stageInfo.stage], bossInfoPaths[stageInfo.stage], loadEnemies, enemys[bossIndex]->spellInfo))
     {
-        LoadFromVector(loadEnemies);
+        LoadFromVector(loadEnemies, enemys[bossIndex]->spellInfo);
 
         for (int i = 0; i < MAX_ENEMIES; i++)
         {
             if (enemys[i]->enemyStatus.type >= 100)
             {
                 bossIndex = i;
+                enemys[i]->enemyStatus.isInvicible = true;
+                enemys[i]->enemyStatus.invicibleTime = 120;
+                // enemys[i]->enemyStatus.
             }
         }
 

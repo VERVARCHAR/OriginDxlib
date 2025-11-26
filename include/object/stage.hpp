@@ -130,8 +130,8 @@ public:
 
     void init(int _stage, int _time, Difficulty _difficulty);
 
-    void loadEnemy();                                         // 敵をJSONファイルから読み込む一連の処理呼び出し関数
-    void LoadFromVector(const std::vector<EnemyStatus> &src); // JSONファイルからVectorにしたものを配列に落とし込む
+    void loadEnemy();                                                                                                // 敵をJSONファイルから読み込む一連の処理呼び出し関数
+    void LoadFromVector(const std::vector<EnemyStatus> &srcEnemyStatus, const std::vector<SpellInfo> &srcSpellInfo); // JSONファイルからVectorにしたものを配列に落とし込む
 
     void spwanEnemy(int index, EnemyStatus enemyStatus); // 敵情報をEnemyに代入
     void deleteEnemy(int);                               // ??
