@@ -40,6 +40,9 @@ class UI
 private:
     int titleHandle;
     int UIImageHandle;
+    int lifeImageHandle;
+    int spellImageHandle;
+    int difficultyImageHandle[4];
     int logoHandle;
     int gameImageHandle[7];
 
@@ -54,6 +57,7 @@ public:
         minLoadingTime = 0;
     }
     void getImage();
+    void getInGameImage();
     void loadTitleImages();
     void drawUI(StageInfo stageInfo);
     void loadingScreen();

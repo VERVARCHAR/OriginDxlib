@@ -10,7 +10,7 @@
 
 #include <algorithm>
 
-StageManager::StageManager(int _stage, int _time, int _difficulty)
+StageManager::StageManager(int _stage, int _time, Difficulty _difficulty)
 {
     init(_stage, _time, _difficulty);
 }
@@ -24,7 +24,7 @@ StageManager::~StageManager()
     }
 }
 
-void StageManager::init(int _stage, int _time, int _difficulty)
+void StageManager::init(int _stage, int _time, Difficulty _difficulty)
 {
     stageInfo.stage = _stage;
     stageInfo.difficulty = _difficulty;

@@ -20,11 +20,18 @@ void UI::getImage()
 {
     SetUseASyncLoadFlag(TRUE);
 
+    SetUseASyncLoadFlag(FALSE);
+}
+
+void UI::getInGameImage()
+{
     titleHandle = LoadGraph(L"..\\..\\assets\\background\\BackGround03.png");
     LoadDivGraph(L"..\\..\\assets\\bombs\\MiddleBomb.png", 8, 8, 1, 512, 512, bombsImageHandle);
     LoadDivGraph(L"..\\..\\assets\\bombs\\LargeBomb.png", 8, 8, 1, 512, 512, &bombsImageHandle[8]);
     logoHandle = LoadGraph(L"..\\..\\assets\\logos.png");
-    SetUseASyncLoadFlag(FALSE);
+    lifeImageHandle = LoadGraph(L"..\\..\\assets\\others\\life.png");
+    spellImageHandle = LoadGraph(L"..\\..\\assets\\others\\spells.png");
+    LoadDivGraph(L"..\\..\\assets\\others\\difficulty.png", 4, 1, 4, 512, 200, difficultyImageHandle);
 }
 
 void loadTitleImages()
@@ -55,20 +62,140 @@ void UI::loadingScreen()
     minLoadingTime++;
 }
 
+// void UI::drawUI(StageInfo stageInfo)
+// {
+
+//     // Play Screen
+//     DrawGraph(0, 0, titleHandle, TRUE);
+//     DrawBox(30, 30, (int)(WINDOW_WIDTH * 0.6) - 30, WINDOW_HEIGHT - 30, GetColor(0, 0, 0), TRUE);
+
+//     // TODO
+//     // Score Screen
+//     DrawFormatString(WINDOW_WIDTH - 400, 50, GetColor(255, 255, 255), L"%d", stageInfo.difficulty);
+//     DrawExtendGraph(WINDOW_WIDTH - 80 - 200 - 128, 30, WINDOW_WIDTH - 80 - 200 + 128, 130, difficultyImagehandle[stageInfo.difficulty - 1], TRUE);
+
+//     DrawFormatString(WINDOW_WIDTH - 400, 100, GetColor(255, 255, 255), L"score : %d", stageInfo.score);
+//     DrawFormatString(WINDOW_WIDTH - 400, 150, GetColor(255, 255, 255), L"残機 : %d", stageInfo.nowStatus.lives);
+//     DrawFormatString(WINDOW_WIDTH - 400, 200, GetColor(255, 255, 255), L"ボム : %d", stageInfo.nowStatus.spels);
+//     DrawFormatString(WINDOW_WIDTH - 400, 250, GetColor(255, 255, 255), L"power : %d", stageInfo.nowStatus.power);
+
+//     for (int i = 0; i < stageInfo.nowStatus.lives; i++)
+//     {
+//         DrawExtendGraph(WINDOW_WIDTH - 300 + i * 50, 150, WINDOW_WIDTH - 300 + i * 50 + 50, 200, lifeImageHandle, TRUE);
+//     }
+
+//     for (int i = 0; i < stageInfo.nowStatus.spels; i++)
+//     {
+//         DrawExtendGraph(WINDOW_WIDTH - 300 + i * 50, 200, WINDOW_WIDTH - 300 + i * 50 + 50, 250, spellImageHandle, TRUE);
+//     }
+
+//     // [DEBUG]
+//     printfDx(L"life : %d , spells :%d\n", lifeImageHandle, spellImageHandle);
+//     // DrawGraph(WINDOW_WIDTH - 400, WINDOW_HEIGHT - 400, logoHandle, TRUE);
+// }
+
 void UI::drawUI(StageInfo stageInfo)
 {
-    // Play Screen
+    // 背景
     DrawGraph(0, 0, titleHandle, TRUE);
-    DrawBox(30, 30, (int)(WINDOW_WIDTH * 0.6) - 30, WINDOW_HEIGHT - 30, GetColor(0, 0, 0), TRUE);
 
-    // TODO
-    // Score Screen
-    DrawFormatString(WINDOW_WIDTH - 400, 50, GetColor(255, 255, 255), L"%d", stageInfo.difficulty);
-    DrawFormatString(WINDOW_WIDTH - 400, 100, GetColor(255, 255, 255), L"score\t: %d", stageInfo.score);
-    DrawFormatString(WINDOW_WIDTH - 400, 150, GetColor(255, 255, 255), L"残機\t: %d", stageInfo.nowStatus.lives);
-    DrawFormatString(WINDOW_WIDTH - 400, 200, GetColor(255, 255, 255), L"ボム\t: %d", stageInfo.nowStatus.spels);
+    // プレイエリア（左側）: 少し余白を残す
+    const int playLeft = 30;
+    const int playTop = 30;
+    const int playRight = (int)(WINDOW_WIDTH * 0.6) - 40; // ちょっとだけ狭めて縁取り
+    const int playBottom = WINDOW_HEIGHT - 40;
+    DrawBox(playLeft, playTop, playRight, playBottom, GetColor(0, 0, 0), TRUE);
 
-    DrawGraph(WINDOW_WIDTH - 400, WINDOW_HEIGHT - 400, logoHandle, TRUE);
+    // ==============================
+    // 右側 UI パネル
+    // ==============================
+    const int uiLeft = playRight + 20;     // プレイエリアと少し隙間をあける
+    const int uiRight = WINDOW_WIDTH - 30; // 右端にも余白
+    const int uiTop = 30;
+    const int uiBottom = WINDOW_HEIGHT / 2 + 50; // HUD は上のほうだけ使う
+
+    // パネル背景と枠線
+    DrawBox(uiLeft, uiTop, uiRight, uiBottom, GetColor(0, 0, 0), TRUE);
+    DrawBox(uiLeft, uiTop, uiRight, uiBottom, GetColor(80, 80, 160), FALSE);
+
+    // テキストのベース座標
+    int textX = uiLeft + 20;
+    int textY = uiTop + 20;
+
+    // ==============================
+    // 難易度
+    // ==============================
+    DrawFormatString(textX, textY, GetColor(255, 255, 255), L"DIFFICULTY");
+    textY += 20;
+
+    // 元コードと同じサイズ (256 x 100) で配置
+    const int diffW = 256;
+    const int diffH = 100;
+    int diffX1 = uiRight - diffW - 20;
+    int diffY1 = uiTop + 10;
+    int diffX2 = diffX1 + diffW;
+    int diffY2 = diffY1 + diffH;
+
+    DrawExtendGraph(
+        diffX1, diffY1,
+        diffX2, diffY2,
+        difficultyImageHandle[stageInfo.difficulty - 1],
+        TRUE);
+
+    // ==============================
+    // スコア
+    // ==============================
+    textY = diffY2 + 10;
+    DrawFormatString(textX, textY, GetColor(255, 255, 255), L"SCORE : %d", stageInfo.score);
+    textY += 30;
+
+    // ==============================
+    // ライフ（星アイコン）
+    // ==============================
+    DrawFormatString(textX, textY, GetColor(255, 255, 255), L"LIFE");
+    textY += 20;
+
+    const int iconSize = 50; // 元コードと同じ 50x50
+    const int lifeBaseX = textX + 80;
+    const int lifeY1 = textY;
+    const int lifeY2 = lifeY1 + iconSize;
+
+    for (int i = 0; i < stageInfo.nowStatus.lives; i++)
+    {
+        int x1 = lifeBaseX + i * (iconSize + 6);
+        int x2 = x1 + iconSize;
+        DrawExtendGraph(x1, lifeY1, x2, lifeY2, lifeImageHandle, TRUE);
+    }
+    textY = lifeY2 + 10;
+
+    // ==============================
+    // ボム（ハートアイコン）
+    // ==============================
+    DrawFormatString(textX, textY, GetColor(255, 255, 255), L"BOMB");
+    textY += 20;
+
+    const int spellBaseX = textX + 80;
+    const int spellY1 = textY;
+    const int spellY2 = spellY1 + iconSize;
+
+    for (int i = 0; i < stageInfo.nowStatus.spels; i++)
+    {
+        int x1 = spellBaseX + i * (iconSize + 6);
+        int x2 = x1 + iconSize;
+        DrawExtendGraph(x1, spellY1, x2, spellY2, spellImageHandle, TRUE);
+    }
+    textY = spellY2 + 10;
+
+    // ==============================
+    // パワー表示
+    // ==============================
+    DrawFormatString(textX, textY, GetColor(255, 255, 255),
+                     L"POWER : %d", stageInfo.nowStatus.power);
+
+    // ロゴ
+    DrawGraph(WINDOW_WIDTH - 400, WINDOW_HEIGHT - 300, logoHandle, TRUE);
+    // [DEBUG]
+    // printfDx(L"lifeHandle : %d , spellHandle : %d\n", lifeImageHandle, spellImageHandle);
 }
 
 void UI::talkUI(string talkString, int talkWho)

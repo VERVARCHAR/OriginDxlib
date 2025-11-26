@@ -44,6 +44,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     // 初期ローディング
     Scene scene = PRELOADING;
+    Difficulty difficulty = Difficulty::EASY;
 
     // 最低限のクラス生成
     UI ui;
@@ -77,7 +78,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     BombInfo bombs[MAX_BOMBS];
     BombManager bMgr(bombs);
 
-    StageManager sMgr(1, 0, 1);
+    StageManager sMgr(1, 0, difficulty);
 
     Player player;
     EnemyShootScript *enemyShootScript;
@@ -87,6 +88,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     bool title = true;
     bool flag = false;
+
+    // マウスを表示状態にする
+    SetMouseDispFlag(TRUE);
+    int x, y;
 
     // TODO :Loading
     // Title
@@ -126,10 +131,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             if (ui.minLoadingTime == 0)
             {
                 SetUseASyncLoadFlag(TRUE);
+                ui.getInGameImage();
                 player.init();
                 bMgr.init(bombs);
-                sMgr.init(1, 0, 1);
-
+                sMgr.init(1, 0, difficulty);
                 player.loadPlayerImage();
                 sMgr.loadEnemy();
                 bMgr.setBombsHandle(ui.bombsImageHandle);
@@ -147,6 +152,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
             // UIの表示
             ui.drawUI(sMgr.getStageInfo());
+
+            GetMousePoint(&x, &y);
+            DrawFormatString(500, 500, GetColor(255, 0, 255), L"Mouse : %d,%d", x, y);
 
             // メニュー画面のキー入力
             if (Key[KEY_INPUT_ESCAPE] == 1)

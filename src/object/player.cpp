@@ -25,7 +25,7 @@ void Player::init()
     status.invincibleTime = 0;
     status.isShoot = false;
     status.isShift = false;
-    radius = 8;
+    radius = 3;
     type = 0;
     strcpy(name, "Default");
 }
@@ -47,7 +47,7 @@ void Player::playerDraw()
     if (isDraw)
     {
         DrawExtendGraph(pos.x - 30, pos.y - 30, pos.x + 30, pos.y + 30, charaImageHandle[0], TRUE);
-        DrawCircle(pos.x, pos.y - radius, radius, GetColor(255, 255, 255), TRUE);
+        DrawCircle(pos.x, pos.y - 5, radius, GetColor(255, 255, 255), TRUE);
     }
 }
 
@@ -102,6 +102,7 @@ Vec2d Player::getPosition()
     return pos;
 }
 
+// TODO プレイ画面外に出れないようにする
 void Player::getKeyInput(bool isTalk)
 {
     double moveSpeed = 0;
@@ -137,9 +138,13 @@ void Player::getKeyInput(bool isTalk)
 
     if (Key[KEY_INPUT_X] == 1)
     {
-        status.isSpel = true;
-        status.invincible = true;
-        status.invincibleTime = 5 * 60;
+        if (status.spels > 0)
+        {
+            status.spels -= 1;
+            status.isSpel = true;
+            status.invincible = true;
+            status.invincibleTime = 5 * 60;
+        }
     }
     if (Key[KEY_INPUT_Z] > 0 && Key[KEY_INPUT_Z] % 5 == 0)
     {

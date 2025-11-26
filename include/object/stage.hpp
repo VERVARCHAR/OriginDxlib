@@ -65,6 +65,15 @@ enum Scene
     DEBUG,
 };
 
+enum Difficulty
+{
+    EASY = 1,
+    NORMAL = 2,
+    HARD = 3,
+    LUNATIC = 4,
+    EXTRA = 5,
+};
+
 // TODO 道中会話用に複数必要??フレーム数とかもいるかも???
 // 会話データ構造体
 typedef struct TalkData
@@ -77,7 +86,7 @@ typedef struct TalkData
 typedef struct StageInfo
 {
     int stage;
-    int difficulty;
+    Difficulty difficulty;
     int score;
     PlayerStatus nowStatus;
 };
@@ -116,10 +125,10 @@ public:
     int enemyImageHandle[32]; // 敵画像ハンドラ
     int bossIndex = 0;        // ボスのID格納変数
 
-    StageManager(int _stage, int _time, int _difficulty);
+    StageManager(int _stage, int _time, Difficulty _difficulty);
     ~StageManager();
 
-    void init(int _stage, int _time, int _difficulty);
+    void init(int _stage, int _time, Difficulty _difficulty);
 
     void loadEnemy();                                         // 敵をJSONファイルから読み込む一連の処理呼び出し関数
     void LoadFromVector(const std::vector<EnemyStatus> &src); // JSONファイルからVectorにしたものを配列に落とし込む
