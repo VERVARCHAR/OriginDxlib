@@ -39,7 +39,7 @@ struct Effect
     int alpha = 255;
 
     // テキスト系用
-    wchar_t text[32];
+    std::wstring text;
 };
 
 class Effecter

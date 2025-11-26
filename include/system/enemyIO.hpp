@@ -1,12 +1,10 @@
 // enemyIO.hpp
 #pragma once
-#include <string>
-#include <vector>
-#include <fstream>
-#include <iostream>
-#include <cstring>
-#include "nlohmann/json.hpp" // nlohmann/json
-using json = nlohmann::json;
+
+#ifndef _UTILS_HPP_
+#define _UTILS_HPP_
+#include "system/utils.hpp"
+#endif
 
 #ifndef _BOMB_HPP_
 #define _BOMB_HPP_
@@ -75,7 +73,7 @@ inline bool LoadEnemyDataFromJson(const std::string &path, std::vector<EnemyStat
         e.vel.y = item.value("vel", json{{"x", 0.0}, {"y", 0.0}})["y"];
         e.type = item.value("type", 0);
         e.lives = item.value("lives", 1);
-        e.hp = item.value("hp", 10);
+        e.maxHp = e.hp = item.value("hp", 10);
         e.radius = item.value("radius", 8);
         e.shootType = item.value("shootType", 0);
         e.spwanTime = item.value("spwanTime", 0); // JSONに無くてもOK
@@ -83,9 +81,13 @@ inline bool LoadEnemyDataFromJson(const std::string &path, std::vector<EnemyStat
         e.id = static_cast<short>(item.value("id", 0));
         e.isAlive = item.value("isAlive", 0);
 
-        std::string name = item.value("name", "");
-        std::strncpy(e.name, name.c_str(), sizeof(e.name) - 1);
-        e.name[sizeof(e.name) - 1] = '\0';
+        std::string name_str = item.value("name", "");
+        // std::strncpy(e.name, name.c_str(), sizeof(e.name) - 1);
+        // e.name[sizeof(e.name) - 1] = '\0';
+
+        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+        std::wstring name_w = converter.from_bytes(name_str);
+        e.name = name_w;
 
         // TODO type > 100ならスペル情報や会話内容を取得したい
         outEnemies.push_back(e);

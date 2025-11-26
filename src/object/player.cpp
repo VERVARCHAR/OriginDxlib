@@ -28,7 +28,10 @@ void Player::init()
     status.grazeCount = 0;
     radius = 3;
     type = 0;
-    strcpy(name, "Default");
+    std::string name_utf8 = "Default";
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+    std::wstring name_w = converter.from_bytes(name_utf8);
+    name = name_w;
 }
 
 // TODO どっかで宣言してそう???

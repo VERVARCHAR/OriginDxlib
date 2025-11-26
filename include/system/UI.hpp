@@ -35,6 +35,14 @@
 #include "object/stage.hpp"
 #endif
 
+#include <string>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <cstring>
+#include "nlohmann/json.hpp" // nlohmann/json
+using json = nlohmann::json;
+
 class UI
 {
 private:
@@ -60,6 +68,7 @@ public:
     void getInGameImage();
     void loadTitleImages();
     void drawUI(StageInfo stageInfo);
+    void drawBossStatus(EnemyStatus enemyStatus);
     void loadingScreen();
     void talkUI(string, int);
     PlayerStatus getPlayerStatus();

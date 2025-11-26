@@ -106,7 +106,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
                 enemyStatus.isSpell = false;
                 enemyStatus.isInvicible = true;
                 enemyStatus.invicibleTime = 120;
-                enemyStatus.hp = 200;
+                enemyStatus.hp = enemyStatus.maxHp;
             }
         }
 

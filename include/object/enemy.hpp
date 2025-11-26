@@ -20,6 +20,11 @@
 #include "object/player.hpp"
 #endif // _PLAYER_HPP_
 
+#ifndef _UTILS_HPP_
+#define _UTILS_HPP_
+#include "system/utils.hpp"
+#endif
+
 #ifndef _EFFECTER_HPP_
 #define _EFFECTER_HPP_
 #include "system/effecter.hpp"
@@ -34,6 +39,7 @@ typedef struct EnemyStatus
     Vec2d vel;
     int type; // 種類
     int lives;
+    int maxHp;
     int hp; // 体力
     int radius;
     int shootType;
@@ -44,7 +50,7 @@ typedef struct EnemyStatus
     bool isSpell;
     bool isInvicible;
     int invicibleTime;
-    char name[32]; // 名前
+    std::wstring name; // 名前
 };
 
 class Enemy

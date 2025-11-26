@@ -15,6 +15,16 @@
 #include "system/utils.hpp"
 #endif
 
+#include <string>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <cstring>
+#include <codecvt>
+#include <locale>
+#include "nlohmann/json.hpp" // nlohmann/json
+using json = nlohmann::json;
+
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
 

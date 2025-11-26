@@ -62,48 +62,16 @@ void UI::loadingScreen()
     minLoadingTime++;
 }
 
-// void UI::drawUI(StageInfo stageInfo)
-// {
-
-//     // Play Screen
-//     DrawGraph(0, 0, titleHandle, TRUE);
-//     DrawBox(30, 30, (int)(WINDOW_WIDTH * 0.6) - 30, WINDOW_HEIGHT - 30, GetColor(0, 0, 0), TRUE);
-
-//     // TODO
-//     // Score Screen
-//     DrawFormatString(WINDOW_WIDTH - 400, 50, GetColor(255, 255, 255), L"%d", stageInfo.difficulty);
-//     DrawExtendGraph(WINDOW_WIDTH - 80 - 200 - 128, 30, WINDOW_WIDTH - 80 - 200 + 128, 130, difficultyImagehandle[stageInfo.difficulty - 1], TRUE);
-
-//     DrawFormatString(WINDOW_WIDTH - 400, 100, GetColor(255, 255, 255), L"score : %d", stageInfo.score);
-//     DrawFormatString(WINDOW_WIDTH - 400, 150, GetColor(255, 255, 255), L"残機 : %d", stageInfo.nowStatus.lives);
-//     DrawFormatString(WINDOW_WIDTH - 400, 200, GetColor(255, 255, 255), L"ボム : %d", stageInfo.nowStatus.spels);
-//     DrawFormatString(WINDOW_WIDTH - 400, 250, GetColor(255, 255, 255), L"power : %d", stageInfo.nowStatus.power);
-
-//     for (int i = 0; i < stageInfo.nowStatus.lives; i++)
-//     {
-//         DrawExtendGraph(WINDOW_WIDTH - 300 + i * 50, 150, WINDOW_WIDTH - 300 + i * 50 + 50, 200, lifeImageHandle, TRUE);
-//     }
-
-//     for (int i = 0; i < stageInfo.nowStatus.spels; i++)
-//     {
-//         DrawExtendGraph(WINDOW_WIDTH - 300 + i * 50, 200, WINDOW_WIDTH - 300 + i * 50 + 50, 250, spellImageHandle, TRUE);
-//     }
-
-//     // [DEBUG]
-//     printfDx(L"life : %d , spells :%d\n", lifeImageHandle, spellImageHandle);
-//     // DrawGraph(WINDOW_WIDTH - 400, WINDOW_HEIGHT - 400, logoHandle, TRUE);
-// }
-
 void UI::drawUI(StageInfo stageInfo)
 {
     // 背景
     DrawGraph(0, 0, titleHandle, TRUE);
 
     // プレイエリア（左側）: 少し余白を残す
-    const int playLeft = 30;
-    const int playTop = 30;
-    const int playRight = (int)(WINDOW_WIDTH * 0.6) - 40; // ちょっとだけ狭めて縁取り
-    const int playBottom = WINDOW_HEIGHT - 40;
+    const int playLeft = 10;
+    const int playTop = 10;
+    const int playRight = (int)(WINDOW_WIDTH * 0.6) - 10; // ちょっとだけ狭めて縁取り
+    const int playBottom = WINDOW_HEIGHT - 10;
     DrawBox(playLeft, playTop, playRight, playBottom, GetColor(0, 0, 0), TRUE);
 
     // ==============================
@@ -206,6 +174,31 @@ void UI::drawUI(StageInfo stageInfo)
     // printfDx(L"lifeHandle : %d , spellHandle : %d\n", lifeImageHandle, spellImageHandle);
 }
 
+void UI::drawBossStatus(EnemyStatus enemyStatus)
+{
+    if (!enemyStatus.isAlive)
+        return;
+
+    const int barWidth = 630;
+    const int barHeight = 5;
+    const int barX = 100;
+    const int barY = 20;
+
+    double ratio = (double)enemyStatus.hp / enemyStatus.maxHp;
+    int currentWidth = (int)(barWidth * ratio);
+
+    DrawFormatString(10, barY, GetColor(255, 255, 255), L"%s", enemyStatus.name.c_str());
+
+    // 背景（グレー）
+    DrawBox(barX, barY, barX + barWidth, barY + barHeight, GetColor(80, 80, 80), TRUE);
+
+    // 赤ゲージ
+    DrawBox(barX, barY, barX + currentWidth, barY + barHeight, GetColor(255, 60, 60), TRUE);
+
+    // 枠
+    // DrawBox(barX, barY, barX + barWidth, barY + barHeight, GetColor(255, 255, 255), FALSE);
+}
+
 void UI::talkUI(string talkString, int talkWho)
 {
     if (talkWho == 0)
@@ -217,6 +210,7 @@ void UI::talkUI(string talkString, int talkWho)
         DrawBox(30, 150, 330, 450, GetColor(0, 255, 0), TRUE);
     }
     std::wstring talkW = std::wstring(talkString.begin(), talkString.end());
+    // [DEBUG]
     printfDx(talkW.c_str());
     DrawFormatString(100, 600, GetColor(255, 255, 255), talkW.c_str());
 }

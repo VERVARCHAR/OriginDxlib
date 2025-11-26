@@ -55,7 +55,8 @@ void StageManager::init(int _stage, int _time, Difficulty _difficulty)
         -1,
         -1,
         -1,
-        "Default"};
+        -1,
+        L"Default"};
 
     for (int i = 0; i < MAX_ENEMIES; i++)
     {

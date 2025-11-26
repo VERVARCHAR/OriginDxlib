@@ -53,7 +53,7 @@ private:
     Vec2d pos;
     int type; // 種類
     Status status;
-    char name[50]; // 名前
+    std::wstring name; // 名前
     int radius;
     bool isDraw = true;
     bool chattering = false;

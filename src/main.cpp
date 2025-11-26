@@ -152,6 +152,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
             // UIの表示
             ui.drawUI(sMgr.getStageInfo());
+            ui.drawBossStatus(sMgr.enemys[sMgr.bossIndex]->getStatus());
 
             GetMousePoint(&x, &y);
             DrawFormatString(500, 500, GetColor(255, 0, 255), L"Mouse : %d,%d", x, y);
