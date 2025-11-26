@@ -48,6 +48,8 @@ public:
     Effecter();
     ~Effecter();
 
+    void init();
+
     void loadEffecter();   // 画像・音読み込み
     void effecterUpdate(); // 毎フレーム更新
     void effecterDraw();   // 毎フレーム描画

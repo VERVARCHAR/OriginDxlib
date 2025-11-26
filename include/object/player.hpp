@@ -55,6 +55,7 @@ private:
     char name[50]; // 名前
     int radius;
     bool isDraw = true;
+    bool chattering = false;
 
 protected:
 public:
@@ -86,13 +87,13 @@ public:
     // void setUsingBombs(UsingBombStruct (&_usingBombs)[MAX_USING][2]) { memcpy(usingBombs, _usingBombs, sizeof(usingBombs)); }
     void loadPlayerImage();
 
-    void getBMgrData(BombManager &_BombManager);
-    void playerUpdate(BombManager, BombInfo[MAX_BOMBS], Effecter *effecter);
+    void getBMgrData(BombManager *_BombManager);
+    void playerUpdate(BombManager *_BombManager, BombInfo[MAX_BOMBS], Effecter *effecter);
     void playerDraw();
-    void shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS]);
+    void shootBomb(BombManager *bMgr, BombInfo bombs[MAX_BOMBS]);
     void getKeyInput(bool isTalk);
-    void SpelCard(BombManager, BombInfo[MAX_BOMBS]);
-    void ShootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS]);
+    void SpelCard(BombManager *, BombInfo[MAX_BOMBS]);
+    void ShootBomb(BombManager *bMgr, BombInfo bombs[MAX_BOMBS]);
     void Dead();
     void debugStatus()
     {

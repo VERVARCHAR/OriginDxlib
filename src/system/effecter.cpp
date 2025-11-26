@@ -6,15 +6,20 @@
 
 Effecter::Effecter()
 {
-    for (int i = 0; i < MAX_EFFECTS; ++i)
-    {
-        effects[i].isAlive = false;
-    }
+    init();
 }
 
 Effecter::~Effecter()
 {
     // 今は特に何もしない（DxLib_End で解放）
+}
+
+void Effecter::init()
+{
+    for (int i = 0; i < MAX_EFFECTS; ++i)
+    {
+        effects[i].isAlive = false;
+    }
 }
 
 void Effecter::loadEffecter()

@@ -179,18 +179,18 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     stageInfo.nowStatus = player->getStatus();
     player->debugStatus();
 
-    // プレイヤー関連のキー入力
-    player->getKeyInput(isTalk);
-
     // ポーズ中でない，ゲームオーバーでないならプレイヤー，弾幕の更新処理をする
     if (!isPause && !isGameOver)
     {
-        player->playerUpdate(*bMgr, bombs, effecter);
+        player->playerUpdate(bMgr, bombs, effecter);
         bMgr->updateBombs(bombs);
         effecter->effecterUpdate();
 
         getClearStage();
         getGameOver(player);
+
+        // プレイヤー関連のキー入力
+        player->getKeyInput(isTalk);
     }
 
     // 描画処理

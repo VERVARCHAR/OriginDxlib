@@ -133,6 +133,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 player.loadPlayerImage();
                 sMgr.loadEnemy();
                 bMgr.setBombsHandle(ui.bombsImageHandle);
+                effecter.init();
                 SetUseASyncLoadFlag(FALSE);
             }
             ui.loadingScreen();

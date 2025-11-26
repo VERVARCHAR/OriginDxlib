@@ -51,7 +51,7 @@ void Player::playerDraw()
     }
 }
 
-void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS], Effecter *effecter)
+void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter *effecter)
 {
 
     // DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
@@ -94,6 +94,7 @@ void Player::playerUpdate(BombManager bMgr, BombInfo bombs[MAX_BOMBS], Effecter 
             }
         }
     }
+    chattering = false;
 }
 
 Vec2d Player::getPosition()
@@ -159,18 +160,22 @@ void Player::getKeyInput(bool isTalk)
 
 void Player::Dead()
 {
-    status.lives -= 1;
-    status.invincible = true;
-    status.invincibleTime = 3 * 60;
+    if (!chattering)
+    {
+        status.lives -= 1;
+        status.invincible = true;
+        status.invincibleTime = 3 * 60;
+        chattering = true;
+    }
 }
 
-void Player::shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
+void Player::shootBomb(BombManager *bMgr, BombInfo bombs[MAX_BOMBS])
 {
     double speed = 15;
 
     for (int i = 0; i < status.power; i++)
     {
-        int idx = bMgr.getEmptyIndex(bombs);
+        int idx = bMgr->getEmptyIndex(bombs);
         if (idx < 0)
         {
             // 弾がこれ以上出せないときの対処（何もしない・ログを出すなど）
@@ -189,14 +194,14 @@ void Player::shootBomb(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
     }
 }
 
-void Player::SpelCard(BombManager bMgr, BombInfo bombs[MAX_BOMBS])
+void Player::SpelCard(BombManager *bMgr, BombInfo bombs[MAX_BOMBS])
 {
     DrawCircle(pos.x, pos.y, 250, GetColor(128, 128, 128), FALSE);
     for (int i = 0; i < MAX_BOMBS; i++)
     {
         if (!bombs[i].isPlayers && POWER2((pos.x) - (bombs[i].pos.x)) + POWER2((pos.y) - (bombs[i].pos.y)) < POWER2(250))
         {
-            bMgr.initBomb(&bombs[i]);
+            bMgr->initBomb(&bombs[i]);
         }
     }
 }
