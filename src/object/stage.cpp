@@ -14,11 +14,12 @@ StageManager::StageManager(int _stage, int _time, int _difficulty)
 {
     init(_stage, _time, _difficulty);
 }
+
 StageManager::~StageManager()
 {
     for (int i = 0; i < MAX_ENEMIES; ++i)
     {
-        delete enemys[i]; // メモリ解放を忘れずに
+        delete enemys[i];
         enemys[i] = nullptr;
     }
 }
@@ -79,6 +80,7 @@ void StageManager::LoadFromVector(const std::vector<EnemyStatus> &src)
 
 void StageManager::loadEnemy()
 {
+    // TODO 敵情報のパスのやり方変えたいね
     char Paths[8][256] = {
         "../../stageInfos/stage00/stage00.json",
         "../../stageInfos/stage01/stage01.json",
@@ -154,6 +156,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     }
 
     // TODO
+    // 会話中でない, ゲームタイマが0以上, ゲームオーバーでないなら更新処理を行う
     if (!isTalk && time >= 0 && !isPause && !isGameOver)
     {
         for (int i = 0; i < MAX_ENEMIES; i++)
@@ -172,20 +175,14 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
         time++;
     }
 
-    for (int i = 0; i < MAX_ENEMIES; i++)
-    {
-        if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
-        {
-            enemys[i]->enemyDraw();
-            printfDx(L"enemy type:%d", enemys[i]->enemyStatus.type);
-        }
-    }
-
+    // UI用にプレイヤーのステータス情報を格納
     stageInfo.nowStatus = player->getStatus();
     player->debugStatus();
 
+    // プレイヤー関連のキー入力
     player->getKeyInput(isTalk);
 
+    // ポーズ中でない，ゲームオーバーでないならプレイヤー，弾幕の更新処理をする
     if (!isPause && !isGameOver)
     {
         player->playerUpdate(*bMgr, bombs, effecter);
@@ -196,10 +193,26 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
         getGameOver(player);
     }
 
-    player->playerDraw();
-    bMgr->drawBombs(bombs);
+    // 描画処理
+    // エフェクト -> 敵 -> 自機 -> 弾幕
+
     effecter->effecterDraw();
 
+    for (int i = 0; i < MAX_ENEMIES; i++)
+    {
+        if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
+        {
+            enemys[i]->enemyDraw();
+
+            // [DEBUG]
+            printfDx(L"enemy type:%d", enemys[i]->enemyStatus.type);
+        }
+    }
+
+    player->playerDraw();
+    bMgr->drawBombs(bombs);
+
+    // ボス撃破処理
     if (isClearStage)
     {
         bMgr->removeBomb(bombs);
@@ -210,14 +223,15 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
         loadEnemy();
     }
 
+    // ボス撃破時にゲームタイマーが0未満になるので，その間にリザルト
     if (time < 0)
     {
         DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
         time++;
     }
 
+    // [DEBUG]
     printfDx(L"times : %d\n", time);
-
     printfDx(L"Boss Index : %d\n", bossIndex);
     printfDx(L"Clear : %d\n", isClearStage);
 }

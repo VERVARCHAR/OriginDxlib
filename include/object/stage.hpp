@@ -54,6 +54,7 @@ class Enemy;            // ポインタ保持のため前方宣言
 class EnemyShootScript; // 前方宣言（実体は .cpp で include）
 struct EnemyStatus;     // 実体は enemy.hpp 内
 
+// シーン制御列挙体
 enum Scene
 {
     PRELOADING,
@@ -64,12 +65,15 @@ enum Scene
     DEBUG,
 };
 
+// TODO 道中会話用に複数必要??フレーム数とかもいるかも???
+// 会話データ構造体
 typedef struct TalkData
 {
     string talkString;
     bool isTalkEnemy;
 };
 
+// ステージ情報構造体(UIに渡すようが主)
 typedef struct StageInfo
 {
     int stage;
@@ -82,60 +86,72 @@ class StageManager
 {
 private:
     // TODO StageInfoへの移行
-    int stage;
-    int difficulty;
+    int stage;      // ステージ
+    int difficulty; // 難易度
 
     StageInfo stageInfo;
 
-    int time;
-    int latestEnemyId;
+    int time;          // ステージタイマー
+    int latestEnemyId; // 最新の敵ID(つかってない??)
+
     // Enemy *enemys[MAX_ENEMIES];
-    EnemyShootScript enemyShootScript;
-    std::vector<EnemyStatus> loadEnemies;
-    int enemyCount;
+    EnemyShootScript enemyShootScript;    // 敵の弾幕コードクラス
+    std::vector<EnemyStatus> loadEnemies; // 敵情報読み込みベクトル
+    int enemyCount;                       // 敵カウンター
 
 public:
-    bool isPause = false;
-    bool isTalk;
-    int talkCount;
-    // TODO
+    bool isPause = false;      // ポーズフラグ
+    bool isTalk = false;       // 会話フラグ
+    int talkCount = 0;         // トークカウンタ
+    bool isClearStage = false; // ステージクリアフラグ
+    bool isGameOver = false;   // ゲームオーバーフラグ
+
+    // TODO TalkData構造体への移行
     string talkString[20];
     int talkWho[20];
     TalkData talkData[20];
 
-    bool isClearStage = false;
-    bool isGameOver = false;
+    Enemy *enemys[MAX_ENEMIES]; // 実際に扱う敵情報格納配列
 
-    int enemyImageHandle[32];
-    int bossIndex = 0;
+    int enemyImageHandle[32]; // 敵画像ハンドラ
+    int bossIndex = 0;        // ボスのID格納変数
 
     StageManager(int _stage, int _time, int _difficulty);
     ~StageManager();
 
-    Enemy *enemys[MAX_ENEMIES];
-
     void init(int _stage, int _time, int _difficulty);
 
-    void LoadFromVector(const std::vector<EnemyStatus> &src);
+    void loadEnemy();                                         // 敵をJSONファイルから読み込む一連の処理呼び出し関数
+    void LoadFromVector(const std::vector<EnemyStatus> &src); // JSONファイルからVectorにしたものを配列に落とし込む
 
-    void loadEnemy();
-    void spwanEnemy(int index, EnemyStatus enemyStatus);
-    void deleteEnemy(int);
+    void spwanEnemy(int index, EnemyStatus enemyStatus); // 敵情報をEnemyに代入
+    void deleteEnemy(int);                               // ??
+
+    // ステージ情報更新関数
     void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player, Effecter *effecter);
     // Enemy getEnemy(int index) { return enemys[i]; };
-    int getEmptyIndex(); // 空いてる敵のインデックス取得
 
-    void getClearStage();
-    void getGameOver(Player *player);
+    int getEmptyIndex(); // 空いてる敵のインデックス取得(おそらく使ってない)
 
+    void getClearStage();             // ステージクリア判定処理
+    void getGameOver(Player *player); // ゲームオーバー判定処理
+
+    // ステージ情報のgetter(UI用)
     StageInfo getStageInfo()
     {
         return stageInfo;
     }
 
-    void talk(int type);
-    string getTalkString(int talkCount) { return talkString[talkCount]; };
+    // TODO もっとちゃんとしたやつ作る
+    void talk(int type); // 会話処理
+
+    // TODO 中身ちゃんとしたやつ作って
+    string getTalkString(int talkCount) { return talkString[talkCount]; }; // 外部ファイルから会話内容を取得する
+
+    // だれが話しているのかを取得する
     int getTalkWho(int talkCount) { return talkWho[talkCount]; };
+
+    // 会話判定終了処理
     void endTalk()
     {
         isTalk = false;

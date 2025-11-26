@@ -42,18 +42,21 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     SetUp();
 
+    // 初期ローディング
     Scene scene = PRELOADING;
 
-    // 各クラスの宣言
+    // 最低限のクラス生成
     UI ui;
     Effecter effecter;
 
+    // タイトル画面用の画像読み込み
     ui.startLoading();
     SetUseASyncLoadFlag(TRUE);
     ui.getImage();
     effecter.loadEffecter();
     SetUseASyncLoadFlag(FALSE);
 
+    // ローディング画面用
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
     {
         if (!Update())
@@ -70,8 +73,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         Draw();
     }
 
-    // TODO 以下,タイトル追加で変わりそう??
-
+    // 各クラス生成
     BombInfo bombs[MAX_BOMBS];
     BombManager bMgr(bombs);
 
@@ -80,7 +82,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     Player player;
     EnemyShootScript *enemyShootScript;
 
-    int time = 0;
+    int time = 0; // いらないかも??
     // int difficulty = 4;
 
     bool title = true;
@@ -98,14 +100,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         }
         switch (scene)
         {
-        case TITLE:
+        case TITLE: // タイトル処理
+
+            // TODO タイトルの作成
+            // 1が押されたらゲームスタート用のローディング
             if (Key[KEY_INPUT_1] == 1)
             {
                 ui.startLoading();
                 scene = LOADING;
                 break;
             }
-            if (Key[KEY_INPUT_D] == 1)
+
+            // [DEBUG]
+            if (Key[KEY_INPUT_TAB] == 1)
             {
                 scene = DEBUG;
                 break;
@@ -113,9 +120,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             DrawFormatString(30, 30, GetColor(255, 255, 255), L"Title");
             break;
 
-        case LOADING:
+        case LOADING: // ローディング
+
+            // 各必要要素ローディング
             if (ui.minLoadingTime == 0)
             {
+                SetUseASyncLoadFlag(TRUE);
                 player.init();
                 bMgr.init(bombs);
                 sMgr.init(1, 0, 1);
@@ -123,6 +133,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 player.loadPlayerImage();
                 sMgr.loadEnemy();
                 bMgr.setBombsHandle(ui.bombsImageHandle);
+                SetUseASyncLoadFlag(FALSE);
             }
             ui.loadingScreen();
             if (GetASyncLoadNum() == 0 && ui.minLoadingTime > 120)
@@ -131,8 +142,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 break;
             }
             break;
-        case INGAME:
+        case INGAME: // ゲーム中処理
 
+            // UIの表示
             ui.drawUI(sMgr.getStageInfo());
 
             // メニュー画面のキー入力
@@ -187,9 +199,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             // sMgr.DEBUG_print_enemies();
 
             break;
-        case RESULT:
+        case RESULT: // TODO リザルトの作成
             break;
-        case DEBUG:
+        case DEBUG: // [DEBUG] 以下デバッグ用
             effecter.effecterUpdate();
             effecter.effecterDraw();
             DrawFormatString(10, 10, GetColor(255, 255, 255), L"[DEBUG] Effect");
