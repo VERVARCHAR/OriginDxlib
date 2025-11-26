@@ -190,7 +190,15 @@ void UI::drawUI(StageInfo stageInfo)
     // パワー表示
     // ==============================
     DrawFormatString(textX, textY, GetColor(255, 255, 255),
-                     L"POWER : %d", stageInfo.nowStatus.power);
+                     L"POWER : %d / 5.00", stageInfo.nowStatus.power);
+
+    textY += 10;
+
+    // ==============================
+    // グレイス表示
+    // ==============================
+    DrawFormatString(textX, textY, GetColor(255, 255, 255),
+                     L"GRAZE : %d", stageInfo.nowStatus.grazeCount);
 
     // ロゴ
     DrawGraph(WINDOW_WIDTH - 400, WINDOW_HEIGHT - 300, logoHandle, TRUE);

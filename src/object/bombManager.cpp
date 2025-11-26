@@ -114,6 +114,7 @@ void BombManager::initBomb(BombInfo *bomb)
 {
     bomb->isUsing = false;
     bomb->isPlayers = false;
+    bomb->isGraze = false;
     bomb->pos.x = -1000;
     bomb->pos.y = -1000;
     bomb->vel.x = 0;
@@ -145,6 +146,26 @@ bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius)
         {
             bomb->isUsing = false;
             return true;
+        }
+    }
+
+    return false;
+}
+
+bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius, int *grazeCount)
+{
+
+    if (bomb->isUsing)
+    {
+        if (POWER2(((bomb->pos.x) - (pos.x))) + POWER2(((bomb->pos.y) - (pos.y))) < POWER2(((bomb->radius) + (radius))))
+        {
+            bomb->isUsing = false;
+            return true;
+        }
+        if (!bomb->isGraze && POWER2(((bomb->pos.x) - (pos.x))) + POWER2(((bomb->pos.y) - (pos.y))) < POWER2(((bomb->radius) + (radius * 8))))
+        {
+            *grazeCount += 1;
+            bomb->isGraze = true;
         }
     }
 

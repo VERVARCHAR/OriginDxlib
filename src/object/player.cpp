@@ -25,6 +25,7 @@ void Player::init()
     status.invincibleTime = 0;
     status.isShoot = false;
     status.isShift = false;
+    status.grazeCount = 0;
     radius = 3;
     type = 0;
     strcpy(name, "Default");
@@ -48,6 +49,9 @@ void Player::playerDraw()
     {
         DrawExtendGraph(pos.x - 30, pos.y - 30, pos.x + 30, pos.y + 30, charaImageHandle[0], TRUE);
         DrawCircle(pos.x, pos.y - 5, radius, GetColor(255, 255, 255), TRUE);
+
+        // [DEBUG]
+        DrawCircle(pos.x, pos.y - 5, radius * 8, GetColor(255, 255, 255), FALSE);
     }
 }
 
@@ -67,7 +71,7 @@ void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter
     {
         for (int i = 0; i < MAX_BOMBS; i++)
         {
-            if (bombs[i].isUsing && !bombs[i].isPlayers && isHitBomb(&bombs[i], pos, radius))
+            if (bombs[i].isUsing && !bombs[i].isPlayers && isHitBomb(&bombs[i], pos, radius, &status.grazeCount))
             {
                 Dead();
                 effecter->playPlayerExplode(pos);

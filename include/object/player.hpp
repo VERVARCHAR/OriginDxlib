@@ -44,6 +44,7 @@ typedef struct Status
     bool isShoot;
     bool isShift;
     int invincibleTime;
+    int grazeCount = 0;
 } PlayerStatus;
 
 class Player

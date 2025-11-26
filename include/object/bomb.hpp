@@ -26,6 +26,7 @@ typedef struct BombInfo
 {
     bool isUsing = false;
     bool isPlayers = false;
+    bool isGraze = false;
     Vec2d pos;  // 座標
     Vec2d vel;  // 速度
     int radius; // 半径
@@ -68,3 +69,4 @@ public:
 };
 
 bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius);
+bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius, int *grazeCount);
