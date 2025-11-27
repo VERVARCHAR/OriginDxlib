@@ -155,12 +155,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             // UIの表示
             ui.drawUI(sMgr.getStageInfo());
 
-            bossStatus = sMgr.enemys[sMgr.bossIndex]->getStatus();
+            bossStatus = sMgr.enemies[sMgr.bossIndex]->getStatus();
 
             if (bossStatus.isAlive)
             {
                 ui.drawBossStatus(bossStatus);
-                ui.drawSpellCardText(bossStatus, sMgr.enemys[sMgr.bossIndex]->getSpellInfo(), time);
+                ui.drawSpellCardText(bossStatus, sMgr.enemies[sMgr.bossIndex]->getSpellInfo(), time);
             }
 
             GetMousePoint(&x, &y);

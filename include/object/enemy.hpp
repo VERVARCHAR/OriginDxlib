@@ -43,15 +43,15 @@ typedef struct EnemyStatus
     int hp; // 体力
     int radius;
     int shootType;
-    int spwanTime;
+    int spawnTime;
     int time;
     short id;
     bool isAlive;
     bool isSpell;
     int spellCount;
-    int spellStartTime;
-    bool isInvicible;
-    int invicibleTime;
+    // int spellStartTime;
+    bool isInvincible;
+    int invincibleTime;
     std::wstring name; // 名前
 };
 
@@ -86,7 +86,7 @@ public:
     }
     SpellInfo getSpellInfo()
     {
-        return spellInfo.at(0);
+        return spellInfo.at(enemyStatus.spellCount);
     }
 
     void setStatus(EnemyStatus _status)
@@ -107,7 +107,7 @@ public:
     void enemyDraw();
     void setImageHandle(int handle) { this->imageHandle = handle; };
     void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript, Player *player, Effecter *effecter);
-    void shootBomb(EnemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player);
+    void shootBomb(EnemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player);
     bool getOnScreen();
     bool getIsAlive(int index);
     bool isHitPlayer(Player *player);

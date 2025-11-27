@@ -103,7 +103,7 @@ private:
     int time;          // ステージタイマー
     int latestEnemyId; // 最新の敵ID(つかってない??)
 
-    // Enemy *enemys[MAX_ENEMIES];
+    // Enemy *enemies[MAX_ENEMIES];
     EnemyShootScript enemyShootScript;    // 敵の弾幕コードクラス
     std::vector<EnemyStatus> loadEnemies; // 敵情報読み込みベクトル
     int enemyCount;                       // 敵カウンター
@@ -120,7 +120,7 @@ public:
     int talkWho[20];
     TalkData talkData[20];
 
-    Enemy *enemys[MAX_ENEMIES]; // 実際に扱う敵情報格納配列
+    Enemy *enemies[MAX_ENEMIES]; // 実際に扱う敵情報格納配列
 
     int enemyImageHandle[32]; // 敵画像ハンドラ
     int bossIndex = 0;        // ボスのID格納変数
@@ -133,12 +133,12 @@ public:
     void loadEnemy();                                                                                                // 敵をJSONファイルから読み込む一連の処理呼び出し関数
     void LoadFromVector(const std::vector<EnemyStatus> &srcEnemyStatus, const std::vector<SpellInfo> &srcSpellInfo); // JSONファイルからVectorにしたものを配列に落とし込む
 
-    void spwanEnemy(int index, EnemyStatus enemyStatus); // 敵情報をEnemyに代入
+    void spawnEnemy(int index, EnemyStatus enemyStatus); // 敵情報をEnemyに代入
     void deleteEnemy(int);                               // ??
 
     // ステージ情報更新関数
     void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player, Effecter *effecter);
-    // Enemy getEnemy(int index) { return enemys[i]; };
+    // Enemy getEnemy(int index) { return enemies[i]; };
 
     int getEmptyIndex(); // 空いてる敵のインデックス取得(おそらく使ってない)
 

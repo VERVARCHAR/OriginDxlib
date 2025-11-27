@@ -20,7 +20,7 @@
 
 class Enemy;
 
-int EnemyShootScript::InitBombShoot(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player, double radius)
+int EnemyShootScript::InitBombShoot(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player, double radius)
 {
     int idx = bMgr.getEmptyIndex(bombs);
     if (idx < 0)
@@ -38,19 +38,19 @@ int EnemyShootScript::InitBombShoot(Enemy enemy, BombManager bMgr, BombInfo bomb
     return idx;
 }
 
-void EnemyShootScript::BombType00(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player)
+void EnemyShootScript::BombType00(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player)
 {
 
-    double speed = 1.0 + dificulty * 0.5; // doubleに
+    double speed = 1.0 + difficulty * 0.5; // doubleに
 
     if (time % 120 == 0)
     {
-        for (int i = 0; i < dificulty * 12; i++)
+        for (int i = 0; i < difficulty * 12; i++)
         {
-            int idx = InitBombShoot(enemy, bMgr, bombs, time, dificulty, player, 15);
+            int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 15);
             bombs[idx].type = 0;
 
-            double phi = (2.0 * PI * i) / (dificulty * 12.0); // 浮動小数割り算
+            double phi = (2.0 * PI * i) / (difficulty * 12.0); // 浮動小数割り算
             bombs[idx].vel.x = speed * std::cos(phi);
             bombs[idx].vel.y = speed * std::sin(phi);
         }
@@ -63,7 +63,7 @@ void EnemyShootScript::BombType00(Enemy enemy, BombManager bMgr, BombInfo bombs[
             if (bombs[i].id == enemy.getId())
             {
                 double phi = std::atan2(bombs[i].vel.y, bombs[i].vel.x);
-                phi = normalizeAngle(phi) + 0.0001 * dificulty;
+                phi = normalizeAngle(phi) + 0.0001 * difficulty;
                 double norm = sqrt(pow(bombs[i].vel.x, 2) + pow(bombs[i].vel.y, 2));
                 bombs[i].vel.x = norm * std::cos(phi);
                 bombs[i].vel.y = norm * std::sin(phi);
@@ -72,18 +72,18 @@ void EnemyShootScript::BombType00(Enemy enemy, BombManager bMgr, BombInfo bombs[
     }
 }
 
-void EnemyShootScript::BombType01(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player)
+void EnemyShootScript::BombType01(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player)
 {
-    double speed = 2 + dificulty * 0.5; // doubleに
+    double speed = 2 + difficulty * 0.5; // doubleに
 
     if (time % 10 == 0)
     {
-        if (60 < time % (int)((90) * (1 + dificulty * 0.25)))
+        if (60 < time % (int)((90) * (1 + difficulty * 0.25)))
         {
             Vec2d playerPos = player.getPosition();
             Vec2d enemyPos = enemy.getPosition();
 
-            int idx = InitBombShoot(enemy, bMgr, bombs, time, dificulty, player, 20);
+            int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 20);
             bombs[idx].type = 1;
 
             double phi = std::atan2((playerPos.y - enemyPos.y), (playerPos.x - enemyPos.x));

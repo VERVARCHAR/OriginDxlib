@@ -11,11 +11,11 @@
             "radius": 12,
             "shootType": 0,
             "time": 0,
-            "spwanTime": 60,
+            "spawnTime": 60,
             "isAlive": 0,
             "isSpell": 0,
-            "isInvicible": 0,
-            "invicibleTime": 0,
+            "isInvincible": 0,
+            "invincibleTime": 0,
             "pos": {
                 "x": 320.0,
                 "y": -32.0
@@ -33,12 +33,12 @@
             "hp": 20,
             "radius": 12,
             "shootType": 1,
-            "spwanTime": 60,
+            "spawnTime": 60,
             "time": 0,
             "isAlive": 0,
             "isSpell": 0,
-            "isInvicible": 0,
-            "invicibleTime": 0,
+            "isInvincible": 0,
+            "invincibleTime": 0,
             "pos": {
                 "x": 100.0,
                 "y": -32.0
@@ -57,11 +57,11 @@
             "radius": 12,
             "shootType": 1,
             "time": 0,
-            "spwanTime": 120,
+            "spawnTime": 120,
             "isAlive": 0,
             "isSpell": 0,
-            "isInvicible": 0,
-            "invicibleTime": 0,
+            "isInvincible": 0,
+            "invincibleTime": 0,
             "pos": {
                 "x": 540.0,
                 "y": -32.0
@@ -80,11 +80,11 @@
             "radius": 12,
             "shootType": 1,
             "time": 0,
-            "spwanTime": 420,
+            "spawnTime": 420,
             "isAlive": 0,
             "isSpell": 0,
-            "isInvicible": 0,
-            "invicibleTime": 0,
+            "isInvincible": 0,
+            "invincibleTime": 0,
             "pos": {
                 "x": 540.0,
                 "y": -32.0

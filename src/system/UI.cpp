@@ -217,10 +217,9 @@ void UI::talkUI(string talkString, int talkWho)
 
 void UI::drawSpellCardText(EnemyStatus enemyStatus, SpellInfo spellInfo, int time)
 {
-    if (enemyStatus.isSpell && enemyStatus.spellStartTime >= 0)
+    if (enemyStatus.isSpell)
     {
-        int elapsed = time - enemyStatus.spellStartTime;
-        if (elapsed < 120)
+        if (enemyStatus.time < 120)
         { // 表示120フレーム
             DrawFormatString(240, 100, GetColor(255, 128, 255), L"Spell Card!!");
             DrawFormatString(240, 130, GetColor(255, 255, 255), spellInfo.spellName.c_str());

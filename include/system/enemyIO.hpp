@@ -40,6 +40,7 @@
 inline bool LoadEnemyDataFromJson(const std::string &stageInfoPath, const std::string &bossInfoPath, std::vector<EnemyStatus> &outEnemies, std::vector<SpellInfo> &spells)
 {
     outEnemies.clear();
+    spells.clear();
     std::ifstream stageInfoFile(stageInfoPath);
     if (!stageInfoFile.is_open())
     {
@@ -95,7 +96,7 @@ inline bool LoadEnemyDataFromJson(const std::string &stageInfoPath, const std::s
         e.maxHp = e.hp = item.value("hp", 10);
         e.radius = item.value("radius", 8);
         e.shootType = item.value("shootType", 0);
-        e.spwanTime = item.value("spwanTime", 0); // JSONに無くてもOK
+        e.spawnTime = item.value("spawnTime", 0); // JSONに無くてもOK
         e.time = item.value("time", 0);
         e.id = static_cast<short>(item.value("id", 0));
         e.isAlive = item.value("isAlive", 0);
@@ -108,7 +109,7 @@ inline bool LoadEnemyDataFromJson(const std::string &stageInfoPath, const std::s
         // TODO type > 100ならスペル情報や会話内容を取得したい
         outEnemies.push_back(e);
 
-        if (e.id >= 100)
+        if (e.type >= 100)
         {
 
             for (const auto &sItems : j2["spells"])
@@ -127,6 +128,7 @@ inline bool LoadEnemyDataFromJson(const std::string &stageInfoPath, const std::s
     }
 
     std::cout << L"[INFO] " << outEnemies.size() << L"loaded enemies\n";
+    std::cout << L"[INFO] " << spells.size() << L"loaded spells\n";
 
     return true;
 }

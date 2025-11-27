@@ -95,5 +95,7 @@
         "${workspaceFolder}/src",
         "${workspaceFolder}/include",
         "C:/DxLib_VC/include"
-    ]
+    ],
+    "commentTranslate.targetLanguage": "ja",
+    "chatgpt.openOnStartup": false
 }

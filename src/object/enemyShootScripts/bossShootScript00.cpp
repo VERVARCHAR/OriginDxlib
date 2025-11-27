@@ -20,21 +20,21 @@
 
 class Enemy;
 
-void EnemyShootScript::Boss01Spell01(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player)
+void EnemyShootScript::Boss01Spell01(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player)
 {
 
-    double speed = 1.0 + dificulty * 0.5; // doubleに
+    double speed = 1.0 + difficulty * 0.5; // doubleに
 
     if (time % 10 == 0)
     {
-        if (60 < time % (int)((90) * (1 + dificulty * 0.25)))
+        if (60 < time % (int)((90) * (1 + difficulty * 0.25)))
         {
-            for (int i = 0; i < dificulty * 12; i++)
+            for (int i = 0; i < difficulty * 12; i++)
             {
-                int idx = InitBombShoot(enemy, bMgr, bombs, time, dificulty, player, 15);
+                int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 15);
                 bombs[idx].type = 0;
 
-                double phi = (2.0 * PI * i) / (dificulty * 12.0); // 浮動小数割り算
+                double phi = (2.0 * PI * i) / (difficulty * 12.0); // 浮動小数割り算
                 bombs[idx].vel.x = speed * std::cos(phi + (time % 3) * 0.1);
                 bombs[idx].vel.y = speed * std::sin(phi + (time % 3) * 0.1);
             }
@@ -48,7 +48,7 @@ void EnemyShootScript::Boss01Spell01(Enemy enemy, BombManager bMgr, BombInfo bom
             if (bombs[i].id == enemy.getId())
             {
                 double phi = std::atan2(bombs[i].vel.y, bombs[i].vel.x);
-                phi = normalizeAngle(phi) + 0.0001 * dificulty;
+                phi = normalizeAngle(phi) + 0.0001 * difficulty;
                 double norm = sqrt(pow(bombs[i].vel.x, 2) + pow(bombs[i].vel.y, 2));
                 bombs[i].vel.x = norm * std::cos(phi);
                 bombs[i].vel.y = norm * std::sin(phi);
@@ -57,21 +57,21 @@ void EnemyShootScript::Boss01Spell01(Enemy enemy, BombManager bMgr, BombInfo bom
     }
 }
 
-void EnemyShootScript::Boss01Spell02(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player)
+void EnemyShootScript::Boss01Spell02(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player)
 {
 
-    double speed = 1.0 + dificulty * 0.5; // doubleに
+    double speed = 1.0 + difficulty * 0.5; // doubleに
 
     if (time % 10 == 0)
     {
-        if (60 < time % (int)((90) * (1 + dificulty * 0.25)))
+        if (60 < time % (int)((90) * (1 + difficulty * 0.25)))
         {
-            for (int i = 0; i < dificulty * 16; i++)
+            for (int i = 0; i < difficulty * 16; i++)
             {
-                int idx = InitBombShoot(enemy, bMgr, bombs, time, dificulty, player, 15);
+                int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 15);
                 bombs[idx].type = 0;
 
-                double phi = (2.0 * PI * i) / (dificulty * 12.0); // 浮動小数割り算
+                double phi = (2.0 * PI * i) / (difficulty * 12.0); // 浮動小数割り算
                 bombs[idx].vel.x = speed * std::cos(phi + time * 0.1);
                 bombs[idx].vel.y = speed * std::sin(phi + time * 0.1);
             }
@@ -85,7 +85,7 @@ void EnemyShootScript::Boss01Spell02(Enemy enemy, BombManager bMgr, BombInfo bom
             if (bombs[i].id == enemy.getId())
             {
                 double phi = std::atan2(bombs[i].vel.y, bombs[i].vel.x);
-                phi = normalizeAngle(phi) + 0.0001 * dificulty;
+                phi = normalizeAngle(phi) + 0.0001 * difficulty;
                 double norm = sqrt(pow(bombs[i].vel.x, 2) + pow(bombs[i].vel.y, 2));
                 bombs[i].vel.x = norm * std::cos(phi);
                 bombs[i].vel.y = norm * std::sin(phi);
@@ -94,21 +94,21 @@ void EnemyShootScript::Boss01Spell02(Enemy enemy, BombManager bMgr, BombInfo bom
     }
 }
 
-void EnemyShootScript::Boss01Spell03(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player)
+void EnemyShootScript::Boss01Spell03(Enemy enemy, BombManager bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player)
 {
 
-    double speed = 1.0 + dificulty * 0.5; // doubleに
+    double speed = 1.0 + difficulty * 0.5; // doubleに
 
     if (time % 10 == 0)
     {
-        if (60 < time % (int)((90) * (1 + dificulty * 0.25)))
+        if (60 < time % (int)((90) * (1 + difficulty * 0.25)))
         {
-            for (int i = 0; i < dificulty * 20; i++)
+            for (int i = 0; i < difficulty * 20; i++)
             {
-                int idx = InitBombShoot(enemy, bMgr, bombs, time, dificulty, player, 15);
+                int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 15);
                 bombs[idx].type = 0;
 
-                double phi = (2.0 * PI * i) / (dificulty * 12.0); // 浮動小数割り算
+                double phi = (2.0 * PI * i) / (difficulty * 12.0); // 浮動小数割り算
                 bombs[idx].vel.x = speed * std::cos(phi + time * 0.1);
                 bombs[idx].vel.y = speed * std::sin(phi + time * 0.1);
             }
@@ -122,7 +122,7 @@ void EnemyShootScript::Boss01Spell03(Enemy enemy, BombManager bMgr, BombInfo bom
             if (bombs[i].id == enemy.getId())
             {
                 double phi = std::atan2(bombs[i].vel.y, bombs[i].vel.x);
-                phi = normalizeAngle(phi) + 0.0001 * dificulty;
+                phi = normalizeAngle(phi) + 0.0001 * difficulty;
                 double norm = sqrt(pow(bombs[i].vel.x, 2) + pow(bombs[i].vel.y, 2));
                 bombs[i].vel.x = norm * std::cos(phi);
                 bombs[i].vel.y = norm * std::sin(phi);

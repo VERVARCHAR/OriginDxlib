@@ -39,7 +39,8 @@ void Enemy::enemyDraw()
     {
         printfDx(L"EnemyLives:%d\n", enemyStatus.lives);
         printfDx(L"EnemyHP:%d\n", enemyStatus.hp);
-        printfDx(L"EnemyisSpell:%d\n", enemyStatus.isSpell);
+        printfDx(L"EnemiesSpell:%d\n", enemyStatus.isSpell);
+        printfDx(L"SpellCount:%d\n", enemyStatus.spellCount);
         printfDx(L"EnemyTime:%d\n", enemyStatus.time);
     }
 }
@@ -88,14 +89,14 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
 
         for (int i = 0; i < MAX_BOMBS; i++)
         {
-            if (bombs[i].isUsing && bombs[i].isPlayers && !enemyStatus.isInvicible && isHitBomb(&bombs[i], enemyStatus.pos, enemyStatus.radius))
+            if (bombs[i].isUsing && bombs[i].isPlayers && !enemyStatus.isInvincible && isHitBomb(&bombs[i], enemyStatus.pos, enemyStatus.radius))
             {
                 enemyStatus.hp--;
             }
         }
 
         // 敵のHPが0になった時の処理
-        if (enemyStatus.hp <= 0)
+        if (enemyStatus.hp <= 0 && enemyStatus.lives > 0)
         {
             enemyStatus.lives -= 1;
             enemyStatus.shootType += 1;
@@ -104,11 +105,10 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             if (enemyStatus.isSpell == true)
             {
                 enemyStatus.isSpell = false;
-                enemyStatus.isInvicible = true;
-                enemyStatus.invicibleTime = 120;
+                enemyStatus.isInvincible = true;
+                enemyStatus.invincibleTime = 120;
                 enemyStatus.hp = enemyStatus.maxHp;
                 enemyStatus.spellCount += 1;
-                enemyStatus.spellStartTime = time;
             }
         }
 
@@ -130,17 +130,18 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             {
                 enemyStatus.isSpell = true;
                 enemyStatus.time = 0;
+                // enemyStatus.spellStartTime = time;
             }
         }
 
         // 無敵時間の処理
-        if (enemyStatus.invicibleTime >= 0)
+        if (enemyStatus.invincibleTime >= 0)
         {
-            enemyStatus.invicibleTime -= 1;
+            enemyStatus.invincibleTime -= 1;
         }
         else
         {
-            enemyStatus.isInvicible = false;
+            enemyStatus.isInvincible = false;
         }
     }
 }
@@ -167,17 +168,17 @@ bool Enemy::getOnScreen()
     return true;
 }
 
-void Enemy::shootBomb(EnemyShootScript enemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int dificulty, Player player)
+void Enemy::shootBomb(EnemyShootScript enemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player)
 {
 
     switch (enemyStatus.shootType)
     {
     case 0:
-        enemyShootScript.BombType00(*this, *bMgr, bombs, time, dificulty, player);
+        enemyShootScript.BombType00(*this, *bMgr, bombs, time, difficulty, player);
         break;
 
     case 1:
-        enemyShootScript.BombType01(*this, *bMgr, bombs, time, dificulty, player);
+        enemyShootScript.BombType01(*this, *bMgr, bombs, time, difficulty, player);
         break;
     default:
 

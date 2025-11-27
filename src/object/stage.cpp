@@ -19,8 +19,8 @@ StageManager::~StageManager()
 {
     for (int i = 0; i < MAX_ENEMIES; ++i)
     {
-        delete enemys[i];
-        enemys[i] = nullptr;
+        delete enemies[i];
+        enemies[i] = nullptr;
     }
 }
 
@@ -57,12 +57,11 @@ void StageManager::init(int _stage, int _time, Difficulty _difficulty)
         -1,
         -1,
         -1,
-        -1,
         L"Default"};
 
     for (int i = 0; i < MAX_ENEMIES; i++)
     {
-        enemys[i] = new Enemy(init);
+        enemies[i] = new Enemy(init);
     }
 
     isPause = false;
@@ -76,14 +75,16 @@ void StageManager::LoadFromVector(const std::vector<EnemyStatus> &srcEnemyStatus
     enemyCount = min(static_cast<int>(srcEnemyStatus.size()), MAX_ENEMIES);
     for (int i = 0; i < enemyCount; ++i)
     {
-        enemys[i]->setStatus(srcEnemyStatus[i]);
+        enemies[i]->setStatus(srcEnemyStatus[i]);
     }
 
     int spellCount = min(static_cast<int>(srcSpellInfo.size()), MAX_ENEMIES);
-    for (int i = 0; i < spellCount; ++i)
+    enemies[bossIndex]->spellInfo.clear();
+    for (int i = 0; i < spellCount; i++)
     {
-        enemys[bossIndex]->setSpellData(srcSpellInfo[i]);
+        enemies[bossIndex]->setSpellData(srcSpellInfo[i]);
     }
+    std::cout << "[EnemyManager]" << enemyCount << " enemies registered\n";
     std::cout << "[EnemyManager]" << enemyCount << " enemies registered\n";
 }
 
@@ -112,20 +113,32 @@ void StageManager::loadEnemy()
         "../../stageInfos/stage07/boss.json",
     };
 
+    std::vector<SpellInfo> loadSpells;
+
     // TODO : ローディング画面
     // TODO : stageの値によってパスを変える(関数を別にしてもいいかも???)
-    if (LoadEnemyDataFromJson(stageInfoPaths[stageInfo.stage], bossInfoPaths[stageInfo.stage], loadEnemies, enemys[bossIndex]->spellInfo))
+    if (LoadEnemyDataFromJson(stageInfoPaths[stageInfo.stage], bossInfoPaths[stageInfo.stage], loadEnemies, loadSpells))
     {
-        LoadFromVector(loadEnemies, enemys[bossIndex]->spellInfo);
+        bossIndex = 0;
+        for (size_t i = 0; i < loadEnemies.size(); ++i)
+        {
+            if (loadEnemies[i].type >= 100)
+            {
+                bossIndex = static_cast<int>(i);
+                break;
+            }
+        }
+
+        LoadFromVector(loadEnemies, loadSpells);
 
         for (int i = 0; i < MAX_ENEMIES; i++)
         {
-            if (enemys[i]->enemyStatus.type >= 100)
+            if (enemies[i]->enemyStatus.type >= 100)
             {
                 bossIndex = i;
-                enemys[i]->enemyStatus.isInvicible = true;
-                enemys[i]->enemyStatus.invicibleTime = 120;
-                // enemys[i]->enemyStatus.
+                enemies[i]->enemyStatus.isInvincible = true;
+                enemies[i]->enemyStatus.invincibleTime = 120;
+                enemies[i]->enemyStatus.spellCount = 0;
             }
         }
 
@@ -144,9 +157,9 @@ void StageManager::loadEnemy()
     // return 1;
 }
 
-void StageManager::spwanEnemy(int index, EnemyStatus enemyStatus)
+void StageManager::spawnEnemy(int index, EnemyStatus enemyStatus)
 {
-    enemys[index]->setStatus(enemyStatus);
+    enemies[index]->setStatus(enemyStatus);
 }
 
 int StageManager::getEmptyIndex()
@@ -154,7 +167,7 @@ int StageManager::getEmptyIndex()
     for (int i = 0; i < MAX_ENEMIES; i++)
     {
 
-        if (!enemys[i]->getStatus().isAlive)
+        if (!enemies[i]->getStatus().isAlive)
         {
             return i;
         }
@@ -164,9 +177,9 @@ int StageManager::getEmptyIndex()
 
 void StageManager::deleteEnemy(int index)
 {
-    EnemyStatus tmp = enemys[index]->getStatus();
+    EnemyStatus tmp = enemies[index]->getStatus();
     tmp.isAlive = false;
-    enemys[index]->setStatus(tmp);
+    enemies[index]->setStatus(tmp);
 }
 
 void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player, Effecter *effecter)
@@ -184,14 +197,14 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     {
         for (int i = 0; i < MAX_ENEMIES; i++)
         {
-            if (enemys[i]->enemyStatus.spwanTime == this->time)
+            if (enemies[i]->enemyStatus.spawnTime == this->time)
             {
-                enemys[i]->setIsAlive(true);
-                enemys[i]->setImageHandle(enemyImageHandle[enemys[i]->enemyStatus.type % 100]);
+                enemies[i]->setIsAlive(true);
+                enemies[i]->setImageHandle(enemyImageHandle[enemies[i]->enemyStatus.type % 100]);
             }
-            if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
+            if (enemies[i] != nullptr && enemies[i]->enemyStatus.isAlive)
             {
-                enemys[i]->enemyUpdate(this->time, this->stageInfo.difficulty, bMgr, bombs, enemyShootScript, player, effecter);
+                enemies[i]->enemyUpdate(this->time, this->stageInfo.difficulty, bMgr, bombs, enemyShootScript, player, effecter);
             }
         }
         stageInfo.score += 10;
@@ -223,12 +236,12 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
 
     for (int i = 0; i < MAX_ENEMIES; i++)
     {
-        if (enemys[i] != nullptr && enemys[i]->enemyStatus.isAlive)
+        if (enemies[i] != nullptr && enemies[i]->enemyStatus.isAlive)
         {
-            enemys[i]->enemyDraw();
+            enemies[i]->enemyDraw();
 
             // [DEBUG]
-            printfDx(L"enemy type:%d", enemys[i]->enemyStatus.type);
+            printfDx(L"enemy type:%d", enemies[i]->enemyStatus.type);
         }
     }
 
@@ -261,7 +274,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
 
 void StageManager::getClearStage()
 {
-    if (enemys[bossIndex]->enemyStatus.lives == 0)
+    if (enemies[bossIndex]->enemyStatus.lives == 0)
     {
         isClearStage = true;
     }
