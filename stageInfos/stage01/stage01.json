@@ -75,7 +75,7 @@
             "name": "Boss",
             "id": 3,
             "type": 100,
-            "lives": 2,
+            "lives": 3,
             "hp": 150,
             "radius": 12,
             "shootType": 1,

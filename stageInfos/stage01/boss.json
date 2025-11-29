@@ -12,6 +12,13 @@
         "spellType": 2,
         "isDurability": true,
         "durabilityTime": 30
+    }    
+    ,
+    {   
+        "spellName": "耐久「耐久試作」",
+        "spellType": 1,
+        "isDurability": false,
+        "durabilityTime": 30
     }
     ]
 }

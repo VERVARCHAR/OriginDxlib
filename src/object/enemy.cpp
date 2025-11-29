@@ -120,7 +120,8 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             if (enemyStatus.lives == 0)
             {
                 effecter->playEnemyExplode(enemyStatus.pos);
-                iMgr->spawnItem(ItemType::SCORE, enemyStatus.pos, {0, 1});
+                iMgr->spawnItem(ItemType::SCORE, enemyStatus.pos, {0, 2}, difficulty + 2);
+                iMgr->spawnItem(ItemType::POWER, enemyStatus.pos, {0, 2}, difficulty + 2);
             }
         }
 
@@ -131,7 +132,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             if (enemyStatus.hp <= 100 && !enemyStatus.isSpell)
             {
                 enemyStatus.isSpell = true;
-                enemyStatus.time = 0;
+                enemyStatus.time = -120;
                 // enemyStatus.spellStartTime = time;
             }
         }

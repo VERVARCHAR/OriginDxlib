@@ -140,13 +140,41 @@ void ItemManager::drawItems()
     }
 }
 
-void ItemManager::spawnItem(ItemType _itemType, Vec2d _pos, Vec2d _vel)
+void ItemManager::spawnItem(ItemType _itemType, Vec2d _pos, Vec2d _vel, int amount)
 {
-    int id = getEmptyIndex();
-    items[id].isActive = true;
-    items[id].pos = _pos;
-    items[id].vel = _vel;
-    items[id].itemType = _itemType;
-    items[id].radius = 5;
-    items[id].value = 10;
+    for (int i = 0; i < amount; i++)
+    {
+        int id = getEmptyIndex();
+        items[id].isActive = true;
+        if (i % 2 == 0)
+        {
+            items[id].pos.x = _pos.x + (int)(i / 2) * 2;
+        }
+        else
+        {
+            items[id].pos.x = _pos.x - (int)(i / 2) * 2;
+        }
+        items[id].pos.y = _pos.y - 5;
+        items[id].vel = _vel;
+        items[id].itemType = _itemType;
+        items[id].radius = 5;
+        switch (_itemType)
+        {
+        case ItemType::SCORE:
+            items[id].value = 10;
+            break;
+        case ItemType::POWER:
+            items[id].value = 0.01;
+            break;
+        case ItemType::EXTEND:
+            items[id].value = 1;
+            break;
+        case ItemType::SPELL:
+            items[id].value = 1;
+            break;
+
+        default:
+            break;
+        }
+    }
 }

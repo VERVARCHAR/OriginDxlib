@@ -72,6 +72,8 @@ public:
     void setPower(double value)
     {
         status.power += value;
+        if (status.power >= 5)
+            status.power = 5;
     };
 
     void setExtend()

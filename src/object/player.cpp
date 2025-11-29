@@ -185,7 +185,7 @@ void Player::shootBomb(BombManager *bMgr, BombInfo bombs[MAX_BOMBS])
 {
     double speed = 15;
 
-    for (int i = 0; i < status.power; i++)
+    for (int i = 0; i < (int)(status.power); i++)
     {
         int idx = bMgr->getEmptyIndex(bombs);
         if (idx < 0)

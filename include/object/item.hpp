@@ -50,7 +50,7 @@ typedef struct Items
     Vec2d pos, vel;
     bool isActive;
     int radius;
-    int value;
+    double value;
 } Items;
 
 #define MAX_ITEMS 1000
@@ -77,5 +77,5 @@ public:
     void updateItems(StageManager *sMgr, Player *player);
     void drawItems();
     void loadImagehandle(int _livesImageHandle, int _spellImageHandle);
-    void spawnItem(ItemType _itemType, Vec2d _pos, Vec2d _vel);
+    void spawnItem(ItemType _itemType, Vec2d _pos, Vec2d _vel, int amount);
 };

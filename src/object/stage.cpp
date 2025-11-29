@@ -85,7 +85,7 @@ void StageManager::LoadFromVector(const std::vector<EnemyStatus> &srcEnemyStatus
         enemies[bossIndex]->setSpellData(srcSpellInfo[i]);
     }
     std::cout << "[EnemyManager]" << enemyCount << " enemies registered\n";
-    std::cout << "[EnemyManager]" << enemyCount << " enemies registered\n";
+    std::cout << "[EnemyManager]" << spellCount << " spellCount registered\n";
 }
 
 void StageManager::loadEnemy()

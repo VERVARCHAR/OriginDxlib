@@ -47,7 +47,7 @@ void EnemyShootScript::BombType00(Enemy enemy, BombManager bMgr, BombInfo bombs[
     {
         for (int i = 0; i < difficulty * 12; i++)
         {
-            int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 15);
+            int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 5);
             bombs[idx].type = 0;
 
             double phi = (2.0 * PI * i) / (difficulty * 12.0); // 浮動小数割り算
@@ -83,7 +83,7 @@ void EnemyShootScript::BombType01(Enemy enemy, BombManager bMgr, BombInfo bombs[
             Vec2d playerPos = player.getPosition();
             Vec2d enemyPos = enemy.getPosition();
 
-            int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 20);
+            int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 10);
             bombs[idx].type = 1;
 
             double phi = std::atan2((playerPos.y - enemyPos.y), (playerPos.x - enemyPos.x));
