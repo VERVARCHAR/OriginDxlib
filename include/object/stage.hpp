@@ -1,6 +1,8 @@
 #pragma once
 
 #include "object/enemyShootScripts/EnemyShootScripts.hpp"
+#include "object/enemy.hpp"
+#include "object/item.hpp"
 
 #ifndef _UTILS_HPP_
 #define _UTILS_HPP_
@@ -11,11 +13,6 @@
 #define _BOMB_HPP_
 #include "object/bomb.hpp"
 #endif // _BOMB_MANAGER_HPP_
-
-#ifndef _ENEMY_HPP_
-#define _ENEMY_HPP_
-#include "object/enemy.hpp"
-#endif // _ENEMY_HPP_s
 
 #ifndef _ENEMY_SHOOT_SCRIPT_01_HPP_
 #define _ENEMY_SHOOT_SCRIPT_01_HPP_
@@ -30,11 +27,6 @@
 #ifndef _EFFECTER_HPP_
 #define _EFFECTER_HPP_
 #include "system/effecter.hpp"
-#endif
-
-#ifndef _ITEMS_HPP_
-#define _ITEMS_HPP_
-#include "object/item.hpp"
 #endif
 
 #include <vector>
@@ -55,9 +47,10 @@ class BombManager;
 struct BombInfo;
 class Player;
 
-class Enemy;            // ポインタ保持のため前方宣言
-class EnemyShootScript; // 前方宣言（実体は .cpp で include）
-struct EnemyStatus;     // 実体は enemy.hpp 内
+class Enemy; // ポインタ保持のため前方宣言
+class ItemManager;
+struct EnemyStatus; // 実体は enemy.hpp 内
+struct SpellInfo;
 
 // シーン制御列挙体
 enum Scene
@@ -109,7 +102,7 @@ private:
     int latestEnemyId; // 最新の敵ID(つかってない??)
 
     // Enemy *enemies[MAX_ENEMIES];
-    EnemyShootScript enemyShootScript;    // 敵の弾幕コードクラス
+    EnemyShootScript *enemyShootScript;    // 敵の弾幕コードクラス
     std::vector<EnemyStatus> loadEnemies; // 敵情報読み込みベクトル
     int enemyCount;                       // 敵カウンター
 

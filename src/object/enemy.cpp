@@ -45,7 +45,7 @@ void Enemy::enemyDraw()
     }
 }
 
-void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript enemyShootScript, Player *player, Effecter *effecter, ItemManager *iMgr)
+void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript *enemyShootScript, Player *player, Effecter *effecter, ItemManager *iMgr)
 {
     if (!enemyStatus.isAlive)
     {
@@ -64,15 +64,15 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             switch (enemyStatus.shootType)
             {
             case 1:
-                enemyShootScript.Boss01Spell01(*this, *bMgr, bombs, time, difficulty, *player);
+                enemyShootScript->Boss01Spell01(*this, *bMgr, bombs, time, difficulty, *player);
                 /* code */
                 break;
             case 2:
-                enemyShootScript.Boss01Spell02(*this, *bMgr, bombs, time, difficulty, *player);
+                enemyShootScript->Boss01Spell02(*this, *bMgr, bombs, time, difficulty, *player);
 
                 break;
             case 3:
-                enemyShootScript.Boss01Spell03(*this, *bMgr, bombs, time, difficulty, *player);
+                enemyShootScript->Boss01Spell03(*this, *bMgr, bombs, time, difficulty, *player);
 
             default:
                 break;
@@ -170,17 +170,17 @@ bool Enemy::getOnScreen()
     return true;
 }
 
-void Enemy::shootBomb(EnemyShootScript enemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player)
+void Enemy::shootBomb(EnemyShootScript *enemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player)
 {
 
     switch (enemyStatus.shootType)
     {
     case 0:
-        enemyShootScript.BombType00(*this, *bMgr, bombs, time, difficulty, player);
+        enemyShootScript->BombType00(*this, *bMgr, bombs, time, difficulty, player);
         break;
 
     case 1:
-        enemyShootScript.BombType01(*this, *bMgr, bombs, time, difficulty, player);
+        enemyShootScript->BombType01(*this, *bMgr, bombs, time, difficulty, player);
         break;
     default:
 

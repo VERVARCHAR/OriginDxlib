@@ -5,11 +5,6 @@
 #include "DxLib.h"
 #endif // _DXLIB_HPP_
 
-#ifndef _STAGE_HPP_
-#define _STAGE_HPP_
-#include "object/stage.hpp"
-#endif
-
 #ifndef _BOMB_HPP_
 #define _BOMB_HPP_
 #include "object/bomb.hpp"
@@ -19,6 +14,11 @@
 #define _ENEMY_SHOOT_SCRIPT_01_HPP_
 #include "object/enemyShootScripts/EnemyShootScripts.hpp"
 #endif // _ENEMY_SHOOT_SCRIPT_01_HPP_
+
+#ifndef _STAGE_HPP_
+#define _STAGE_HPP_
+#include "object/stage.hpp"
+#endif
 
 #ifndef _PLAYER_HPP_
 #define _PLAYER_HPP_
@@ -51,9 +51,13 @@ typedef struct Items
     bool isActive;
     int radius;
     int value;
-};
+} Items;
 
 #define MAX_ITEMS 1000
+
+class StageManager;
+class EnemyShootScript; // 前方宣言（実体は .cpp で include）
+class Player;
 
 class ItemManager
 {

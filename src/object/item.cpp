@@ -3,9 +3,13 @@
 #include "object/item.hpp"
 #endif
 
+#include <cmath>
+
 double calcSquaredDistance(Vec2d pos1, Vec2d pos2)
 {
-    return ((pos1.x - pos2.x) * (pos1.x - pos2.x) + (pos1.y - pos2.y) * (pos1.x - pos2.x));
+    double dx = pos1.x - pos2.x;
+    double dy = pos1.y - pos2.y;
+    return dx * dx + dy * dy;
 }
 
 ItemManager::ItemManager()
@@ -24,8 +28,8 @@ void ItemManager::init()
         items[i].pos = {-100, -100};
         items[i].vel = {0, 0};
         items[i].itemType = ItemType::NONE;
-        int radius = -1;
-        int value = -1;
+        items[i].radius = -1;
+        items[i].value = -1;
     }
 }
 
@@ -52,6 +56,7 @@ int ItemManager::getEmptyIndex()
 
 void ItemManager::updateItems(StageManager *sMgr, Player *player)
 {
+    Vec2d playerPos = player->getPosition();
     double dist = 0;
     for (int i = 0; i < MAX_ITEMS; i++)
     {
@@ -66,33 +71,35 @@ void ItemManager::updateItems(StageManager *sMgr, Player *player)
                 items[i].isActive = false;
             }
             dist = calcSquaredDistance(playerPos, items[i].pos);
-            if (dist < (items[i].radius))
+            double radius = static_cast<double>(items[i].radius);
+            double pullRadius = (radius + 30.0);
+
+            if (dist < pullRadius * pullRadius)
             {
-                if (dist < (items[i].radius) + 30)
+                items[i].vel.x = 2 * (playerPos.x - items[i].pos.x) / sqrt(dist);
+                items[i].vel.y = 2 * (playerPos.y - items[i].pos.y) / sqrt(dist);
+                if (dist < radius * radius)
                 {
-                    items[i].vel.x = 2 * (playerPos.x - items[i].pos.x) / sqrt(dist);
-                    items[i].vel.y = 2 * (playerPos.y - items[i].pos.y) / sqrt(dist);
-                }
+                    items[i].isActive = false;
 
-                items[i].isActive = false;
+                    switch (items[i].itemType)
+                    {
+                    case ItemType::SCORE:
+                        sMgr->setScore(items[i].value);
+                        break;
+                    case ItemType::POWER:
+                        player->setPower(items[i].value);
+                        break;
+                    case ItemType::EXTEND:
+                        player->setExtend();
+                        break;
+                    case ItemType::SPELL:
+                        player->setSpell();
+                        break;
 
-                switch (items[i].itemType)
-                {
-                case ItemType::SCORE:
-                    sMgr->setScore(items[i].value);
-                    break;
-                case ItemType::POWER:
-                    player->setPower(items[i].value);
-                    break;
-                case ItemType::EXTEND:
-                    player->setExtend();
-                    break;
-                case ItemType::SPELL:
-                    player->setSpell();
-                    break;
-
-                default:
-                    break;
+                    default:
+                        break;
+                    }
                 }
             }
         }
@@ -126,7 +133,7 @@ void ItemManager::drawItems()
                 break;
             }
 
-            DrawCircle(items[i].pos.x, items[i].pos.y, items[i].radius, GetColor(0, 0, 255), FALSE);
+            DrawCircle(items[i].pos.x, items[i].pos.y, items[i].radius, GetColor(0, 255, 0), TRUE);
             DrawCircle(items[i].pos.x, items[i].pos.y, items[i].radius + 30, GetColor(0, 0, 255), FALSE);
             DrawLine(items[i].pos.x, items[i].pos.y, items[i].pos.x + items[i].vel.x, items[i].pos.y + items[i].vel.y, GetColor(255, 0, 255));
         }

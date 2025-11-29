@@ -112,8 +112,8 @@ public:
     void getBMgrData(BombManager &_BombManager);
     void enemyDraw();
     void setImageHandle(int handle) { this->imageHandle = handle; };
-    void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript, Player *player, Effecter *effecter, ItemManager *iMgr);
-    void shootBomb(EnemyShootScript, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player);
+    void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript *, Player *player, Effecter *effecter, ItemManager *iMgr);
+    void shootBomb(EnemyShootScript *, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player);
     bool getOnScreen();
     bool getIsAlive(int index);
     bool isHitPlayer(Player *player);
