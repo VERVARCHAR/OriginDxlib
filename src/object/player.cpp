@@ -18,9 +18,9 @@ void Player::init()
     pos.x = 350;
     pos.y = 500;
     status.lives = 2;
-    status.spels = 3;
+    status.spells = 3;
     status.power = 1;
-    status.isSpel = false;
+    status.isSpells = false;
     status.invincible = false;
     status.invincibleTime = 0;
     status.isShoot = false;
@@ -40,7 +40,7 @@ void Player::init()
 void Player::playerDraw()
 {
 
-    if (!status.isSpel && status.invincible && status.lives != 0)
+    if (!status.isSpells && status.invincible && status.lives != 0)
     {
         if (status.invincibleTime % 10 == 0)
         {
@@ -86,7 +86,7 @@ void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter
         status.invincibleTime -= 1;
 
         // ボム発動中
-        if (status.isSpel)
+        if (status.isSpells)
         {
             SpelCard(bMgr, bombs);
         }
@@ -95,9 +95,9 @@ void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter
         {
             isDraw = true;
             status.invincible = false;
-            if (status.isSpel)
+            if (status.isSpells)
             {
-                status.isSpel = false;
+                status.isSpells = false;
             }
         }
     }
@@ -145,10 +145,10 @@ void Player::getKeyInput(bool isTalk)
 
     if (Key[KEY_INPUT_X] == 1)
     {
-        if (status.spels > 0)
+        if (status.spells > 0)
         {
-            status.spels -= 1;
-            status.isSpel = true;
+            status.spells -= 1;
+            status.isSpells = true;
             status.invincible = true;
             status.invincibleTime = 5 * 60;
         }
@@ -158,7 +158,7 @@ void Player::getKeyInput(bool isTalk)
         if (!isTalk)
         {
             // 無敵時間でない もしくは、無敵時間だがスペル使用時なら打てる
-            if (!status.invincible || (status.invincible && status.isSpel))
+            if (!status.invincible || (status.invincible && status.isSpells))
             {
                 status.isShoot = true;
             }

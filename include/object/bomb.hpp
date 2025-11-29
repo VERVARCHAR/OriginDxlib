@@ -4,6 +4,11 @@
 #include "DxLib.h"
 #endif // _DXLIB_HPP_
 
+#ifndef _UTILS_H_
+#define _UTILS_H_
+#include "system/utils.hpp"
+#endif
+
 #ifndef _MATH_HPP_
 #define _MATH_HPP_
 #include "math.h"

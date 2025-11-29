@@ -37,9 +37,9 @@ struct EnemyStatus;
 typedef struct Status
 {
     int lives;
-    int spels;
-    int power;
-    bool isSpel;
+    int spells;
+    double power;
+    bool isSpells;
     bool invincible;
     bool isShoot;
     bool isShift;
@@ -69,10 +69,20 @@ public:
 
     void init();
 
-    void setpower()
+    void setPower(double value)
     {
-        status.power += 1;
+        status.power += value;
     };
+
+    void setExtend()
+    {
+        status.lives += 1;
+    }
+
+    void setSpell()
+    {
+        status.spells += 1;
+    }
 
     void setPosition(int _x, int _y);
     Vec2d getPosition();
@@ -99,7 +109,7 @@ public:
     void debugStatus()
     {
         printfDx(L"lives : %d\n", status.lives);
-        printfDx(L"spels : %d\n", status.spels);
+        printfDx(L"spels : %d\n", status.spells);
         printfDx(L"power : %d\n", status.power);
         printfDx(L"isInv : %d\n", status.invincible);
         printfDx(L"InvT  : %d\n", status.invincibleTime);

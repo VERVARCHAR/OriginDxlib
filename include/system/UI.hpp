@@ -74,6 +74,15 @@ public:
     void talkUI(string, int);
     PlayerStatus getPlayerStatus();
     EnemyStatus getEnemyStatus();
+
+    int getLifeImageHandle()
+    {
+        return lifeImageHandle;
+    }
+    int getSpellImageHandle()
+    {
+        return spellImageHandle;
+    }
 };
 
 void ShowLoadingTest();

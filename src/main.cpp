@@ -38,6 +38,11 @@
 #include "system/effecter.hpp"
 #endif
 
+#ifndef _ITEMS_HPP_
+#define _ITEMS_HPP_
+#include "object/item.hpp"
+#endif
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     SetUp();
@@ -82,6 +87,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     Player player;
     EnemyShootScript *enemyShootScript;
+
+    ItemManager iMgr;
 
     int time = 0; // いらないかも??
     // int difficulty = 4;
@@ -134,13 +141,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             {
                 SetUseASyncLoadFlag(TRUE);
                 ui.getInGameImage();
+
                 player.init();
                 bMgr.init(bombs);
                 sMgr.init(1, 0, difficulty);
+                iMgr.init();
+                effecter.init();
+
                 player.loadPlayerImage();
                 sMgr.loadEnemy();
                 bMgr.setBombsHandle(ui.bombsImageHandle);
-                effecter.init();
+                iMgr.loadImagehandle(ui.getLifeImageHandle(), ui.getSpellImageHandle());
+
                 SetUseASyncLoadFlag(FALSE);
             }
             ui.loadingScreen();
@@ -175,7 +187,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             // [DEBUG] パワーを1増やす
             if (Key[KEY_INPUT_0] == 1)
             {
-                player.setpower();
+                player.setPower(1);
             }
 
             // 会話中の処理
@@ -193,7 +205,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             }
 
             // 基本的なゲーム処理
-            sMgr.updateStage(&bMgr, bombs, &player, &effecter);
+            sMgr.updateStage(&bMgr, &iMgr, bombs, &player, &effecter);
 
             // ゲームオーバーでなく，ポーズ中ならばポーズ画面を表示
             // TODO ポーズ処理

@@ -182,7 +182,7 @@ void StageManager::deleteEnemy(int index)
     enemies[index]->setStatus(tmp);
 }
 
-void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player, Effecter *effecter)
+void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bombs[MAX_BOMBS], Player *player, Effecter *effecter)
 {
     // TODO 会話するフレームも受け取りたいねぇ
     if (time == 480)
@@ -204,7 +204,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
             }
             if (enemies[i] != nullptr && enemies[i]->enemyStatus.isAlive)
             {
-                enemies[i]->enemyUpdate(this->time, this->stageInfo.difficulty, bMgr, bombs, enemyShootScript, player, effecter);
+                enemies[i]->enemyUpdate(this->time, this->stageInfo.difficulty, bMgr, bombs, enemyShootScript, player, effecter, iMgr);
             }
         }
         stageInfo.score += 10;
@@ -220,6 +220,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
     {
         player->playerUpdate(bMgr, bombs, effecter);
         bMgr->updateBombs(bombs);
+        iMgr->updateItems(this, player);
         effecter->effecterUpdate();
 
         getClearStage();
@@ -247,6 +248,7 @@ void StageManager::updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Pla
 
     player->playerDraw();
     bMgr->drawBombs(bombs);
+    iMgr->drawItems();
 
     // ボス撃破処理
     if (isClearStage)

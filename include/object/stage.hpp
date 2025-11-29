@@ -32,6 +32,11 @@
 #include "system/effecter.hpp"
 #endif
 
+#ifndef _ITEMS_HPP_
+#define _ITEMS_HPP_
+#include "object/item.hpp"
+#endif
+
 #include <vector>
 #include <fstream>
 #include <stdexcept>
@@ -137,7 +142,7 @@ public:
     void deleteEnemy(int);                               // ??
 
     // ステージ情報更新関数
-    void updateStage(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Player *player, Effecter *effecter);
+    void updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bombs[MAX_BOMBS], Player *player, Effecter *effecter);
     // Enemy getEnemy(int index) { return enemies[i]; };
 
     int getEmptyIndex(); // 空いてる敵のインデックス取得(おそらく使ってない)
@@ -149,6 +154,11 @@ public:
     StageInfo getStageInfo()
     {
         return stageInfo;
+    }
+
+    void setScore(int scoreValue)
+    {
+        stageInfo.score += scoreValue;
     }
 
     // TODO もっとちゃんとしたやつ作る

@@ -146,7 +146,7 @@ void UI::drawUI(StageInfo stageInfo)
     const int spellY1 = textY;
     const int spellY2 = spellY1 + iconSize;
 
-    for (int i = 0; i < stageInfo.nowStatus.spels; i++)
+    for (int i = 0; i < stageInfo.nowStatus.spells; i++)
     {
         int x1 = spellBaseX + i * (iconSize + 6);
         int x2 = x1 + iconSize;
@@ -158,7 +158,7 @@ void UI::drawUI(StageInfo stageInfo)
     // パワー表示
     // ==============================
     DrawFormatString(textX, textY, GetColor(255, 255, 255),
-                     L"POWER : %d / 5.00", stageInfo.nowStatus.power);
+                     L"POWER : %lf / 5.00", stageInfo.nowStatus.power);
 
     textY += 10;
 

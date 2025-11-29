@@ -45,7 +45,7 @@ void Enemy::enemyDraw()
     }
 }
 
-void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript enemyShootScript, Player *player, Effecter *effecter)
+void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript enemyShootScript, Player *player, Effecter *effecter, ItemManager *iMgr)
 {
     if (!enemyStatus.isAlive)
     {
@@ -116,9 +116,11 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         if (enemyStatus.lives == 0 || !getOnScreen())
         {
             enemyStatus.isAlive = false;
+            // iMgr->spawnItem(ItemType::POWER, enemyStatus.pos, {0, 1});
             if (enemyStatus.lives == 0)
             {
                 effecter->playEnemyExplode(enemyStatus.pos);
+                iMgr->spawnItem(ItemType::SCORE, enemyStatus.pos, {0, 1});
             }
         }
 
