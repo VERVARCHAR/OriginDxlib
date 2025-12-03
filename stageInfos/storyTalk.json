@@ -1,0 +1,20 @@
+{
+    "stages": [
+        {
+            "talks": [
+                {
+                    "talkStr": "やっとここまで来たわね。",
+                    "isTalkEnemy": 0
+                },
+                {
+                    "talkStr": "歓迎するぜ、人間！",
+                    "isTalkEnemy": 1
+                },
+                {
+                    "talkStr": "こんな森の奥で何を企んでいる？",
+                    "isTalkEnemy": 0
+                }
+            ]
+        }
+    ]
+}

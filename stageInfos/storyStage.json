@@ -1,0 +1,90 @@
+{
+    "stages": [
+        {
+            "stage_name": "ステージ1",
+            "fps": 60,
+            "bgm_name": "森のテーマ",
+            "bgm_path": "assets/bgm/stage1_forest.ogg",
+            "enemies": [
+                {
+                    "name": "Red-1",
+                    "id": 1,
+                    "type": 0,
+                    "lives": 1,
+                    "hp": 15,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 60,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "Boss01",
+                    "id": 100,
+                    "type": 100,
+                    "lives": 1,
+                    "hp": 15,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 360,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "spellCount": 2,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                }
+            ]
+        },
+        {
+            "stage_name": "ステージ2",
+            "fps": 60,
+            "bgm_name": "湖上の戦い",
+            "bgm_path": "assets/bgm/stage2_lake.ogg",
+            "enemies": [
+                {
+                    "name": "Red-1",
+                    "id": 1,
+                    "type": 0,
+                    "lives": 1,
+                    "hp": 15,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 60,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                }
+            ]
+        }
+    ]
+}
