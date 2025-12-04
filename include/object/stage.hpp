@@ -102,7 +102,7 @@ private:
     int latestEnemyId; // 最新の敵ID(つかってない??)
 
     // Enemy *enemies[MAX_ENEMIES];
-    EnemyShootScript *enemyShootScript;    // 敵の弾幕コードクラス
+    EnemyShootScript *enemyShootScript;   // 敵の弾幕コードクラス
     std::vector<EnemyStatus> loadEnemies; // 敵情報読み込みベクトル
     int enemyCount;                       // 敵カウンター
 
@@ -114,8 +114,9 @@ public:
     bool isGameOver = false;   // ゲームオーバーフラグ
 
     // TODO TalkData構造体への移行
-    string talkString[20];
-    int talkWho[20];
+    // string talkString[20];
+    // int talkWho[20];
+    int talkLineCount;
     TalkData talkData[20];
 
     Enemy *enemies[MAX_ENEMIES]; // 実際に扱う敵情報格納配列
@@ -158,10 +159,10 @@ public:
     void talk(int type); // 会話処理
 
     // TODO 中身ちゃんとしたやつ作って
-    string getTalkString(int talkCount) { return talkString[talkCount]; }; // 外部ファイルから会話内容を取得する
+    string getTalkString(int talkCount) { return talkData[talkCount].talkString; } // 外部ファイルから会話内容を取得する
 
     // だれが話しているのかを取得する
-    int getTalkWho(int talkCount) { return talkWho[talkCount]; };
+    int getTalkWho(int talkCount) { return talkData[talkCount].isTalkEnemy; }
 
     // 会話判定終了処理
     void endTalk()

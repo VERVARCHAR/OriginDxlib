@@ -43,6 +43,8 @@
 #include "object/item.hpp"
 #endif
 
+#include "system/logger.hpp"
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     SetUp();
@@ -50,10 +52,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     // 初期ローディング
     Scene scene = PRELOADING;
     Difficulty difficulty = Difficulty::EASY;
+    Logger::Init();
 
     // 最低限のクラス生成
     UI ui;
     Effecter effecter;
+
+    Logger::Log("GameStart", LogLevel::Info);
 
     // タイトル画面用の画像読み込み
     ui.startLoading();
@@ -198,7 +203,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 {
                     sMgr.talkCount++;
                 }
-                if (sMgr.talkCount == 7)
+                if (sMgr.talkCount >= sMgr.talkLineCount)
                 {
                     sMgr.endTalk();
                 }
@@ -254,7 +259,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         Draw();
         Wait();
     }
-
+    Logger::Close();
     DxLib_End();
     return 0;
 }

@@ -92,6 +92,12 @@ public:
     }
     SpellInfo getSpellInfo()
     {
+        if (enemyStatus.spellCount >= spellInfo.size())
+        {
+            if (!spellInfo.empty())
+                return spellInfo.back();
+            return SpellInfo{L"無名スペル", 0, false, 0};
+        }
         return spellInfo.at(enemyStatus.spellCount);
     }
 

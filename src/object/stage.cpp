@@ -9,6 +9,8 @@
 #endif
 
 #include <algorithm>
+#include <sstream>
+#include "system/logger.hpp"
 
 StageManager::StageManager(int _stage, int _time, Difficulty _difficulty)
 {
@@ -91,33 +93,29 @@ void StageManager::LoadFromVector(const std::vector<EnemyStatus> &srcEnemyStatus
 void StageManager::loadEnemy()
 {
     // TODO 敵情報のパスのやり方変えたいね
-    char stageInfoPaths[8][256] = {
-        "../../stageInfos/stage00/stage00.json",
-        "../../stageInfos/stage01/stage01.json",
-        "../../stageInfos/stage02/stage02.json",
-        "../../stageInfos/stage03/stage03.json",
-        "../../stageInfos/stage04/stage04.json",
-        "../../stageInfos/stage05/stage05.json",
-        "../../stageInfos/stage06/stage06.json",
-        "../../stageInfos/stage07/stage07.json",
-    };
-
-    char bossInfoPaths[8][256] = {
-        "../../stageInfos/stage00/boss.json",
-        "../../stageInfos/stage01/boss.json",
-        "../../stageInfos/stage02/boss.json",
-        "../../stageInfos/stage03/boss.json",
-        "../../stageInfos/stage04/boss.json",
-        "../../stageInfos/stage05/boss.json",
-        "../../stageInfos/stage06/boss.json",
-        "../../stageInfos/stage07/boss.json",
-    };
+    const char *stageFile;
+    const char *bossFile;
+    const char *talkFile;
+    if (stageInfo.difficulty == Difficulty::EXTRA)
+    {
+        // エクストラモードの場合
+        stageFile = "../../stageInfos/extraStage.json";
+        bossFile = "../../stageInfos/extraBoss.json";
+        talkFile = "../../stageInfos/extraTalk.json";
+    }
+    else
+    {
+        // ストーリーモード（EXTRA以外の難易度）の場合
+        stageFile = "../../stageInfos/storyStage.json";
+        bossFile = "../../stageInfos/storyBoss.json";
+        talkFile = "../../stageInfos/storyTalk.json";
+    }
 
     std::vector<SpellInfo> loadSpells;
 
     // TODO : ローディング画面
     // TODO : stageの値によってパスを変える(関数を別にしてもいいかも???)
-    if (LoadEnemyDataFromJson(stageInfoPaths[stageInfo.stage], bossInfoPaths[stageInfo.stage], loadEnemies, loadSpells))
+    if (LoadEnemyDataFromJson(stageInfo.stage, stageFile, bossFile, loadEnemies, loadSpells))
     {
         bossIndex = 0;
         for (size_t i = 0; i < loadEnemies.size(); ++i)
@@ -144,7 +142,20 @@ void StageManager::loadEnemy()
 
         // TODO 会話内容もいろいろしないとなぁ
         // Bossのtypeを取得してtalk()に渡すかな??
-        talk(100);
+        std::vector<TalkData> talkLines;
+        if (LoadTalkDataFromJson(talkFile, stageInfo.stage, talkLines))
+        {
+            this->talkLineCount = static_cast<int>(talkLines.size());
+            // 読み込んだ会話をStageManagerにセット
+            for (size_t i = 0; i < talkLines.size(); ++i)
+            {
+                this->talkData[i].talkString = talkLines[i].talkString;
+                this->talkData[i].isTalkEnemy = talkLines[i].isTalkEnemy ? true : false;
+            }
+            // 会話行数に応じて管理変数を初期化
+            this->talkCount = 0;
+            // 必要なら、会話が存在することを示すフラグのセット（例: isTalk = falseのまま開始待機）
+        }
     }
     else
     {
@@ -153,13 +164,14 @@ void StageManager::loadEnemy()
 
     // LoadEnemyImage("../../img/EnemyProtoType01.png", enemyImageHandle);
     LoadDivGraph(L"..\\..\\assets\\enemy\\Enemy.png", 16, 4, 4, 256, 256, enemyImageHandle);
-
+    Logger::Log("(loadEnemy) pass loadEnemy.", LogLevel::Info);
     // return 1;
 }
 
 void StageManager::spawnEnemy(int index, EnemyStatus enemyStatus)
 {
     enemies[index]->setStatus(enemyStatus);
+    Logger::Log("(loadEnemy) pass spawnEnemy : " + to_string(index), LogLevel::Info);
 }
 
 int StageManager::getEmptyIndex()
@@ -184,6 +196,7 @@ void StageManager::deleteEnemy(int index)
 
 void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bombs[MAX_BOMBS], Player *player, Effecter *effecter)
 {
+
     // TODO 会話するフレームも受け取りたいねぇ
     if (time == 480)
     {
@@ -197,6 +210,17 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     {
         for (int i = 0; i < MAX_ENEMIES; i++)
         {
+            if (enemies[i] == nullptr)
+            {
+                printfDx(L"[CRASH DETECT] enemies[%d] is nullptr\n", i);
+                Logger::Log("updateStage enemies[" + to_string(i) + "] is nullptr\n", LogLevel::Error);
+                continue;
+            }
+            if (!enemies[i]->getStatus().isAlive)
+            {
+                continue;
+            }
+
             if (enemies[i]->enemyStatus.spawnTime == this->time)
             {
                 enemies[i]->setIsAlive(true);
@@ -205,6 +229,17 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
             if (enemies[i] != nullptr && enemies[i]->enemyStatus.isAlive)
             {
                 enemies[i]->enemyUpdate(this->time, this->stageInfo.difficulty, bMgr, bombs, enemyShootScript, player, effecter, iMgr);
+            }
+
+            EnemyStatus estatus = enemies[i]->getStatus();
+            if (estatus.spawnTime == this->time)
+            {
+                printfDx(L"[SPAWN] enemy[%d] time=%d type=%d\n", i, estatus.spawnTime, estatus.type);
+                std::stringstream ss;
+                ss << "(updateStage) enemy [" << i << "], time = " << estatus.spawnTime << "type = " << estatus.type;
+                Logger::Log(ss.str(), LogLevel::Info);
+                enemies[i]->setIsAlive(true);
+                enemies[i]->setImageHandle(enemyImageHandle[estatus.type % 100]);
             }
         }
         stageInfo.score += 10;
@@ -290,29 +325,29 @@ void StageManager::getGameOver(Player *player)
     }
 }
 
-// TODO : 会話データをJSONでもなんでもいいから外部から取得しないとだね
-void StageManager::talk(int type)
-{
-    switch (type)
-    {
-    case 100:
-        talkString[0] = "talk01";
-        talkWho[0] = 0;
-        talkString[1] = "talk02";
-        talkWho[1] = 0;
-        talkString[2] = "talk03";
-        talkWho[2] = 1;
-        talkString[3] = "talk04";
-        talkWho[3] = 0;
-        talkString[4] = "talk05";
-        talkWho[4] = 1;
-        talkString[5] = "talk06";
-        talkWho[5] = 0;
-        talkString[6] = "talk07";
-        talkWho[6] = 1;
-        break;
+// // TODO : 会話データをJSONでもなんでもいいから外部から取得しないとだね
+// void StageManager::talk(int type)
+// {
+//     switch (type)
+//     {
+//     case 100:
+//         talkString[0] = "talk01";
+//         talkWho[0] = 0;
+//         talkString[1] = "talk02";
+//         talkWho[1] = 0;
+//         talkString[2] = "talk03";
+//         talkWho[2] = 1;
+//         talkString[3] = "talk04";
+//         talkWho[3] = 0;
+//         talkString[4] = "talk05";
+//         talkWho[4] = 1;
+//         talkString[5] = "talk06";
+//         talkWho[5] = 0;
+//         talkString[6] = "talk07";
+//         talkWho[6] = 1;
+//         break;
 
-    default:
-        break;
-    }
-}
+//     default:
+//         break;
+//     }
+// }

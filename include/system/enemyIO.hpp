@@ -36,144 +36,196 @@
 #include "system/UI.hpp"
 #endif
 
+#include "system/logger.hpp"
+
 // JSONから敵情報を読み取る関数
-inline bool LoadEnemyDataFromJson(const std::string &stageInfoPath, const std::string &bossInfoPath, std::vector<EnemyStatus> &outEnemies, std::vector<SpellInfo> &spells)
+inline bool LoadEnemyDataFromJson(int stageIdx, const std::string &stageInfoPath, const std::string &bossInfoPath, std::vector<EnemyStatus> &outEnemies, std::vector<SpellInfo> &spells)
 {
     outEnemies.clear();
     spells.clear();
     std::ifstream stageInfoFile(stageInfoPath);
+
+    Logger::Log("Into LoadEnemyDataFromJson", LogLevel::Info);
+
     if (!stageInfoFile.is_open())
     {
         std::cerr << L"[ERROR] cant open file " << stageInfoPath << std::endl;
         return false;
     }
-
+    std::cerr << "Pass stageInfofile\n";
     std::ifstream bossInfoFile(bossInfoPath);
     if (!bossInfoFile.is_open())
     {
         std::cerr << L"[ERROR] cant open file " << bossInfoPath << std::endl;
         return false;
     }
-
-    json j1, j2;
+    std::cerr << "Pass bossInfofile\n";
+    json jStage, jBoss;
     try
     {
-        stageInfoFile >> j1;
+        stageInfoFile >> jStage;
     }
     catch (const std::exception &e)
     {
         std::cerr << L"[ERROR] JSON Parsing Error:" << e.what() << std::endl;
+        Logger::Log(std::string("(LoadEnemyDataFromJson)\tJSON Parsing Error: ") + e.what(), LogLevel::Error);
         return false;
     }
 
     try
     {
-        bossInfoFile >> j2;
+        bossInfoFile >> jBoss;
     }
     catch (const std::exception &e)
     {
         std::cerr << L"[ERROR] JSON Parsing Error:" << e.what() << std::endl;
+        Logger::Log(std::string("(LoadEnemyDataFromJson)\tJSON Parsing Error: ") + e.what(), LogLevel::Error);
         return false;
     }
-
-    if (!j1.contains("enemies") || !j1["enemies"].is_array())
-    {
-        std::cerr << L"[WARN] is not exist array \"enemies\"\n";
-        return false;
-    }
-
+    Logger::Log("(LoadEnemyDataFromJson)\tPass parsing Json.", LogLevel::Info);
     std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
 
-    for (const auto &item : j1["enemies"])
+    int idx = stageIdx - 1;
+    Logger::Log("(LoadEnemyDataFromJson)\tstageIdx :" + std::to_string(stageIdx) + ", idx :" + std::to_string(idx), LogLevel::Info);
+
+    // "stages"配列から指定のステージデータを取得
+    if (!jStage.contains("stages") || !jStage["stages"].is_array() || idx >= jStage["stages"].size())
+    {
+        std::cerr << "[ERROR] stage data for index " << idx << " not found\n";
+        Logger::Log("(LoadEnemyDataFromJson)\tstage data for index " + to_string(idx) + " not found\n", LogLevel::Error);
+        return false;
+    }
+    Logger::Log("(LoadEnemyDataFromJson)\tpass get stage data from json", LogLevel::Info);
+    json stageData = jStage["stages"][idx];
+
+    // 同様に"bosses"配列から該当ステージのボスデータ取得
+    json bossData;
+    if (!jBoss.contains("bosses") || !jBoss["bosses"].is_array())
+    {
+        std::cerr << "[ERROR] boss data for index " << idx << " not found\n";
+        Logger::Log("(LoadEnemyDataFromJson)\tboss data for index " + to_string(idx) + " not found\n", LogLevel::Error);
+        return false;
+    }
+    Logger::Log("(LoadEnemyDataFromJson)\tpass get boss data from json", LogLevel::Info);
+    if (idx < jBoss["bosses"].size())
+    {
+        bossData = jBoss["bosses"][idx];
+    }
+    else
+    {
+        // ボスデータが見つからない場合の処理（ステージによってはボスがいない場合も想定）
+        bossData = json::object();
+    }
+    Logger::Log("(LoadEnemyDataFromJson)\tpass to check boss size.", LogLevel::Info);
+
+    // 敵データをパース
+    if (!stageData.contains("enemies") || !stageData["enemies"].is_array())
+    {
+        std::cerr << "[ERROR] \"enemies\" array not found in stage data\n";
+        Logger::Log("(LoadEnemyDataFromJson)\t\"enemies\" array not found in stage data\n", LogLevel::Error);
+        return false;
+    }
+    Logger::Log("(LoadEnemyDataFromJson)\tpass to check boss array.", LogLevel::Info);
+
+    for (auto &item : stageData["enemies"])
     {
         EnemyStatus e{};
-        e.pos.x = item.value("pos", json{{"x", 0.0}, {"y", 0.0}})["x"];
-        e.pos.y = item.value("pos", json{{"x", 0.0}, {"y", 0.0}})["y"];
-        e.vel.x = item.value("vel", json{{"x", 0.0}, {"y", 0.0}})["x"];
-        e.vel.y = item.value("vel", json{{"x", 0.0}, {"y", 0.0}})["y"];
+        e.name = converter.from_bytes(item.value("name", ""));
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data name:" + (item.value("name", "")), LogLevel::Info);
+        e.id = item.value("id", 0);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data id:" + to_string(e.id), LogLevel::Info);
         e.type = item.value("type", 0);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data type:" + to_string(e.type), LogLevel::Info);
         e.lives = item.value("lives", 1);
-        e.maxHp = e.hp = item.value("hp", 10);
-        e.radius = item.value("radius", 8);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data lives:" + to_string(e.lives), LogLevel::Info);
+        e.hp = item.value("hp", 10);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data hp:" + to_string(e.hp), LogLevel::Info);
+        e.maxHp = e.hp;
+        e.radius = item.value("radius", 12);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data radius:" + to_string(e.radius), LogLevel::Info);
         e.shootType = item.value("shootType", 0);
-        e.spawnTime = item.value("spawnTime", 0); // JSONに無くてもOK
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data shootType:" + to_string(e.shootType), LogLevel::Info);
+        e.spawnTime = item.value("spawnTime", 0);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data spawnTime:" + to_string(e.spawnTime), LogLevel::Info);
         e.time = item.value("time", 0);
-        e.id = static_cast<short>(item.value("id", 0));
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data time:" + to_string(e.time), LogLevel::Info);
+        e.spellCount = item.value("spellCount", 0);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data spellCount:" + to_string(e.spellCount), LogLevel::Info);
         e.isAlive = item.value("isAlive", 0);
-
-        std::string name_str = item.value("name", "");
-        std::wstring name_w = converter.from_bytes(name_str);
-        e.name = name_w;
-        e.spellCount = 0;
-
-        // TODO type > 100ならスペル情報や会話内容を取得したい
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data isAlive:" + to_string(e.isAlive), LogLevel::Info);
+        e.isSpell = item.value("isSpell", 0);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data isSpell:" + to_string(e.isSpell), LogLevel::Info);
+        e.isInvincible = item.value("isInvincible", 0);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data isInvincible:" + to_string(e.isInvincible), LogLevel::Info);
+        e.invincibleTime = item.value("invincibleTime", 0);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data invincibleTime:" + to_string(e.invincibleTime), LogLevel::Info);
+        e.pos = {
+            item["pos"].value("x", 0.0),
+            item["pos"].value("y", 0.0)};
+        e.vel = {
+            item["vel"].value("x", 0.0),
+            item["vel"].value("y", 0.0)};
         outEnemies.push_back(e);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy id" + to_string(e.id), LogLevel::Info);
 
+        // ボスタイプ判定してスペル読み込み
         if (e.type >= 100)
         {
-
-            for (const auto &sItems : j2["spells"])
+            if (bossData.contains("spells") && bossData["spells"].is_array())
             {
-                SpellInfo s{};
-                std::string spellName_str = sItems.value("spellName", "");
-                std::wstring spellName_w = converter.from_bytes(spellName_str);
+                for (auto &sItem : bossData["spells"])
+                {
+                    SpellInfo s{};
+                    std::string spellName_str = sItem.value("spellName", "");
+                    std::wstring spellName_w = converter.from_bytes(spellName_str);
 
-                s.spellName = spellName_w;
-                s.spellType = sItems.value("spellType", 0);
-                s.isDurability = sItems.value("isDurability", 0);
-                s.durabilityTime = sItems.value("durabilityTime", 0);
-                spells.push_back(s);
+                    s.spellName = spellName_w;
+                    s.spellType = sItem.value("spellType", 0);
+                    s.isDurability = sItem.value("isDurability", 0);
+                    s.durabilityTime = sItem.value("durabilityTime", 0);
+                    spells.push_back(s);
+                }
             }
         }
+        printfDx(L"[INFO] spellCount = %d, spells.size() = %d\n", e.spellCount, (int)spells.size());
     }
-
-    std::cout << L"[INFO] " << outEnemies.size() << L"loaded enemies\n";
-    std::cout << L"[INFO] " << spells.size() << L"loaded spells\n";
-
-    return true;
+    printfDx(L"[DEBUG] Loaded %d enemies\n", (int)outEnemies.size());
+    if (outEnemies.empty())
+    {
+        printfDx(L"[ERROR] No enemies loaded from stage data\n");
+    }
 }
 
-inline bool LoadTalkDataFromJson(const std::string &path, std::vector<TalkData> &talkData)
+bool LoadTalkDataFromJson(const std::string &path, int stageIndex, std::vector<TalkData> &outTalks)
 {
-    talkData.clear();
+    outTalks.clear();
     std::ifstream ifs(path);
     if (!ifs.is_open())
     {
-        std::cerr << L"[ERROR] cant open file " << path << std::endl;
+        std::cerr << "[ERROR] cannot open file " << path << std::endl;
         return false;
     }
-
     json j;
-    try
+    ifs >> j;
+    if (!j.contains("stages") || !j["stages"].is_array() || stageIndex >= j["stages"].size())
     {
-        ifs >> j;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << L"[ERROR] JSON Parsing Error:" << e.what() << std::endl;
+        std::cerr << "[ERROR] talk data for stage " << stageIndex << " not found\n";
         return false;
     }
-
-    if (!j.contains("talks") || !j["talks"].is_array())
+    json talksData = j["stages"][stageIndex];
+    if (!talksData.contains("talks") || !talksData["talks"].is_array())
     {
-        std::cerr << L"[WARN] is not exist array \"enemies\"\n";
+        std::cerr << "[WARN] \"talks\" array is missing in stage " << stageIndex << "\n";
         return false;
     }
-
-    for (const auto &item : j["talks"])
+    for (auto &item : talksData["talks"])
     {
         TalkData t{};
         t.talkString = item.value("talkStr", "");
-
-        // t.talkString = item.value("pos", json{{"x", 0.0}, {"y", 0.0}})["x"];
         t.isTalkEnemy = item.value("isTalkEnemy", 0);
-
-        // TODO type > 100ならスペル情報や会話内容を取得したい
-        talkData.push_back(t);
+        outTalks.push_back(t);
     }
-
-    std::cout << L"[INFO] " << talkData.size() << L"loaded enemies\n";
-
+    std::cout << "[INFO] " << outTalks.size() << " talk lines loaded\n";
     return true;
 }
 

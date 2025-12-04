@@ -1,0 +1,39 @@
+[Info] GameStart
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :1, idx :0
+[Info] (LoadEnemyDataFromJson)	pass get stage data from json
+[Info] (LoadEnemyDataFromJson)	pass get boss data from json
+[Info] (LoadEnemyDataFromJson)	pass to check boss size.
+[Info] (LoadEnemyDataFromJson)	pass to check boss array.
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:Red-1
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:15
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:60
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id1
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:Boss01
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:100
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:15
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:360
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id2
+[Info] (loadEnemy) pass loadEnemy.
