@@ -113,6 +113,9 @@ public:
     bool isClearStage = false; // ステージクリアフラグ
     bool isGameOver = false;   // ゲームオーバーフラグ
 
+    bool isStoryClear = false;
+    bool isExtraClear = false;
+
     // TODO TalkData構造体への移行
     // string talkString[20];
     // int talkWho[20];

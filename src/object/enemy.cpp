@@ -100,6 +100,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         {
             enemyStatus.lives -= 1;
             enemyStatus.shootType += 1;
+            bMgr->removeBomb(bombs);
 
             // もし敵がボスで，HPが0になったらスペルフラグをfalseにし，無敵時間を付与
             if (enemyStatus.isSpell == true)
@@ -133,6 +134,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             {
                 enemyStatus.isSpell = true;
                 enemyStatus.time = -120;
+                bMgr->removeBomb(bombs);
                 // enemyStatus.spellStartTime = time;
             }
         }
