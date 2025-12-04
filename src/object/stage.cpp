@@ -78,6 +78,8 @@ void StageManager::LoadFromVector(const std::vector<EnemyStatus> &srcEnemyStatus
     for (int i = 0; i < enemyCount; ++i)
     {
         enemies[i]->setStatus(srcEnemyStatus[i]);
+        Logger::Log("(LoadFromVector) index " + to_string(i) + " enemy registered", LogLevel::Info);
+        Logger::Log("(LoadFromVector) index enemy spawn time is " + to_string(enemies[i]->enemyStatus.spawnTime), LogLevel::Info);
     }
 
     int spellCount = min(static_cast<int>(srcSpellInfo.size()), MAX_ENEMIES);
@@ -88,6 +90,9 @@ void StageManager::LoadFromVector(const std::vector<EnemyStatus> &srcEnemyStatus
     }
     std::cout << "[EnemyManager]" << enemyCount << " enemies registered\n";
     std::cout << "[EnemyManager]" << spellCount << " spellCount registered\n";
+
+    Logger::Log("(LoadFromVector) " + to_string(enemyCount) + " enemies registered", LogLevel::Info);
+    Logger::Log("(LoadFromVector) " + to_string(spellCount) + " spellCount registered", LogLevel::Info);
 }
 
 void StageManager::loadEnemy()
@@ -208,6 +213,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     // 会話中でない, ゲームタイマが0以上, ゲームオーバーでないなら更新処理を行う
     if (!isTalk && time >= 0 && !isPause && !isGameOver)
     {
+        printfDx(L"[DEBUG] updateStage time : %d", this->time);
         for (int i = 0; i < MAX_ENEMIES; i++)
         {
             if (enemies[i] == nullptr)
@@ -216,13 +222,10 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
                 Logger::Log("updateStage enemies[" + to_string(i) + "] is nullptr\n", LogLevel::Error);
                 continue;
             }
-            if (!enemies[i]->getStatus().isAlive)
-            {
-                continue;
-            }
 
             if (enemies[i]->enemyStatus.spawnTime == this->time)
             {
+                Logger::Log("(updateStage) pass spawnEnemy : " + to_string(i), LogLevel::Info);
                 enemies[i]->setIsAlive(true);
                 enemies[i]->setImageHandle(enemyImageHandle[enemies[i]->enemyStatus.type % 100]);
             }
@@ -234,7 +237,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
             EnemyStatus estatus = enemies[i]->getStatus();
             if (estatus.spawnTime == this->time)
             {
-                printfDx(L"[SPAWN] enemy[%d] time=%d type=%d\n", i, estatus.spawnTime, estatus.type);
+                printfDx(L"[SPAWN] enemy[%d] time = %d type = %d\n", i, estatus.spawnTime, estatus.type);
                 std::stringstream ss;
                 ss << "(updateStage) enemy [" << i << "], time = " << estatus.spawnTime << "type = " << estatus.type;
                 Logger::Log(ss.str(), LogLevel::Info);

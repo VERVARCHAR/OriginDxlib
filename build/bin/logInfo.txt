@@ -36,4 +36,2003 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
 [Info] (LoadEnemyDataFromJson)	push back enemy id2
+[Info] (LoadFromVector) index 0 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 60
+[Info] (LoadFromVector) index 1 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 360
+[Info] (LoadFromVector) 2 enemies registered
+[Info] (LoadFromVector) 2 spellCount registered
+[Info] (loadEnemy) pass loadEnemy.
+[Info] (updateStage) pass spawnEnemy : 0
+[Info] (updateStage) enemy [0], time = 60type = 0
+[Info] (updateStage) pass spawnEnemy : 1
+[Info] (updateStage) enemy [1], time = 360type = 100
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :2, idx :1
+[Info] (LoadEnemyDataFromJson)	pass get stage data from json
+[Info] (LoadEnemyDataFromJson)	pass get boss data from json
+[Info] (LoadEnemyDataFromJson)	pass to check boss size.
+[Info] (LoadEnemyDataFromJson)	pass to check boss array.
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:Red-1
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:15
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:60
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id1
+[Info] (LoadFromVector) index 0 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 60
+[Info] (LoadFromVector) 1 enemies registered
+[Info] (LoadFromVector) 0 spellCount registered
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :3, idx :2
+[Error] (LoadEnemyDataFromJson)	stage data for index 2 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :4, idx :3
+[Error] (LoadEnemyDataFromJson)	stage data for index 3 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :5, idx :4
+[Error] (LoadEnemyDataFromJson)	stage data for index 4 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :6, idx :5
+[Error] (LoadEnemyDataFromJson)	stage data for index 5 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :7, idx :6
+[Error] (LoadEnemyDataFromJson)	stage data for index 6 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :8, idx :7
+[Error] (LoadEnemyDataFromJson)	stage data for index 7 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :9, idx :8
+[Error] (LoadEnemyDataFromJson)	stage data for index 8 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :10, idx :9
+[Error] (LoadEnemyDataFromJson)	stage data for index 9 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :11, idx :10
+[Error] (LoadEnemyDataFromJson)	stage data for index 10 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :12, idx :11
+[Error] (LoadEnemyDataFromJson)	stage data for index 11 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :13, idx :12
+[Error] (LoadEnemyDataFromJson)	stage data for index 12 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :14, idx :13
+[Error] (LoadEnemyDataFromJson)	stage data for index 13 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :15, idx :14
+[Error] (LoadEnemyDataFromJson)	stage data for index 14 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :16, idx :15
+[Error] (LoadEnemyDataFromJson)	stage data for index 15 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :17, idx :16
+[Error] (LoadEnemyDataFromJson)	stage data for index 16 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :18, idx :17
+[Error] (LoadEnemyDataFromJson)	stage data for index 17 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :19, idx :18
+[Error] (LoadEnemyDataFromJson)	stage data for index 18 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :20, idx :19
+[Error] (LoadEnemyDataFromJson)	stage data for index 19 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :21, idx :20
+[Error] (LoadEnemyDataFromJson)	stage data for index 20 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :22, idx :21
+[Error] (LoadEnemyDataFromJson)	stage data for index 21 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :23, idx :22
+[Error] (LoadEnemyDataFromJson)	stage data for index 22 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :24, idx :23
+[Error] (LoadEnemyDataFromJson)	stage data for index 23 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :25, idx :24
+[Error] (LoadEnemyDataFromJson)	stage data for index 24 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :26, idx :25
+[Error] (LoadEnemyDataFromJson)	stage data for index 25 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :27, idx :26
+[Error] (LoadEnemyDataFromJson)	stage data for index 26 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :28, idx :27
+[Error] (LoadEnemyDataFromJson)	stage data for index 27 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :29, idx :28
+[Error] (LoadEnemyDataFromJson)	stage data for index 28 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :30, idx :29
+[Error] (LoadEnemyDataFromJson)	stage data for index 29 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :31, idx :30
+[Error] (LoadEnemyDataFromJson)	stage data for index 30 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :32, idx :31
+[Error] (LoadEnemyDataFromJson)	stage data for index 31 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :33, idx :32
+[Error] (LoadEnemyDataFromJson)	stage data for index 32 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :34, idx :33
+[Error] (LoadEnemyDataFromJson)	stage data for index 33 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :35, idx :34
+[Error] (LoadEnemyDataFromJson)	stage data for index 34 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :36, idx :35
+[Error] (LoadEnemyDataFromJson)	stage data for index 35 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :37, idx :36
+[Error] (LoadEnemyDataFromJson)	stage data for index 36 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :38, idx :37
+[Error] (LoadEnemyDataFromJson)	stage data for index 37 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :39, idx :38
+[Error] (LoadEnemyDataFromJson)	stage data for index 38 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :40, idx :39
+[Error] (LoadEnemyDataFromJson)	stage data for index 39 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :41, idx :40
+[Error] (LoadEnemyDataFromJson)	stage data for index 40 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :42, idx :41
+[Error] (LoadEnemyDataFromJson)	stage data for index 41 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :43, idx :42
+[Error] (LoadEnemyDataFromJson)	stage data for index 42 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :44, idx :43
+[Error] (LoadEnemyDataFromJson)	stage data for index 43 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :45, idx :44
+[Error] (LoadEnemyDataFromJson)	stage data for index 44 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :46, idx :45
+[Error] (LoadEnemyDataFromJson)	stage data for index 45 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :47, idx :46
+[Error] (LoadEnemyDataFromJson)	stage data for index 46 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :48, idx :47
+[Error] (LoadEnemyDataFromJson)	stage data for index 47 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :49, idx :48
+[Error] (LoadEnemyDataFromJson)	stage data for index 48 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :50, idx :49
+[Error] (LoadEnemyDataFromJson)	stage data for index 49 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :51, idx :50
+[Error] (LoadEnemyDataFromJson)	stage data for index 50 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :52, idx :51
+[Error] (LoadEnemyDataFromJson)	stage data for index 51 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :53, idx :52
+[Error] (LoadEnemyDataFromJson)	stage data for index 52 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :54, idx :53
+[Error] (LoadEnemyDataFromJson)	stage data for index 53 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :55, idx :54
+[Error] (LoadEnemyDataFromJson)	stage data for index 54 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :56, idx :55
+[Error] (LoadEnemyDataFromJson)	stage data for index 55 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :57, idx :56
+[Error] (LoadEnemyDataFromJson)	stage data for index 56 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :58, idx :57
+[Error] (LoadEnemyDataFromJson)	stage data for index 57 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :59, idx :58
+[Error] (LoadEnemyDataFromJson)	stage data for index 58 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :60, idx :59
+[Error] (LoadEnemyDataFromJson)	stage data for index 59 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :61, idx :60
+[Error] (LoadEnemyDataFromJson)	stage data for index 60 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :62, idx :61
+[Error] (LoadEnemyDataFromJson)	stage data for index 61 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :63, idx :62
+[Error] (LoadEnemyDataFromJson)	stage data for index 62 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :64, idx :63
+[Error] (LoadEnemyDataFromJson)	stage data for index 63 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :65, idx :64
+[Error] (LoadEnemyDataFromJson)	stage data for index 64 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :66, idx :65
+[Error] (LoadEnemyDataFromJson)	stage data for index 65 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :67, idx :66
+[Error] (LoadEnemyDataFromJson)	stage data for index 66 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :68, idx :67
+[Error] (LoadEnemyDataFromJson)	stage data for index 67 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :69, idx :68
+[Error] (LoadEnemyDataFromJson)	stage data for index 68 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :70, idx :69
+[Error] (LoadEnemyDataFromJson)	stage data for index 69 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :71, idx :70
+[Error] (LoadEnemyDataFromJson)	stage data for index 70 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :72, idx :71
+[Error] (LoadEnemyDataFromJson)	stage data for index 71 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :73, idx :72
+[Error] (LoadEnemyDataFromJson)	stage data for index 72 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :74, idx :73
+[Error] (LoadEnemyDataFromJson)	stage data for index 73 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :75, idx :74
+[Error] (LoadEnemyDataFromJson)	stage data for index 74 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :76, idx :75
+[Error] (LoadEnemyDataFromJson)	stage data for index 75 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :77, idx :76
+[Error] (LoadEnemyDataFromJson)	stage data for index 76 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :78, idx :77
+[Error] (LoadEnemyDataFromJson)	stage data for index 77 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :79, idx :78
+[Error] (LoadEnemyDataFromJson)	stage data for index 78 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :80, idx :79
+[Error] (LoadEnemyDataFromJson)	stage data for index 79 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :81, idx :80
+[Error] (LoadEnemyDataFromJson)	stage data for index 80 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :82, idx :81
+[Error] (LoadEnemyDataFromJson)	stage data for index 81 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :83, idx :82
+[Error] (LoadEnemyDataFromJson)	stage data for index 82 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :84, idx :83
+[Error] (LoadEnemyDataFromJson)	stage data for index 83 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :85, idx :84
+[Error] (LoadEnemyDataFromJson)	stage data for index 84 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :86, idx :85
+[Error] (LoadEnemyDataFromJson)	stage data for index 85 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :87, idx :86
+[Error] (LoadEnemyDataFromJson)	stage data for index 86 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :88, idx :87
+[Error] (LoadEnemyDataFromJson)	stage data for index 87 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :89, idx :88
+[Error] (LoadEnemyDataFromJson)	stage data for index 88 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :90, idx :89
+[Error] (LoadEnemyDataFromJson)	stage data for index 89 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :91, idx :90
+[Error] (LoadEnemyDataFromJson)	stage data for index 90 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :92, idx :91
+[Error] (LoadEnemyDataFromJson)	stage data for index 91 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :93, idx :92
+[Error] (LoadEnemyDataFromJson)	stage data for index 92 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :94, idx :93
+[Error] (LoadEnemyDataFromJson)	stage data for index 93 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :95, idx :94
+[Error] (LoadEnemyDataFromJson)	stage data for index 94 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :96, idx :95
+[Error] (LoadEnemyDataFromJson)	stage data for index 95 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :97, idx :96
+[Error] (LoadEnemyDataFromJson)	stage data for index 96 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :98, idx :97
+[Error] (LoadEnemyDataFromJson)	stage data for index 97 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :99, idx :98
+[Error] (LoadEnemyDataFromJson)	stage data for index 98 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :100, idx :99
+[Error] (LoadEnemyDataFromJson)	stage data for index 99 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :101, idx :100
+[Error] (LoadEnemyDataFromJson)	stage data for index 100 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :102, idx :101
+[Error] (LoadEnemyDataFromJson)	stage data for index 101 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :103, idx :102
+[Error] (LoadEnemyDataFromJson)	stage data for index 102 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :104, idx :103
+[Error] (LoadEnemyDataFromJson)	stage data for index 103 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :105, idx :104
+[Error] (LoadEnemyDataFromJson)	stage data for index 104 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :106, idx :105
+[Error] (LoadEnemyDataFromJson)	stage data for index 105 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :107, idx :106
+[Error] (LoadEnemyDataFromJson)	stage data for index 106 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :108, idx :107
+[Error] (LoadEnemyDataFromJson)	stage data for index 107 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :109, idx :108
+[Error] (LoadEnemyDataFromJson)	stage data for index 108 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :110, idx :109
+[Error] (LoadEnemyDataFromJson)	stage data for index 109 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :111, idx :110
+[Error] (LoadEnemyDataFromJson)	stage data for index 110 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :112, idx :111
+[Error] (LoadEnemyDataFromJson)	stage data for index 111 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :113, idx :112
+[Error] (LoadEnemyDataFromJson)	stage data for index 112 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :114, idx :113
+[Error] (LoadEnemyDataFromJson)	stage data for index 113 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :115, idx :114
+[Error] (LoadEnemyDataFromJson)	stage data for index 114 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :116, idx :115
+[Error] (LoadEnemyDataFromJson)	stage data for index 115 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :117, idx :116
+[Error] (LoadEnemyDataFromJson)	stage data for index 116 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :118, idx :117
+[Error] (LoadEnemyDataFromJson)	stage data for index 117 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :119, idx :118
+[Error] (LoadEnemyDataFromJson)	stage data for index 118 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :120, idx :119
+[Error] (LoadEnemyDataFromJson)	stage data for index 119 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :121, idx :120
+[Error] (LoadEnemyDataFromJson)	stage data for index 120 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :122, idx :121
+[Error] (LoadEnemyDataFromJson)	stage data for index 121 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :123, idx :122
+[Error] (LoadEnemyDataFromJson)	stage data for index 122 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :124, idx :123
+[Error] (LoadEnemyDataFromJson)	stage data for index 123 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :125, idx :124
+[Error] (LoadEnemyDataFromJson)	stage data for index 124 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :126, idx :125
+[Error] (LoadEnemyDataFromJson)	stage data for index 125 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :127, idx :126
+[Error] (LoadEnemyDataFromJson)	stage data for index 126 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :128, idx :127
+[Error] (LoadEnemyDataFromJson)	stage data for index 127 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :129, idx :128
+[Error] (LoadEnemyDataFromJson)	stage data for index 128 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :130, idx :129
+[Error] (LoadEnemyDataFromJson)	stage data for index 129 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :131, idx :130
+[Error] (LoadEnemyDataFromJson)	stage data for index 130 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :132, idx :131
+[Error] (LoadEnemyDataFromJson)	stage data for index 131 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :133, idx :132
+[Error] (LoadEnemyDataFromJson)	stage data for index 132 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :134, idx :133
+[Error] (LoadEnemyDataFromJson)	stage data for index 133 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :135, idx :134
+[Error] (LoadEnemyDataFromJson)	stage data for index 134 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :136, idx :135
+[Error] (LoadEnemyDataFromJson)	stage data for index 135 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :137, idx :136
+[Error] (LoadEnemyDataFromJson)	stage data for index 136 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :138, idx :137
+[Error] (LoadEnemyDataFromJson)	stage data for index 137 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :139, idx :138
+[Error] (LoadEnemyDataFromJson)	stage data for index 138 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :140, idx :139
+[Error] (LoadEnemyDataFromJson)	stage data for index 139 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :141, idx :140
+[Error] (LoadEnemyDataFromJson)	stage data for index 140 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :142, idx :141
+[Error] (LoadEnemyDataFromJson)	stage data for index 141 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :143, idx :142
+[Error] (LoadEnemyDataFromJson)	stage data for index 142 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :144, idx :143
+[Error] (LoadEnemyDataFromJson)	stage data for index 143 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :145, idx :144
+[Error] (LoadEnemyDataFromJson)	stage data for index 144 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :146, idx :145
+[Error] (LoadEnemyDataFromJson)	stage data for index 145 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :147, idx :146
+[Error] (LoadEnemyDataFromJson)	stage data for index 146 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :148, idx :147
+[Error] (LoadEnemyDataFromJson)	stage data for index 147 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :149, idx :148
+[Error] (LoadEnemyDataFromJson)	stage data for index 148 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :150, idx :149
+[Error] (LoadEnemyDataFromJson)	stage data for index 149 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :151, idx :150
+[Error] (LoadEnemyDataFromJson)	stage data for index 150 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :152, idx :151
+[Error] (LoadEnemyDataFromJson)	stage data for index 151 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :153, idx :152
+[Error] (LoadEnemyDataFromJson)	stage data for index 152 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :154, idx :153
+[Error] (LoadEnemyDataFromJson)	stage data for index 153 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :155, idx :154
+[Error] (LoadEnemyDataFromJson)	stage data for index 154 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :156, idx :155
+[Error] (LoadEnemyDataFromJson)	stage data for index 155 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :157, idx :156
+[Error] (LoadEnemyDataFromJson)	stage data for index 156 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :158, idx :157
+[Error] (LoadEnemyDataFromJson)	stage data for index 157 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :159, idx :158
+[Error] (LoadEnemyDataFromJson)	stage data for index 158 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :160, idx :159
+[Error] (LoadEnemyDataFromJson)	stage data for index 159 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :161, idx :160
+[Error] (LoadEnemyDataFromJson)	stage data for index 160 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :162, idx :161
+[Error] (LoadEnemyDataFromJson)	stage data for index 161 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :163, idx :162
+[Error] (LoadEnemyDataFromJson)	stage data for index 162 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :164, idx :163
+[Error] (LoadEnemyDataFromJson)	stage data for index 163 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :165, idx :164
+[Error] (LoadEnemyDataFromJson)	stage data for index 164 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :166, idx :165
+[Error] (LoadEnemyDataFromJson)	stage data for index 165 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :167, idx :166
+[Error] (LoadEnemyDataFromJson)	stage data for index 166 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :168, idx :167
+[Error] (LoadEnemyDataFromJson)	stage data for index 167 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :169, idx :168
+[Error] (LoadEnemyDataFromJson)	stage data for index 168 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :170, idx :169
+[Error] (LoadEnemyDataFromJson)	stage data for index 169 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :171, idx :170
+[Error] (LoadEnemyDataFromJson)	stage data for index 170 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :172, idx :171
+[Error] (LoadEnemyDataFromJson)	stage data for index 171 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :173, idx :172
+[Error] (LoadEnemyDataFromJson)	stage data for index 172 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :174, idx :173
+[Error] (LoadEnemyDataFromJson)	stage data for index 173 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :175, idx :174
+[Error] (LoadEnemyDataFromJson)	stage data for index 174 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :176, idx :175
+[Error] (LoadEnemyDataFromJson)	stage data for index 175 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :177, idx :176
+[Error] (LoadEnemyDataFromJson)	stage data for index 176 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :178, idx :177
+[Error] (LoadEnemyDataFromJson)	stage data for index 177 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :179, idx :178
+[Error] (LoadEnemyDataFromJson)	stage data for index 178 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :180, idx :179
+[Error] (LoadEnemyDataFromJson)	stage data for index 179 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :181, idx :180
+[Error] (LoadEnemyDataFromJson)	stage data for index 180 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :182, idx :181
+[Error] (LoadEnemyDataFromJson)	stage data for index 181 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :183, idx :182
+[Error] (LoadEnemyDataFromJson)	stage data for index 182 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :184, idx :183
+[Error] (LoadEnemyDataFromJson)	stage data for index 183 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :185, idx :184
+[Error] (LoadEnemyDataFromJson)	stage data for index 184 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :186, idx :185
+[Error] (LoadEnemyDataFromJson)	stage data for index 185 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :187, idx :186
+[Error] (LoadEnemyDataFromJson)	stage data for index 186 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :188, idx :187
+[Error] (LoadEnemyDataFromJson)	stage data for index 187 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :189, idx :188
+[Error] (LoadEnemyDataFromJson)	stage data for index 188 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :190, idx :189
+[Error] (LoadEnemyDataFromJson)	stage data for index 189 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :191, idx :190
+[Error] (LoadEnemyDataFromJson)	stage data for index 190 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :192, idx :191
+[Error] (LoadEnemyDataFromJson)	stage data for index 191 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :193, idx :192
+[Error] (LoadEnemyDataFromJson)	stage data for index 192 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :194, idx :193
+[Error] (LoadEnemyDataFromJson)	stage data for index 193 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :195, idx :194
+[Error] (LoadEnemyDataFromJson)	stage data for index 194 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :196, idx :195
+[Error] (LoadEnemyDataFromJson)	stage data for index 195 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :197, idx :196
+[Error] (LoadEnemyDataFromJson)	stage data for index 196 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :198, idx :197
+[Error] (LoadEnemyDataFromJson)	stage data for index 197 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :199, idx :198
+[Error] (LoadEnemyDataFromJson)	stage data for index 198 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :200, idx :199
+[Error] (LoadEnemyDataFromJson)	stage data for index 199 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :201, idx :200
+[Error] (LoadEnemyDataFromJson)	stage data for index 200 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :202, idx :201
+[Error] (LoadEnemyDataFromJson)	stage data for index 201 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :203, idx :202
+[Error] (LoadEnemyDataFromJson)	stage data for index 202 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :204, idx :203
+[Error] (LoadEnemyDataFromJson)	stage data for index 203 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :205, idx :204
+[Error] (LoadEnemyDataFromJson)	stage data for index 204 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :206, idx :205
+[Error] (LoadEnemyDataFromJson)	stage data for index 205 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :207, idx :206
+[Error] (LoadEnemyDataFromJson)	stage data for index 206 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :208, idx :207
+[Error] (LoadEnemyDataFromJson)	stage data for index 207 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :209, idx :208
+[Error] (LoadEnemyDataFromJson)	stage data for index 208 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :210, idx :209
+[Error] (LoadEnemyDataFromJson)	stage data for index 209 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :211, idx :210
+[Error] (LoadEnemyDataFromJson)	stage data for index 210 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :212, idx :211
+[Error] (LoadEnemyDataFromJson)	stage data for index 211 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :213, idx :212
+[Error] (LoadEnemyDataFromJson)	stage data for index 212 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :214, idx :213
+[Error] (LoadEnemyDataFromJson)	stage data for index 213 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :215, idx :214
+[Error] (LoadEnemyDataFromJson)	stage data for index 214 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :216, idx :215
+[Error] (LoadEnemyDataFromJson)	stage data for index 215 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :217, idx :216
+[Error] (LoadEnemyDataFromJson)	stage data for index 216 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :218, idx :217
+[Error] (LoadEnemyDataFromJson)	stage data for index 217 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :219, idx :218
+[Error] (LoadEnemyDataFromJson)	stage data for index 218 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :220, idx :219
+[Error] (LoadEnemyDataFromJson)	stage data for index 219 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :221, idx :220
+[Error] (LoadEnemyDataFromJson)	stage data for index 220 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :222, idx :221
+[Error] (LoadEnemyDataFromJson)	stage data for index 221 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :223, idx :222
+[Error] (LoadEnemyDataFromJson)	stage data for index 222 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :224, idx :223
+[Error] (LoadEnemyDataFromJson)	stage data for index 223 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :225, idx :224
+[Error] (LoadEnemyDataFromJson)	stage data for index 224 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :226, idx :225
+[Error] (LoadEnemyDataFromJson)	stage data for index 225 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :227, idx :226
+[Error] (LoadEnemyDataFromJson)	stage data for index 226 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :228, idx :227
+[Error] (LoadEnemyDataFromJson)	stage data for index 227 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :229, idx :228
+[Error] (LoadEnemyDataFromJson)	stage data for index 228 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :230, idx :229
+[Error] (LoadEnemyDataFromJson)	stage data for index 229 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :231, idx :230
+[Error] (LoadEnemyDataFromJson)	stage data for index 230 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :232, idx :231
+[Error] (LoadEnemyDataFromJson)	stage data for index 231 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :233, idx :232
+[Error] (LoadEnemyDataFromJson)	stage data for index 232 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :234, idx :233
+[Error] (LoadEnemyDataFromJson)	stage data for index 233 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :235, idx :234
+[Error] (LoadEnemyDataFromJson)	stage data for index 234 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :236, idx :235
+[Error] (LoadEnemyDataFromJson)	stage data for index 235 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :237, idx :236
+[Error] (LoadEnemyDataFromJson)	stage data for index 236 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :238, idx :237
+[Error] (LoadEnemyDataFromJson)	stage data for index 237 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :239, idx :238
+[Error] (LoadEnemyDataFromJson)	stage data for index 238 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :240, idx :239
+[Error] (LoadEnemyDataFromJson)	stage data for index 239 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :241, idx :240
+[Error] (LoadEnemyDataFromJson)	stage data for index 240 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :242, idx :241
+[Error] (LoadEnemyDataFromJson)	stage data for index 241 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :243, idx :242
+[Error] (LoadEnemyDataFromJson)	stage data for index 242 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :244, idx :243
+[Error] (LoadEnemyDataFromJson)	stage data for index 243 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :245, idx :244
+[Error] (LoadEnemyDataFromJson)	stage data for index 244 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :246, idx :245
+[Error] (LoadEnemyDataFromJson)	stage data for index 245 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :247, idx :246
+[Error] (LoadEnemyDataFromJson)	stage data for index 246 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :248, idx :247
+[Error] (LoadEnemyDataFromJson)	stage data for index 247 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :249, idx :248
+[Error] (LoadEnemyDataFromJson)	stage data for index 248 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :250, idx :249
+[Error] (LoadEnemyDataFromJson)	stage data for index 249 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :251, idx :250
+[Error] (LoadEnemyDataFromJson)	stage data for index 250 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :252, idx :251
+[Error] (LoadEnemyDataFromJson)	stage data for index 251 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :253, idx :252
+[Error] (LoadEnemyDataFromJson)	stage data for index 252 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :254, idx :253
+[Error] (LoadEnemyDataFromJson)	stage data for index 253 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :255, idx :254
+[Error] (LoadEnemyDataFromJson)	stage data for index 254 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :256, idx :255
+[Error] (LoadEnemyDataFromJson)	stage data for index 255 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :257, idx :256
+[Error] (LoadEnemyDataFromJson)	stage data for index 256 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :258, idx :257
+[Error] (LoadEnemyDataFromJson)	stage data for index 257 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :259, idx :258
+[Error] (LoadEnemyDataFromJson)	stage data for index 258 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :260, idx :259
+[Error] (LoadEnemyDataFromJson)	stage data for index 259 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :261, idx :260
+[Error] (LoadEnemyDataFromJson)	stage data for index 260 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :262, idx :261
+[Error] (LoadEnemyDataFromJson)	stage data for index 261 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :263, idx :262
+[Error] (LoadEnemyDataFromJson)	stage data for index 262 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :264, idx :263
+[Error] (LoadEnemyDataFromJson)	stage data for index 263 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :265, idx :264
+[Error] (LoadEnemyDataFromJson)	stage data for index 264 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :266, idx :265
+[Error] (LoadEnemyDataFromJson)	stage data for index 265 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :267, idx :266
+[Error] (LoadEnemyDataFromJson)	stage data for index 266 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :268, idx :267
+[Error] (LoadEnemyDataFromJson)	stage data for index 267 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :269, idx :268
+[Error] (LoadEnemyDataFromJson)	stage data for index 268 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :270, idx :269
+[Error] (LoadEnemyDataFromJson)	stage data for index 269 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :271, idx :270
+[Error] (LoadEnemyDataFromJson)	stage data for index 270 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :272, idx :271
+[Error] (LoadEnemyDataFromJson)	stage data for index 271 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :273, idx :272
+[Error] (LoadEnemyDataFromJson)	stage data for index 272 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :274, idx :273
+[Error] (LoadEnemyDataFromJson)	stage data for index 273 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :275, idx :274
+[Error] (LoadEnemyDataFromJson)	stage data for index 274 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :276, idx :275
+[Error] (LoadEnemyDataFromJson)	stage data for index 275 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :277, idx :276
+[Error] (LoadEnemyDataFromJson)	stage data for index 276 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :278, idx :277
+[Error] (LoadEnemyDataFromJson)	stage data for index 277 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :279, idx :278
+[Error] (LoadEnemyDataFromJson)	stage data for index 278 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :280, idx :279
+[Error] (LoadEnemyDataFromJson)	stage data for index 279 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :281, idx :280
+[Error] (LoadEnemyDataFromJson)	stage data for index 280 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :282, idx :281
+[Error] (LoadEnemyDataFromJson)	stage data for index 281 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :283, idx :282
+[Error] (LoadEnemyDataFromJson)	stage data for index 282 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :284, idx :283
+[Error] (LoadEnemyDataFromJson)	stage data for index 283 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :285, idx :284
+[Error] (LoadEnemyDataFromJson)	stage data for index 284 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :286, idx :285
+[Error] (LoadEnemyDataFromJson)	stage data for index 285 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :287, idx :286
+[Error] (LoadEnemyDataFromJson)	stage data for index 286 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :288, idx :287
+[Error] (LoadEnemyDataFromJson)	stage data for index 287 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :289, idx :288
+[Error] (LoadEnemyDataFromJson)	stage data for index 288 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :290, idx :289
+[Error] (LoadEnemyDataFromJson)	stage data for index 289 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :291, idx :290
+[Error] (LoadEnemyDataFromJson)	stage data for index 290 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :292, idx :291
+[Error] (LoadEnemyDataFromJson)	stage data for index 291 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :293, idx :292
+[Error] (LoadEnemyDataFromJson)	stage data for index 292 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :294, idx :293
+[Error] (LoadEnemyDataFromJson)	stage data for index 293 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :295, idx :294
+[Error] (LoadEnemyDataFromJson)	stage data for index 294 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :296, idx :295
+[Error] (LoadEnemyDataFromJson)	stage data for index 295 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :297, idx :296
+[Error] (LoadEnemyDataFromJson)	stage data for index 296 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :298, idx :297
+[Error] (LoadEnemyDataFromJson)	stage data for index 297 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :299, idx :298
+[Error] (LoadEnemyDataFromJson)	stage data for index 298 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :300, idx :299
+[Error] (LoadEnemyDataFromJson)	stage data for index 299 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :301, idx :300
+[Error] (LoadEnemyDataFromJson)	stage data for index 300 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :302, idx :301
+[Error] (LoadEnemyDataFromJson)	stage data for index 301 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :303, idx :302
+[Error] (LoadEnemyDataFromJson)	stage data for index 302 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :304, idx :303
+[Error] (LoadEnemyDataFromJson)	stage data for index 303 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :305, idx :304
+[Error] (LoadEnemyDataFromJson)	stage data for index 304 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :306, idx :305
+[Error] (LoadEnemyDataFromJson)	stage data for index 305 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :307, idx :306
+[Error] (LoadEnemyDataFromJson)	stage data for index 306 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :308, idx :307
+[Error] (LoadEnemyDataFromJson)	stage data for index 307 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :309, idx :308
+[Error] (LoadEnemyDataFromJson)	stage data for index 308 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :310, idx :309
+[Error] (LoadEnemyDataFromJson)	stage data for index 309 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :311, idx :310
+[Error] (LoadEnemyDataFromJson)	stage data for index 310 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :312, idx :311
+[Error] (LoadEnemyDataFromJson)	stage data for index 311 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :313, idx :312
+[Error] (LoadEnemyDataFromJson)	stage data for index 312 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :314, idx :313
+[Error] (LoadEnemyDataFromJson)	stage data for index 313 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :315, idx :314
+[Error] (LoadEnemyDataFromJson)	stage data for index 314 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :316, idx :315
+[Error] (LoadEnemyDataFromJson)	stage data for index 315 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :317, idx :316
+[Error] (LoadEnemyDataFromJson)	stage data for index 316 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :318, idx :317
+[Error] (LoadEnemyDataFromJson)	stage data for index 317 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :319, idx :318
+[Error] (LoadEnemyDataFromJson)	stage data for index 318 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :320, idx :319
+[Error] (LoadEnemyDataFromJson)	stage data for index 319 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :321, idx :320
+[Error] (LoadEnemyDataFromJson)	stage data for index 320 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :322, idx :321
+[Error] (LoadEnemyDataFromJson)	stage data for index 321 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :323, idx :322
+[Error] (LoadEnemyDataFromJson)	stage data for index 322 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :324, idx :323
+[Error] (LoadEnemyDataFromJson)	stage data for index 323 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :325, idx :324
+[Error] (LoadEnemyDataFromJson)	stage data for index 324 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :326, idx :325
+[Error] (LoadEnemyDataFromJson)	stage data for index 325 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :327, idx :326
+[Error] (LoadEnemyDataFromJson)	stage data for index 326 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :328, idx :327
+[Error] (LoadEnemyDataFromJson)	stage data for index 327 not found
+
+[Info] (loadEnemy) pass loadEnemy.
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :329, idx :328
+[Error] (LoadEnemyDataFromJson)	stage data for index 328 not found
+
 [Info] (loadEnemy) pass loadEnemy.
