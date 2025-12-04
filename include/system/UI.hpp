@@ -71,7 +71,7 @@ public:
     void drawBossStatus(EnemyStatus enemyStatus);
     void drawSpellCardText(EnemyStatus enemyStatus, SpellInfo spellInfo, int time);
     void loadingScreen();
-    void talkUI(string, int);
+    void talkUI(std::wstring, int);
     PlayerStatus getPlayerStatus();
     EnemyStatus getEnemyStatus();
 

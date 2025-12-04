@@ -61,7 +61,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         {
             // DrawFormatString(100, 40, GetColor(255, 255, 255), L"Spell");
             // TODO effect
-            switch (enemyStatus.shootType)
+            switch (this->getSpellInfo().spellType)
             {
             case 1:
                 enemyShootScript->Boss01Spell01(*this, *bMgr, bombs, time, difficulty, *player);

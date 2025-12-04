@@ -34,8 +34,8 @@
                     "name": "Boss01",
                     "id": 2,
                     "type": 100,
-                    "lives": 1,
-                    "hp": 15,
+                    "lives": 3,
+                    "hp": 150,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
@@ -72,6 +72,30 @@
                     "shootType": 0,
                     "time": 0,
                     "spawnTime": 60,
+                    "spellCount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "Boss02",
+                    "id": 2,
+                    "type": 101,
+                    "lives": 5,
+                    "hp": 150,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 360,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,

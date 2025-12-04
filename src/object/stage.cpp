@@ -164,7 +164,7 @@ void StageManager::loadEnemy()
     }
     else
     {
-        DrawFormatString(200, 200, GetColor(255, 255, 255), L"[ERROR]");
+        DrawFormatString(200, 200, GetColor(255, 255, 255), L"[ERROR] (loadEnemy)");
     }
 
     // LoadEnemyImage("../../img/EnemyProtoType01.png", enemyImageHandle);
@@ -213,7 +213,6 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     // 会話中でない, ゲームタイマが0以上, ゲームオーバーでないなら更新処理を行う
     if (!isTalk && time >= 0 && !isPause && !isGameOver)
     {
-        printfDx(L"[DEBUG] updateStage time : %d", this->time);
         for (int i = 0; i < MAX_ENEMIES; i++)
         {
             if (enemies[i] == nullptr)
@@ -232,17 +231,6 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
             if (enemies[i] != nullptr && enemies[i]->enemyStatus.isAlive)
             {
                 enemies[i]->enemyUpdate(this->time, this->stageInfo.difficulty, bMgr, bombs, enemyShootScript, player, effecter, iMgr);
-            }
-
-            EnemyStatus estatus = enemies[i]->getStatus();
-            if (estatus.spawnTime == this->time)
-            {
-                printfDx(L"[SPAWN] enemy[%d] time = %d type = %d\n", i, estatus.spawnTime, estatus.type);
-                std::stringstream ss;
-                ss << "(updateStage) enemy [" << i << "], time = " << estatus.spawnTime << "type = " << estatus.type;
-                Logger::Log(ss.str(), LogLevel::Info);
-                enemies[i]->setIsAlive(true);
-                enemies[i]->setImageHandle(enemyImageHandle[estatus.type % 100]);
             }
         }
         stageInfo.score += 10;
@@ -289,21 +277,31 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     iMgr->drawItems();
 
     // ボス撃破処理
-    if (isClearStage)
+    if (isClearStage && time > 0)
     {
         bMgr->removeBomb(bombs);
         // TODO ステージクリア処理
-        stageInfo.stage += 1;
         time = -120;
-        isClearStage = false;
-        loadEnemy();
     }
 
     // ボス撃破時にゲームタイマーが0未満になるので，その間にリザルト
     if (time < 0)
     {
+        if (time == -1)
+        {
+            if (Key[KEY_INPUT_RETURN] == 1)
+            {
+                time = 0;
+                stageInfo.stage += 1;
+                isClearStage = false;
+                loadEnemy();
+            }
+        }
+        else
+        {
+            time++;
+        }
         DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
-        time++;
     }
 
     // [DEBUG]

@@ -178,11 +178,15 @@ inline bool LoadEnemyDataFromJson(int stageIdx, const std::string &stageInfoPath
                     SpellInfo s{};
                     std::string spellName_str = sItem.value("spellName", "");
                     std::wstring spellName_w = converter.from_bytes(spellName_str);
+                    Logger::Log("(LoadEnemyDataFromJson)\tpush back spell data spellName:" + sItem.value("spellName", ""), LogLevel::Info);
 
                     s.spellName = spellName_w;
                     s.spellType = sItem.value("spellType", 0);
+                    Logger::Log("(LoadEnemyDataFromJson)\tpush back spell data spellType:" + to_string(s.spellType), LogLevel::Info);
                     s.isDurability = sItem.value("isDurability", 0);
+                    Logger::Log("(LoadEnemyDataFromJson)\tpush back spell data isDurability:" + to_string(s.isDurability), LogLevel::Info);
                     s.durabilityTime = sItem.value("durabilityTime", 0);
+                    Logger::Log("(LoadEnemyDataFromJson)\tpush back spell data durabilityTime:" + to_string(s.durabilityTime), LogLevel::Info);
                     spells.push_back(s);
                 }
             }
@@ -218,10 +222,12 @@ bool LoadTalkDataFromJson(const std::string &path, int stageIndex, std::vector<T
         std::cerr << "[WARN] \"talks\" array is missing in stage " << stageIndex << "\n";
         return false;
     }
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
     for (auto &item : talksData["talks"])
     {
         TalkData t{};
-        t.talkString = item.value("talkStr", "");
+
+        t.talkString = converter.from_bytes(item.value("talkStr", ""));
         t.isTalkEnemy = item.value("isTalkEnemy", 0);
         outTalks.push_back(t);
     }

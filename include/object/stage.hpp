@@ -76,7 +76,7 @@ enum Difficulty
 // 会話データ構造体
 typedef struct TalkData
 {
-    string talkString;
+    std::wstring talkString;
     bool isTalkEnemy;
 };
 
@@ -159,7 +159,7 @@ public:
     void talk(int type); // 会話処理
 
     // TODO 中身ちゃんとしたやつ作って
-    string getTalkString(int talkCount) { return talkData[talkCount].talkString; } // 外部ファイルから会話内容を取得する
+    std::wstring getTalkString(int talkCount) { return talkData[talkCount].talkString; } // 外部ファイルから会話内容を取得する
 
     // だれが話しているのかを取得する
     int getTalkWho(int talkCount) { return talkData[talkCount].isTalkEnemy; }

@@ -199,7 +199,7 @@ void UI::drawBossStatus(EnemyStatus enemyStatus)
     // DrawBox(barX, barY, barX + barWidth, barY + barHeight, GetColor(255, 255, 255), FALSE);
 }
 
-void UI::talkUI(string talkString, int talkWho)
+void UI::talkUI(std::wstring talkString, int talkWho)
 {
     if (talkWho == 0)
     {
@@ -209,10 +209,10 @@ void UI::talkUI(string talkString, int talkWho)
     {
         DrawBox(30, 150, 330, 450, GetColor(0, 255, 0), TRUE);
     }
-    std::wstring talkW = std::wstring(talkString.begin(), talkString.end());
+
     // [DEBUG]
-    printfDx(talkW.c_str());
-    DrawFormatString(100, 600, GetColor(255, 255, 255), talkW.c_str());
+    printfDx(talkString.c_str());
+    DrawFormatString(100, 600, GetColor(255, 255, 255), talkString.c_str());
 }
 
 void UI::drawSpellCardText(EnemyStatus enemyStatus, SpellInfo spellInfo, int time)
