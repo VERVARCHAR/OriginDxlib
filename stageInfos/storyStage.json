@@ -1,21 +1,21 @@
 {
     "stages": [
         {
-            "stage_name": "stage01",
+            "stage_name": "stgae01",
             "fps": 7200,
             "bgm_name": "notitle",
             "bgm_path": "./",
             "enemies": [
                 {
-                    "name": "noob",
+                    "name": "zako",
                     "id": 1,
                     "type": 0,
                     "lives": 1,
-                    "hp": 1,
+                    "hp": 10,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 0,
+                    "spawnTime": 60,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
@@ -26,224 +26,248 @@
                         "y": -32.0
                     },
                     "vel": {
-                        "x": 1.0,
+                        "x": 0.0,
                         "y": 2.0
                     }
                 },
                 {
-                    "name": "zacho",
+                    "name": "zako",
                     "id": 2,
                     "type": 0,
                     "lives": 1,
-                    "hp": 5,
+                    "hp": 10,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 120,
+                    "spawnTime": 60,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 320.0,
+                        "x": 330.0,
                         "y": -32.0
                     },
                     "vel": {
                         "x": 0.0,
-                        "y": 1.0
+                        "y": 2.0
                     }
                 },
                 {
-                    "name": "zacho",
+                    "name": "zako",
                     "id": 3,
                     "type": 0,
                     "lives": 1,
-                    "hp": 5,
+                    "hp": 10,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 120,
+                    "spawnTime": 60,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 320.0,
+                        "x": 340.0,
                         "y": -32.0
                     },
                     "vel": {
                         "x": 0.0,
-                        "y": 1.0
+                        "y": 2.0
                     }
                 },
                 {
-                    "name": "zacho",
+                    "name": "zako",
                     "id": 4,
                     "type": 0,
                     "lives": 1,
-                    "hp": 5,
+                    "hp": 10,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 120,
+                    "spawnTime": 60,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 320.0,
+                        "x": 350.0,
                         "y": -32.0
                     },
                     "vel": {
                         "x": 0.0,
-                        "y": 1.0
+                        "y": 2.0
                     }
                 },
                 {
-                    "name": "zacho",
+                    "name": "zako",
                     "id": 5,
                     "type": 0,
                     "lives": 1,
-                    "hp": 5,
+                    "hp": 10,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 120,
+                    "spawnTime": 60,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 320.0,
+                        "x": 360.0,
                         "y": -32.0
                     },
                     "vel": {
                         "x": 0.0,
-                        "y": 1.0
+                        "y": 2.0
                     }
                 },
                 {
-                    "name": "zacho",
+                    "name": "zako",
                     "id": 6,
                     "type": 0,
                     "lives": 1,
-                    "hp": 5,
+                    "hp": 10,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 120,
+                    "spawnTime": 60,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 320.0,
+                        "x": 370.0,
                         "y": -32.0
                     },
                     "vel": {
                         "x": 0.0,
-                        "y": 1.0
+                        "y": 2.0
                     }
                 },
                 {
-                    "name": "zacho",
+                    "name": "zako",
                     "id": 7,
                     "type": 0,
                     "lives": 1,
-                    "hp": 5,
+                    "hp": 10,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 120,
+                    "spawnTime": 60,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 320.0,
+                        "x": 380.0,
                         "y": -32.0
                     },
                     "vel": {
                         "x": 0.0,
-                        "y": 1.0
+                        "y": 2.0
                     }
                 },
                 {
-                    "name": "zacho",
+                    "name": "zako",
                     "id": 8,
                     "type": 0,
                     "lives": 1,
-                    "hp": 5,
+                    "hp": 10,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 120,
+                    "spawnTime": 60,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 320.0,
+                        "x": 390.0,
                         "y": -32.0
                     },
                     "vel": {
                         "x": 0.0,
-                        "y": 1.0
+                        "y": 2.0
                     }
                 },
                 {
-                    "name": "zacho",
+                    "name": "zako",
                     "id": 9,
                     "type": 0,
                     "lives": 1,
-                    "hp": 5,
+                    "hp": 10,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 120,
+                    "spawnTime": 60,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 320.0,
+                        "x": 400.0,
                         "y": -32.0
                     },
                     "vel": {
                         "x": 0.0,
-                        "y": 1.0
+                        "y": 2.0
                     }
                 },
                 {
-                    "name": "zacho",
+                    "name": "zako",
                     "id": 10,
                     "type": 0,
                     "lives": 1,
-                    "hp": 5,
+                    "hp": 10,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 120,
+                    "spawnTime": 60,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 320.0,
+                        "x": 410.0,
                         "y": -32.0
                     },
                     "vel": {
                         "x": 0.0,
-                        "y": 1.0
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "zako",
+                    "id": 11,
+                    "type": 0,
+                    "lives": 1,
+                    "hp": 10,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 60,
+                    "spellCount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 420.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
                     }
                 }
             ]

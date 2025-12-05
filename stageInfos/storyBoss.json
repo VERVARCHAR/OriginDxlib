@@ -11,7 +11,7 @@
                 },
                 {
                     "spellName": "Spell No.2",
-                    "spellType": 1,
+                    "spellType": 2,
                     "isDurability": true,
                     "durabilityTime": 60
                 }
