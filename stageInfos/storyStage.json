@@ -1,15 +1,16 @@
 {
     "stages": [
         {
-            "stage_name": "stage01",
+            "stage_name": "Stage01",
             "fps": 7200,
             "bgm_name": "notitle",
             "bgm_path": "./",
             "enemies": [
                 {
-                    "name": "z",
+                    "name": "zako",
                     "id": 1,
                     "type": 0,
+                    "moveType": 0,
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
@@ -22,8 +23,8 @@
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 320.0,
-                        "y": -32.0
+                        "x": 120.0,
+                        "y": -8.0
                     },
                     "vel": {
                         "x": 0.0,
@@ -31,9 +32,10 @@
                     }
                 },
                 {
-                    "name": "z",
+                    "name": "zako",
                     "id": 2,
                     "type": 0,
+                    "moveType": 0,
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
@@ -46,8 +48,8 @@
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 345.0,
-                        "y": -32.0
+                        "x": 200.0,
+                        "y": -8.0
                     },
                     "vel": {
                         "x": 0.0,
@@ -55,9 +57,10 @@
                     }
                 },
                 {
-                    "name": "z",
+                    "name": "zako",
                     "id": 3,
                     "type": 0,
+                    "moveType": 0,
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
@@ -70,8 +73,8 @@
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 370.0,
-                        "y": -32.0
+                        "x": 280.0,
+                        "y": -8.0
                     },
                     "vel": {
                         "x": 0.0,
@@ -79,9 +82,10 @@
                     }
                 },
                 {
-                    "name": "z",
+                    "name": "zako",
                     "id": 4,
                     "type": 0,
+                    "moveType": 0,
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
@@ -94,8 +98,8 @@
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 395.0,
-                        "y": -32.0
+                        "x": 360.0,
+                        "y": -8.0
                     },
                     "vel": {
                         "x": 0.0,
@@ -103,9 +107,10 @@
                     }
                 },
                 {
-                    "name": "z",
+                    "name": "zako",
                     "id": 5,
                     "type": 0,
+                    "moveType": 0,
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
@@ -118,8 +123,8 @@
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 420.0,
-                        "y": -32.0
+                        "x": 440.0,
+                        "y": -8.0
                     },
                     "vel": {
                         "x": 0.0,
@@ -127,9 +132,10 @@
                     }
                 },
                 {
-                    "name": "z",
+                    "name": "zako",
                     "id": 6,
                     "type": 0,
+                    "moveType": 0,
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
@@ -142,80 +148,8 @@
                     "isInvincible": 0,
                     "invincibleTime": 0,
                     "pos": {
-                        "x": 445.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 2.0
-                    }
-                },
-                {
-                    "name": "z",
-                    "id": 7,
-                    "type": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 240,
-                    "spellCount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 470.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 2.0
-                    }
-                },
-                {
-                    "name": "z",
-                    "id": 8,
-                    "type": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 270,
-                    "spellCount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 495.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 2.0
-                    }
-                },
-                {
-                    "name": "z",
-                    "id": 9,
-                    "type": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 300,
-                    "spellCount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
                         "x": 520.0,
-                        "y": -32.0
+                        "y": -8.0
                     },
                     "vel": {
                         "x": 0.0,
@@ -223,35 +157,12 @@
                     }
                 },
                 {
-                    "name": "z",
-                    "id": 10,
-                    "type": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 330,
-                    "spellCount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 545.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 2.0
-                    }
-                },
-                {
-                    "name": "z",
-                    "id": 11,
-                    "type": 0,
-                    "lives": 1,
-                    "hp": 10,
+                    "name": "Boss",
+                    "id": 7,
+                    "type": 100,
+                    "moveType": 100,
+                    "lives": 3,
+                    "hp": 200,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
@@ -259,11 +170,11 @@
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
+                    "isInvincible": 1,
+                    "invincibleTime": 120,
                     "pos": {
-                        "x": 570.0,
-                        "y": -32.0
+                        "x": 320.0,
+                        "y": -8.0
                     },
                     "vel": {
                         "x": 0.0,

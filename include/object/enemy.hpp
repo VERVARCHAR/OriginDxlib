@@ -44,6 +44,7 @@ typedef struct EnemyStatus
     Vec2d pos;
     Vec2d vel;
     int type; // 種類
+    int moveType;
     int lives;
     int maxHp;
     int hp; // 体力

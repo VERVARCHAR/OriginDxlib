@@ -136,6 +136,8 @@ inline bool LoadEnemyDataFromJson(int stageIdx, const std::string &stageInfoPath
         Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data id:" + to_string(e.id), LogLevel::Info);
         e.type = item.value("type", 0);
         Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data type:" + to_string(e.type), LogLevel::Info);
+        e.moveType = item.value("moveType", 0);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data moveType:" + to_string(e.moveType), LogLevel::Info);
         e.lives = item.value("lives", 1);
         Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data lives:" + to_string(e.lives), LogLevel::Info);
         e.hp = item.value("hp", 10);
@@ -207,19 +209,23 @@ bool LoadTalkDataFromJson(const std::string &path, int stageIndex, std::vector<T
     if (!ifs.is_open())
     {
         std::cerr << "[ERROR] cannot open file " << path << std::endl;
+        Logger::Log("(LoadTalkDataFromJson)\tcannot open file" + path, LogLevel::Error);
         return false;
     }
     json j;
     ifs >> j;
-    if (!j.contains("stages") || !j["stages"].is_array() || stageIndex >= j["stages"].size())
+    int idx = stageIndex - 1;
+    if (!j.contains("stages") || !j["stages"].is_array() || idx >= j["stages"].size())
     {
-        std::cerr << "[ERROR] talk data for stage " << stageIndex << " not found\n";
+        std::cerr << "[ERROR] talk data for stage " << idx << " not found\n";
+        Logger::Log("(LoadTalkDataFromJson)\ttalk data for stage " + to_string(idx) + " not found\n", LogLevel::Error);
         return false;
     }
-    json talksData = j["stages"][stageIndex];
+    json talksData = j["stages"][idx];
     if (!talksData.contains("talks") || !talksData["talks"].is_array())
     {
-        std::cerr << "[WARN] \"talks\" array is missing in stage " << stageIndex << "\n";
+        std::cerr << "[WARN] \"talks\" array is missing in stage " << idx << "\n";
+        Logger::Log("(LoadTalkDataFromJson)\t\"talks\" array is missing in stage" + to_string(stageIndex), LogLevel::Error);
         return false;
     }
     std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
@@ -229,6 +235,7 @@ bool LoadTalkDataFromJson(const std::string &path, int stageIndex, std::vector<T
 
         t.talkString = converter.from_bytes(item.value("talkStr", ""));
         t.isTalkEnemy = item.value("isTalkEnemy", 0);
+        Logger::Log("(LoadTalkDataFromJson) \t" + item.value("talkStr", ""), LogLevel::Info);
         outTalks.push_back(t);
     }
     std::cout << "[INFO] " << outTalks.size() << " talk lines loaded\n";

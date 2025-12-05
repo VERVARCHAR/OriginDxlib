@@ -63,6 +63,7 @@ DEFAULT_ENEMY = {
     "name": "",
     "id": 1,
     "type": 0,
+    "moveType":0,
     "lives": 1,
     "hp": 10,
     "radius": 12,
@@ -621,7 +622,10 @@ class StageEditor(ttk.Frame):
 
         self.enemy_type_var = tk.StringVar()
         add_labeled_entry("type (int)", self.enemy_type_var)
-
+        
+        self.enemy_move_type_var = tk.StringVar()
+        add_labeled_entry("moveType (int)", self.enemy_move_type_var)
+        
         self.enemy_lives_var = tk.StringVar()
         add_labeled_entry("lives (int)", self.enemy_lives_var)
 
@@ -815,6 +819,7 @@ class StageEditor(ttk.Frame):
         self.enemy_name_var.set(e.get("name", ""))
         self.enemy_id_var.set(str(e.get("id", "")))
         self.enemy_type_var.set(str(e.get("type", "")))
+        self.enemy_move_type_var.set(str(e.get("moveType", "")))
         self.enemy_lives_var.set(str(e.get("lives", "")))
         self.enemy_hp_var.set(str(e.get("hp", "")))
         self.enemy_radius_var.set(str(e.get("radius", "")))
@@ -855,6 +860,7 @@ class StageEditor(ttk.Frame):
         self._assign_unique_id_for_enemy(e, enemies, skip_index=self.current_enemy_index)
 
         e["type"] = parse_typed_value(self.enemy_type_var.get(), int)
+        e["moveType"] = parse_typed_value(self.enemy_move_type_var.get(), int)
         e["lives"] = parse_typed_value(self.enemy_lives_var.get(), int)
         e["hp"] = parse_typed_value(self.enemy_hp_var.get(), int)
         e["radius"] = parse_typed_value(self.enemy_radius_var.get(), int)
@@ -1520,6 +1526,11 @@ class JsonEditorApp(tk.Tk):
         if self.editor_frame is not None and hasattr(self.editor_frame, "flush_changes"):
             self.editor_frame.flush_changes()
 
+        if getattr(self, "current_category", None) == "Stage":
+            if not self._validate_stage_has_boss():
+                # バリデーション NG の場合は保存中止
+                return
+            
         path = self.current_file_path()
         ensure_dir(self.root_dir)
         try:
@@ -1532,6 +1543,49 @@ class JsonEditorApp(tk.Tk):
         self.path_label_var.set(path)
         messagebox.showinfo("Saved", f"Saved: {path}")
 
+    def _validate_stage_has_boss(self) -> bool:
+        """
+        Stage データについて、各ステージに type >= 100 の Enemy（ボス）が
+        少なくとも 1 体いるかをチェックする。
+        条件を満たさないステージがある場合はエラーダイアログを出して False を返す。
+        """
+        stages = self.data.get("stages", [])
+        if not stages:
+            # ステージ自体が無いならその旨をエラーにしてもいいし、通してもいい
+            # ここでは一応エラーにしておく
+            messagebox.showerror(
+                "Validate Error",
+                "ステージが 1 つも定義されていません。\n"
+                "少なくとも 1 つのステージとボス（type >= 100）を定義してください。",
+                parent=self,
+            )
+            return False
+
+        bad_stages = []  # ボス不在のステージ名リスト
+
+        for idx, st in enumerate(stages):
+            enemies = st.get("enemies", [])
+            has_boss = False
+            for e in enemies:
+                t = e.get("type")
+                if isinstance(t, int) and t >= 100:
+                    has_boss = True
+                    break
+
+            if not has_boss:
+                name = st.get("stage_name", f"Stage{idx+1}")
+                bad_stages.append(name)
+
+        if bad_stages:
+            msg = (
+                "以下のステージに type >= 100 の Enemy（ボス）が存在しません。\n\n"
+                + "\n".join(f"・{name}" for name in bad_stages)
+                + "\n\nボス（type >= 100）を追加してから保存してください。"
+            )
+            messagebox.showerror("Validate Error", msg, parent=self)
+            return False
+
+        return True
 
 if __name__ == "__main__":
     app = JsonEditorApp()

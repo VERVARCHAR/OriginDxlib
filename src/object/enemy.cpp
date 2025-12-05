@@ -57,30 +57,33 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         {
             player->Dead();
         }
-        if (enemyStatus.isSpell)
+        if (!enemyStatus.isInvincible)
         {
-            // DrawFormatString(100, 40, GetColor(255, 255, 255), L"Spell");
-            // TODO effect
-            switch (this->getSpellInfo().spellType)
+            if (enemyStatus.isSpell)
             {
-            case 1:
-                enemyShootScript->Boss01Spell01(*this, *bMgr, bombs, time, difficulty, *player);
-                /* code */
-                break;
-            case 2:
-                enemyShootScript->Boss01Spell02(*this, *bMgr, bombs, time, difficulty, *player);
+                // DrawFormatString(100, 40, GetColor(255, 255, 255), L"Spell");
+                // TODO effect
+                switch (this->getSpellInfo().spellType)
+                {
+                case 1:
+                    enemyShootScript->Boss01Spell01(*this, *bMgr, bombs, time, difficulty, *player);
+                    /* code */
+                    break;
+                case 2:
+                    enemyShootScript->Boss01Spell02(*this, *bMgr, bombs, time, difficulty, *player);
 
-                break;
-            case 3:
-                enemyShootScript->Boss01Spell03(*this, *bMgr, bombs, time, difficulty, *player);
+                    break;
+                case 3:
+                    enemyShootScript->Boss01Spell03(*this, *bMgr, bombs, time, difficulty, *player);
 
-            default:
-                break;
+                default:
+                    break;
+                }
             }
-        }
-        else
-        {
-            shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, difficulty, *player);
+            else
+            {
+                shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, difficulty, *player);
+            }
         }
 
         // TODO 敵の動きも関数にしたいかなぁ
@@ -100,7 +103,6 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         {
             enemyStatus.lives -= 1;
             enemyStatus.shootType += 1;
-            bMgr->removeBomb(bombs);
 
             // もし敵がボスで，HPが0になったらスペルフラグをfalseにし，無敵時間を付与
             if (enemyStatus.isSpell == true)
@@ -110,6 +112,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
                 enemyStatus.invincibleTime = 120;
                 enemyStatus.hp = enemyStatus.maxHp;
                 enemyStatus.spellCount += 1;
+                bMgr->removeBomb(bombs);
             }
         }
 
@@ -135,6 +138,8 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
                 enemyStatus.isSpell = true;
                 enemyStatus.time = -120;
                 bMgr->removeBomb(bombs);
+                enemyStatus.isInvincible = true;
+                enemyStatus.invincibleTime = 120;
                 // enemyStatus.spellStartTime = time;
             }
         }
@@ -209,8 +214,11 @@ bool Enemy::isHitPlayer(Player *player)
 
 void Enemy::enemyMove()
 {
-    switch (enemyStatus.type)
+    switch (enemyStatus.moveType)
     {
+    case 0:
+        // enemyStatus.vel.x += 0.1;
+        break;
     case 100:
         if (enemyStatus.time == 60)
         {

@@ -59,6 +59,7 @@ void StageManager::init(int _stage, int _time, Difficulty _difficulty)
         -1,
         -1,
         -1,
+        -1,
         L"Default"};
 
     for (int i = 0; i < MAX_ENEMIES; i++)
@@ -203,7 +204,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
 {
 
     // TODO 会話するフレームも受け取りたいねぇ
-    if (time == 480)
+    if (time == enemies[bossIndex]->enemyStatus.spawnTime + 60)
     {
         isTalk = true;
         bMgr->removeBomb(bombs);
@@ -211,14 +212,14 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
 
     // TODO
     // 会話中でない, ゲームタイマが0以上, ゲームオーバーでないなら更新処理を行う
-    if (!isTalk && time >= 0 && !isPause && !isGameOver)
+    if (time >= 0 && !isPause && !isGameOver)
     {
         for (int i = 0; i < MAX_ENEMIES; i++)
         {
             if (enemies[i] == nullptr)
             {
                 printfDx(L"[CRASH DETECT] enemies[%d] is nullptr\n", i);
-                Logger::Log("updateStage enemies[" + to_string(i) + "] is nullptr\n", LogLevel::Error);
+                Logger::Log("(updateStage) enemies[" + to_string(i) + "] is nullptr\n", LogLevel::Error);
                 continue;
             }
 
@@ -228,13 +229,23 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
                 enemies[i]->setIsAlive(true);
                 enemies[i]->setImageHandle(enemyImageHandle[enemies[i]->enemyStatus.type % 100]);
             }
-            if (enemies[i] != nullptr && enemies[i]->enemyStatus.isAlive)
+
+            if (isTalk && i != bossIndex)
+            {
+                enemies[i]->enemyStatus.isAlive = false;
+                // TODO effect
+            }
+
+            if (enemies[i] != nullptr && enemies[i]->enemyStatus.isAlive && !isTalk)
             {
                 enemies[i]->enemyUpdate(this->time, this->stageInfo.difficulty, bMgr, bombs, enemyShootScript, player, effecter, iMgr);
             }
         }
-        stageInfo.score += 10;
-        time++;
+        if (!isTalk)
+        {
+            stageInfo.score += 10;
+            time++;
+        }
     }
 
     // UI用にプレイヤーのステータス情報を格納
