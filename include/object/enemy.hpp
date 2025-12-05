@@ -123,6 +123,6 @@ public:
     bool getOnScreen();
     bool getIsAlive(int index);
     bool isHitPlayer(Player *player);
-    void enemyMove();
+    void enemgityMove();
     Vec2d getPos(int index);
 };

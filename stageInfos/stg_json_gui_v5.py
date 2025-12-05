@@ -418,9 +418,79 @@ class BossEditor(ttk.Frame):
         self.refresh_boss_list()
 
 
+
 # =====================================
 # Stage Editor
 # =====================================
+
+
+
+
+class BulkAddDialog(simpledialog.Dialog):
+    """
+    Bulk Add 用: 等差的に変化させるキーと増分をまとめて指定するダイアログ
+    """
+    def __init__(self, parent, key_paths):
+        self.key_paths = key_paths
+        self.result = None  # {path: step, ...} or None
+        super().__init__(parent, title="Bulk Add - 等差設定")
+
+    def body(self, master):
+        ttk.Label(
+            master,
+            text="等差的に変化させるキーにチェックを入れ、1個ごとの増分を入力してください。"
+        ).grid(row=0, column=0, columnspan=2, sticky="w", padx=4, pady=4)
+
+        self._use_vars = {}
+        self._step_vars = {}
+
+        row = 1
+        for path in self.key_paths:
+            use_var = tk.BooleanVar(value=False)
+            step_var = tk.StringVar(value="")
+
+            chk = ttk.Checkbutton(master, text=path, variable=use_var)
+            chk.grid(row=row, column=0, sticky="w", padx=4, pady=2)
+
+            ent = ttk.Entry(master, textvariable=step_var, width=10)
+            ent.grid(row=row, column=1, sticky="w", padx=4, pady=2)
+
+            self._use_vars[path] = use_var
+            self._step_vars[path] = step_var
+            row += 1
+
+        return master
+
+    def validate(self):
+        selected = {}
+        for path in self.key_paths:
+            if self._use_vars[path].get():
+                s = self._step_vars[path].get().strip()
+                if not s:
+                    messagebox.showerror(
+                        "Bulk Add",
+                        f"キー '{path}' の増分を入力してください。",
+                        parent=self,
+                    )
+                    return False
+                try:
+                    step = float(s)
+                except ValueError:
+                    messagebox.showerror(
+                        "Bulk Add",
+                        f"キー '{path}' の増分 '{s}' を数値として解釈できません。",
+                        parent=self,
+                    )
+                    return False
+                selected[path] = step
+
+        # 何も選ばなくても OK（その場合は単純クローン）
+        self._selected = selected
+        return True
+
+    def apply(self):
+        # validate() で作った dict をそのまま返す
+        self.result = getattr(self, "_selected", {})
 
 class StageEditor(ttk.Frame):
     def __init__(self, master, app, *args, **kwargs):
@@ -821,7 +891,7 @@ class StageEditor(ttk.Frame):
         enemies = self.enemies_of_current_stage()
         new_enemy = json.loads(json.dumps(DEFAULT_ENEMY))
         enemies.append(new_enemy)
-        self._assign_unique_id_for_enemy(new_enemy, enemies, skip_index=len(enemies)-1)
+        self._assign_unique_id_for_enemy(new_enemy, enemies, skip_index=len(enemies) - 1)
         self.current_enemy_index = len(enemies) - 1
         self.refresh_enemy_list()
 
@@ -848,25 +918,129 @@ class StageEditor(ttk.Frame):
         src = enemies[self.current_enemy_index]
         new_enemy = json.loads(json.dumps(src))
         enemies.append(new_enemy)
-        self._assign_unique_id_for_enemy(new_enemy, enemies, skip_index=len(enemies)-1)
+        self._assign_unique_id_for_enemy(new_enemy, enemies, skip_index=len(enemies) - 1)
         self.current_enemy_index = len(enemies) - 1
         self.refresh_enemy_list()
+
+    # ---- helper: nested key access ----
+    def _get_value_by_path(self, obj, path: str):
+        """
+        path: 'pos.x' や 'spawnTime' のようなドット区切りで
+        ネストした値を取得する。
+        """
+        keys = path.split(".")
+        cur = obj
+        for k in keys:
+            if isinstance(cur, dict) and k in cur:
+                cur = cur[k]
+            else:
+                return None
+        return cur
+
+    def _set_value_by_path(self, obj, path: str, value):
+        """
+        path: 'pos.x' や 'spawnTime' のようなドット区切りで
+        ネストした値を設定する。
+        中間の dict が無ければ作る。
+        """
+        keys = path.split(".")
+        cur = obj
+        for k in keys[:-1]:
+            if not isinstance(cur, dict):
+                # dict じゃなかったら上書きして dict にする（通常は起きない想定）
+                cur = {}
+            cur = cur.setdefault(k, {})
+        cur[keys[-1]] = value
+
+    def _collect_numeric_paths(self, obj, prefix=""):
+        """
+        テンプレート Enemy から「数値として扱えるキー」のパス一覧を集める。
+        例: 'time', 'spawnTime', 'pos.x', 'vel.y' など。
+        """
+        paths = []
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                p = f"{prefix}.{k}" if prefix else k
+                if isinstance(v, (int, float)):
+                    # id は自動で振り直しなので除外
+                    if not (prefix == "" and k == "id"):
+                        paths.append(p)
+                elif isinstance(v, dict):
+                    paths.extend(self._collect_numeric_paths(v, p))
+        return paths
 
     def bulk_add_enemy(self):
         if self.current_stage_index is None:
             return
-        n = simpledialog.askinteger("Bulk Add", "追加する Enemy 数を入力してください:", minvalue=1, maxvalue=1000)
+
+        # 何個増やすか
+        n = simpledialog.askinteger(
+            "Bulk Add", "追加する Enemy 数を入力してください:",
+            minvalue=1, maxvalue=1000
+        )
         if not n:
             return
+
         enemies = self.enemies_of_current_stage()
+
+        # テンプレート（選択中があればそれ、なければ DEFAULT_ENEMY）
         if self.current_enemy_index is not None and 0 <= self.current_enemy_index < len(enemies):
             template = enemies[self.current_enemy_index]
         else:
             template = DEFAULT_ENEMY
-        for _ in range(n):
+
+        # テンプレートから「数値のキー」のパス一覧を集める
+        key_paths = self._collect_numeric_paths(template)
+        if not key_paths:
+            messagebox.showinfo("Bulk Add", "数値として扱えるキーが見つかりません。")
+            return
+
+        # ダイアログで「どのキーを等差的に変化させるか」とその増分を指定
+        dlg = BulkAddDialog(self, key_paths)
+        if dlg.result is None:
+            # キャンセルされた
+            return
+
+        selected_steps = dlg.result  # {path: step(float), ...}
+
+        # 何も選んでいない場合は単純クローン
+        use_arith = bool(selected_steps)
+
+        # 各キーごとに base 値と型情報を記録
+        arith_info = {}
+        if use_arith:
+            for path, step in selected_steps.items():
+                base_value = self._get_value_by_path(template, path)
+                if not isinstance(base_value, (int, float)):
+                    # _collect_numeric_paths で数値に限定しているので通常ここには来ない想定
+                    messagebox.showerror(
+                        "Bulk Add",
+                        f"キー '{path}' の元の値が数値ではありません: {base_value!r}",
+                    )
+                    return
+                arith_info[path] = {
+                    "base": base_value,
+                    "step": step,
+                    "is_int": isinstance(base_value, int),
+                }
+
+        # 実際の追加処理
+        for i in range(n):
+            # テンプレートのディープコピー
             new_enemy = json.loads(json.dumps(template))
+
+            # 等差的な変更（複数キー対応）
+            if use_arith:
+                for path, info in arith_info.items():
+                    new_val = info["base"] + info["step"] * (i + 1)
+                    if info["is_int"]:
+                        new_val = int(new_val)
+                    self._set_value_by_path(new_enemy, path, new_val)
+
             enemies.append(new_enemy)
-            self._assign_unique_id_for_enemy(new_enemy, enemies, skip_index=len(enemies)-1)
+            # id はユニークに振り直し
+            self._assign_unique_id_for_enemy(new_enemy, enemies, skip_index=len(enemies) - 1)
+
         self.refresh_enemy_list()
 
     def edit_raw_enemy(self):
@@ -880,11 +1054,126 @@ class StageEditor(ttk.Frame):
         self._assign_unique_id_for_enemy(e, enemies, skip_index=self.current_enemy_index)
         self.refresh_enemy_list()
 
-
 # =====================================
 # Talk Editor
 # =====================================
 
+    # ---- helper: nested key access ----
+    def _get_value_by_path(self, obj, path: str):
+        """
+        path: 'pos.x' や 'spawnTime' のようなドット区切りで
+        ネストした値を取得する。
+        """
+        keys = path.split(".")
+        cur = obj
+        for k in keys:
+            if isinstance(cur, dict) and k in cur:
+                cur = cur[k]
+            else:
+                return None
+        return cur
+
+    def _set_value_by_path(self, obj, path: str, value):
+        """
+        path: 'pos.x' や 'spawnTime' のようなドット区切りで
+        ネストした値を設定する。
+        中間の dict が無ければ作る。
+        """
+        keys = path.split(".")
+        cur = obj
+        for k in keys[:-1]:
+            if not isinstance(cur, dict):
+                # dict じゃなかったら上書きして dict にする（通常は起きない想定）
+                cur = {}
+            cur = cur.setdefault(k, {})
+        cur[keys[-1]] = value
+
+    def bulk_add_enemy(self):
+        if self.current_stage_index is None:
+            return
+
+        # 何個増やすか
+        n = simpledialog.askinteger(
+            "Bulk Add", "追加する Enemy 数を入力してください:",
+            minvalue=1, maxvalue=1000
+        )
+        if not n:
+            return
+
+        enemies = self.enemies_of_current_stage()
+
+        # テンプレート（選択中があればそれ、なければ DEFAULT_ENEMY）
+        if self.current_enemy_index is not None and 0 <= self.current_enemy_index < len(enemies):
+            template = enemies[self.current_enemy_index]
+        else:
+            template = DEFAULT_ENEMY
+
+        # テンプレートから「数値のキー」のパス一覧を集める（例: 'time', 'spawnTime', 'pos.x', 'vel.y' など）
+        def collect_numeric_paths(obj, prefix=""):
+            paths = []
+            if isinstance(obj, dict):
+                for k, v in obj.items():
+                    p = f"{prefix}.{k}" if prefix else k
+                    if isinstance(v, (int, float)):
+                        # id は自動で振り直しなので除外
+                        if not (prefix == "" and k == "id"):
+                            paths.append(p)
+                    elif isinstance(v, dict):
+                        paths.extend(collect_numeric_paths(v, p))
+            return paths
+
+        key_paths = collect_numeric_paths(template)
+        if not key_paths:
+            messagebox.showinfo("Bulk Add", "数値として扱えるキーが見つかりません。")
+            return
+
+        # ダイアログで「どのキーを等差的に変化させるか」とその増分を指定
+        dlg = BulkAddDialog(self, key_paths)
+        if dlg.result is None:
+            # キャンセルされた
+            return
+
+        selected_steps = dlg.result  # {path: step(float), ...}
+
+        # 何も選んでいない場合は単純クローン
+        use_arith = bool(selected_steps)
+
+        # 各キーごとに base 値と型情報を記録
+        arith_info = {}
+        if use_arith:
+            for path, step in selected_steps.items():
+                base_value = self._get_value_by_path(template, path)
+                if not isinstance(base_value, (int, float)):
+                    # collect_numeric_paths で数値に限定しているので通常ここには来ない想定
+                    messagebox.showerror(
+                        "Bulk Add",
+                        f"キー '{path}' の元の値が数値ではありません: {base_value!r}",
+                    )
+                    return
+                arith_info[path] = {
+                    "base": base_value,
+                    "step": step,
+                    "is_int": isinstance(base_value, int),
+                }
+
+        # 実際の追加処理
+        for i in range(n):
+            # テンプレートのディープコピー
+            new_enemy = json.loads(json.dumps(template))
+
+            # 等差的な変更（複数キー対応）
+            if use_arith:
+                for path, info in arith_info.items():
+                    new_val = info["base"] + info["step"] * (i + 1)
+                    if info["is_int"]:
+                        new_val = int(new_val)
+                    self._set_value_by_path(new_enemy, path, new_val)
+
+            enemies.append(new_enemy)
+            # id はユニークに振り直し
+            self._assign_unique_id_for_enemy(new_enemy, enemies, skip_index=len(enemies) - 1)
+
+        self.refresh_enemy_list()
 class TalkEditor(ttk.Frame):
     def __init__(self, master, app, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
