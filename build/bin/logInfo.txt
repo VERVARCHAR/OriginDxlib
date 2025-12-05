@@ -41,7 +41,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data name:zako
 [Info] (LoadEnemyDataFromJson)	push back enemy data id:3
 [Info] (LoadEnemyDataFromJson)	push back enemy data type:0
-[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:1
 [Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
 [Info] (LoadEnemyDataFromJson)	push back enemy data hp:10
 [Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
@@ -57,7 +57,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data name:zako
 [Info] (LoadEnemyDataFromJson)	push back enemy data id:4
 [Info] (LoadEnemyDataFromJson)	push back enemy data type:0
-[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:1
 [Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
 [Info] (LoadEnemyDataFromJson)	push back enemy data hp:10
 [Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
@@ -73,7 +73,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data name:zako
 [Info] (LoadEnemyDataFromJson)	push back enemy data id:5
 [Info] (LoadEnemyDataFromJson)	push back enemy data type:0
-[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
 [Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
 [Info] (LoadEnemyDataFromJson)	push back enemy data hp:10
 [Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
@@ -89,7 +89,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data name:zako
 [Info] (LoadEnemyDataFromJson)	push back enemy data id:6
 [Info] (LoadEnemyDataFromJson)	push back enemy data type:0
-[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
 [Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
 [Info] (LoadEnemyDataFromJson)	push back enemy data hp:10
 [Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
@@ -110,7 +110,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data hp:200
 [Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
 [Info] (LoadEnemyDataFromJson)	push back enemy data shootType:0
-[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:360
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:720
 [Info] (LoadEnemyDataFromJson)	push back enemy data time:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
@@ -139,7 +139,7 @@
 [Info] (LoadFromVector) index 5 enemy registered
 [Info] (LoadFromVector) index enemy spawn time is 210
 [Info] (LoadFromVector) index 6 enemy registered
-[Info] (LoadFromVector) index enemy spawn time is 360
+[Info] (LoadFromVector) index enemy spawn time is 720
 [Info] (LoadFromVector) 7 enemies registered
 [Info] (LoadFromVector) 2 spellCount registered
 [Info] (LoadTalkDataFromJson) 	Hello World!!
@@ -153,15 +153,3 @@
 [Info] (updateStage) pass spawnEnemy : 4
 [Info] (updateStage) pass spawnEnemy : 5
 [Info] (updateStage) pass spawnEnemy : 6
-[Info] Into LoadEnemyDataFromJson
-[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
-[Info] (LoadEnemyDataFromJson)	stageIdx :2, idx :1
-[Error] (LoadEnemyDataFromJson)	stage data for index 1 not found
-
-[Info] (loadEnemy) pass loadEnemy.
-[Info] Into LoadEnemyDataFromJson
-[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
-[Info] (LoadEnemyDataFromJson)	stageIdx :3, idx :2
-[Error] (LoadEnemyDataFromJson)	stage data for index 2 not found
-
-[Info] (loadEnemy) pass loadEnemy.

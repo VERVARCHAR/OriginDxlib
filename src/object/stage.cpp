@@ -118,10 +118,9 @@ void StageManager::loadEnemy()
     }
 
     std::vector<SpellInfo> loadSpells;
-
     // TODO : ローディング画面
     // TODO : stageの値によってパスを変える(関数を別にしてもいいかも???)
-    if (LoadEnemyDataFromJson(stageInfo.stage, stageFile, bossFile, loadEnemies, loadSpells))
+    if (LoadEnemyDataFromJson(stageInfo.stage, stageFile, bossFile, loadEnemies, loadSpells, &allStageLength))
     {
         bossIndex = 0;
         for (size_t i = 0; i < loadEnemies.size(); ++i)
@@ -293,16 +292,16 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
         bMgr->removeBomb(bombs);
         // TODO ステージクリア処理
 
-        if (stageInfo.stage == 6)
+        if (stageInfo.stage == allStageLength)
         {
             DrawFormatString(300, 300, GetColor(255, 255, 255), L"Clear...");
             isStoryClear = true;
         }
-        else if (stageInfo.stage == 7)
-        {
-            DrawFormatString(300, 300, GetColor(255, 255, 255), L"Extra Clear!!!");
-            isExtraClear = true;
-        }
+        // else if (stageInfo.stage == 7)
+        // {
+        //     DrawFormatString(300, 300, GetColor(255, 255, 255), L"Extra Clear!!!");
+        //     isExtraClear = true;
+        // }
         else
         {
             time = -120;

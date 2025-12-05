@@ -113,6 +113,7 @@ public:
     bool isClearStage = false; // ステージクリアフラグ
     bool isGameOver = false;   // ゲームオーバーフラグ
 
+    int allStageLength;
     bool isStoryClear = false;
     bool isExtraClear = false;
 

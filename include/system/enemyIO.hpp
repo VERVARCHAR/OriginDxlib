@@ -39,7 +39,7 @@
 #include "system/logger.hpp"
 
 // JSONから敵情報を読み取る関数
-inline bool LoadEnemyDataFromJson(int stageIdx, const std::string &stageInfoPath, const std::string &bossInfoPath, std::vector<EnemyStatus> &outEnemies, std::vector<SpellInfo> &spells)
+inline bool LoadEnemyDataFromJson(int stageIdx, const std::string &stageInfoPath, const std::string &bossInfoPath, std::vector<EnemyStatus> &outEnemies, std::vector<SpellInfo> &spells, int *allStageLength)
 {
     outEnemies.clear();
     spells.clear();
@@ -87,6 +87,7 @@ inline bool LoadEnemyDataFromJson(int stageIdx, const std::string &stageInfoPath
 
     int idx = stageIdx - 1;
     Logger::Log("(LoadEnemyDataFromJson)\tstageIdx :" + std::to_string(stageIdx) + ", idx :" + std::to_string(idx), LogLevel::Info);
+    *allStageLength = jStage["stages"].size();
 
     // "stages"配列から指定のステージデータを取得
     if (!jStage.contains("stages") || !jStage["stages"].is_array() || idx >= jStage["stages"].size())

@@ -124,6 +124,6 @@ public:
     bool getOnScreen();
     bool getIsAlive(int index);
     bool isHitPlayer(Player *player);
-    void enemyMove();
+    void enemyMove(Vec2d playerPos);
     Vec2d getPos(int index);
 };
