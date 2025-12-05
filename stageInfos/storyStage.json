@@ -1,21 +1,21 @@
 {
     "stages": [
         {
-            "stage_name": "ステージ1",
-            "fps": 60,
-            "bgm_name": "森のテーマ",
-            "bgm_path": "assets/bgm/stage1_forest.ogg",
+            "stage_name": "stage01",
+            "fps": 7200,
+            "bgm_name": "notitle",
+            "bgm_path": "./",
             "enemies": [
                 {
-                    "name": "Red-1",
+                    "name": "noob",
                     "id": 1,
                     "type": 0,
                     "lives": 1,
-                    "hp": 15,
+                    "hp": 1,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 60,
+                    "spawnTime": 0,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
@@ -26,52 +26,20 @@
                         "y": -32.0
                     },
                     "vel": {
-                        "x": 0.0,
+                        "x": 1.0,
                         "y": 2.0
                     }
                 },
                 {
-                    "name": "Boss01",
+                    "name": "zacho",
                     "id": 2,
-                    "type": 100,
-                    "lives": 3,
-                    "hp": 150,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 360,
-                    "spellCount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 320.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 2.0
-                    }
-                }
-            ]
-        },
-        {
-            "stage_name": "ステージ2",
-            "fps": 60,
-            "bgm_name": "湖上の戦い",
-            "bgm_path": "assets/bgm/stage2_lake.ogg",
-            "enemies": [
-                {
-                    "name": "Red-1",
-                    "id": 1,
                     "type": 0,
                     "lives": 1,
-                    "hp": 15,
+                    "hp": 5,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 60,
+                    "spawnTime": 120,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
@@ -83,19 +51,19 @@
                     },
                     "vel": {
                         "x": 0.0,
-                        "y": 2.0
+                        "y": 1.0
                     }
                 },
                 {
-                    "name": "Boss02",
-                    "id": 2,
-                    "type": 101,
-                    "lives": 5,
-                    "hp": 150,
+                    "name": "zacho",
+                    "id": 3,
+                    "type": 0,
+                    "lives": 1,
+                    "hp": 5,
                     "radius": 12,
                     "shootType": 0,
                     "time": 0,
-                    "spawnTime": 360,
+                    "spawnTime": 120,
                     "spellCount": 0,
                     "isAlive": 0,
                     "isSpell": 0,
@@ -107,7 +75,175 @@
                     },
                     "vel": {
                         "x": 0.0,
-                        "y": 2.0
+                        "y": 1.0
+                    }
+                },
+                {
+                    "name": "zacho",
+                    "id": 4,
+                    "type": 0,
+                    "lives": 1,
+                    "hp": 5,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 120,
+                    "spellCount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 1.0
+                    }
+                },
+                {
+                    "name": "zacho",
+                    "id": 5,
+                    "type": 0,
+                    "lives": 1,
+                    "hp": 5,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 120,
+                    "spellCount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 1.0
+                    }
+                },
+                {
+                    "name": "zacho",
+                    "id": 6,
+                    "type": 0,
+                    "lives": 1,
+                    "hp": 5,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 120,
+                    "spellCount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 1.0
+                    }
+                },
+                {
+                    "name": "zacho",
+                    "id": 7,
+                    "type": 0,
+                    "lives": 1,
+                    "hp": 5,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 120,
+                    "spellCount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 1.0
+                    }
+                },
+                {
+                    "name": "zacho",
+                    "id": 8,
+                    "type": 0,
+                    "lives": 1,
+                    "hp": 5,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 120,
+                    "spellCount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 1.0
+                    }
+                },
+                {
+                    "name": "zacho",
+                    "id": 9,
+                    "type": 0,
+                    "lives": 1,
+                    "hp": 5,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 120,
+                    "spellCount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 1.0
+                    }
+                },
+                {
+                    "name": "zacho",
+                    "id": 10,
+                    "type": 0,
+                    "lives": 1,
+                    "hp": 5,
+                    "radius": 12,
+                    "shootType": 0,
+                    "time": 0,
+                    "spawnTime": 120,
+                    "spellCount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 1.0
                     }
                 }
             ]

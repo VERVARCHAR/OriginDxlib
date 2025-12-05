@@ -3,32 +3,16 @@
         {
             "talks": [
                 {
-                    "talkStr": "やっとここまで来たわね。",
-                    "isTalkEnemy": 0
-                },
-                {
-                    "talkStr": "歓迎するぜ、人間！",
+                    "talkStr": "Hello World!!",
                     "isTalkEnemy": 1
                 },
                 {
-                    "talkStr": "こんな森の奥で何を企んでいる？",
-                    "isTalkEnemy": 0
-                }
-            ]
-        },
-        {
-            "talks": [
-                {
-                    "talkStr": "やっとここまで来たわね。",
+                    "talkStr": "This is Debug Massage",
                     "isTalkEnemy": 0
                 },
                 {
-                    "talkStr": "歓迎するぜ、人間！",
+                    "talkStr": "Yhea",
                     "isTalkEnemy": 1
-                },
-                {
-                    "talkStr": "こんな森の奥で何を企んでいる？",
-                    "isTalkEnemy": 0
                 }
             ]
         }
