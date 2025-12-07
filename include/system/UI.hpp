@@ -46,6 +46,7 @@ using json = nlohmann::json;
 class UI
 {
 private:
+    int preLoadingHandle;
     int titleHandle;
     int UIImageHandle;
     int lifeImageHandle;
@@ -66,7 +67,9 @@ public:
     }
     void getImage();
     void getInGameImage();
-    void loadTitleImages();
+    void loadPreLoadingImages();
+    void drawPreLoading();
+    void drawTitle();
     void drawUI(StageInfo stageInfo);
     void drawBossStatus(EnemyStatus enemyStatus);
     void drawSpellCardText(EnemyStatus enemyStatus, SpellInfo spellInfo, int time);

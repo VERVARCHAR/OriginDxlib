@@ -63,6 +63,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     // タイトル画面用の画像読み込み
     ui.startLoading();
     SetUseASyncLoadFlag(TRUE);
+    ui.loadPreLoadingImages();
     ui.getImage();
     effecter.loadEffecter();
     SetUseASyncLoadFlag(FALSE);
@@ -74,7 +75,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         {
             break;
         }
-        ui.loadingScreen();
+        ui.drawPreLoading();
+        // ui.loadingScreen();
         if (GetASyncLoadNum() == 0 && ui.minLoadingTime > 120)
         {
             scene = TITLE;
@@ -107,6 +109,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     EnemyStatus bossStatus;
 
+    int sceneChangeMinimumTime = 0;
+
     // TODO :Loading
     // Title
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
@@ -120,23 +124,30 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         switch (scene)
         {
         case TITLE: // タイトル処理
-
-            // TODO タイトルの作成
-            // 1が押されたらゲームスタート用のローディング
-            if (Key[KEY_INPUT_1] == 1)
+            if (sceneChangeMinimumTime > 20)
             {
-                ui.startLoading();
-                scene = LOADING;
-                break;
-            }
+                // TODO タイトルの作成
+                // 1が押されたらゲームスタート用のローディング
+                ui.drawTitle();
+                if (Key[KEY_INPUT_1] == 1)
+                {
+                    ui.startLoading();
+                    scene = LOADING;
+                    break;
+                }
 
-            // [DEBUG]
-            if (Key[KEY_INPUT_TAB] == 1)
-            {
-                scene = DEBUG;
-                break;
+                // [DEBUG]
+                if (Key[KEY_INPUT_TAB] == 1)
+                {
+                    scene = DEBUG;
+                    break;
+                }
+                DrawFormatString(30, 30, GetColor(255, 255, 255), L"Title");
             }
-            DrawFormatString(30, 30, GetColor(255, 255, 255), L"Title");
+            else
+            {
+                sceneChangeMinimumTime++;
+            }
             break;
 
         case LOADING: // ローディング

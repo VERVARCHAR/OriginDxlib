@@ -25,47 +25,46 @@ void UI::getImage()
 
 void UI::getInGameImage()
 {
-    titleHandle = LoadGraph(L"..\\..\\assets\\background\\BackGround03.png");
+    UIImageHandle = LoadGraph(L"..\\..\\assets\\background\\assetsEditor\\Background.PNG");
     LoadDivGraph(L"..\\..\\assets\\bombs\\MiddleBomb.png", 8, 8, 1, 512, 512, bombsImageHandle);
     LoadDivGraph(L"..\\..\\assets\\bombs\\LargeBomb.png", 8, 8, 1, 512, 512, &bombsImageHandle[8]);
-    logoHandle = LoadGraph(L"..\\..\\assets\\logos.png");
+    logoHandle = LoadGraph(L"..\\..\\assets\\logo.png");
     lifeImageHandle = LoadGraph(L"..\\..\\assets\\others\\life.png");
     spellImageHandle = LoadGraph(L"..\\..\\assets\\others\\spells.png");
     LoadDivGraph(L"..\\..\\assets\\others\\difficulty.png", 4, 1, 4, 512, 200, difficultyImageHandle);
 }
 
-void loadTitleImages()
+void UI::loadPreLoadingImages()
 {
+    preLoadingHandle = LoadGraph(L"..\\..\\assets\\background\\assetsEditor\\PreLoading.PNG");
+    titleHandle = LoadGraph(L"..\\..\\assets\\background\\assetsEditor\\Title.PNG");
+}
+
+void UI::drawPreLoading()
+{
+    DrawGraph(0, 0, preLoadingHandle, TRUE);
+    minLoadingTime++;
 }
 
 void UI::loadingScreen()
 {
 
     int remain = GetASyncLoadNum();
-    // bool r1 = (CheckHandleASyncLoad(titleHandle) == 0);
-    // bool r2 = (CheckHandleASyncLoad(bombsImageHandle[15]) == 0);
-
-    // ログ＆プログレス
-    // DrawBox(24, 24, 640, 140, GetColor(40, 40, 60), TRUE);
-    // DrawBox(24, 24, 640, 140, GetColor(120, 120, 160), FALSE);
-    // DrawString(32, 40, L"Loading...", GetColor(255, 255, 255));
-
-    // int ready = (r1 ? 1 : 0) + (r2 ? 1 : 0);
-    // int percent = ready * 50; // 2リソース=100%
-
-    // DrawBox(32, 90, 432, 110, GetColor(60, 60, 70), TRUE);
-    // DrawBox(32, 90, 32 + 4 * percent, 110, GetColor(180, 220, 255), TRUE);
-    // DrawFormatString(440, 88, GetColor(255, 255, 255), L"%3d%%  remain=%d", percent, remain);
 
     DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, GetColor(255, 255, 255), L"少女祈祷中");
 
     minLoadingTime++;
 }
 
+void UI::drawTitle()
+{
+    DrawGraph(0, 0, titleHandle, TRUE);
+}
+
 void UI::drawUI(StageInfo stageInfo)
 {
     // 背景
-    DrawGraph(0, 0, titleHandle, TRUE);
+    DrawGraph(0, 0, UIImageHandle, TRUE);
 
     // プレイエリア（左側）: 少し余白を残す
     const int playLeft = 10;

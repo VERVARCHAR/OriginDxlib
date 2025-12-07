@@ -10,6 +10,14 @@ CMakeFiles/
 build/*
 !build/bin
 
+*/zip
+/assets/background/*.zip
+/assets/background/*.jpg
+/assets/background/*
+
+!assets/background/assetsEditor
+
+
 # Windows / misc
 *.user
 *.log
@@ -19,3 +27,4 @@ DXLib/
 dxlib/
 *.lib
 *.dll
+
