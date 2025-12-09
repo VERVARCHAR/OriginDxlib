@@ -206,7 +206,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     if (time == enemies[bossIndex]->enemyStatus.spawnTime + 60)
     {
         isTalk = true;
-        bMgr->removeBomb(bombs);
+        bMgr->removeBomb(bombs, effecter);
     }
 
     // TODO
@@ -289,7 +289,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     // ボス撃破処理
     if (isClearStage && time > 0)
     {
-        bMgr->removeBomb(bombs);
+        bMgr->removeBomb(bombs, effecter);
         // TODO ステージクリア処理
 
         if (stageInfo.stage == allStageLength)
@@ -350,30 +350,3 @@ void StageManager::getGameOver(Player *player)
         isGameOver = true;
     }
 }
-
-// // TODO : 会話データをJSONでもなんでもいいから外部から取得しないとだね
-// void StageManager::talk(int type)
-// {
-//     switch (type)
-//     {
-//     case 100:
-//         talkString[0] = "talk01";
-//         talkWho[0] = 0;
-//         talkString[1] = "talk02";
-//         talkWho[1] = 0;
-//         talkString[2] = "talk03";
-//         talkWho[2] = 1;
-//         talkString[3] = "talk04";
-//         talkWho[3] = 0;
-//         talkString[4] = "talk05";
-//         talkWho[4] = 1;
-//         talkString[5] = "talk06";
-//         talkWho[5] = 0;
-//         talkString[6] = "talk07";
-//         talkWho[6] = 1;
-//         break;
-
-//     default:
-//         break;
-//     }
-// }

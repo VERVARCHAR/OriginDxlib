@@ -31,15 +31,16 @@ void Effecter::loadEffecter()
     LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadSakura.png", 9, 3, 3, 341, 341, enemyExplodeHandle[0]);
     // LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadEffect02.png", 10, 10, 1, 240, 240, enemyExplodeHandle[1]);
     // LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadEffect03.png", 10, 10, 1, 240, 240, enemyExplodeHandle[2]);
-    // bulletVanishHandle = LoadGraph("../../../img/effect/bulletVanish.png");
+    LoadDivGraph(L"..\\..\\assets\\effects\\sakuraEffect02.png", 12, 4, 3, 256, 256, bulletVanishHandle);
     LoadDivGraph(L"..\\..\\assets\\effects\\playerDeadEffect.png", 10, 10, 1, 360, 360, playerExplodeHandle);
     LoadDivGraph(L"..\\..\\assets\\effects\\effectParticle.png", 16, 4, 4, 256, 256, particleHandle);
     LoadDivGraph(L"..\\..\\assets\\effects\\sakuraEffect.png", 12, 4, 3, 256, 256, sakuraEffect);
 
-    seShot = LoadSoundMem(L"..\\..\\assets\\SE\\se_beam05.mp3");
+    seShot = LoadSoundMem(L"..\\..\\assets\\SE\\se_beam06.mp3");
     ChangeVolumeSoundMem(128, seShot);
     seEnemyDead = LoadSoundMem(L"..\\..\\assets\\SE\\enemy_dead.mp3");
     sePlayerDead = LoadSoundMem(L"..\\..\\assets\\SE\\player_dead.wav");
+    seVanish = LoadSoundMem(L"..\\..\\assets\\SE\\se_beam06.mp3");
     // seBomb = LoadSoundMem("../../../se/bomb.wav");
     SetUseASyncLoadFlag(FALSE);
 }
@@ -85,7 +86,7 @@ void Effecter::effecterDraw()
             handle = enemyExplodeHandle[0][(int)(e.time / 3)];
             break;
         case EffectType::BulletVanish:
-            handle = bulletVanishHandle;
+            handle = bulletVanishHandle[(int)(e.time / 6)];
             break;
         case EffectType::PlayerExplode:
             handle = playerExplodeHandle[(int)(e.time / 6)];
@@ -171,7 +172,7 @@ void Effecter::playEnemyExplode(const Vec2d &pos)
 void Effecter::playBulletVanish(const Vec2d &pos)
 {
     spawnEffect(EffectType::BulletVanish, pos);
-    // 消滅音を鳴らすならここ
+    PlaySoundMem(seVanish, DX_PLAYTYPE_BACK);
 }
 
 void Effecter::playPlayerExplode(const Vec2d &pos)

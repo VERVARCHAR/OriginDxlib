@@ -172,12 +172,13 @@ bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius, int *grazeCount)
     return false;
 }
 
-void BombManager::removeBomb(BombInfo bombs[MAX_BOMBS])
+void BombManager::removeBomb(BombInfo bombs[MAX_BOMBS], Effecter *effecter)
 {
     for (int i = 0; i < MAX_BOMBS; i++)
     {
-        if (bombs[i].isUsing)
+        if (bombs[i].isUsing && !bombs[i].isPlayers)
         {
+            effecter->playBulletVanish(bombs[i].pos);
             initBomb(&bombs[i]);
         }
     }

@@ -5,6 +5,8 @@
 #include "system/utils.hpp"
 #endif
 
+#include <string>
+
 #define MAX_EFFECTS 256
 
 enum class EffectType
@@ -71,7 +73,7 @@ private:
     // 画像ハンドル
     int hitSparkHandle = -1;
     int enemyExplodeHandle[3][10] = {0};
-    int bulletVanishHandle = -1;
+    int bulletVanishHandle[12] = {-1};
     int playerExplodeHandle[10] = {0};
     int particleHandle[16] = {0};
     int sakuraEffect[12] = {0};
@@ -81,6 +83,10 @@ private:
     int seEnemyDead = -1;
     int sePlayerDead = -1;
     int seBomb = -1;
+    int seVanish = -1;
+    int seGraze = -1;
+    int seSpell = -1;
+    int seCountdown = -1;
 
     int getEmptyIndex();
     void spawnEffect(EffectType type, const Vec2d &pos);

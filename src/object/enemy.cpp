@@ -114,7 +114,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
                 enemyStatus.invincibleTime = 120;
                 enemyStatus.hp = enemyStatus.maxHp;
                 enemyStatus.spellCount += 1;
-                bMgr->removeBomb(bombs);
+                bMgr->removeBomb(bombs, effecter);
             }
         }
 
@@ -139,7 +139,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             {
                 enemyStatus.isSpell = true;
                 enemyStatus.time = -120;
-                bMgr->removeBomb(bombs);
+                bMgr->removeBomb(bombs, effecter);
                 enemyStatus.isInvincible = true;
                 enemyStatus.invincibleTime = 120;
                 // enemyStatus.spellStartTime = time;

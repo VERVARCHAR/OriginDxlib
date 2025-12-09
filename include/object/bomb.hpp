@@ -43,6 +43,12 @@ typedef struct BombInfo
     int vanishTime;
 } bombInfo;
 
+#ifndef _EFFECTER_HPP_
+#define _EFFECTER_HPP_
+#include "system/effecter.hpp"
+#endif
+class Effecter;
+
 class BombManager
 {
 private:
@@ -70,7 +76,7 @@ public:
 
     void initBomb(BombInfo *);
 
-    void removeBomb(BombInfo bombs[MAX_BOMBS]);
+    void removeBomb(BombInfo bombs[MAX_BOMBS], Effecter *effecter);
 };
 
 bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius);

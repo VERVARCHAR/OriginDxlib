@@ -73,106 +73,103 @@ void UI::drawUI(StageInfo stageInfo)
     const int playBottom = WINDOW_HEIGHT - 10;
     DrawBox(playLeft, playTop, playRight, playBottom, GetColor(0, 255, 0), TRUE);
 
-    /*
-        // ==============================
-        // 右側 UI パネル
-        // ==============================
-        const int uiLeft = playRight + 20;     // プレイエリアと少し隙間をあける
-        const int uiRight = WINDOW_WIDTH - 30; // 右端にも余白
-        const int uiTop = 30;
-        const int uiBottom = WINDOW_HEIGHT / 2 + 50; // HUD は上のほうだけ使う
+    // ==============================
+    // 右側 UI パネル
+    // ==============================
+    const int uiLeft = playRight + 20;     // プレイエリアと少し隙間をあける
+    const int uiRight = WINDOW_WIDTH - 30; // 右端にも余白
+    const int uiTop = 30;
+    const int uiBottom = WINDOW_HEIGHT / 2 + 50; // HUD は上のほうだけ使う
 
-        // パネル背景と枠線
-        DrawBox(uiLeft, uiTop, uiRight, uiBottom, GetColor(0, 0, 0), TRUE);
-        DrawBox(uiLeft, uiTop, uiRight, uiBottom, GetColor(80, 80, 160), FALSE);
+    // パネル背景と枠線
+    // DrawBox(uiLeft, uiTop, uiRight, uiBottom, GetColor(0, 0, 0), TRUE);
+    // DrawBox(uiLeft, uiTop, uiRight, uiBottom, GetColor(80, 80, 160), FALSE);
 
-        // テキストのベース座標
-        int textX = uiLeft + 20;
-        int textY = uiTop + 20;
+    // テキストのベース座標
+    int textX = uiLeft + 20;
+    int textY = uiTop + 20;
 
-        // ==============================
-        // 難易度
-        // ==============================
-        DrawFormatString(textX, textY, GetColor(255, 255, 255), L"DIFFICULTY");
-        textY += 20;
+    // ==============================
+    // 難易度
+    // ==============================
+    // DrawFormatString(textX, textY, GetColor(255, 255, 255), L"DIFFICULTY");
+    textY += 20;
 
-        // 元コードと同じサイズ (256 x 100) で配置
-        const int diffW = 256;
-        const int diffH = 100;
-        int diffX1 = uiRight - diffW - 20;
-        int diffY1 = uiTop + 10;
-        int diffX2 = diffX1 + diffW;
-        int diffY2 = diffY1 + diffH;
+    // 元コードと同じサイズ (256 x 100) で配置
+    const int diffW = 256;
+    const int diffH = 100;
+    int diffX1 = uiRight - diffW - 20;
+    int diffY1 = uiTop + 10;
+    int diffX2 = diffX1 + diffW;
+    int diffY2 = diffY1 + diffH;
 
-        DrawExtendGraph(
-            diffX1, diffY1,
-            diffX2, diffY2,
-            difficultyImageHandle[stageInfo.difficulty - 1],
-            TRUE);
+    DrawExtendGraph(
+        922, 15,
+        1178, 115,
+        difficultyImageHandle[stageInfo.difficulty - 1],
+        TRUE);
 
-        // ==============================
-        // スコア
-        // ==============================
-        textY = diffY2 + 10;
-        DrawFormatString(textX, textY, GetColor(255, 255, 255), L"SCORE : %d", stageInfo.score);
-        textY += 30;
+    // ==============================
+    // スコア
+    // ==============================
+    textY = diffY2 + 10;
+    DrawFormatString(1000, 155, GetColor(255, 255, 255), L"%12d", stageInfo.score);
+    textY += 30;
 
-        // ==============================
-        // ライフ（星アイコン）
-        // ==============================
-        DrawFormatString(textX, textY, GetColor(255, 255, 255), L"LIFE");
-        textY += 20;
+    // ==============================
+    // グレイス表示
+    // ==============================
+    DrawFormatString(1000, 200, GetColor(255, 255, 255), L"%d", stageInfo.nowStatus.grazeCount);
 
-        const int iconSize = 50; // 元コードと同じ 50x50
-        const int lifeBaseX = textX + 80;
-        const int lifeY1 = textY;
-        const int lifeY2 = lifeY1 + iconSize;
+    // ==============================
+    // ライフ（星アイコン）
+    // ==============================
+    DrawFormatString(textX, textY, GetColor(255, 255, 255), L"LIFE");
+    textY += 20;
 
-        for (int i = 0; i < stageInfo.nowStatus.lives; i++)
-        {
-            int x1 = lifeBaseX + i * (iconSize + 6);
-            int x2 = x1 + iconSize;
-            DrawExtendGraph(x1, lifeY1, x2, lifeY2, lifeImageHandle, TRUE);
-        }
-        textY = lifeY2 + 10;
+    const int iconSize = 50; // 元コードと同じ 50x50
+    const int lifeBaseX = 1000;
+    const int lifeY1 = 280;
+    const int lifeY2 = lifeY1 + iconSize;
 
-        // ==============================
-        // ボム（ハートアイコン）
-        // ==============================
-        DrawFormatString(textX, textY, GetColor(255, 255, 255), L"BOMB");
-        textY += 20;
+    for (int i = 0; i < stageInfo.nowStatus.lives; i++)
+    {
+        int x1 = lifeBaseX + i * (iconSize + 6);
+        int x2 = x1 + iconSize;
+        DrawExtendGraph(x1, lifeY1, x2, lifeY2, lifeImageHandle, TRUE);
+    }
+    textY = lifeY2 + 10;
 
-        const int spellBaseX = textX + 80;
-        const int spellY1 = textY;
-        const int spellY2 = spellY1 + iconSize;
+    // ==============================
+    // ボム（ハートアイコン）
+    // ==============================
+    // DrawFormatString(textX, textY, GetColor(255, 255, 255), L"BOMB");
+    textY += 20;
 
-        for (int i = 0; i < stageInfo.nowStatus.spells; i++)
-        {
-            int x1 = spellBaseX + i * (iconSize + 6);
-            int x2 = x1 + iconSize;
-            DrawExtendGraph(x1, spellY1, x2, spellY2, spellImageHandle, TRUE);
-        }
-        textY = spellY2 + 10;
+    const int spellBaseX = 1000;
+    const int spellY1 = 320;
+    const int spellY2 = spellY1 + iconSize;
 
-        // ==============================
-        // パワー表示
-        // ==============================
-        DrawFormatString(textX, textY, GetColor(255, 255, 255),
-                         L"POWER : %lf / 5.00", stageInfo.nowStatus.power);
+    for (int i = 0; i < stageInfo.nowStatus.spells; i++)
+    {
+        int x1 = spellBaseX + i * (iconSize + 6);
+        int x2 = x1 + iconSize;
+        DrawExtendGraph(x1, spellY1, x2, spellY2, spellImageHandle, TRUE);
+    }
+    textY = spellY2 + 10;
 
-        textY += 10;
+    // ==============================
+    // パワー表示
+    // ==============================
+    DrawFormatString(1000, 400, GetColor(255, 255, 255),
+                     L"%lf / 5.00", stageInfo.nowStatus.power);
 
-        // ==============================
-        // グレイス表示
-        // ==============================
-        DrawFormatString(textX, textY, GetColor(255, 255, 255),
-                         L"GRAZE : %d", stageInfo.nowStatus.grazeCount);
+    textY += 10;
 
-        // ロゴ
-        DrawGraph(WINDOW_WIDTH - 400, WINDOW_HEIGHT - 300, logoHandle, TRUE);
-        // [DEBUG]
-        // printfDx(L"lifeHandle : %d , spellHandle : %d\n", lifeImageHandle, spellImageHandle);
-        */
+    // ロゴ
+    DrawGraph(WINDOW_WIDTH - 400, WINDOW_HEIGHT - 300, logoHandle, TRUE);
+    // [DEBUG]
+    // printfDx(L"lifeHandle : %d , spellHandle : %d\n", lifeImageHandle, spellImageHandle);
 }
 
 void UI::drawBossStatus(EnemyStatus enemyStatus)
