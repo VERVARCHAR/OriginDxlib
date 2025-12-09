@@ -146,3 +146,9 @@
 [Info] (LoadTalkDataFromJson) 	This is Debug Massage
 [Info] (LoadTalkDataFromJson) 	Yeah
 [Info] (loadEnemy) pass loadEnemy.
+[Info] (updateStage) pass spawnEnemy : 0
+[Info] (updateStage) pass spawnEnemy : 1
+[Info] (updateStage) pass spawnEnemy : 2
+[Info] (updateStage) pass spawnEnemy : 3
+[Info] (updateStage) pass spawnEnemy : 4
+[Info] (updateStage) pass spawnEnemy : 5
