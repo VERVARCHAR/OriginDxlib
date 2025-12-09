@@ -73,6 +73,8 @@ private:
     int enemyExplodeHandle[3][10] = {0};
     int bulletVanishHandle = -1;
     int playerExplodeHandle[10] = {0};
+    int particleHandle[16] = {0};
+    int sakuraEffect[12] = {0};
 
     // SE ハンドル
     int seShot = -1;

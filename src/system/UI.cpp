@@ -36,23 +36,24 @@ void UI::getInGameImage()
 
 void UI::loadPreLoadingImages()
 {
+    loadingHandle = LoadGraph(L"..\\..\\assets\\others\\loading.png");
     preLoadingHandle = LoadGraph(L"..\\..\\assets\\background\\assetsEditor\\PreLoading.PNG");
     titleHandle = LoadGraph(L"..\\..\\assets\\background\\assetsEditor\\Title.PNG");
+    LoadDivGraph(L"..\\..\\assets\\effects\\loadingParticle.png", 2, 2, 1, 256, 256, loadingSakuraHandle);
 }
 
 void UI::drawPreLoading()
 {
     DrawGraph(0, 0, preLoadingHandle, TRUE);
+    DrawGraph(WINDOW_WIDTH - 256 - 20, WINDOW_HEIGHT - 144 - 30, loadingSakuraHandle[(minLoadingTime / 12) % 2], TRUE);
+    DrawExtendGraph(WINDOW_WIDTH - 256 - 20, WINDOW_HEIGHT - 144 - 20, WINDOW_WIDTH - 20, WINDOW_HEIGHT - 20, loadingHandle, TRUE);
     minLoadingTime++;
 }
 
 void UI::loadingScreen()
 {
-
-    int remain = GetASyncLoadNum();
-
-    DrawFormatString(WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, GetColor(255, 255, 255), L"少女祈祷中");
-
+    DrawGraph(WINDOW_WIDTH - 256 - 20, WINDOW_HEIGHT - 144 - 30, loadingSakuraHandle[(minLoadingTime / 12) % 2], TRUE);
+    DrawExtendGraph(WINDOW_WIDTH - 256 - 20, WINDOW_HEIGHT - 144 - 20, WINDOW_WIDTH - 20, WINDOW_HEIGHT - 20, loadingHandle, TRUE);
     minLoadingTime++;
 }
 

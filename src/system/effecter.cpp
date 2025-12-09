@@ -28,11 +28,13 @@ void Effecter::loadEffecter()
 
     // TODO: 実際のパスはプロジェクト構成に合わせて
     // hitSparkHandle = LoadGraph("../../../img/effect/hitSpark.png");
-    LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadEffect01.png", 10, 10, 1, 240, 240, enemyExplodeHandle[0]);
-    LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadEffect02.png", 10, 10, 1, 240, 240, enemyExplodeHandle[1]);
-    LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadEffect03.png", 10, 10, 1, 240, 240, enemyExplodeHandle[2]);
+    LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadSakura.png", 9, 3, 3, 341, 341, enemyExplodeHandle[0]);
+    // LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadEffect02.png", 10, 10, 1, 240, 240, enemyExplodeHandle[1]);
+    // LoadDivGraph(L"..\\..\\assets\\effects\\enemyDeadEffect03.png", 10, 10, 1, 240, 240, enemyExplodeHandle[2]);
     // bulletVanishHandle = LoadGraph("../../../img/effect/bulletVanish.png");
     LoadDivGraph(L"..\\..\\assets\\effects\\playerDeadEffect.png", 10, 10, 1, 360, 360, playerExplodeHandle);
+    LoadDivGraph(L"..\\..\\assets\\effects\\effectParticle.png", 16, 4, 4, 256, 256, particleHandle);
+    LoadDivGraph(L"..\\..\\assets\\effects\\sakuraEffect.png", 12, 4, 3, 256, 256, sakuraEffect);
 
     seShot = LoadSoundMem(L"..\\..\\assets\\SE\\se_beam05.mp3");
     ChangeVolumeSoundMem(128, seShot);
@@ -80,10 +82,10 @@ void Effecter::effecterDraw()
             // handle = hitSparkHandle;
             break;
         case EffectType::EnemyExplode:
-            handle = enemyExplodeHandle[0][(int)(e.time / 6)];
+            handle = enemyExplodeHandle[0][(int)(e.time / 3)];
             break;
         case EffectType::BulletVanish:
-            // handle = bulletVanishHandle;
+            handle = bulletVanishHandle;
             break;
         case EffectType::PlayerExplode:
             handle = playerExplodeHandle[(int)(e.time / 6)];
@@ -139,6 +141,8 @@ void Effecter::spawnEffect(EffectType type, const Vec2d &pos)
         break;
     case EffectType::EnemyExplode:
         e.lifeTime = 60;
+        e.scale = 0.5f;
+        e.alpha = 128;
         break;
     case EffectType::BulletVanish:
         e.lifeTime = 60;

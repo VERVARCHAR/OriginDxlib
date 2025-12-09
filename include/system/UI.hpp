@@ -47,6 +47,8 @@ class UI
 {
 private:
     int preLoadingHandle;
+    int loadingHandle;
+    int loadingSakuraHandle[12];
     int titleHandle;
     int UIImageHandle;
     int lifeImageHandle;
