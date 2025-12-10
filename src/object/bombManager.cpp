@@ -152,7 +152,7 @@ bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius)
     return false;
 }
 
-bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius, int *grazeCount)
+bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius, int *grazeCount, Effecter *effecter)
 {
 
     if (bomb->isUsing)
@@ -166,6 +166,7 @@ bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius, int *grazeCount)
         {
             *grazeCount += 1;
             bomb->isGraze = true;
+            effecter->playGraze(pos);
         }
     }
 
@@ -182,4 +183,5 @@ void BombManager::removeBomb(BombInfo bombs[MAX_BOMBS], Effecter *effecter)
             initBomb(&bombs[i]);
         }
     }
+    effecter->PlaySE_BombVanish();
 }

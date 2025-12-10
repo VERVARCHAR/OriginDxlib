@@ -80,4 +80,4 @@ public:
 };
 
 bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius);
-bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius, int *grazeCount);
+bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius, int *grazeCount, Effecter *effecter);

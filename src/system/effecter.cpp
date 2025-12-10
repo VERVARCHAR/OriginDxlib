@@ -38,9 +38,11 @@ void Effecter::loadEffecter()
 
     seShot = LoadSoundMem(L"..\\..\\assets\\SE\\se_beam06.mp3");
     ChangeVolumeSoundMem(128, seShot);
-    seEnemyDead = LoadSoundMem(L"..\\..\\assets\\SE\\enemy_dead.mp3");
+    seEnemyDead = LoadSoundMem(L"..\\..\\assets\\SE\\enemy_vanish.wav");
     sePlayerDead = LoadSoundMem(L"..\\..\\assets\\SE\\player_dead.wav");
-    seVanish = LoadSoundMem(L"..\\..\\assets\\SE\\se_beam06.mp3");
+    seVanish = LoadSoundMem(L"..\\..\\assets\\SE\\bomb_vanish.wav");
+    seGraze = LoadSoundMem(L"..\\..\\assets\\SE\\graze.wav");
+    seSpell = LoadSoundMem(L"..\\..\\assets\\SE\\spell.wav");
     // seBomb = LoadSoundMem("../../../se/bomb.wav");
     SetUseASyncLoadFlag(FALSE);
 }
@@ -91,6 +93,15 @@ void Effecter::effecterDraw()
         case EffectType::PlayerExplode:
             handle = playerExplodeHandle[(int)(e.time / 6)];
             break;
+        case EffectType::Spell:
+            // handle = playerExplodeHandle[(int)(e.time / 6)];
+            break;
+        case EffectType::Graze:
+            // handle = playerExplodeHandle[(int)(e.time / 6)];
+            break;
+        // case EffectType::PlayerExplode:
+        //     handle = playerExplodeHandle[(int)(e.time / 6)];
+        //     break;
         default:
             break;
         }
@@ -151,6 +162,12 @@ void Effecter::spawnEffect(EffectType type, const Vec2d &pos)
     case EffectType::PlayerExplode:
         e.lifeTime = 60;
         break;
+    case EffectType::Spell:
+        e.lifeTime = 120;
+        break;
+    case EffectType::Graze:
+        e.lifeTime = 10;
+        break;
     default:
         e.lifeTime = 60;
         break;
@@ -172,7 +189,7 @@ void Effecter::playEnemyExplode(const Vec2d &pos)
 void Effecter::playBulletVanish(const Vec2d &pos)
 {
     spawnEffect(EffectType::BulletVanish, pos);
-    PlaySoundMem(seVanish, DX_PLAYTYPE_BACK);
+    // PlaySoundMem(seVanish, DX_PLAYTYPE_BACK);
 }
 
 void Effecter::playPlayerExplode(const Vec2d &pos)
@@ -181,8 +198,22 @@ void Effecter::playPlayerExplode(const Vec2d &pos)
     PlaySoundMem(sePlayerDead, DX_PLAYTYPE_BACK);
 }
 
+void Effecter::playSpell(const Vec2d &pos)
+{
+    spawnEffect(EffectType::Spell, pos);
+    PlaySoundMem(seSpell, DX_PLAYTYPE_BACK);
+}
+
+void Effecter::playGraze(const Vec2d &pos)
+{
+    spawnEffect(EffectType::Graze, pos);
+    PlaySoundMem(seGraze, DX_PLAYTYPE_BACK);
+}
+
 // SE だけ鳴らすAPIも一応用意
 void Effecter::playSE_Shot() { PlaySoundMem(seShot, DX_PLAYTYPE_BACK); }
 void Effecter::playSE_EnemyDead() { PlaySoundMem(seEnemyDead, DX_PLAYTYPE_BACK); }
 void Effecter::playSE_PlayerDead() { PlaySoundMem(sePlayerDead, DX_PLAYTYPE_BACK); }
 void Effecter::playSE_Bomb() { PlaySoundMem(seBomb, DX_PLAYTYPE_BACK); }
+void Effecter::PlaySE_BombVanish() { PlaySoundMem(seVanish, DX_PLAYTYPE_BACK); };
+;

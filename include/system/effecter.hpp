@@ -16,9 +16,10 @@ enum class EffectType
     EnemyShoot,
     PlayerExplode,
     PlayerShoot,
-    PlayerSpell,
+    Spell,
     BulletVanish,
     TextPopup,
+    Graze,
 };
 
 struct Effect
@@ -61,11 +62,14 @@ public:
     void playEnemyExplode(const Vec2d &pos);
     void playBulletVanish(const Vec2d &pos);
     void playPlayerExplode(const Vec2d &pos);
+    void playSpell(const Vec2d &pos);
+    void playGraze(const Vec2d &pos);
 
     void playSE_Shot();
     void playSE_EnemyDead();
     void playSE_PlayerDead();
     void playSE_Bomb();
+    void PlaySE_BombVanish();
 
 private:
     Effect effects[MAX_EFFECTS];

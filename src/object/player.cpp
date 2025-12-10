@@ -74,7 +74,7 @@ void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter
     {
         for (int i = 0; i < MAX_BOMBS; i++)
         {
-            if (bombs[i].isUsing && !bombs[i].isPlayers && isHitBomb(&bombs[i], pos, radius, &status.grazeCount))
+            if (bombs[i].isUsing && !bombs[i].isPlayers && isHitBomb(&bombs[i], pos, radius, &status.grazeCount, effecter))
             {
                 Dead();
                 effecter->playPlayerExplode(pos);
@@ -83,12 +83,14 @@ void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter
     }
     else
     {
-        status.invincibleTime -= 1;
-
         // ボム発動中
         if (status.isSpells)
         {
             SpelCard(bMgr, bombs);
+            if (status.invincibleTime == 300)
+            {
+                effecter->playSpell(pos);
+            }
         }
 
         if (status.invincibleTime == 0)
@@ -100,6 +102,7 @@ void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter
                 status.isSpells = false;
             }
         }
+        status.invincibleTime -= 1;
     }
     chattering = false;
 }
@@ -150,7 +153,7 @@ void Player::getKeyInput(bool isTalk)
             status.spells -= 1;
             status.isSpells = true;
             status.invincible = true;
-            status.invincibleTime = 5 * 60;
+            status.invincibleTime = 300;
         }
     }
     if (Key[KEY_INPUT_Z] > 0 && Key[KEY_INPUT_Z] % 5 == 0)
