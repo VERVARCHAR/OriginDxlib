@@ -57,6 +57,8 @@ private:
     int logoHandle;
     int gameImageHandle[7];
     int stageImageHandle[7];
+    int playerImageHandle;
+    int enemyImageHandle;
 
 public:
     UI();
@@ -90,6 +92,11 @@ public:
     int getSpellImageHandle()
     {
         return spellImageHandle;
+    }
+
+    int getEnemyCutInHandle()
+    {
+        return enemyImageHandle;
     }
 };
 

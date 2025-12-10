@@ -33,6 +33,8 @@ void UI::getInGameImage()
     spellImageHandle = LoadGraph(L"..\\..\\assets\\others\\spells.png");
     LoadDivGraph(L"..\\..\\assets\\others\\difficulty.png", 4, 1, 4, 512, 200, difficultyImageHandle);
     stageImageHandle[0] = LoadGraph(L"..\\..\\assets\\background\\st01\\st01.PNG");
+    playerImageHandle = LoadGraph(L"..\\..\\assets\\player\\CutIn_PlayerChar01.png");
+    enemyImageHandle = LoadGraph(L"..\\..\\assets\\enemy\\cutin_lily.png");
 }
 
 void UI::loadPreLoadingImages()
@@ -203,11 +205,19 @@ void UI::talkUI(std::wstring talkString, int talkWho)
 {
     if (talkWho == 0)
     {
-        DrawBox(330, 200, (int)(WINDOW_WIDTH * 0.6) - 30, 500, GetColor(255, 0, 0), TRUE);
+        // DrawBox(330, 200, (int)(WINDOW_WIDTH * 0.6) - 30, 500, GetColor(255, 0, 0), TRUE);
+        SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+        DrawGraph(500, 200, enemyImageHandle, TRUE);
+        SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+        DrawGraph(30, 180, playerImageHandle, TRUE);
     }
     else
     {
-        DrawBox(30, 150, 330, 450, GetColor(0, 255, 0), TRUE);
+        // DrawBox(30, 150, 330, 450, GetColor(0, 255, 0), TRUE);
+        SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+        DrawGraph(30, 200, playerImageHandle, TRUE);
+        SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+        DrawGraph(500, 180, enemyImageHandle, TRUE);
     }
 
     // [DEBUG]

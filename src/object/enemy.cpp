@@ -100,7 +100,8 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
 
                 // TODO effect
                 // TODO cutIn
-                effecter->playSpell(enemyStatus.pos);
+                Vec2d cutIn = {790, 100};
+                effecter->playEnemySpell(cutIn);
             }
         }
 

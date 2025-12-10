@@ -168,6 +168,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 sMgr.loadEnemy();
                 bMgr.setBombsHandle(ui.bombsImageHandle);
                 iMgr.loadImagehandle(ui.getLifeImageHandle(), ui.getSpellImageHandle());
+                effecter.setEnemyCutInImage(ui.getEnemyCutInHandle());
 
                 SetUseASyncLoadFlag(FALSE);
             }

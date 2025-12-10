@@ -17,6 +17,7 @@ enum class EffectType
     PlayerExplode,
     PlayerShoot,
     Spell,
+    EnemySpell,
     BulletVanish,
     TextPopup,
     Graze,
@@ -63,6 +64,7 @@ public:
     void playBulletVanish(const Vec2d &pos);
     void playPlayerExplode(const Vec2d &pos);
     void playSpell(const Vec2d &pos);
+    void playEnemySpell(const Vec2d &pos);
     void playGraze(const Vec2d &pos);
 
     void playSE_Shot();
@@ -70,6 +72,8 @@ public:
     void playSE_PlayerDead();
     void playSE_Bomb();
     void PlaySE_BombVanish();
+
+    void setEnemyCutInImage(int handle) { enemyCutInhandle = handle; };
 
 private:
     Effect effects[MAX_EFFECTS];
@@ -81,6 +85,7 @@ private:
     int playerExplodeHandle[10] = {0};
     int particleHandle[16] = {0};
     int sakuraEffect[12] = {0};
+    int enemyCutInhandle = -1;
 
     // SE ハンドル
     int seShot = -1;

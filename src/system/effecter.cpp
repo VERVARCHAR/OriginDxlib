@@ -76,7 +76,7 @@ void Effecter::effecterDraw()
     {
         if (!effects[i].isAlive)
             continue;
-        const Effect &e = effects[i];
+        Effect &e = effects[i];
 
         int handle = -1;
         switch (e.type)
@@ -95,6 +95,24 @@ void Effecter::effecterDraw()
             break;
         case EffectType::Spell:
             // handle = playerExplodeHandle[(int)(e.time / 6)];
+            break;
+        case EffectType::EnemySpell:
+
+            SetDrawBlendMode(DX_BLENDMODE_ALPHA, 64);
+            DrawBox(10, 10, 790, 710, GetColor(255, 255, 255), TRUE);
+            SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+
+            if (e.time < 60)
+            {
+                e.pos.x -= 4;
+                e.pos.y += 2;
+            }
+
+            if (e.time > 90)
+            {
+                e.pos.y -= 5;
+            }
+            handle = enemyCutInhandle;
             break;
         case EffectType::Graze:
             // handle = playerExplodeHandle[(int)(e.time / 6)];
@@ -168,6 +186,9 @@ void Effecter::spawnEffect(EffectType type, const Vec2d &pos)
     case EffectType::Graze:
         e.lifeTime = 10;
         break;
+    case EffectType::EnemySpell:
+        e.lifeTime = 120;
+        break;
     default:
         e.lifeTime = 60;
         break;
@@ -201,6 +222,13 @@ void Effecter::playPlayerExplode(const Vec2d &pos)
 void Effecter::playSpell(const Vec2d &pos)
 {
     spawnEffect(EffectType::Spell, pos);
+    PlaySoundMem(seSpell, DX_PLAYTYPE_BACK);
+}
+
+void Effecter::playEnemySpell(const Vec2d &pos)
+{
+    // spawnEffect(EffectType::Spell, pos);
+    spawnEffect(EffectType::EnemySpell, pos);
     PlaySoundMem(seSpell, DX_PLAYTYPE_BACK);
 }
 
