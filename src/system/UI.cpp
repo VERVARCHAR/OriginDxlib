@@ -32,6 +32,7 @@ void UI::getInGameImage()
     lifeImageHandle = LoadGraph(L"..\\..\\assets\\others\\life.png");
     spellImageHandle = LoadGraph(L"..\\..\\assets\\others\\spells.png");
     LoadDivGraph(L"..\\..\\assets\\others\\difficulty.png", 4, 1, 4, 512, 200, difficultyImageHandle);
+    stageImageHandle[0] = LoadGraph(L"..\\..\\assets\\background\\st01\\st01.PNG");
 }
 
 void UI::loadPreLoadingImages()
@@ -65,13 +66,13 @@ void UI::drawTitle()
 void UI::drawUI(StageInfo stageInfo)
 {
     // 背景
-    DrawGraph(0, 0, UIImageHandle, TRUE);
-    // プレイエリア（左側）: 少し余白を残す
     const int playLeft = 10;
     const int playTop = 10;
     const int playRight = (int)(WINDOW_WIDTH * 0.6) + 22; // ちょっとだけ狭めて縁取り
     const int playBottom = WINDOW_HEIGHT - 10;
-    DrawBox(playLeft, playTop, playRight, playBottom, GetColor(0, 255, 0), TRUE);
+    DrawExtendGraph(0, -684 + (time) / 10, playRight, WINDOW_HEIGHT + (time) / 10, stageImageHandle[0], TRUE);
+    DrawGraph(0, 0, UIImageHandle, TRUE);
+    // プレイエリア（左側）: 少し余白を残す
 
     // ==============================
     // 右側 UI パネル
@@ -170,6 +171,7 @@ void UI::drawUI(StageInfo stageInfo)
     DrawGraph(WINDOW_WIDTH - 400, WINDOW_HEIGHT - 300, logoHandle, TRUE);
     // [DEBUG]
     // printfDx(L"lifeHandle : %d , spellHandle : %d\n", lifeImageHandle, spellImageHandle);
+    time++;
 }
 
 void UI::drawBossStatus(EnemyStatus enemyStatus)

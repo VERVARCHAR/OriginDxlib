@@ -56,14 +56,17 @@ private:
     int difficultyImageHandle[4];
     int logoHandle;
     int gameImageHandle[7];
+    int stageImageHandle[7];
 
 public:
     UI();
     ~UI();
     int minLoadingTime;
     int bombsImageHandle[32];
+    int time = 0;
 
-    void startLoading()
+    void
+    startLoading()
     {
         minLoadingTime = 0;
     }

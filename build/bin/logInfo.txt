@@ -152,4 +152,3 @@
 [Info] (updateStage) pass spawnEnemy : 3
 [Info] (updateStage) pass spawnEnemy : 4
 [Info] (updateStage) pass spawnEnemy : 5
-[Info] (updateStage) pass spawnEnemy : 6
