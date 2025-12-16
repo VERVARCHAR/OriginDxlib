@@ -99,7 +99,7 @@ void Effecter::effecterDraw()
         case EffectType::EnemySpell:
 
             SetDrawBlendMode(DX_BLENDMODE_ALPHA, 64);
-            DrawBox(10, 10, 790, 710, GetColor(255, 255, 255), TRUE);
+            DrawBox(10, 10, 790, 710, GetColor(0, 0, 0), TRUE);
             SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
             if (e.time < 60)
@@ -209,8 +209,8 @@ void Effecter::playEnemyExplode(const Vec2d &pos)
 
 void Effecter::playBulletVanish(const Vec2d &pos)
 {
+    PlaySoundMem(seVanish, DX_PLAYTYPE_BACK);
     spawnEffect(EffectType::BulletVanish, pos);
-    // PlaySoundMem(seVanish, DX_PLAYTYPE_BACK);
 }
 
 void Effecter::playPlayerExplode(const Vec2d &pos)

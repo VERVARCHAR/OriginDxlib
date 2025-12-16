@@ -67,6 +67,7 @@ void UI::drawTitle()
 
 void UI::drawUI(StageInfo stageInfo)
 {
+
     // 背景
     const int playLeft = 10;
     const int playTop = 10;
@@ -75,6 +76,9 @@ void UI::drawUI(StageInfo stageInfo)
     DrawExtendGraph(0, -684 + (time) / 10, playRight, WINDOW_HEIGHT + (time) / 10, stageImageHandle[0], TRUE);
     DrawGraph(0, 0, UIImageHandle, TRUE);
     // プレイエリア（左側）: 少し余白を残す
+
+    if (time < 120)
+        drawBorderAllGetItem();
 
     // ==============================
     // 右側 UI パネル
@@ -182,14 +186,19 @@ void UI::drawBossStatus(EnemyStatus enemyStatus)
         return;
 
     const int barWidth = 630;
-    const int barHeight = 5;
+    const int barHeight = 3;
     const int barX = 100;
-    const int barY = 20;
+    const int barY = 25;
 
     double ratio = (double)enemyStatus.hp / enemyStatus.maxHp;
     int currentWidth = (int)(barWidth * ratio);
 
     DrawFormatString(10, barY, GetColor(255, 255, 255), L"%s", enemyStatus.name.c_str());
+
+    for (int i = 0; i < enemyStatus.spellAmount - enemyStatus.spellCount; i++)
+    {
+        DrawFormatString(10 + i * 15, barY - 10, GetColor(255, 0, 0), L"☆");
+    }
 
     // 背景（グレー）
     DrawBox(barX, barY, barX + barWidth, barY + barHeight, GetColor(80, 80, 80), TRUE);
@@ -229,10 +238,23 @@ void UI::drawSpellCardText(EnemyStatus enemyStatus, SpellInfo spellInfo, int tim
 {
     if (enemyStatus.isSpell)
     {
-        if (enemyStatus.time < 120)
-        { // 表示120フレーム
-            DrawFormatString(240, 100, GetColor(255, 128, 255), L"Spell Card!!");
-            DrawFormatString(240, 130, GetColor(255, 255, 255), spellInfo.spellName.c_str());
+        if (enemyStatus.time < 90)
+        {
+            SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+            DrawBox(540, 490, 790, 530, GetColor(0, 0, 0), TRUE);
+            SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+            DrawFormatString(550, 500, GetColor(255, 255, 255), L"%s", spellInfo.spellName.c_str());
         }
+    }
+}
+
+void UI::drawBorderAllGetItem()
+{
+    if (time % 60 <= 30)
+    {
+        const int playLeft = 10;
+        const int playRight = (int)(WINDOW_WIDTH * 0.6) + 22;
+        DrawFormatString(playRight / 2 + playLeft, 120, GetColor(255, 255, 255), L"Border Item Line!!!");
+        DrawLine(playLeft, 120, playRight, 120, GetColor(200, 200, 200), TRUE);
     }
 }

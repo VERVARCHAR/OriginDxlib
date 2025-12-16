@@ -175,6 +175,7 @@ bool isHitBomb(BombInfo *bomb, Vec2d pos, int radius, int *grazeCount, Effecter 
 
 void BombManager::removeBomb(BombInfo bombs[MAX_BOMBS], Effecter *effecter)
 {
+    // effecter->PlaySE_BombVanish();
     for (int i = 0; i < MAX_BOMBS; i++)
     {
         if (bombs[i].isUsing && !bombs[i].isPlayers)
@@ -183,5 +184,4 @@ void BombManager::removeBomb(BombInfo bombs[MAX_BOMBS], Effecter *effecter)
             initBomb(&bombs[i]);
         }
     }
-    effecter->PlaySE_BombVanish();
 }

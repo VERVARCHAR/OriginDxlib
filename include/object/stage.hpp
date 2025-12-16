@@ -93,8 +93,8 @@ class StageManager
 {
 private:
     // TODO StageInfoへの移行
-    int stage;      // ステージ
-    int difficulty; // 難易度
+    // int stage;      // ステージ
+    // int difficulty; // 難易度
 
     StageInfo stageInfo;
 

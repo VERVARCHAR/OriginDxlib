@@ -58,26 +58,43 @@ void ItemManager::updateItems(StageManager *sMgr, Player *player)
 {
     Vec2d playerPos = player->getPosition();
     double dist = 0;
+    double pullPower = 0;
+
+    bool allGetFlag = borderGetAllItem(player);
+
     for (int i = 0; i < MAX_ITEMS; i++)
     {
+
         if (items[i].isActive)
         {
-            //[DEBUG]
-            printfDx(L"Item : %d is Active\n", i);
-            items[i].pos.x += items[i].vel.x;
-            items[i].pos.y += items[i].vel.y;
-            if (items[i].pos.y > WINDOW_HEIGHT + 10)
-            {
-                items[i].isActive = false;
-            }
             dist = calcSquaredDistance(playerPos, items[i].pos);
             double radius = static_cast<double>(items[i].radius);
             double pullRadius = (radius + 30.0);
+            if (allGetFlag)
+            {
+                pullPower = 15;
+                items[i].vel.x = pullPower * (playerPos.x - items[i].pos.x) / sqrt(dist);
+                items[i].vel.y = pullPower * (playerPos.y - items[i].pos.y) / sqrt(dist);
+            }
+            else
+            {
+                pullPower = 10;
+                //[DEBUG]
+                // printfDx(L"Item : %d is Active\n", i);
+            }
+
+            items[i].pos.x += items[i].vel.x;
+            items[i].pos.y += items[i].vel.y;
+
+            if (items[i].pos.y > WINDOW_HEIGHT + 10 || items[i].pos.x < 5 || items[i].pos.x > (int)(WINDOW_WIDTH * 0.6) + 22)
+            {
+                items[i].isActive = false;
+            }
 
             if (dist < pullRadius * pullRadius)
             {
-                items[i].vel.x = 2 * (playerPos.x - items[i].pos.x) / sqrt(dist);
-                items[i].vel.y = 2 * (playerPos.y - items[i].pos.y) / sqrt(dist);
+                items[i].vel.x = pullPower * (playerPos.x - items[i].pos.x) / sqrt(dist);
+                items[i].vel.y = pullPower * (playerPos.y - items[i].pos.y) / sqrt(dist);
                 if (dist < radius * radius)
                 {
                     items[i].isActive = false;
@@ -177,4 +194,13 @@ void ItemManager::spawnItem(ItemType _itemType, Vec2d _pos, Vec2d _vel, int amou
             break;
         }
     }
+}
+
+bool ItemManager::borderGetAllItem(Player *player)
+{
+    if (player->getPosition().y < 150)
+    {
+        return true;
+    }
+    return false;
 }

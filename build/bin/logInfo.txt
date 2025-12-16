@@ -17,6 +17,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:60
 [Info] (LoadEnemyDataFromJson)	push back enemy data time:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
@@ -32,6 +33,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data shootType:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:90
 [Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
@@ -49,6 +51,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:120
 [Info] (LoadEnemyDataFromJson)	push back enemy data time:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
@@ -64,6 +67,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data shootType:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:150
 [Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
@@ -81,6 +85,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:180
 [Info] (LoadEnemyDataFromJson)	push back enemy data time:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
@@ -96,6 +101,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data shootType:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:210
 [Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
@@ -113,6 +119,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:720
 [Info] (LoadEnemyDataFromJson)	push back enemy data time:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:3
 [Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:1

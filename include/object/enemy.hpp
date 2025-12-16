@@ -38,6 +38,7 @@
 class EnemyShootScript;
 class Player;
 class ItemManager;
+typedef struct StageInfo;
 
 typedef struct EnemyStatus
 {
@@ -56,7 +57,7 @@ typedef struct EnemyStatus
     bool isAlive;
     bool isSpell;
     int spellCount;
-    // int spellStartTime;
+    int spellAmount;
     bool isInvincible;
     int invincibleTime;
     std::wstring name; // 名前
@@ -119,7 +120,7 @@ public:
     void getBMgrData(BombManager &_BombManager);
     void enemyDraw();
     void setImageHandle(int handle) { this->imageHandle = handle; };
-    void enemyUpdate(int, int, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript *, Player *player, Effecter *effecter, ItemManager *iMgr);
+    void enemyUpdate(int, StageInfo *, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript *, Player *player, Effecter *effecter, ItemManager *iMgr);
     void shootBomb(EnemyShootScript *, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player);
     bool getOnScreen();
     bool getIsAlive(int index);

@@ -154,6 +154,8 @@ inline bool LoadEnemyDataFromJson(int stageIdx, const std::string &stageInfoPath
         Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data time:" + to_string(e.time), LogLevel::Info);
         e.spellCount = item.value("spellCount", 0);
         Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data spellCount:" + to_string(e.spellCount), LogLevel::Info);
+        e.spellAmount = item.value("spellAmount", 0);
+        Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data spellCount:" + to_string(e.spellAmount), LogLevel::Info);
         e.isAlive = item.value("isAlive", 0);
         Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy data isAlive:" + to_string(e.isAlive), LogLevel::Info);
         e.isSpell = item.value("isSpell", 0);

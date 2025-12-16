@@ -168,6 +168,7 @@
                     "time": 0,
                     "spawnTime": 720,
                     "spellCount": 0,
+                    "spellAmount": 3,
                     "isAlive": 0,
                     "isSpell": 0,
                     "isInvincible": 1,

@@ -78,4 +78,5 @@ public:
     void drawItems();
     void loadImagehandle(int _livesImageHandle, int _spellImageHandle);
     void spawnItem(ItemType _itemType, Vec2d _pos, Vec2d _vel, int amount);
+    bool borderGetAllItem(Player *player);
 };

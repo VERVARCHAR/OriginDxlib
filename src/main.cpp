@@ -243,7 +243,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             }
 
             // [DEBUG]
-            bMgr.DEBUG_printAllBombs(bombs);
+            // bMgr.DEBUG_printAllBombs(bombs);
             // sMgr.DEBUG_print_enemies();
 
             break;

@@ -47,7 +47,7 @@ void Enemy::enemyDraw()
     }
 }
 
-void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript *enemyShootScript, Player *player, Effecter *effecter, ItemManager *iMgr)
+void Enemy::enemyUpdate(int time, StageInfo *stageInfo, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], EnemyShootScript *enemyShootScript, Player *player, Effecter *effecter, ItemManager *iMgr)
 {
     if (!enemyStatus.isAlive)
     {
@@ -80,8 +80,16 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             if (enemyStatus.lives == 0)
             {
                 effecter->playEnemyExplode(enemyStatus.pos);
-                iMgr->spawnItem(ItemType::SCORE, enemyStatus.pos, {0, 2}, difficulty + 2);
-                iMgr->spawnItem(ItemType::POWER, enemyStatus.pos, {0, 2}, difficulty + 2);
+                Vec2d scattered = enemyStatus.pos;
+                for (int i = 0; i < stageInfo->difficulty + 2; i++)
+                {
+                    scattered.x = enemyStatus.pos.x + 20 * (int)cos(i / 3.14);
+                    scattered.y = enemyStatus.pos.y + 20 * (int)sin(i / 3.14);
+                    iMgr->spawnItem(ItemType::SCORE, scattered, {0, 2}, stageInfo->difficulty + 2);
+                    scattered.x = enemyStatus.pos.x + 20 * (int)cos(i * 2 / 3.14);
+                    scattered.y = enemyStatus.pos.y + 20 * (int)sin(i * 2 / 3.14);
+                    iMgr->spawnItem(ItemType::POWER, scattered, {0, 2}, stageInfo->difficulty + 2);
+                }
             }
         }
 
@@ -100,8 +108,8 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
 
                 // TODO effect
                 // TODO cutIn
-                Vec2d cutIn = {790, 100};
-                effecter->playEnemySpell(cutIn);
+                // Vec2d cutIn = {790, 100};
+                // effecter->playEnemySpell(cutIn);
             }
         }
 
@@ -110,6 +118,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
         {
             enemyStatus.lives -= 1;
             enemyStatus.shootType += 1;
+            stageInfo->score += 1000;
 
             // もし敵がボスで，HPが0になったらスペルフラグをfalseにし，無敵時間を付与
             if (enemyStatus.isSpell == true)
@@ -120,7 +129,23 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
                 enemyStatus.hp = enemyStatus.maxHp;
                 enemyStatus.spellCount += 1;
                 bMgr->removeBomb(bombs, effecter);
+                stageInfo->score += 100000;
+                enemyStatus.time = 0;
             }
+            if (enemyStatus.type >= 100 && 1 == enemyStatus.lives)
+            {
+                enemyStatus.isInvincible = true;
+                enemyStatus.invincibleTime = 180;
+                enemyStatus.isSpell = true;
+                enemyStatus.time = -180;
+            }
+        }
+
+        if (enemyStatus.isSpell && enemyStatus.invincibleTime == 120)
+        {
+            enemyStatus.isSpell = true;
+            Vec2d cutIn = {790, 100};
+            effecter->playEnemySpell(cutIn);
         }
 
         if (!enemyStatus.isInvincible)
@@ -132,15 +157,15 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
                 switch (this->getSpellInfo().spellType)
                 {
                 case 1:
-                    enemyShootScript->Boss01Spell01(*this, *bMgr, bombs, time, difficulty, *player);
+                    enemyShootScript->Boss01Spell01(*this, *bMgr, bombs, time, stageInfo->difficulty, *player);
                     /* code */
                     break;
                 case 2:
-                    enemyShootScript->Boss01Spell02(*this, *bMgr, bombs, time, difficulty, *player);
+                    enemyShootScript->Boss01Spell02(*this, *bMgr, bombs, time, stageInfo->difficulty, *player);
 
                     break;
                 case 3:
-                    enemyShootScript->Boss01Spell03(*this, *bMgr, bombs, time, difficulty, *player);
+                    enemyShootScript->Boss01Spell03(*this, *bMgr, bombs, time, stageInfo->difficulty, *player);
 
                 default:
                     break;
@@ -148,7 +173,7 @@ void Enemy::enemyUpdate(int time, int difficulty, BombManager *bMgr, BombInfo bo
             }
             else
             {
-                shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, difficulty, *player);
+                shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, stageInfo->difficulty, *player);
             }
         }
 

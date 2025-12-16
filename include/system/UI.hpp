@@ -82,6 +82,7 @@ public:
     void drawSpellCardText(EnemyStatus enemyStatus, SpellInfo spellInfo, int time);
     void loadingScreen();
     void talkUI(std::wstring, int);
+    void drawBorderAllGetItem();
     PlayerStatus getPlayerStatus();
     EnemyStatus getEnemyStatus();
 

@@ -60,6 +60,7 @@ void StageManager::init(int _stage, int _time, Difficulty _difficulty)
         -1,
         -1,
         -1,
+        -1,
         L"Default"};
 
     for (int i = 0; i < MAX_ENEMIES; i++)
@@ -237,7 +238,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
 
             if (enemies[i] != nullptr && enemies[i]->enemyStatus.isAlive && !isTalk)
             {
-                enemies[i]->enemyUpdate(this->time, this->stageInfo.difficulty, bMgr, bombs, enemyShootScript, player, effecter, iMgr);
+                enemies[i]->enemyUpdate(this->time, &stageInfo, bMgr, bombs, enemyShootScript, player, effecter, iMgr);
             }
         }
         if (!isTalk)
@@ -257,7 +258,6 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
         player->playerUpdate(bMgr, bombs, effecter);
         bMgr->updateBombs(bombs);
         iMgr->updateItems(this, player);
-        effecter->effecterUpdate();
 
         getClearStage();
         getGameOver(player);
@@ -285,6 +285,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     player->playerDraw();
     bMgr->drawBombs(bombs);
     iMgr->drawItems();
+    effecter->effecterUpdate();
 
     // ボス撃破処理
     if (isClearStage && time > 0)
