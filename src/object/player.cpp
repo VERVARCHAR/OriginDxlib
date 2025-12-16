@@ -50,8 +50,21 @@ void Player::playerDraw()
 
     if (isDraw)
     {
-        DrawExtendGraph(pos.x - 30, pos.y - 30, pos.x + 30, pos.y + 30, charaImageHandle[0], TRUE);
-        DrawCircle(pos.x, pos.y - 5, radius, GetColor(255, 255, 255), TRUE);
+        DrawGraph(pos.x - 24, pos.y - 25, charaImageHandle[keyVector], TRUE);
+        // DrawCircle(pos.x, pos.y - 5, radius, GetColor(0, 0, 0), FALSE);
+
+        for (int i = 0; i < (int)(status.power); i++)
+        {
+            DrawRotaGraph(
+                pos.x + (status.isShift ? -10 : -20) * (status.power - 1) + (status.isShift ? 20 : 40) * i, pos.y + 40, 1.0f, (3.14 / 180) * time * ((i % 2) + 1), charaImageHandle[3], TRUE);
+        }
+
+        if (status.isShift)
+        {
+            DrawGraph(pos.x - 32, pos.y - 32, charaShiftedEffect[0], TRUE);
+            DrawRotaGraph(pos.x, pos.y, 1.0f, (3.14 / 180) * time, charaShiftedEffect[1], TRUE);
+            DrawRotaGraph(pos.x, pos.y, 1.0f, -(3.14 / 180) * time, charaShiftedEffect[2], TRUE);
+        }
 
         // [DEBUG]
         DrawCircle(pos.x, pos.y - 5, radius * 8, GetColor(255, 255, 255), FALSE);
@@ -105,6 +118,7 @@ void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter
         status.invincibleTime -= 1;
     }
     chattering = false;
+    time++;
 }
 
 Vec2d Player::getPosition()
@@ -129,6 +143,7 @@ void Player::getKeyInput(bool isTalk)
         moveSpeed = 3.0;
     }
 
+    keyVector = 0;
     if (Key[KEY_INPUT_UP] > 1)
     {
         pos.y -= moveSpeed;
@@ -140,10 +155,12 @@ void Player::getKeyInput(bool isTalk)
     if (Key[KEY_INPUT_LEFT] > 1)
     {
         pos.x -= moveSpeed;
+        keyVector = 1;
     }
     if (Key[KEY_INPUT_RIGHT] > 1)
     {
         pos.x += moveSpeed;
+        keyVector = 2;
     }
 
     if (Key[KEY_INPUT_X] == 1)
@@ -202,6 +219,7 @@ void Player::shootBomb(BombManager *bMgr, BombInfo bombs[MAX_BOMBS])
         bombs[idx].pos = pos;
         bombs[idx].pos.x += (status.isShift ? -10 : -20) * (status.power - 1) + (status.isShift ? 20 : 40) * i;
         bombs[idx].pos.y += 20;
+
         bombs[idx].isPlayers = true;
         bombs[idx].type = 2;
 
@@ -224,6 +242,9 @@ void Player::SpelCard(BombManager *bMgr, BombInfo bombs[MAX_BOMBS])
 void Player::loadPlayerImage()
 {
     // TODO スプライトシートに変えたい
-    charaImageHandle[0] = LoadGraph(L"..\\..\\assets\\player\\player.png");
+    // charaImageHandle[0] = LoadGraph(L"..\\..\\assets\\player\\player.png");
+    LoadDivGraph(L"..\\..\\assets\\player\\player.png", 3, 1, 3, 48, 50, charaImageHandle);
+    charaImageHandle[3] = LoadGraph(L"..\\..\\assets\\player\\player_items.png");
     // LoadDivGraph(L"../../img/reimu_img.jpg", 18, 6, 3, 32, 48, charaImageHandle);
+    LoadDivGraph(L"..\\..\\assets\\player\\effect_player_shifted.png", 3, 3, 1, 64, 64, charaShiftedEffect);
 }

@@ -12,6 +12,27 @@ double calcSquaredDistance(Vec2d pos1, Vec2d pos2)
     return dx * dx + dy * dy;
 }
 
+static inline uint32_t hash32(uint32_t x)
+{
+    // SplitMix32系の軽い混ぜ
+    x += 0x9e3779b9u;
+    x ^= x >> 16;
+    x *= 0x85ebca6bu;
+    x ^= x >> 13;
+    x *= 0xc2b2ae35u;
+    x ^= x >> 16;
+    return x;
+}
+
+static inline uint32_t makeDropSeed(int time, int itemType)
+{
+    uint32_t s = 0x332;
+    s ^= hash32(0x512);
+    s ^= hash32((uint32_t)time);
+    s ^= hash32((uint32_t)itemType);
+    return hash32(s);
+}
+
 ItemManager::ItemManager()
 {
     init();
@@ -35,11 +56,12 @@ void ItemManager::init()
 
 void ItemManager::loadImagehandle(int _livesImageHandle, int _spellImageHandle)
 {
-    livesImageHandle = _livesImageHandle;
-    spellImageHandle = _spellImageHandle;
+    // livesImageHandle = _livesImageHandle;
+    // spellImageHandle = _spellImageHandle;
     // TODO
-    //  scoreImageHandle = LoadGraph();
-    //  powerImageHandle = LoadGraph();
+    // scoreImageHandle = LoadGraph();
+    // powerImageHandle = LoadGraph();
+    LoadDivGraph(L"..\\..\\assets\\others\\items.png", 4, 4, 1, 16, 16, itemImageHandle);
 }
 
 int ItemManager::getEmptyIndex()
@@ -129,52 +151,61 @@ void ItemManager::drawItems()
     {
         if (items[i].isActive)
         {
-            switch (items[i].itemType)
-            {
-            case ItemType::NONE:
-                DrawBox(items[i].pos.x - 5, items[i].pos.y - 10, items[i].pos.x + 5, items[i].pos.y + 10, GetColor(0, 0, 0), TRUE);
-                break;
-            case ItemType::SCORE:
-                DrawBox(items[i].pos.x - 5, items[i].pos.y - 10, items[i].pos.x + 5, items[i].pos.y + 10, GetColor(0, 0, 255), TRUE);
-                break;
-            case ItemType::POWER:
-                DrawBox(items[i].pos.x - 5, items[i].pos.y - 10, items[i].pos.x + 5, items[i].pos.y + 10, GetColor(255, 0, 0), TRUE);
-                break;
-            case ItemType::EXTEND:
-                DrawExtendGraph(items[i].pos.x - 25, items[i].pos.y - 25, items[i].pos.x + 25, items[i].pos.y + 25, livesImageHandle, TRUE);
-                break;
-            case ItemType::SPELL:
-                DrawExtendGraph(items[i].pos.x - 25, items[i].pos.y - 25, items[i].pos.x + 25, items[i].pos.y + 25, spellImageHandle, TRUE);
-                break;
-            default:
-                break;
-            }
-
-            DrawCircle(items[i].pos.x, items[i].pos.y, items[i].radius, GetColor(0, 255, 0), TRUE);
-            DrawCircle(items[i].pos.x, items[i].pos.y, items[i].radius + 30, GetColor(0, 0, 255), FALSE);
-            DrawLine(items[i].pos.x, items[i].pos.y, items[i].pos.x + items[i].vel.x, items[i].pos.y + items[i].vel.y, GetColor(255, 0, 255));
+            // switch (items[i].itemType)
+            // {
+            // case ItemType::NONE:
+            //     DrawBox(items[i].pos.x - 5, items[i].pos.y - 10, items[i].pos.x + 5, items[i].pos.y + 10, GetColor(0, 0, 0), TRUE);
+            //     break;
+            // case ItemType::SCORE:
+            //     DrawBox(items[i].pos.x - 5, items[i].pos.y - 10, items[i].pos.x + 5, items[i].pos.y + 10, GetColor(0, 0, 255), TRUE);
+            //     break;
+            // case ItemType::POWER:
+            //     DrawBox(items[i].pos.x - 5, items[i].pos.y - 10, items[i].pos.x + 5, items[i].pos.y + 10, GetColor(255, 0, 0), TRUE);
+            //     break;
+            // case ItemType::EXTEND:
+            //     DrawExtendGraph(items[i].pos.x - 25, items[i].pos.y - 25, items[i].pos.x + 25, items[i].pos.y + 25, livesImageHandle, TRUE);
+            //     break;
+            // case ItemType::SPELL:
+            //     DrawExtendGraph(items[i].pos.x - 25, items[i].pos.y - 25, items[i].pos.x + 25, items[i].pos.y + 25, spellImageHandle, TRUE);
+            //     break;
+            // default:
+            //     break;
+            // }
+            DrawGraph(items[i].pos.x, items[i].pos.y, itemImageHandle[static_cast<int>(items[i].itemType)], TRUE);
+            // DrawCircle(items[i].pos.x, items[i].pos.y, items[i].radius, GetColor(0, 255, 0), TRUE);
+            // DrawCircle(items[i].pos.x, items[i].pos.y, items[i].radius + 30, GetColor(0, 0, 255), FALSE);
+            // DrawLine(items[i].pos.x, items[i].pos.y, items[i].pos.x + items[i].vel.x, items[i].pos.y + items[i].vel.y, GetColor(255, 0, 255));
         }
     }
 }
 
-void ItemManager::spawnItem(ItemType _itemType, Vec2d _pos, Vec2d _vel, int amount)
+void ItemManager::spawnItem(ItemType _itemType, Vec2d _pos, Vec2d _vel, int amount, int time)
 {
+    const uint32_t seed = makeDropSeed(time, static_cast<int>(_itemType));
+    std::mt19937 rng(seed);
+
+    // 散らばり半径（好みで調整）
+    std::uniform_real_distribution<double> angleDist(0.0, 2.0 * 3.14);
+    std::uniform_real_distribution<double> radiusDist(0.0, 1.0); // 後でsqrtして面積一様にする
+
     for (int i = 0; i < amount; i++)
     {
         int id = getEmptyIndex();
         items[id].isActive = true;
-        if (i % 2 == 0)
-        {
-            items[id].pos.x = _pos.x + (int)(i / 2) * 2;
-        }
-        else
-        {
-            items[id].pos.x = _pos.x - (int)(i / 2) * 2;
-        }
-        items[id].pos.y = _pos.y - 5;
+
+        // 面積一様：r = R * sqrt(u)
+        double a = angleDist(rng);
+        double r = 18.0 * std::sqrt(radiusDist(rng)); // 18.0は散らばり量
+        Vec2d offset{r * std::cos(a), r * std::sin(a)};
+
+        // 少しだけ上に寄せる、とかも決定論的に可能
+        offset.y -= 6.0;
+
+        items[id].pos = {_pos.x + offset.x, _pos.y + offset.y};
         items[id].vel = _vel;
         items[id].itemType = _itemType;
-        items[id].radius = 5;
+        items[id].radius = 8;
+
         switch (_itemType)
         {
         case ItemType::SCORE:
@@ -189,7 +220,6 @@ void ItemManager::spawnItem(ItemType _itemType, Vec2d _pos, Vec2d _vel, int amou
         case ItemType::SPELL:
             items[id].value = 1;
             break;
-
         default:
             break;
         }

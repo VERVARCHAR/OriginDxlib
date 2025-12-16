@@ -57,6 +57,7 @@ private:
     int radius;
     bool isDraw = true;
     bool chattering = false;
+    int keyVector = 0;
 
 protected:
 public:
@@ -64,8 +65,10 @@ public:
 
     Player();
     ~Player();
+    int time = 0;
 
-    int charaImageHandle[24] = {0};
+    int charaImageHandle[4] = {0};
+    int charaShiftedEffect[3] = {0};
 
     void init();
 

@@ -34,14 +34,14 @@
 #define _EFFECTER_HPP_
 #include "system/effecter.hpp"
 #endif
-
+#include <random>
 enum class ItemType
 {
-    NONE,
-    SCORE,
     POWER,
+    SCORE,
     EXTEND,
     SPELL,
+    NONE,
 };
 
 typedef struct Items
@@ -62,10 +62,11 @@ class Player;
 class ItemManager
 {
 private:
-    int scoreImageHandle;
-    int powerImageHandle;
-    int livesImageHandle;
-    int spellImageHandle;
+    // int scoreImageHandle;
+    // int powerImageHandle;
+    // int livesImageHandle;
+    // int spellImageHandle;
+    int itemImageHandle[4] = {0};
     Items items[MAX_ITEMS];
 
 public:
@@ -77,6 +78,6 @@ public:
     void updateItems(StageManager *sMgr, Player *player);
     void drawItems();
     void loadImagehandle(int _livesImageHandle, int _spellImageHandle);
-    void spawnItem(ItemType _itemType, Vec2d _pos, Vec2d _vel, int amount);
+    void spawnItem(ItemType _itemType, Vec2d _pos, Vec2d _vel, int amount, int time);
     bool borderGetAllItem(Player *player);
 };

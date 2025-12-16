@@ -34,6 +34,7 @@ void UI::getInGameImage()
     LoadDivGraph(L"..\\..\\assets\\others\\difficulty.png", 4, 1, 4, 512, 200, difficultyImageHandle);
     stageImageHandle[0] = LoadGraph(L"..\\..\\assets\\background\\st01\\st01.PNG");
     playerImageHandle = LoadGraph(L"..\\..\\assets\\player\\CutIn_PlayerChar01.png");
+
     enemyImageHandle = LoadGraph(L"..\\..\\assets\\enemy\\cutin_lily.png");
 }
 

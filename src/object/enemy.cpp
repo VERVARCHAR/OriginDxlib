@@ -80,112 +80,99 @@ void Enemy::enemyUpdate(int time, StageInfo *stageInfo, BombManager *bMgr, BombI
             if (enemyStatus.lives == 0)
             {
                 effecter->playEnemyExplode(enemyStatus.pos);
-                Vec2d scattered = enemyStatus.pos;
-                for (int i = 0; i < stageInfo->difficulty + 2; i++)
-                {
-                    scattered.x = enemyStatus.pos.x + 20 * (int)cos(i / 3.14);
-                    scattered.y = enemyStatus.pos.y + 20 * (int)sin(i / 3.14);
-                    iMgr->spawnItem(ItemType::SCORE, scattered, {0, 2}, stageInfo->difficulty + 2);
-                    scattered.x = enemyStatus.pos.x + 20 * (int)cos(i * 2 / 3.14);
-                    scattered.y = enemyStatus.pos.y + 20 * (int)sin(i * 2 / 3.14);
-                    iMgr->spawnItem(ItemType::POWER, scattered, {0, 2}, stageInfo->difficulty + 2);
-                }
+
+                iMgr->spawnItem(ItemType::SCORE, enemyStatus.pos, {0, 2}, stageInfo->difficulty + 10, time);
+                iMgr->spawnItem(ItemType::POWER, enemyStatus.pos, {0, 2}, stageInfo->difficulty + 10, time);
             }
         }
+    }
 
-        // 敵のtypeが100以上のとき，敵はボス
-        if (enemyStatus.type >= 100)
-        {
-            // ボスのHPが100を下回ったらスペル発動
-            if (enemyStatus.hp <= 100 && !enemyStatus.isSpell)
-            {
-                enemyStatus.isSpell = true;
-                enemyStatus.time = -120;
-                bMgr->removeBomb(bombs, effecter);
-                enemyStatus.isInvincible = true;
-                enemyStatus.invincibleTime = 120;
-                // enemyStatus.spellStartTime = time;
-
-                // TODO effect
-                // TODO cutIn
-                // Vec2d cutIn = {790, 100};
-                // effecter->playEnemySpell(cutIn);
-            }
-        }
-
-        // 敵のHPが0になった時の処理
-        if (enemyStatus.hp <= 0 && enemyStatus.lives > 0)
-        {
-            enemyStatus.lives -= 1;
-            enemyStatus.shootType += 1;
-            stageInfo->score += 1000;
-
-            // もし敵がボスで，HPが0になったらスペルフラグをfalseにし，無敵時間を付与
-            if (enemyStatus.isSpell == true)
-            {
-                enemyStatus.isSpell = false;
-                enemyStatus.isInvincible = true;
-                enemyStatus.invincibleTime = 120;
-                enemyStatus.hp = enemyStatus.maxHp;
-                enemyStatus.spellCount += 1;
-                bMgr->removeBomb(bombs, effecter);
-                stageInfo->score += 100000;
-                enemyStatus.time = 0;
-            }
-            if (enemyStatus.type >= 100 && 1 == enemyStatus.lives)
-            {
-                enemyStatus.isInvincible = true;
-                enemyStatus.invincibleTime = 180;
-                enemyStatus.isSpell = true;
-                enemyStatus.time = -180;
-            }
-        }
-
-        if (enemyStatus.isSpell && enemyStatus.invincibleTime == 120)
+    // 敵のtypeが100以上のとき，敵はボス
+    if (enemyStatus.type >= 100)
+    {
+        // ボスのHPが100を下回ったらスペル発動
+        if (enemyStatus.hp <= 100 && !enemyStatus.isSpell)
         {
             enemyStatus.isSpell = true;
-            Vec2d cutIn = {790, 100};
-            effecter->playEnemySpell(cutIn);
+            enemyStatus.time = -120;
+            bMgr->removeBomb(bombs, effecter);
+            enemyStatus.isInvincible = true;
+            enemyStatus.invincibleTime = 120;
         }
+    }
 
-        if (!enemyStatus.isInvincible)
+    // 敵のHPが0になった時の処理
+    if (enemyStatus.hp <= 0 && enemyStatus.lives > 0)
+    {
+        enemyStatus.lives -= 1;
+        enemyStatus.shootType += 1;
+        stageInfo->score += 1000;
+
+        // もし敵がボスで，HPが0になったらスペルフラグをfalseにし，無敵時間を付与
+        if (enemyStatus.isSpell == true)
         {
-            if (enemyStatus.isSpell)
-            {
-                // DrawFormatString(100, 40, GetColor(255, 255, 255), L"Spell");
-
-                switch (this->getSpellInfo().spellType)
-                {
-                case 1:
-                    enemyShootScript->Boss01Spell01(*this, *bMgr, bombs, time, stageInfo->difficulty, *player);
-                    /* code */
-                    break;
-                case 2:
-                    enemyShootScript->Boss01Spell02(*this, *bMgr, bombs, time, stageInfo->difficulty, *player);
-
-                    break;
-                case 3:
-                    enemyShootScript->Boss01Spell03(*this, *bMgr, bombs, time, stageInfo->difficulty, *player);
-
-                default:
-                    break;
-                }
-            }
-            else
-            {
-                shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, stageInfo->difficulty, *player);
-            }
+            enemyStatus.isSpell = false;
+            enemyStatus.isInvincible = true;
+            enemyStatus.invincibleTime = 120;
+            enemyStatus.hp = enemyStatus.maxHp;
+            enemyStatus.spellCount += 1;
+            bMgr->removeBomb(bombs, effecter);
+            stageInfo->score += 100000;
+            enemyStatus.time = 0;
         }
-
-        // 無敵時間の処理
-        if (enemyStatus.invincibleTime >= 0)
+        if (enemyStatus.type >= 100 && 1 == enemyStatus.lives)
         {
-            enemyStatus.invincibleTime -= 1;
+            enemyStatus.isInvincible = true;
+            enemyStatus.invincibleTime = 180;
+            enemyStatus.isSpell = true;
+            enemyStatus.time = -180;
+        }
+    }
+
+    if (enemyStatus.isSpell && enemyStatus.invincibleTime == 120)
+    {
+        enemyStatus.isSpell = true;
+        Vec2d cutIn = {790, 100};
+        effecter->playEnemySpell(cutIn);
+    }
+
+    if (!enemyStatus.isInvincible)
+    {
+        if (enemyStatus.isSpell)
+        {
+            // DrawFormatString(100, 40, GetColor(255, 255, 255), L"Spell");
+
+            switch (this->getSpellInfo().spellType)
+            {
+            case 1:
+                enemyShootScript->Boss01Spell01(*this, *bMgr, bombs, time, stageInfo->difficulty, *player);
+                /* code */
+                break;
+            case 2:
+                enemyShootScript->Boss01Spell02(*this, *bMgr, bombs, time, stageInfo->difficulty, *player);
+
+                break;
+            case 3:
+                enemyShootScript->Boss01Spell03(*this, *bMgr, bombs, time, stageInfo->difficulty, *player);
+
+            default:
+                break;
+            }
         }
         else
         {
-            enemyStatus.isInvincible = false;
+            shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, stageInfo->difficulty, *player);
         }
+    }
+
+    // 無敵時間の処理
+    if (enemyStatus.invincibleTime >= 0)
+    {
+        enemyStatus.invincibleTime -= 1;
+    }
+    else
+    {
+        enemyStatus.isInvincible = false;
     }
 }
 
