@@ -43,6 +43,7 @@
 #include "object/item.hpp"
 #endif
 
+#include "system/title.hpp"
 #include "system/logger.hpp"
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -111,6 +112,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     int sceneChangeMinimumTime = 0;
 
+    Title titleMenu;
+    titleMenu.setExtraEnabled(false);          // βはfalse
+    titleMenu.addCharacter({0, L"Reimu", -1}); // βは1キャラでOK
+    auto mode = titleMenu.startMode();
+    auto charId = titleMenu.selectedCharacterId();
     // TODO :Loading
     // Title
     while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && UpdateKey() == 0)
@@ -124,30 +130,35 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         switch (scene)
         {
         case TITLE: // タイトル処理
-            if (sceneChangeMinimumTime > 20)
-            {
-                // TODO タイトルの作成
-                // 1が押されたらゲームスタート用のローディング
-                ui.drawTitle();
-                if (Key[KEY_INPUT_1] == 1)
-                {
-                    ui.startLoading();
-                    scene = LOADING;
-                    break;
-                }
+            // if (sceneChangeMinimumTime > 20)
+            // {
+            //     // TODO タイトルの作成
+            //     // 1が押されたらゲームスタート用のローディング
+            //     ui.drawTitle();
+            //     drawTitle(titleCtl, titleTime);
+            //     if (Key[KEY_INPUT_1] == 1)
+            //     {
+            //         ui.startLoading();
+            //         scene = LOADING;
+            //         break;
+            //     }
 
-                // [DEBUG]
-                if (Key[KEY_INPUT_TAB] == 1)
-                {
-                    scene = DEBUG;
-                    break;
-                }
-                DrawFormatString(30, 30, GetColor(255, 255, 255), L"Title");
-            }
-            else
-            {
-                sceneChangeMinimumTime++;
-            }
+            //     // [DEBUG]
+            //     if (Key[KEY_INPUT_TAB] == 1)
+            //     {
+            //         scene = DEBUG;
+            //         break;
+            //     }
+            //     DrawFormatString(30, 30, GetColor(255, 255, 255), L"Title");
+            // }
+            // else
+            // {
+            //     sceneChangeMinimumTime++;
+            // }
+            titleMenu.drawTitle(ui, scene, difficulty, sceneChangeMinimumTime);
+
+            GetMousePoint(&x, &y);
+            DrawFormatString(500, 500, GetColor(255, 0, 255), L"Mouse : %d,%d", x, y);
             break;
 
         case LOADING: // ローディング
@@ -170,6 +181,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 iMgr.loadImagehandle(ui.getLifeImageHandle(), ui.getSpellImageHandle());
                 effecter.setEnemyCutInImage(ui.getEnemyCutInHandle());
 
+                mode = titleMenu.startMode();
+                charId = titleMenu.selectedCharacterId();
+
                 SetUseASyncLoadFlag(FALSE);
             }
             ui.loadingScreen();
@@ -191,9 +205,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 ui.drawBossStatus(bossStatus);
                 ui.drawSpellCardText(bossStatus, sMgr.enemies[sMgr.bossIndex]->getSpellInfo(), time);
             }
-
-            GetMousePoint(&x, &y);
-            DrawFormatString(500, 500, GetColor(255, 0, 255), L"Mouse : %d,%d", x, y);
 
             // メニュー画面のキー入力
             if (Key[KEY_INPUT_ESCAPE] == 1)
@@ -229,6 +240,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             if (sMgr.isPause && !sMgr.isGameOver)
             {
                 DrawString(200, 200, L"PAUSE", GetColor(255, 255, 0));
+                if (Key[KEY_INPUT_R] == 1)
+                {
+                    ui.startLoading();
+                    scene = LOADING;
+                }
             }
 
             // ゲームオーバー時の処理

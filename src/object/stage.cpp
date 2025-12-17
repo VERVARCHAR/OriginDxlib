@@ -166,6 +166,7 @@ void StageManager::loadEnemy()
     else
     {
         DrawFormatString(200, 200, GetColor(255, 255, 255), L"[ERROR] (loadEnemy)");
+        return;
     }
 
     // LoadEnemyImage("../../img/EnemyProtoType01.png", enemyImageHandle);
@@ -250,6 +251,8 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
 
     // UI用にプレイヤーのステータス情報を格納
     stageInfo.nowStatus = player->getStatus();
+
+    // [DEBUG]
     player->debugStatus();
 
     // ポーズ中でない，ゲームオーバーでないならプレイヤー，弾幕の更新処理をする
@@ -292,21 +295,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     {
         bMgr->removeBomb(bombs, effecter);
         // TODO ステージクリア処理
-
-        if (stageInfo.stage == allStageLength)
-        {
-            DrawFormatString(300, 300, GetColor(255, 255, 255), L"Clear...");
-            isStoryClear = true;
-        }
-        // else if (stageInfo.stage == 7)
-        // {
-        //     DrawFormatString(300, 300, GetColor(255, 255, 255), L"Extra Clear!!!");
-        //     isExtraClear = true;
-        // }
-        else
-        {
-            time = -120;
-        }
+        time = -120;
     }
 
     // ボス撃破時にゲームタイマーが0未満になるので，その間にリザルト
@@ -326,7 +315,15 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
         {
             time++;
         }
-        DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
+        if (stageInfo.stage == allStageLength)
+        {
+            DrawFormatString(300, 300, GetColor(255, 255, 255), L"Clear...");
+            isStoryClear = true;
+        }
+        else
+        {
+            DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
+        }
     }
 
     // [DEBUG]

@@ -40,9 +40,9 @@ int BombManager::getEmptyIndex(BombInfo bombs[MAX_BOMBS])
 bool BombManager::getOnScreen(BombInfo bomb)
 {
     // TODO 画面サイズ取得に変更
-    int screenWidth = (WINDOW_WIDTH * 0.6) - 30;
-    int screenHeight = WINDOW_HEIGHT - 30;
-    if (bomb.pos.x + bomb.radius < 0 || bomb.pos.x - bomb.radius > screenWidth || bomb.pos.y + bomb.radius < 0 || bomb.pos.y - bomb.radius > screenHeight)
+    int screenWidth = (WINDOW_WIDTH * 0.6) + 22;
+    int screenHeight = WINDOW_HEIGHT - 10;
+    if (bomb.pos.x + bomb.radius < 10 || bomb.pos.x - bomb.radius > screenWidth || bomb.pos.y + bomb.radius < 10 || bomb.pos.y - bomb.radius > screenHeight)
     {
         return false;
     }

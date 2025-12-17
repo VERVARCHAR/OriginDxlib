@@ -203,6 +203,8 @@ inline bool LoadEnemyDataFromJson(int stageIdx, const std::string &stageInfoPath
     {
         printfDx(L"[ERROR] No enemies loaded from stage data\n");
     }
+
+    return true;
 }
 
 bool LoadTalkDataFromJson(const std::string &path, int stageIndex, std::vector<TalkData> &outTalks)

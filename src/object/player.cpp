@@ -75,7 +75,8 @@ void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter
 {
 
     // DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
-    printfDx(L"characterHandle : %d\n", charaImageHandle[0]);
+    // [DEBUG]
+    // printfDx(L"characterHandle : %d\n", charaImageHandle[0]);
 
     if (status.isShoot)
     {
@@ -133,8 +134,6 @@ void Player::getKeyInput(bool isTalk)
     if (Key[KEY_INPUT_LSHIFT] > 1)
     {
         status.isShift = true;
-
-        // TODO effect
         moveSpeed = 1.5;
     }
     else
@@ -147,25 +146,41 @@ void Player::getKeyInput(bool isTalk)
     if (Key[KEY_INPUT_UP] > 1)
     {
         pos.y -= moveSpeed;
+        if (pos.y < 10)
+        {
+            pos.y = 10;
+        }
     }
     if (Key[KEY_INPUT_DOWN] > 1)
     {
         pos.y += moveSpeed;
+        if (pos.y > WINDOW_HEIGHT - 10)
+        {
+            pos.y = WINDOW_HEIGHT - 10;
+        }
     }
     if (Key[KEY_INPUT_LEFT] > 1)
     {
         pos.x -= moveSpeed;
         keyVector = 1;
+        if (pos.x < 10)
+        {
+            pos.x = 10;
+        }
     }
     if (Key[KEY_INPUT_RIGHT] > 1)
     {
         pos.x += moveSpeed;
         keyVector = 2;
+        if (pos.x > WINDOW_WIDTH * 0.6 + 22)
+        {
+            pos.x = WINDOW_WIDTH * 0.6 + 22;
+        }
     }
 
     if (Key[KEY_INPUT_X] == 1)
     {
-        if (status.spells > 0)
+        if (status.spells > 0 && !status.invincible)
         {
             status.spells -= 1;
             status.isSpells = true;
