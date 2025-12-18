@@ -308,5 +308,5 @@ void Title::drawTitle(UI &ui, Scene &scene, Difficulty &difficulty, int &sceneCh
     // 決定済み difficulty をゲーム側へ反映（“選択中”は Title が持つ）
     difficulty = selectedDifficulty_;
 
-    DrawFormatString(panelL + 30, panelB - 30, GetColor(200, 200, 200), L"beta 0.1");
+    DrawFormatString(panelL + 30, panelB - 30, GetColor(128, 128, 128), L"beta 0.1");
 }
