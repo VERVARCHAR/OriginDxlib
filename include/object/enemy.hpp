@@ -61,6 +61,10 @@ typedef struct EnemyStatus
     bool isInvincible;
     int invincibleTime;
     std::wstring name; // 名前
+
+    Vec2d basePos;   // 生成時の座標（サイン波等）
+    Vec2d centerPos; // 円運動などの中心
+    int moveInit;    // 初期化済みフラグ(0/1)
 };
 
 typedef struct SpellInfo
@@ -121,6 +125,7 @@ public:
     void enemyDraw();
     void setImageHandle(int handle) { this->imageHandle = handle; };
     void enemyUpdate(int, StageInfo *, BombManager *, BombInfo[MAX_BOMBS], EnemyShootScript *, Player *player, Effecter *effecter, ItemManager *iMgr);
+    void shootSpell(EnemyShootScript *, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player);
     void shootBomb(EnemyShootScript *, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player);
     bool getOnScreen();
     bool getIsAlive(int index);

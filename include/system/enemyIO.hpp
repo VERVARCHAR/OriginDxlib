@@ -170,6 +170,10 @@ inline bool LoadEnemyDataFromJson(int stageIdx, const std::string &stageInfoPath
         e.vel = {
             item["vel"].value("x", 0.0),
             item["vel"].value("y", 0.0)};
+
+        e.basePos = e.pos;
+        e.centerPos = e.pos;
+        e.moveInit = 0;
         outEnemies.push_back(e);
         Logger::Log("(LoadEnemyDataFromJson)\tpush back enemy id" + to_string(e.id), LogLevel::Info);
 

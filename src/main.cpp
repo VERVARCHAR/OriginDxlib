@@ -218,6 +218,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 player.setPower(1);
             }
 
+            // [DEBUG] パワーを1増やす
+            if (Key[KEY_INPUT_C] == 1)
+            {
+                player.setExtend();
+            }
+
             // 会話中の処理
             if (sMgr.isTalk)
             {
