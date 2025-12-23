@@ -157,8 +157,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             // }
             titleMenu.drawTitle(ui, scene, difficulty, sceneChangeMinimumTime);
 
-            GetMousePoint(&x, &y);
-            DrawFormatString(500, 500, GetColor(255, 0, 255), L"Mouse : %d,%d", x, y);
             break;
 
         case LOADING: // ローディング
@@ -197,6 +195,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
             // UIの表示
             ui.drawUI(sMgr.getStageInfo());
+            GetMousePoint(&x, &y);
+            DrawFormatString(500, 500, GetColor(255, 0, 255), L"Mouse : %d,%d", x, y);
 
             bossStatus = sMgr.enemies[sMgr.bossIndex]->getStatus();
 
@@ -224,6 +224,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 player.setExtend();
             }
 
+            // 基本的なゲーム処理
+            sMgr.updateStage(&bMgr, &iMgr, bombs, &player, &effecter);
+
             // 会話中の処理
             if (sMgr.isTalk)
             {
@@ -237,9 +240,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                     sMgr.endTalk();
                 }
             }
-
-            // 基本的なゲーム処理
-            sMgr.updateStage(&bMgr, &iMgr, bombs, &player, &effecter);
 
             // ゲームオーバーでなく，ポーズ中ならばポーズ画面を表示
             // TODO ポーズ処理

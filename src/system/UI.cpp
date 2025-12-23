@@ -14,6 +14,8 @@ UI::UI()
 
 UI::~UI()
 {
+    DeleteFontToHandle(uiFont);
+    DeleteFontToHandle(talkFont);
 }
 
 void UI::getImage()
@@ -36,6 +38,9 @@ void UI::getInGameImage()
     stageImageHandle[1] = LoadGraph(L"..\\..\\assets\\background\\st02.PNG");
     stageImageHandle[2] = LoadGraph(L"..\\..\\assets\\background\\st03.PNG");
     playerImageHandle = LoadGraph(L"..\\..\\assets\\player\\CutIn_PlayerChar01.png");
+
+    uiFont = CreateFontToHandle(L"源真ゴシック", 42, 3, DX_FONTTYPE_ANTIALIASING);
+    talkFont = CreateFontToHandle(L"源真ゴシック", 32, 2, DX_FONTTYPE_ANTIALIASING);
 
     enemyImageHandle = LoadGraph(L"..\\..\\assets\\enemy\\cutin_lily.png");
 }
@@ -126,22 +131,54 @@ void UI::drawUI(StageInfo stageInfo)
     // スコア
     // ==============================
     textY = diffY2 + 10;
-    DrawFormatString(1000, 155, GetColor(255, 255, 255), L"%12d", stageInfo.score);
-    textY += 30;
+    // DrawFormatString(1000, 155, GetColor(255, 255, 255), L"", stageInfo.score);
 
-    // ==============================
-    // グレイス表示
-    // ==============================
-    DrawFormatString(1000, 200, GetColor(255, 255, 255), L"%d", stageInfo.nowStatus.grazeCount);
+    if (highScore < stageInfo.score)
+    {
+        highScore = stageInfo.score;
+    }
 
-    // ==============================
-    // ライフ（星アイコン）
-    // ==============================
-    DrawFormatString(textX, textY, GetColor(255, 255, 255), L"LIFE");
-    textY += 20;
+    DrawFormatStringToHandle(
+        999, 99,
+        GetColor(255, 255, 255),
+        uiFont,
+        L"%12d",
+        highScore);
+    DrawFormatStringToHandle(
+        1000, 100,
+        GetColor(255, 223, 0),
+        uiFont,
+        L"%12d",
+        highScore);
+
+    DrawFormatStringToHandle(
+        999, 154,
+        GetColor(255, 255, 255),
+        uiFont,
+        L"%12d",
+        stageInfo.score);
+    DrawFormatStringToHandle(
+        1000, 155,
+        GetColor(255, 223, 0),
+        uiFont,
+        L"%12d",
+        stageInfo.score);
+
+    DrawFormatStringToHandle(
+        999, 204,
+        GetColor(255, 255, 255),
+        uiFont,
+        L"%12d",
+        stageInfo.nowStatus.grazeCount);
+    DrawFormatStringToHandle(
+        1000, 205,
+        GetColor(128, 255, 128),
+        uiFont,
+        L"%12d",
+        stageInfo.nowStatus.grazeCount);
 
     const int iconSize = 50; // 元コードと同じ 50x50
-    const int lifeBaseX = 1000;
+    const int lifeBaseX = 1050;
     const int lifeY1 = 280;
     const int lifeY2 = lifeY1 + iconSize;
 
@@ -154,13 +191,13 @@ void UI::drawUI(StageInfo stageInfo)
     textY = lifeY2 + 10;
 
     // ==============================
-    // ボム（ハートアイコン）
+    // ボム
     // ==============================
     // DrawFormatString(textX, textY, GetColor(255, 255, 255), L"BOMB");
     textY += 20;
 
-    const int spellBaseX = 1000;
-    const int spellY1 = 320;
+    const int spellBaseX = 1050;
+    const int spellY1 = 330;
     const int spellY2 = spellY1 + iconSize;
 
     for (int i = 0; i < stageInfo.nowStatus.spells; i++)
@@ -174,8 +211,21 @@ void UI::drawUI(StageInfo stageInfo)
     // ==============================
     // パワー表示
     // ==============================
-    DrawFormatString(1000, 400, GetColor(255, 255, 255),
-                     L"%lf / 5.00", stageInfo.nowStatus.power);
+    // DrawFormatString(1000, 400, GetColor(255, 255, 255),
+    //                  L"%lf / 5.00", stageInfo.nowStatus.power);
+
+    DrawFormatStringToHandle(
+        999, 389,
+        GetColor(255, 255, 255),
+        uiFont,
+        L"%.2lf / 5.00",
+        stageInfo.nowStatus.power);
+    DrawFormatStringToHandle(
+        1000, 390,
+        GetColor(128, 255, 128),
+        uiFont,
+        L"%.2lf / 5.00",
+        stageInfo.nowStatus.power);
 
     textY += 10;
 
@@ -237,7 +287,15 @@ void UI::talkUI(std::wstring talkString, int talkWho)
 
     // [DEBUG]
     printfDx(talkString.c_str());
-    DrawFormatString(100, 600, GetColor(255, 255, 255), talkString.c_str());
+    // DrawFormatString(100, 600, GetColor(255, 255, 255), talkString.c_str());
+
+    DrawBox(10, 400, 750, 600, GetColor(0, 0, 0), TRUE);
+    DrawBox(20, 410, 740, 590, GetColor(225, 160, 60), TRUE);
+    DrawFormatStringToHandle(
+        30, 420,
+        GetColor(255, 255, 255),
+        talkFont,
+        talkString.c_str());
 }
 
 void UI::drawSpellCardText(EnemyStatus enemyStatus, SpellInfo spellInfo, int time)

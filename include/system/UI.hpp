@@ -59,6 +59,9 @@ private:
     int stageImageHandle[7];
     int playerImageHandle;
     int enemyImageHandle;
+    int uiFont;
+    int talkFont;
+    int highScore;
 
 public:
     UI();

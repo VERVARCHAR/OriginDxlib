@@ -3,15 +3,15 @@
         {
             "talks": [
                 {
-                    "talkStr": "Hello World!!",
+                    "talkStr": "気持ち良い気分なのに\nなぜ邪魔をするのだわ",
                     "isTalkEnemy": 1
                 },
                 {
-                    "talkStr": "This is Debug Massage",
+                    "talkStr": "暴れているのが悪い",
                     "isTalkEnemy": 0
                 },
                 {
-                    "talkStr": "Yeah",
+                    "talkStr": "やはり聖職者とは\n相いれないのだわ",
                     "isTalkEnemy": 1
                 }
             ]

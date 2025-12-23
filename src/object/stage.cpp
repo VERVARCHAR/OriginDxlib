@@ -15,6 +15,7 @@
 StageManager::StageManager(int _stage, int _time, Difficulty _difficulty)
 {
     init(_stage, _time, _difficulty);
+    resultFont = CreateFontToHandle(L"源真ゴシック", 42, 3, DX_FONTTYPE_ANTIALIASING);
 }
 
 StageManager::~StageManager()
@@ -24,6 +25,7 @@ StageManager::~StageManager()
         delete enemies[i];
         enemies[i] = nullptr;
     }
+    DeleteFontToHandle(resultFont);
 }
 
 void StageManager::init(int _stage, int _time, Difficulty _difficulty)
@@ -297,6 +299,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
         bMgr->removeBomb(bombs, effecter);
         // TODO ステージクリア処理
         time = -120;
+        stageInfo.stageScore = stageInfo.score - stageInfo.stageScore;
     }
 
     // ボス撃破時にゲームタイマーが0未満になるので，その間にリザルト
@@ -318,13 +321,43 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
         }
         if (stageInfo.stage == allStageLength)
         {
-            DrawFormatString(300, 300, GetColor(255, 255, 255), L"Clear...");
+            // DrawFormatString(300, 300, GetColor(255, 255, 255), L"Clear...");
+            DrawFormatStringToHandle(
+                299, 299,
+                GetColor(255, 255, 255),
+                resultFont,
+                L"Clear...");
+            DrawFormatStringToHandle(
+                300, 600,
+                GetColor(225, 160, 60),
+                resultFont,
+                L"Clear...");
             isStoryClear = true;
         }
         else
         {
-            DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
-            stageInfo.stageScore = stageInfo.stageScore - stageInfo;
+            // DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
+
+            DrawFormatStringToHandle(
+                49, 299,
+                GetColor(255, 255, 255),
+                resultFont,
+                L"Go to the Next Stage...");
+            DrawFormatStringToHandle(
+                50, 300,
+                GetColor(225, 160, 60),
+                resultFont,
+                L"Go to the Next Stage...");
+            DrawFormatStringToHandle(
+                50, 450,
+                GetColor(255, 255, 255),
+                resultFont,
+                L"Now Stage Score is %d", stageInfo.stageScore);
+            DrawFormatStringToHandle(
+                50, 600,
+                GetColor(255, 255, 255),
+                resultFont,
+                L"Push Enter...");
         }
     }
 

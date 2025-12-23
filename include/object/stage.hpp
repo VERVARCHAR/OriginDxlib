@@ -107,6 +107,8 @@ private:
     std::vector<EnemyStatus> loadEnemies; // 敵情報読み込みベクトル
     int enemyCount;                       // 敵カウンター
 
+    int resultFont;
+
 public:
     bool isPause = false;      // ポーズフラグ
     bool isTalk = false;       // 会話フラグ
