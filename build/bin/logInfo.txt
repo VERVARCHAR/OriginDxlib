@@ -214,57 +214,29 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data id:100
 [Info] (LoadEnemyDataFromJson)	push back enemy data type:100
 [Info] (LoadEnemyDataFromJson)	push back enemy data moveType:4
-[Info] (LoadEnemyDataFromJson)	push back enemy data lives:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:3
 [Info] (LoadEnemyDataFromJson)	push back enemy data hp:200
 [Info] (LoadEnemyDataFromJson)	push back enemy data radius:28
 [Info] (LoadEnemyDataFromJson)	push back enemy data shootType:10
 [Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:2700
 [Info] (LoadEnemyDataFromJson)	push back enemy data time:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
-[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:3
 [Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
 [Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
 [Info] (LoadEnemyDataFromJson)	push back enemy id100
-[Info] (LoadEnemyDataFromJson)	push back spell data spellName:Spell No.4
-[Info] (LoadEnemyDataFromJson)	push back spell data spellType:4
+[Info] (LoadEnemyDataFromJson)	push back spell data spellName:Spell No.1
+[Info] (LoadEnemyDataFromJson)	push back spell data spellType:1
 [Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
 [Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
-[Info] (LoadEnemyDataFromJson)	push back spell data spellName:Spell No.5
-[Info] (LoadEnemyDataFromJson)	push back spell data spellType:5
-[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:1
-[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
-[Info] (LoadEnemyDataFromJson)	push back spell data spellName:6
-[Info] (LoadEnemyDataFromJson)	push back spell data spellType:6
-[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
-[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
-[Info] (LoadEnemyDataFromJson)	push back spell data spellName:7
+[Info] (LoadEnemyDataFromJson)	push back spell data spellName:Spell No.2
 [Info] (LoadEnemyDataFromJson)	push back spell data spellType:7
 [Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
 [Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
-[Info] (LoadEnemyDataFromJson)	push back spell data spellName:8
+[Info] (LoadEnemyDataFromJson)	push back spell data spellName:Spell No.3
 [Info] (LoadEnemyDataFromJson)	push back spell data spellType:8
-[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
-[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
-[Info] (LoadEnemyDataFromJson)	push back spell data spellName:9
-[Info] (LoadEnemyDataFromJson)	push back spell data spellType:9
-[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
-[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
-[Info] (LoadEnemyDataFromJson)	push back spell data spellName:10
-[Info] (LoadEnemyDataFromJson)	push back spell data spellType:10
-[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
-[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
-[Info] (LoadEnemyDataFromJson)	push back spell data spellName:11
-[Info] (LoadEnemyDataFromJson)	push back spell data spellType:11
-[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
-[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
-[Info] (LoadEnemyDataFromJson)	push back spell data spellName:12
-[Info] (LoadEnemyDataFromJson)	push back spell data spellType:12
-[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
-[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
-[Info] (LoadEnemyDataFromJson)	push back spell data spellName:3
-[Info] (LoadEnemyDataFromJson)	push back spell data spellType:3
 [Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
 [Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
 [Info] (LoadFromVector) index 0 enemy registered
@@ -294,7 +266,7 @@
 [Info] (LoadFromVector) index 12 enemy registered
 [Info] (LoadFromVector) index enemy spawn time is 2700
 [Info] (LoadFromVector) 13 enemies registered
-[Info] (LoadFromVector) 10 spellCount registered
+[Info] (LoadFromVector) 3 spellCount registered
 [Info] (LoadTalkDataFromJson) 	Hello World!!
 [Info] (LoadTalkDataFromJson) 	This is Debug Massage
 [Info] (LoadTalkDataFromJson) 	Yeah
@@ -308,7 +280,3 @@
 [Info] (updateStage) pass spawnEnemy : 6
 [Info] (updateStage) pass spawnEnemy : 7
 [Info] (updateStage) pass spawnEnemy : 8
-[Info] (updateStage) pass spawnEnemy : 9
-[Info] (updateStage) pass spawnEnemy : 10
-[Info] (updateStage) pass spawnEnemy : 11
-[Info] (updateStage) pass spawnEnemy : 12

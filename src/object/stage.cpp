@@ -31,6 +31,7 @@ void StageManager::init(int _stage, int _time, Difficulty _difficulty)
     stageInfo.stage = _stage;
     stageInfo.difficulty = _difficulty;
     stageInfo.score = 0;
+    stageInfo.stageScore = 0;
 
     time = _time;
     isTalk = false;
@@ -323,6 +324,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
         else
         {
             DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
+            stageInfo.stageScore = stageInfo.stageScore - stageInfo;
         }
     }
 

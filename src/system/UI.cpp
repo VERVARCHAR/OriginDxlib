@@ -33,6 +33,8 @@ void UI::getInGameImage()
     spellImageHandle = LoadGraph(L"..\\..\\assets\\others\\spells.png");
     LoadDivGraph(L"..\\..\\assets\\others\\difficulty.png", 4, 1, 4, 512, 200, difficultyImageHandle);
     stageImageHandle[0] = LoadGraph(L"..\\..\\assets\\background\\st01\\st01.PNG");
+    stageImageHandle[1] = LoadGraph(L"..\\..\\assets\\background\\st02.PNG");
+    stageImageHandle[2] = LoadGraph(L"..\\..\\assets\\background\\st03.PNG");
     playerImageHandle = LoadGraph(L"..\\..\\assets\\player\\CutIn_PlayerChar01.png");
 
     enemyImageHandle = LoadGraph(L"..\\..\\assets\\enemy\\cutin_lily.png");
@@ -74,7 +76,9 @@ void UI::drawUI(StageInfo stageInfo)
     const int playTop = 10;
     const int playRight = (int)(WINDOW_WIDTH * 0.6) + 22; // ちょっとだけ狭めて縁取り
     const int playBottom = WINDOW_HEIGHT - 10;
-    DrawExtendGraph(0, -684 + (time) / 10, playRight, WINDOW_HEIGHT + (time) / 10, stageImageHandle[0], TRUE);
+
+    DrawExtendGraph(0, -684 + (time) / 10, playRight, WINDOW_HEIGHT + (time) / 20, stageImageHandle[stageInfo.stage - 1], TRUE);
+
     DrawGraph(0, 0, UIImageHandle, TRUE);
     // プレイエリア（左側）: 少し余白を残す
 
@@ -111,11 +115,12 @@ void UI::drawUI(StageInfo stageInfo)
     int diffX2 = diffX1 + diffW;
     int diffY2 = diffY1 + diffH;
 
-    DrawExtendGraph(
-        922, 15,
-        1178, 115,
-        difficultyImageHandle[stageInfo.difficulty - 1],
-        TRUE);
+    // DrawExtendGraph(
+    //     922, 10,
+    //     1178, 138,
+    //     difficultyImageHandle[stageInfo.difficulty - 1],
+    //     TRUE);
+    DrawGraph(WINDOW_WIDTH - 512 + 5, -50, difficultyImageHandle[stageInfo.difficulty - 1], TRUE);
 
     // ==============================
     // スコア

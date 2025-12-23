@@ -119,6 +119,11 @@ void Enemy::enemyUpdate(int time, StageInfo *stageInfo, BombManager *bMgr, BombI
             bMgr->removeBomb(bombs, effecter);
             stageInfo->score += 100000;
             enemyStatus.time = 0;
+
+            if (enemyStatus.shootType > 10)
+            {
+                enemyStatus.shootType = 1;
+            }
         }
         if (enemyStatus.type >= 100 && 1 == enemyStatus.lives)
         {
@@ -223,7 +228,6 @@ void Enemy::shootBomb(EnemyShootScript *enemyShootScript, BombManager *bMgr, Bom
         enemyShootScript->BombType10(*this, *bMgr, bombs, time, difficulty, player);
         break;
     default:
-
         printfDx(L"[DEBUG]:shootBomb %d\n", enemyStatus.shootType);
         break;
     }
@@ -388,20 +392,20 @@ void Enemy::enemyMove(Vec2d playerPos)
     case 4:
     {
         // 1) 下降フェーズ
-        const double downSpeed = 3.2;
+        const double downSpeed = 2.5;
         const double targetY = enemyStatus.centerPos.y; // 初期化済み想定
 
         // 2) 横移動の仕様（小さめの移動幅）
-        const double dashSpeed = 8.0;       // 素早く移動
-        const double moveRange = 160.0;     // 中央から左右の振り幅（小さめ）
+        const double dashSpeed = 6.0;       // 素早く移動
+        const double moveRange = 120.0;     // 中央から左右の振り幅（小さめ）
         const double centerX = 640.0 * 0.5; // 画面幅に合わせて
         const double leftX = centerX - moveRange;
         const double rightX = centerX + moveRange;
 
         // 3) 停止時間（2〜3秒程度）
         //    difficulty等で揺らしたいならここを変える
-        const int stopMinF = 120; // 2秒 @60fps
-        const int stopMaxF = 180; // 3秒 @60fps
+        const int stopMinF = 180; // 2秒 @60fps
+        const int stopMaxF = 240; // 3秒 @60fps
 
         // 4) 内部状態（敵ごとに保持したいので static で簡易に）
         //    ※厳密には EnemyStatus に state/timer/dir を追加するのがベスト
