@@ -22,6 +22,35 @@
                     "durabilityTime": 60
                 }
             ]
+        },
+        {
+            "boss_name": "Boss02",
+            "spells": [
+                {
+                    "spellName": "Spell No.4",
+                    "spellType": 4,
+                    "isDurability": false,
+                    "durabilityTime": 60
+                },
+                {
+                    "spellName": "Spell No.5",
+                    "spellType": 5,
+                    "isDurability": false,
+                    "durabilityTime": 60
+                },
+                {
+                    "spellName": "Spell No.6",
+                    "spellType": 6,
+                    "isDurability": false,
+                    "durabilityTime": 60
+                },
+                {
+                    "spellName": "Spell No.7",
+                    "spellType": 1,
+                    "isDurability": false,
+                    "durabilityTime": 60
+                }
+            ]
         }
     ]
 }

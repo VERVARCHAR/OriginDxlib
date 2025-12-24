@@ -3,7 +3,7 @@
         {
             "talks": [
                 {
-                    "talkStr": "気持ち良い気分なのに\nなぜ邪魔をするのだわ",
+                    "talkStr": "気持ち良い気分なのになぜ邪魔をするのだわ",
                     "isTalkEnemy": 1
                 },
                 {
@@ -11,7 +11,7 @@
                     "isTalkEnemy": 0
                 },
                 {
-                    "talkStr": "やはり聖職者とは\n相いれないのだわ",
+                    "talkStr": "やはり聖職者とは相容れないのだわ",
                     "isTalkEnemy": 1
                 }
             ]
