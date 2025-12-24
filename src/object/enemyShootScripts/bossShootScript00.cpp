@@ -119,78 +119,51 @@ void EnemyShootScript::Boss01Spell02(Enemy enemy, BombManager bMgr, BombInfo bom
                                      int time, int difficulty, Player player)
 {
     Vec2d e = enemy.getPosition();
-    Vec2d p = player.getPosition();
+
+    const int arms = 2 + (int)(difficulty * 1.5); // 2本 or 3本
+    const int interval = 2;                       // 2fごとに生成（滑らか）
+    const double baseSpeed = 1.10 + 0.12 * difficulty;
+    const double omega = 0.10 + 0.01 * difficulty; // 角速度（大きいほど回転速い）
+    const double armPhase = (2.0 * PI) / (double)arms;
+
+    // “間”を作るなら： 240f周期で 150f撃って 90f休む
+    const bool usePause = true;
+    const int cycle = 240;
+    const int fireWindow = 150;
+    const int t = time % cycle;
+    if (usePause && t >= fireWindow)
+        return;
 
     auto spawnAt = [&](Vec2d s, double sp, double ang, int gfxType, int value)
     {
         int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, value);
         bombs[idx].type = gfxType;
-        bombs[idx].pos = s;
+        bombs[idx].pos = s; // 必要ならオフセット発射も可能
         bombs[idx].vel.x = sp * std::cos(ang);
         bombs[idx].vel.y = sp * std::sin(ang);
     };
 
-    const int cycle = 210;
-    const int fanWindow = 90;
-    const int pauseWindow = 40;
-    int t = time % cycle;
-
-    Vec2d gunU{e.x, e.y - 20.0};
-    Vec2d gunD{e.x, e.y + 30.0};
-
-    if (enemy.enemyStatus.time >= 0)
+    if (enemy.enemyStatus.time >= 0 && (time % interval == 0))
     {
-        if (t < fanWindow)
+        // time が進むほど角度が進む → 綺麗な螺旋
+        double phase = omega * time;
+
+        // 速度にもわずかな“脈動”を入れると東方っぽい（入れなくてもOK）
+        double sp = baseSpeed * (1.0 + 0.06 * std::sin(0.03 * time));
+
+        for (int k = 0; k < arms; ++k)
         {
-            int interval = 16 - difficulty * 2;
-            if (interval < 6)
-                interval = 6;
+            double ang = normalizeAngle(phase + k * armPhase);
 
-            if (t % interval == 0)
-            {
-                double aim = normalizeAngle(std::atan2(p.y - e.y, p.x - e.x));
-                int fanCount = 4 + difficulty * 2;
-                double fanWidth = PI / 5.5;
-                double sp = 2.0 + difficulty * 0.4;
+            // 見た目：桜っぽく色(=type)を循環
+            int gfxType = (k + (time / 10)) % 3;
 
-                for (int i = 0; i < fanCount; ++i)
-                {
-                    double u = (fanCount == 1) ? 0.0 : (double)i / (fanCount - 1) - 0.5;
-                    double ang = aim + fanWidth * u;
-                    Vec2d src = (i == fanCount / 2) ? e : ((i % 2 == 0) ? gunU : gunD);
-                    spawnAt(src, sp, ang, 1, 6);
-                }
-            }
-        }
-        else if (t < fanWindow + pauseWindow)
-        {
-        }
-        else
-        {
-            const int ringEvery = 28;
-            const int ringCount = 3;
-            int tr = t - (fanWindow + pauseWindow);
-
-            if (tr < ringEvery * ringCount && (tr % ringEvery == 0))
-            {
-                int N = 12 + difficulty * 4;
-                double sp = 1.25 + difficulty * 0.22;
-                double phase = 0.03 * time + 0.6;
-
-                Vec2d L{e.x - 70.0, e.y + 5.0};
-                Vec2d R{e.x + 70.0, e.y + 5.0};
-                Vec2d src = ((tr / ringEvery) % 2 == 0) ? L : R;
-
-                for (int i = 0; i < N; ++i)
-                {
-                    double ang = phase + (2.0 * PI * i) / (double)N;
-                    spawnAt(src, sp, ang, (i % 3), 8);
-                }
-            }
+            spawnAt(e, sp, ang, gfxType, 8);
         }
     }
 
-    double waveStrength = 0.01 * difficulty;
+    // 追加演出：発射した弾を“ほんの少し”回転させると渦が締まる（やりすぎ注意）
+    const double rot = 0.0006 + 0.0002 * difficulty;
     for (int i = 0; i < MAX_BOMBS; ++i)
     {
         if (!bombs[i].isUsing)
@@ -200,11 +173,12 @@ void EnemyShootScript::Boss01Spell02(Enemy enemy, BombManager bMgr, BombInfo bom
 
         double vx = bombs[i].vel.x, vy = bombs[i].vel.y;
         double ang = std::atan2(vy, vx);
-        double sp = Len2(vx, vy);
+        double spd = std::sqrt(vx * vx + vy * vy);
 
-        ang += waveStrength * std::sin(0.05 * time + i * 0.27);
-        bombs[i].vel.x = sp * std::cos(ang);
-        bombs[i].vel.y = sp * std::sin(ang);
+        ang = normalizeAngle(ang + rot);
+
+        bombs[i].vel.x = spd * std::cos(ang);
+        bombs[i].vel.y = spd * std::sin(ang);
     }
 }
 
@@ -212,75 +186,80 @@ void EnemyShootScript::Boss01Spell03(Enemy enemy, BombManager bMgr, BombInfo bom
                                      int time, int difficulty, Player player)
 {
     Vec2d e = enemy.getPosition();
-    Vec2d p = player.getPosition();
 
-    auto spawnAt = [&](Vec2d s, Vec2d v, int gfxType, int value)
-    {
-        int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, value);
-        bombs[idx].type = gfxType;
-        bombs[idx].pos = s;
-        bombs[idx].vel = v;
-    };
+    // ---- 調整パラメータ ----
+    const int shotInterval = 20;       // リング発射間隔
+    const int N = 18 + difficulty * 4; // 1リングの弾数
+    const double speed = 1.00 + 0.12 * difficulty;
 
-    const int cycle = 240;
-    const int burstEvery = 18;
+    // 1回撃つたびにズレる角度（ラジアン）
+    // 例：PI/32 ≒ 5.6度。大きいほど「回ってる感」が強い
+    const double shiftPerShot = PI / 32.0;
+
+    // “間”を入れる（3回撃って休む）
+    const bool usePause = true;
     const int burstCount = 3;
-    const int burstWindow = burstEvery * burstCount;
-    const int pauseWindow = 50;
-    int t = time % cycle;
+    const int pauseFrames = 60; // 休憩時間
+    // 1ブロック長 = 3発分 + 休憩
+    const int block = burstCount * shotInterval + pauseFrames;
 
-    const double upSpeed = 1.4 + difficulty * 0.30;
-    const int N = 10 + difficulty * 4;
-
+    // ------------------------
+    // リング発射判定（間あり）
+    // ------------------------
     if (enemy.enemyStatus.time >= 0)
     {
-        bool burstA = (t < burstWindow);
-        bool burstB = (t >= burstWindow + pauseWindow && t < (burstWindow + pauseWindow + burstWindow));
-
-        if ((burstA && (t % burstEvery == 0)) ||
-            (burstB && ((t - (burstWindow + pauseWindow)) % burstEvery == 0)))
+        if (usePause)
         {
+            int t = time % block;
+
+            // 休憩中は撃たない
+            if (t >= burstCount * shotInterval)
+                return;
+
+            // ブロック内で shotInterval ごとに撃つ
+            if (t % shotInterval != 0)
+                return;
+
+            // 「このブロックで何発目か」
+            int shotInBlock = t / shotInterval;
+
+            // 「今までの総発射回数」(ブロック跨ぎでも連続でズレるように)
+            int blockIndex = time / block;
+            int shotIndex = blockIndex * burstCount + shotInBlock;
+
+            double phase = shiftPerShot * shotIndex;
+
             for (int i = 0; i < N; ++i)
             {
-                double off = ((i % 7) - 3) * 0.11;
-                double ang = -PI / 2.0 + off;
-                Vec2d v{upSpeed * std::cos(ang), upSpeed * std::sin(ang)};
-                spawnAt(e, v, (i % 3), 8);
+                int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 8);
+                bombs[idx].type = (i % 3);
+
+                double ang = phase + (2.0 * PI * i) / (double)N;
+                bombs[idx].pos = e;
+                bombs[idx].vel.x = speed * std::cos(ang);
+                bombs[idx].vel.y = speed * std::sin(ang);
             }
         }
-
-        const int laserCycle = 240;
-        const int laserT0 = 120;
-        const int laserGap = 36;
-        const int laserLen = 18;
-        const double laserStep = 14.0;
-        const double laserSpeed = 3.0 + difficulty * 0.40;
-
-        int lt = time % laserCycle;
-        if (lt == laserT0 || lt == laserT0 + laserGap)
+        else
         {
-            Vec2d src = (lt == laserT0) ? Vec2d{e.x - 180.0, e.y + 40.0} : Vec2d{e.x + 180.0, e.y + 40.0};
-            double ang = normalizeAngle(std::atan2(p.y - src.y, p.x - src.x));
+            // 間なし版（単純に撃つたび位相が回る）
+            if (time % shotInterval != 0)
+                return;
 
-            Vec2d dir{std::cos(ang), std::sin(ang)};
-            Vec2d v{laserSpeed * dir.x, laserSpeed * dir.y};
+            int shotIndex = time / shotInterval;
+            double phase = shiftPerShot * shotIndex;
 
-            for (int i = 0; i < laserLen; ++i)
+            for (int i = 0; i < N; ++i)
             {
-                Vec2d s{src.x - dir.x * (i * laserStep), src.y - dir.y * (i * laserStep)};
-                spawnAt(s, v, 2, 6);
+                int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 8);
+                bombs[idx].type = (i % 3);
+
+                double ang = phase + (2.0 * PI * i) / (double)N;
+                bombs[idx].pos = e;
+                bombs[idx].vel.x = speed * std::cos(ang);
+                bombs[idx].vel.y = speed * std::sin(ang);
             }
         }
-    }
-
-    double gravity = 0.024 + 0.012 * difficulty;
-    for (int i = 0; i < MAX_BOMBS; ++i)
-    {
-        if (!bombs[i].isUsing)
-            continue;
-        if (bombs[i].id != enemy.getId())
-            continue;
-        bombs[i].vel.y += gravity;
     }
 }
 

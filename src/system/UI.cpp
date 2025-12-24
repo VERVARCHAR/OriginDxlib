@@ -82,8 +82,8 @@ void UI::drawUI(StageInfo stageInfo)
     const int playRight = (int)(WINDOW_WIDTH * 0.6) + 22; // ちょっとだけ狭めて縁取り
     const int playBottom = WINDOW_HEIGHT - 10;
 
-    DrawExtendGraph(0, -684 + (time) / 10, playRight, WINDOW_HEIGHT + (time) / 20, stageImageHandle[stageInfo.stage - 1], TRUE);
-
+    DrawExtendGraph(0, -684, playRight, WINDOW_HEIGHT, stageImageHandle[stageInfo.stage - 1], TRUE);
+    // DrawGraph(0, -10, stageImageHandle[stageInfo.stage - 1], TRUE);
     DrawGraph(0, 0, UIImageHandle, TRUE);
     // プレイエリア（左側）: 少し余白を残す
 
@@ -286,11 +286,11 @@ void UI::talkUI(std::wstring talkString, int talkWho)
     }
 
     // [DEBUG]
-    printfDx(talkString.c_str());
+    // printfDx(talkString.c_str());
     // DrawFormatString(100, 600, GetColor(255, 255, 255), talkString.c_str());
 
-    DrawBox(10, 400, 750, 600, GetColor(0, 0, 0), TRUE);
-    DrawBox(20, 410, 740, 590, GetColor(225, 160, 60), TRUE);
+    DrawBox(10, 400, 780, 600, GetColor(0, 0, 0), TRUE);
+    DrawBox(20, 410, 770, 590, GetColor(225, 160, 60), TRUE);
     DrawFormatStringToHandle(
         30, 420,
         GetColor(255, 255, 255),

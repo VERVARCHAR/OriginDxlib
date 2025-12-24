@@ -11,13 +11,13 @@
                 },
                 {
                     "spellName": "Spell No.2",
-                    "spellType": 7,
+                    "spellType": 2,
                     "isDurability": false,
                     "durabilityTime": 60
                 },
                 {
                     "spellName": "Spell No.3",
-                    "spellType": 8,
+                    "spellType": 3,
                     "isDurability": false,
                     "durabilityTime": 60
                 }

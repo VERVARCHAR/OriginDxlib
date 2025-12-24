@@ -200,9 +200,9 @@ inline bool LoadEnemyDataFromJson(int stageIdx, const std::string &stageInfoPath
                 }
             }
         }
-        printfDx(L"[INFO] spellCount = %d, spells.size() = %d\n", e.spellCount, (int)spells.size());
+        // printfDx(L"[INFO] spellCount = %d, spells.size() = %d\n", e.spellCount, (int)spells.size());
     }
-    printfDx(L"[DEBUG] Loaded %d enemies\n", (int)outEnemies.size());
+    // printfDx(L"[DEBUG] Loaded %d enemies\n", (int)outEnemies.size());
     if (outEnemies.empty())
     {
         printfDx(L"[ERROR] No enemies loaded from stage data\n");

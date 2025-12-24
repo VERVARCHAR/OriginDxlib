@@ -256,7 +256,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     stageInfo.nowStatus = player->getStatus();
 
     // [DEBUG]
-    player->debugStatus();
+    // player->debugStatus();
 
     // ポーズ中でない，ゲームオーバーでないならプレイヤー，弾幕の更新処理をする
     if (!isPause && !isGameOver)
@@ -284,7 +284,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
             enemies[i]->enemyDraw();
 
             // [DEBUG]
-            printfDx(L"enemy type:%d", enemies[i]->enemyStatus.type);
+            // printfDx(L"enemy type:%d", enemies[i]->enemyStatus.type);
         }
     }
 
@@ -362,10 +362,10 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     }
 
     // [DEBUG]
-    printfDx(L"times : %d\n", time);
-    printfDx(L"Boss Index : %d\n", bossIndex);
-    printfDx(L"Clear : %d\n", isClearStage);
-    printfDx(L"Stage : %d\n", stageInfo.stage);
+    // printfDx(L"times : %d\n", time);
+    // printfDx(L"Boss Index : %d\n", bossIndex);
+    // printfDx(L"Clear : %d\n", isClearStage);
+    // printfDx(L"Stage : %d\n", stageInfo.stage);
 }
 
 void StageManager::getClearStage()

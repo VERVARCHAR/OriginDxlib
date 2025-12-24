@@ -67,7 +67,7 @@ void Player::playerDraw()
         }
 
         // [DEBUG]
-        DrawCircle(pos.x, pos.y - 5, radius * 8, GetColor(255, 255, 255), FALSE);
+        // DrawCircle(pos.x, pos.y - 5, radius * 8, GetColor(255, 255, 255), FALSE);
     }
 }
 
@@ -232,7 +232,7 @@ void Player::shootBomb(BombManager *bMgr, BombInfo bombs[MAX_BOMBS])
         bombs[idx].time = 0;
         bombs[idx].radius = 5;
         bombs[idx].pos = pos;
-        bombs[idx].pos.x += (status.isShift ? -10 : -20) * (status.power - 1) + (status.isShift ? 20 : 40) * i;
+        bombs[idx].pos.x += (status.isShift ? -10 : -20) * (int)(status.power - 1) + (status.isShift ? 20 : 40) * i;
         bombs[idx].pos.y += 20;
 
         bombs[idx].isPlayers = true;
