@@ -71,7 +71,7 @@ void Player::playerDraw()
     }
 }
 
-void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter *effecter)
+void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter *effecter, Enemy *enemies[MAX_ENEMIES])
 {
 
     // DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(0, 0, 255), TRUE);
@@ -118,6 +118,7 @@ void Player::playerUpdate(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Effecter
         }
         status.invincibleTime -= 1;
     }
+    updateBombs(bMgr, bombs, enemies);
     chattering = false;
     time++;
 }
@@ -218,7 +219,7 @@ void Player::Dead()
 
 void Player::shootBomb(BombManager *bMgr, BombInfo bombs[MAX_BOMBS])
 {
-    double speed = 15;
+    double speed = 12;
 
     for (int i = 0; i < (int)(status.power); i++)
     {
@@ -232,13 +233,114 @@ void Player::shootBomb(BombManager *bMgr, BombInfo bombs[MAX_BOMBS])
         bombs[idx].time = 0;
         bombs[idx].radius = 5;
         bombs[idx].pos = pos;
-        bombs[idx].pos.x += (status.isShift ? -10 : -20) * (int)(status.power - 1) + (status.isShift ? 20 : 40) * i;
+        bombs[idx].pos.x += (status.isShift ? -10 : -20) * ((int)status.power - 1) + (status.isShift ? 20 : 40) * i;
         bombs[idx].pos.y += 20;
 
         bombs[idx].isPlayers = true;
         bombs[idx].type = 2;
 
+        bombs[idx].vel.x = 0.0;
         bombs[idx].vel.y = -speed;
+    }
+}
+
+static double clampd(double v, double lo, double hi)
+{
+    if (v < lo)
+        return lo;
+    if (v > hi)
+        return hi;
+    return v;
+}
+
+static void normalize(double &x, double &y)
+{
+    const double l2 = x * x + y * y;
+    if (l2 < 1e-12)
+    {
+        x = 0.0;
+        y = -1.0; // 上
+        return;
+    }
+    const double inv = 1.0 / sqrt(l2);
+    x *= inv;
+    y *= inv;
+}
+
+void Player::updateBombs(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Enemy *enemies[MAX_ENEMIES])
+{
+
+    // ---- 調整パラメータ（東方っぽく）----
+    const double speed = 12;    // 弾速（発射側と一致推奨）
+    const double detectR = 500; // この距離以内の敵に反応
+    const double detectR2 = detectR * detectR;
+
+    const double turn = 0.16;       // 1フレームで曲げる強さ(0.08〜0.16おすすめ)
+    const double keepSpeed = speed; // 速度一定にする
+
+    for (int i = 0; i < MAX_BOMBS; ++i)
+    {
+        BombInfo &b = bombs[i];
+        if (!b.isUsing)
+            continue;
+        if (!b.isPlayers)
+            continue;
+        // if (b.type != 2)
+        //     continue; // プレイヤー通常弾だけホーミング
+
+        // 1) 近い敵を探す
+        Enemy *target = nullptr;
+        double bestD2 = detectR2;
+
+        for (int e = 0; e < MAX_ENEMIES; ++e)
+        {
+            Enemy *en = enemies[e];
+            if (!en)
+                continue;
+
+            // 例: if (!en->isActive()) continue;
+            if (!en->getIsAlive())
+                continue;
+
+            if (en->enemyStatus.isInvincible)
+                continue;
+
+            const Vec2d epos = en->getPosition();
+            const double dx = epos.x - b.pos.x;
+            const double dy = epos.y - b.pos.y;
+            const double d2 = dx * dx + dy * dy;
+
+            if (d2 < bestD2)
+            {
+                bestD2 = d2;
+                target = en;
+            }
+        }
+
+        // 2) ターゲットがいるなら、進行方向を少しだけそっちへ曲げる
+        if (target)
+        {
+            // 目標方向
+            const Vec2d tpos = target->getPosition();
+            double tx = tpos.x - b.pos.x;
+            double ty = tpos.y - b.pos.y;
+            normalize(tx, ty);
+
+            // 現在方向
+            double vx = b.vel.x;
+            double vy = b.vel.y;
+            normalize(vx, vy);
+
+            // 方向補間（急旋回しないホーミング）
+            const double t = clampd(turn, 0.0, 1.0);
+            double nx = vx * (1.0 - t) + tx * t;
+            double ny = vy * (1.0 - t) + ty * t;
+            normalize(nx, ny);
+
+            // 速度一定化して反映
+            b.vel.x = nx * keepSpeed;
+            b.vel.y = ny * keepSpeed;
+        }
     }
 }
 

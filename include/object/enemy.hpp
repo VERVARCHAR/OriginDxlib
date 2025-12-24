@@ -128,7 +128,10 @@ public:
     void shootSpell(EnemyShootScript *, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player);
     void shootBomb(EnemyShootScript *, BombManager *bMgr, BombInfo bombs[MAX_BOMBS], int time, int difficulty, Player player);
     bool getOnScreen();
-    bool getIsAlive(int index);
+    bool getIsAlive()
+    {
+        return enemyStatus.isAlive;
+    }
     bool isHitPlayer(Player *player);
     void enemyMove(Vec2d playerPos);
     Vec2d getPos(int index);

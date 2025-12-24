@@ -25,6 +25,10 @@
 // #include "object/stage.hpp"
 // #endif
 
+#include "object/enemy.hpp"
+#include "object/playerStatus.hpp"
+#define MAX_ENEMIES 128
+
 extern int Key[256];
 
 class Enemy;
@@ -33,19 +37,6 @@ struct EnemyStatus;
 
 // 使用不可
 // class StageManager;
-
-typedef struct Status
-{
-    int lives;
-    int spells;
-    double power;
-    bool isSpells;
-    bool invincible;
-    bool isShoot;
-    bool isShift;
-    int invincibleTime;
-    int grazeCount = 0;
-} PlayerStatus;
 
 class Player
 {
@@ -104,12 +95,12 @@ public:
     void loadPlayerImage();
 
     void getBMgrData(BombManager *_BombManager);
-    void playerUpdate(BombManager *_BombManager, BombInfo[MAX_BOMBS], Effecter *effecter);
+    void playerUpdate(BombManager *_BombManager, BombInfo[MAX_BOMBS], Effecter *effecter, Enemy *enemies[MAX_ENEMIES]);
     void playerDraw();
     void shootBomb(BombManager *bMgr, BombInfo bombs[MAX_BOMBS]);
+    void updateBombs(BombManager *bMgr, BombInfo bombs[MAX_BOMBS], Enemy *enemies[MAX_ENEMIES]);
     void getKeyInput(bool isTalk);
     void SpelCard(BombManager *, BombInfo[MAX_BOMBS]);
-    void ShootBomb(BombManager *bMgr, BombInfo bombs[MAX_BOMBS]);
     void Dead();
     void debugStatus()
     {

@@ -261,7 +261,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     // ポーズ中でない，ゲームオーバーでないならプレイヤー，弾幕の更新処理をする
     if (!isPause && !isGameOver)
     {
-        player->playerUpdate(bMgr, bombs, effecter);
+        player->playerUpdate(bMgr, bombs, effecter, enemies);
         bMgr->updateBombs(bombs);
         iMgr->updateItems(this, player);
 

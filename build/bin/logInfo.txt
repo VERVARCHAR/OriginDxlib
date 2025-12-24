@@ -215,7 +215,7 @@
 [Info] (LoadEnemyDataFromJson)	push back enemy data type:100
 [Info] (LoadEnemyDataFromJson)	push back enemy data moveType:4
 [Info] (LoadEnemyDataFromJson)	push back enemy data lives:3
-[Info] (LoadEnemyDataFromJson)	push back enemy data hp:200
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:500
 [Info] (LoadEnemyDataFromJson)	push back enemy data radius:28
 [Info] (LoadEnemyDataFromJson)	push back enemy data shootType:10
 [Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:2700
@@ -267,11 +267,9 @@
 [Info] (LoadFromVector) index enemy spawn time is 2700
 [Info] (LoadFromVector) 13 enemies registered
 [Info] (LoadFromVector) 3 spellCount registered
-[Info] (LoadTalkDataFromJson) 	気持ち良い気分なのに
-なぜ邪魔をするのだわ
+[Info] (LoadTalkDataFromJson) 	気持ち良い気分なのになぜ邪魔をするのだわ
 [Info] (LoadTalkDataFromJson) 	暴れているのが悪い
-[Info] (LoadTalkDataFromJson) 	やはり聖職者とは
-相いれないのだわ
+[Info] (LoadTalkDataFromJson) 	やはり聖職者とは相容れないのだわ
 [Info] (loadEnemy) pass loadEnemy.
 [Info] (updateStage) pass spawnEnemy : 0
 [Info] (updateStage) pass spawnEnemy : 1

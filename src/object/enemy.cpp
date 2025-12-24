@@ -92,7 +92,7 @@ void Enemy::enemyUpdate(int time, StageInfo *stageInfo, BombManager *bMgr, BombI
     if (enemyStatus.type >= 100)
     {
         // ボスのHPが100を下回ったらスペル発動
-        if (enemyStatus.hp <= 100 && !enemyStatus.isSpell)
+        if (enemyStatus.hp <= enemyStatus.maxHp * 0.6 && !enemyStatus.isSpell)
         {
             enemyStatus.isSpell = true;
             enemyStatus.time = -120;
@@ -146,8 +146,6 @@ void Enemy::enemyUpdate(int time, StageInfo *stageInfo, BombManager *bMgr, BombI
     {
         if (enemyStatus.isSpell)
         {
-            // DrawFormatString(100, 40, GetColor(255, 255, 255), L"Spell");
-
             shootSpell(enemyShootScript, bMgr, bombs, enemyStatus.time, stageInfo->difficulty, *player);
         }
         else
