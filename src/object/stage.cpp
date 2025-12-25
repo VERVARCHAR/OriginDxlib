@@ -174,6 +174,16 @@ void StageManager::loadEnemy()
 
     // LoadEnemyImage("../../img/EnemyProtoType01.png", enemyImageHandle);
     LoadDivGraph(L"..\\..\\assets\\enemy\\Enemy.png", 16, 4, 4, 256, 256, enemyImageHandle);
+    enemyImageHandle[0] = LoadGraph(L"..\\..\\assets\\enemy\\zako00.png");
+    enemyImageHandle[1] = LoadGraph(L"..\\..\\assets\\enemy\\zako01.png");
+    enemyImageHandle[2] = LoadGraph(L"..\\..\\assets\\enemy\\zako02.png");
+    enemyImageHandle[3] = LoadGraph(L"..\\..\\assets\\enemy\\zako03.png");
+    enemyImageHandle[4] = LoadGraph(L"..\\..\\assets\\enemy\\zako04.png");
+    enemyImageHandle[5] = LoadGraph(L"..\\..\\assets\\enemy\\zako05.png");
+    enemyImageHandle[6] = LoadGraph(L"..\\..\\assets\\enemy\\zako06.png");
+    enemyImageHandle[10] = LoadGraph(L"..\\..\\assets\\enemy\\Boss01.png");
+    // enemyImageHandle[11] = LoadGraph(L"..\\..\\assets\\enemy\\.png")
+    // enemyImageHandle[12] = LoadGraph(L"..\\..\\assets\\enemy\\.png")
     Logger::Log("(loadEnemy) pass loadEnemy.", LogLevel::Info);
     // return 1;
 }
@@ -231,13 +241,20 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
             {
                 Logger::Log("(updateStage) pass spawnEnemy : " + to_string(i), LogLevel::Info);
                 enemies[i]->setIsAlive(true);
-                enemies[i]->setImageHandle(enemyImageHandle[enemies[i]->enemyStatus.type % 100]);
+                if (enemies[i]->enemyStatus.type < 100)
+                {
+                    enemies[i]->setImageHandle(enemyImageHandle[enemies[i]->enemyStatus.type % 100]);
+                }
+                else
+                {
+                    // BOSS
+                    enemies[i]->setImageHandle(enemyImageHandle[10 + enemies[i]->enemyStatus.type % 100]);
+                }
             }
 
             if (isTalk && i != bossIndex)
             {
                 enemies[i]->enemyStatus.isAlive = false;
-                // TODO effect
             }
 
             if (enemies[i] != nullptr && enemies[i]->enemyStatus.isAlive && !isTalk)

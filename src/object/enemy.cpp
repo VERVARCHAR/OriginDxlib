@@ -20,7 +20,6 @@ void Enemy::init(EnemyStatus _enemyStatus)
     enemyStatus = _enemyStatus;
 }
 
-// TODO どこかで定義されてるはず
 #define SQRT2 1.414
 void Enemy::enemyDraw()
 {
@@ -61,7 +60,6 @@ void Enemy::enemyUpdate(int time, StageInfo *stageInfo, BombManager *bMgr, BombI
             player->Dead();
         }
 
-        // TODO 敵の動きも関数にしたいかなぁ
         enemyMove(player->getPosition());
         enemyStatus.time++;
 
@@ -77,7 +75,6 @@ void Enemy::enemyUpdate(int time, StageInfo *stageInfo, BombManager *bMgr, BombI
         if (enemyStatus.lives == 0 || !getOnScreen())
         {
             enemyStatus.isAlive = false;
-            // iMgr->spawnItem(ItemType::POWER, enemyStatus.pos, {0, 1});
             if (enemyStatus.lives == 0)
             {
                 effecter->playEnemyExplode(enemyStatus.pos);
@@ -86,82 +83,98 @@ void Enemy::enemyUpdate(int time, StageInfo *stageInfo, BombManager *bMgr, BombI
                 iMgr->spawnItem(ItemType::POWER, enemyStatus.pos, {0, 2}, stageInfo->difficulty + 10, time);
             }
         }
-    }
 
-    // 敵のtypeが100以上のとき，敵はボス
-    if (enemyStatus.type >= 100)
-    {
-        // ボスのHPが100を下回ったらスペル発動
-        if (enemyStatus.hp <= enemyStatus.maxHp * 0.6 && !enemyStatus.isSpell)
+        // 敵のHPが0になった時の処理
+        if (enemyStatus.hp <= 0)
         {
-            enemyStatus.isSpell = true;
-            enemyStatus.time = -120;
-            bMgr->removeBomb(bombs, effecter);
-            enemyStatus.isInvincible = true;
-            enemyStatus.invincibleTime = 120;
-        }
-    }
+            enemyStatus.lives -= 1;
+            enemyStatus.shootType += 1;
+            stageInfo->score += 1000;
 
-    // 敵のHPが0になった時の処理
-    if (enemyStatus.hp <= 0 && enemyStatus.lives > 0)
-    {
-        enemyStatus.lives -= 1;
-        enemyStatus.shootType += 1;
-        stageInfo->score += 1000;
-
-        // もし敵がボスで，HPが0になったらスペルフラグをfalseにし，無敵時間を付与
-        if (enemyStatus.isSpell == true)
-        {
-            enemyStatus.isSpell = false;
-            enemyStatus.isInvincible = true;
-            enemyStatus.invincibleTime = 120;
-            enemyStatus.hp = enemyStatus.maxHp;
-            enemyStatus.spellCount += 1;
-            bMgr->removeBomb(bombs, effecter);
-            stageInfo->score += 100000;
-            enemyStatus.time = 0;
-
-            if (enemyStatus.shootType > 10)
+            // もし敵がボスで，HPが0になったらスペルフラグをfalseにし，無敵時間を付与
+            if (enemyStatus.isSpell == true)
             {
-                enemyStatus.shootType = 1;
+                enemyStatus.isSpell = false;
+                enemyStatus.isInvincible = true;
+                enemyStatus.invincibleTime = 120;
+                enemyStatus.hp = enemyStatus.maxHp;
+                enemyStatus.spellCount += 1;
+                bMgr->removeBomb(bombs, effecter);
+                stageInfo->score += 100000;
+                enemyStatus.time = 0;
+
+                if (enemyStatus.shootType > 10)
+                {
+                    enemyStatus.shootType = 1;
+                }
+            }
+            if (enemyStatus.type >= 100 && 1 == enemyStatus.lives)
+            {
+                enemyStatus.isInvincible = true;
+                enemyStatus.invincibleTime = 180;
+                enemyStatus.isSpell = true;
+                enemyStatus.time = -180;
             }
         }
-        if (enemyStatus.type >= 100 && 1 == enemyStatus.lives)
+
+        if (enemyStatus.isSpell && enemyStatus.invincibleTime == 120)
         {
-            enemyStatus.isInvincible = true;
-            enemyStatus.invincibleTime = 180;
             enemyStatus.isSpell = true;
-            enemyStatus.time = -180;
+            Vec2d cutIn = {790, 100};
+            effecter->playEnemySpell(cutIn);
         }
-    }
 
-    if (enemyStatus.isSpell && enemyStatus.invincibleTime == 120)
-    {
-        enemyStatus.isSpell = true;
-        Vec2d cutIn = {790, 100};
-        effecter->playEnemySpell(cutIn);
-    }
-
-    if (!enemyStatus.isInvincible)
-    {
-        if (enemyStatus.isSpell)
+        if (!enemyStatus.isInvincible)
         {
-            shootSpell(enemyShootScript, bMgr, bombs, enemyStatus.time, stageInfo->difficulty, *player);
+            if (enemyStatus.isSpell)
+            {
+                shootSpell(enemyShootScript, bMgr, bombs, enemyStatus.time, stageInfo->difficulty, *player);
+            }
+            else
+            {
+                shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, stageInfo->difficulty, *player);
+            }
+        }
+
+        // 無敵時間の処理
+        if (enemyStatus.invincibleTime >= 0)
+        {
+            enemyStatus.invincibleTime -= 1;
         }
         else
         {
-            shootBomb(enemyShootScript, bMgr, bombs, enemyStatus.time, stageInfo->difficulty, *player);
+            enemyStatus.isInvincible = false;
         }
-    }
 
-    // 無敵時間の処理
-    if (enemyStatus.invincibleTime >= 0)
-    {
-        enemyStatus.invincibleTime -= 1;
-    }
-    else
-    {
-        enemyStatus.isInvincible = false;
+        // ボスの死亡 or HP6割演出
+        if (enemyStatus.type >= 100)
+        {
+            // ボスのHPが100を下回ったらスペル発動
+            if (enemyStatus.hp <= enemyStatus.maxHp * 0.6 && !enemyStatus.isSpell)
+            {
+                enemyStatus.isSpell = true;
+                enemyStatus.time = -120;
+                bMgr->removeBomb(bombs, effecter);
+                enemyStatus.isInvincible = true;
+                enemyStatus.invincibleTime = 120;
+
+                iMgr->spawnItem(ItemType::SCORE, enemyStatus.pos, {0, 2}, stageInfo->difficulty + 10, time);
+                iMgr->spawnItem(ItemType::POWER, enemyStatus.pos, {0, 2}, stageInfo->difficulty + 10, time);
+            }
+            if (enemyStatus.hp <= 0 && enemyStatus.lives == 0)
+            {
+                enemyStatus.isAlive = false;
+                effecter->playBossExplode(enemyStatus.pos);
+                iMgr->spawnItem(ItemType::SCORE, enemyStatus.pos, {0, 2}, stageInfo->difficulty + 25, time);
+                iMgr->spawnItem(ItemType::POWER, enemyStatus.pos, {0, 2}, stageInfo->difficulty + 25, time);
+            }
+            else if (enemyStatus.hp <= 0 && enemyStatus.lives != 0)
+            {
+                effecter->playEnemyExplode(enemyStatus.pos);
+                iMgr->spawnItem(ItemType::SCORE, enemyStatus.pos, {0, 2}, stageInfo->difficulty + 10, time);
+                iMgr->spawnItem(ItemType::POWER, enemyStatus.pos, {0, 2}, stageInfo->difficulty + 10, time);
+            }
+        }
     }
 }
 
@@ -176,8 +189,7 @@ void Enemy::getBMgrData(BombManager &_BombManager)
 
 bool Enemy::getOnScreen()
 {
-    // TODO 画面サイズ取得に変更
-    int screenWidth = 1000;
+    int screenWidth = 790;
     int screenHeight = 600;
     // int hideScreen
     if (enemyStatus.pos.x + enemyStatus.radius < -50 || enemyStatus.pos.y - enemyStatus.radius > screenWidth + 50 || enemyStatus.pos.y + enemyStatus.radius < -50 || enemyStatus.pos.y - enemyStatus.radius > screenHeight + 50)
