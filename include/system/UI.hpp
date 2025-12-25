@@ -58,7 +58,7 @@ private:
     int gameImageHandle[7];
     int stageImageHandle[7];
     int playerImageHandle;
-    int enemyImageHandle;
+    int bossCutInImageHandle;
     int uiFont;
     int talkFont;
     int highScore;
@@ -100,7 +100,7 @@ public:
 
     int getEnemyCutInHandle()
     {
-        return enemyImageHandle;
+        return bossCutInImageHandle;
     }
 };
 

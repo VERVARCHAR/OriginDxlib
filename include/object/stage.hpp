@@ -88,8 +88,8 @@ typedef struct StageInfo
 {
     int stage;
     Difficulty difficulty;
-    int score;
-    int stageScore;
+    int score = 0;
+    int stageScore = 0;
     PlayerStatus nowStatus;
 };
 

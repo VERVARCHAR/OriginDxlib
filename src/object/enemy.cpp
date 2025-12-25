@@ -85,14 +85,14 @@ void Enemy::enemyUpdate(int time, StageInfo *stageInfo, BombManager *bMgr, BombI
         }
 
         // 敵のHPが0になった時の処理
-        if (enemyStatus.hp <= 0)
+        if (enemyStatus.hp <= 0 && enemyStatus.isAlive)
         {
             enemyStatus.lives -= 1;
             enemyStatus.shootType += 1;
             stageInfo->score += 1000;
 
             // もし敵がボスで，HPが0になったらスペルフラグをfalseにし，無敵時間を付与
-            if (enemyStatus.isSpell == true)
+            if (enemyStatus.isSpell == true && enemyStatus.lives != 0)
             {
                 enemyStatus.isSpell = false;
                 enemyStatus.isInvincible = true;

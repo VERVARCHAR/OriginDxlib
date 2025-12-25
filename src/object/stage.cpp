@@ -326,16 +326,24 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
         {
             if (Key[KEY_INPUT_RETURN] == 1)
             {
-                time = 0;
-                stageInfo.stage += 1;
-                isClearStage = false;
-                loadEnemy();
+                if (isStoryClear)
+                {
+                    return;
+                }
+                else
+                {
+                    time = 0;
+                    stageInfo.stage += 1;
+                    isClearStage = false;
+                    loadEnemy();
+                }
             }
         }
         else
         {
             time++;
         }
+
         if (stageInfo.stage == allStageLength)
         {
             // DrawFormatString(300, 300, GetColor(255, 255, 255), L"Clear...");

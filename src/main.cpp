@@ -268,6 +268,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             // bMgr.DEBUG_printAllBombs(bombs);
             // sMgr.DEBUG_print_enemies();
 
+            if (sMgr.isClearStage)
+            {
+                if (Key[KEY_INPUT_RETURN])
+                    scene = RESULT;
+            }
+
             break;
         case RESULT: // TODO リザルトの作成
             break;

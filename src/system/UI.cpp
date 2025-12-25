@@ -42,7 +42,7 @@ void UI::getInGameImage()
     uiFont = CreateFontToHandle(L"源真ゴシック", 42, 3, DX_FONTTYPE_ANTIALIASING);
     talkFont = CreateFontToHandle(L"源真ゴシック", 32, 2, DX_FONTTYPE_ANTIALIASING);
 
-    enemyImageHandle = LoadGraph(L"..\\..\\assets\\enemy\\cutin_lily.png");
+    bossCutInImageHandle = LoadGraph(L"..\\..\\assets\\enemy\\cutin_lily.png");
 }
 
 void UI::loadPreLoadingImages()
@@ -272,7 +272,7 @@ void UI::talkUI(std::wstring talkString, int talkWho)
     {
         // DrawBox(330, 200, (int)(WINDOW_WIDTH * 0.6) - 30, 500, GetColor(255, 0, 0), TRUE);
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
-        DrawGraph(500, 200, enemyImageHandle, TRUE);
+        DrawGraph(500, 200, bossCutInImageHandle, TRUE);
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
         DrawGraph(30, 180, playerImageHandle, TRUE);
     }
@@ -282,7 +282,7 @@ void UI::talkUI(std::wstring talkString, int talkWho)
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
         DrawGraph(30, 200, playerImageHandle, TRUE);
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
-        DrawGraph(500, 180, enemyImageHandle, TRUE);
+        DrawGraph(500, 180, bossCutInImageHandle, TRUE);
     }
 
     // [DEBUG]
