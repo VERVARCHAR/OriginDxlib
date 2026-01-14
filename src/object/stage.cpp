@@ -182,8 +182,8 @@ void StageManager::loadEnemy()
     enemyImageHandle[5] = LoadGraph(L"..\\..\\assets\\enemy\\zako05.png");
     enemyImageHandle[6] = LoadGraph(L"..\\..\\assets\\enemy\\zako06.png");
     enemyImageHandle[10] = LoadGraph(L"..\\..\\assets\\enemy\\Boss01.png");
-    // enemyImageHandle[11] = LoadGraph(L"..\\..\\assets\\enemy\\.png")
-    // enemyImageHandle[12] = LoadGraph(L"..\\..\\assets\\enemy\\.png")
+    enemyImageHandle[11] = LoadGraph(L"..\\..\\assets\\enemy\\Boss02.png");
+    enemyImageHandle[12] = LoadGraph(L"..\\..\\assets\\enemy\\Boss03.png");
     Logger::Log("(loadEnemy) pass loadEnemy.", LogLevel::Info);
     // return 1;
 }

@@ -42,7 +42,9 @@ void UI::getInGameImage()
     uiFont = CreateFontToHandle(L"源真ゴシック", 42, 3, DX_FONTTYPE_ANTIALIASING);
     talkFont = CreateFontToHandle(L"源真ゴシック", 32, 2, DX_FONTTYPE_ANTIALIASING);
 
-    bossCutInImageHandle = LoadGraph(L"..\\..\\assets\\enemy\\cutin_lily.png");
+    bossCutInImageHandle[0] = LoadGraph(L"..\\..\\assets\\enemy\\cutin_Boss01.png");
+    bossCutInImageHandle[1] = LoadGraph(L"..\\..\\assets\\enemy\\cutin_Boss02.png");
+    bossCutInImageHandle[2] = LoadGraph(L"..\\..\\assets\\enemy\\cutin_Boss03.png");
 }
 
 void UI::loadPreLoadingImages()
@@ -75,7 +77,6 @@ void UI::drawTitle()
 
 void UI::drawUI(StageInfo stageInfo)
 {
-
     // 背景
     const int playLeft = 10;
     const int playTop = 10;
@@ -266,13 +267,13 @@ void UI::drawBossStatus(EnemyStatus enemyStatus)
     // DrawBox(barX, barY, barX + barWidth, barY + barHeight, GetColor(255, 255, 255), FALSE);
 }
 
-void UI::talkUI(std::wstring talkString, int talkWho)
+void UI::talkUI(int stage, std::wstring talkString, int talkWho)
 {
     if (talkWho == 0)
     {
         // DrawBox(330, 200, (int)(WINDOW_WIDTH * 0.6) - 30, 500, GetColor(255, 0, 0), TRUE);
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
-        DrawGraph(500, 200, bossCutInImageHandle, TRUE);
+        DrawGraph(500, 200, bossCutInImageHandle[stage - 1], TRUE);
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
         DrawGraph(30, 180, playerImageHandle, TRUE);
     }
@@ -282,7 +283,7 @@ void UI::talkUI(std::wstring talkString, int talkWho)
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
         DrawGraph(30, 200, playerImageHandle, TRUE);
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
-        DrawGraph(500, 180, bossCutInImageHandle, TRUE);
+        DrawGraph(500, 180, bossCutInImageHandle[stage - 1], TRUE);
     }
 
     // [DEBUG]

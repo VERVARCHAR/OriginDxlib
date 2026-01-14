@@ -177,7 +177,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 sMgr.loadEnemy();
                 bMgr.setBombsHandle(ui.bombsImageHandle);
                 iMgr.loadImagehandle(ui.getLifeImageHandle(), ui.getSpellImageHandle());
-                effecter.setEnemyCutInImage(ui.getEnemyCutInHandle());
+                effecter.setEnemyCutInImage(ui.getEnemyCutInHandle(sMgr.getStageInfo().stage));
 
                 mode = titleMenu.startMode();
                 charId = titleMenu.selectedCharacterId();
@@ -230,7 +230,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             // 会話中の処理
             if (sMgr.isTalk)
             {
-                ui.talkUI(sMgr.getTalkString(sMgr.talkCount), sMgr.getTalkWho(sMgr.talkCount));
+                effecter.setEnemyCutInImage(ui.getEnemyCutInHandle(sMgr.getStageInfo().stage));
+                ui.talkUI(sMgr.getStageInfo().stage, sMgr.getTalkString(sMgr.talkCount), sMgr.getTalkWho(sMgr.talkCount));
                 if (Key[KEY_INPUT_RETURN] == 1)
                 {
                     sMgr.talkCount++;

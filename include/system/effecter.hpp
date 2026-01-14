@@ -100,6 +100,11 @@ private:
     int seSpell = -1;
     int seCountdown = -1;
 
+    // BGM ハンドル
+    int bgmTitle = -1;
+    int bgmStage[7] = -1;
+    int bgmBoss[7] = -1;
+
     int getEmptyIndex();
     void spawnEffect(EffectType type, const Vec2d &pos);
 };

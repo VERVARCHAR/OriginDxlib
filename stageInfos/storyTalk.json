@@ -7,11 +7,63 @@
                     "isTalkEnemy": 1
                 },
                 {
-                    "talkStr": "暴れているのが悪い",
+                    "talkStr": "暴れているのが悪いんだよ",
                     "isTalkEnemy": 0
                 },
                 {
                     "talkStr": "やはり聖職者とは相容れないのだわ",
+                    "isTalkEnemy": 1
+                }
+            ]
+        },
+        {
+            "talks": [
+                {
+                    "talkStr": "何の用？",
+                    "isTalkEnemy": 1
+                },
+                {
+                    "talkStr": "ここまで暴れてて白を切るつもり？",
+                    "isTalkEnemy": 0
+                },
+                {
+                    "talkStr": "私には関係ないのだけれど、、、",
+                    "isTalkEnemy": 1
+                },
+                {
+                    "talkStr": "これ以上進むというならちゃんと止めるわ！",
+                    "isTalkEnemy": 1
+                }
+            ]
+        },
+        {
+            "talks": [
+                {
+                    "talkStr": "ここまで来ても元凶は現れないのね、、、",
+                    "isTalkEnemy": 0
+                },
+                {
+                    "talkStr": "なんの元凶だって？",
+                    "isTalkEnemy": 1
+                },
+                {
+                    "talkStr": "ここには何もないわよ",
+                    "isTalkEnemy": 1
+                },
+                {
+                    "talkStr": "こんだけ桜がここから散ってるのに",
+                    "isTalkEnemy": 0
+                },
+                {
+                    "talkStr": "関係ないわけないでしょ",
+                    "isTalkEnemy": 0
+                },
+                {
+                    "talkStr": "血の気の多い巫女ねぇ",
+                    "isTalkEnemy": 1
+                },
+                {
+                    "talkStr": "いいわ、相手になってあげる",
                     "isTalkEnemy": 1
                 }
             ]
