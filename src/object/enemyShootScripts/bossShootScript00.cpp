@@ -450,7 +450,7 @@ void EnemyShootScript::Boss01Spell06(Enemy enemy, BombManager bMgr, BombInfo bom
                 {
                     double a = aim + k * spread;
                     Vec2d v{sp * std::cos(a), sp * std::sin(a)};
-                    spawnAt(e, v, 2, 6);
+                    spawnAt(e, v, 2, 12);
                 }
             }
 
@@ -502,7 +502,7 @@ void EnemyShootScript::Boss01Spell07(Enemy enemy, BombManager bMgr, BombInfo bom
 
             for (int i = 0; i < N; ++i)
             {
-                int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 6);
+                int idx = InitBombShoot(enemy, bMgr, bombs, time, difficulty, player, 16);
                 bombs[idx].type = (i % 3);
                 bombs[idx].pos = e;
 
@@ -516,7 +516,7 @@ void EnemyShootScript::Boss01Spell07(Enemy enemy, BombManager bMgr, BombInfo bom
     }
 
     const int zig = 18;
-    const double zigAmp = 0.07 + 0.02 * difficulty;
+    const double zigAmp = 0.02 + 0.01 * difficulty;
     for (int i = 0; i < MAX_BOMBS; ++i)
     {
         if (!bombs[i].isUsing)
@@ -873,7 +873,7 @@ void EnemyShootScript::Boss01Spell12(Enemy enemy, BombManager bMgr, BombInfo bom
     }
 
     const double rot = 0.0025 + 0.0008 * difficulty;
-    const double amp = 0.18 + 0.06 * difficulty;
+    const double amp = 0.02 + 0.01 * difficulty;
 
     for (int i = 0; i < MAX_BOMBS; ++i)
     {

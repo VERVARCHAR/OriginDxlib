@@ -192,7 +192,7 @@ bool Enemy::getOnScreen()
     int screenWidth = 790;
     int screenHeight = 600;
     // int hideScreen
-    if (enemyStatus.pos.x + enemyStatus.radius < -50 || enemyStatus.pos.y - enemyStatus.radius > screenWidth + 50 || enemyStatus.pos.y + enemyStatus.radius < -50 || enemyStatus.pos.y - enemyStatus.radius > screenHeight + 50)
+    if (enemyStatus.pos.x + enemyStatus.radius < -50 || enemyStatus.pos.x - enemyStatus.radius > screenWidth + 50 || enemyStatus.pos.y + enemyStatus.radius < -50 || enemyStatus.pos.y - enemyStatus.radius > screenHeight + 50)
     {
         return false;
     }

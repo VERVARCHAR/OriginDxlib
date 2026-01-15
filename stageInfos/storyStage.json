@@ -29,7 +29,8 @@
                     "vel": {
                         "x": 0.0,
                         "y": 2.0
-                    }
+                    },
+                    "spellAmount": 0
                 },
                 {
                     "name": "",
@@ -265,7 +266,7 @@
                     "type": 0,
                     "moveType": 8,
                     "lives": 1,
-                    "hp": 18,
+                    "hp": 70,
                     "radius": 12,
                     "shootType": 6,
                     "time": 0,
@@ -282,7 +283,8 @@
                     "vel": {
                         "x": 0.0,
                         "y": 2.0
-                    }
+                    },
+                    "spellAmount": 0
                 },
                 {
                     "name": "",
@@ -290,7 +292,7 @@
                     "type": 0,
                     "moveType": 8,
                     "lives": 1,
-                    "hp": 18,
+                    "hp": 70,
                     "radius": 12,
                     "shootType": 6,
                     "time": 0,
@@ -307,7 +309,8 @@
                     "vel": {
                         "x": 0.0,
                         "y": 2.0
-                    }
+                    },
+                    "spellAmount": 0
                 },
                 {
                     "name": "Boss",
@@ -351,7 +354,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 5,
                     "time": 0,
                     "spawnTime": 60,
                     "spellCount": 0,
@@ -373,11 +376,11 @@
                     "name": "",
                     "id": 2,
                     "type": 0,
-                    "moveType": 0,
+                    "moveType": 5,
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 1,
                     "time": 0,
                     "spawnTime": 65,
                     "spellCount": 0,
@@ -403,7 +406,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 5,
                     "time": 0,
                     "spawnTime": 70,
                     "spellCount": 0,
@@ -429,7 +432,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 5,
                     "time": 0,
                     "spawnTime": 75,
                     "spellCount": 0,
@@ -455,7 +458,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 5,
                     "time": 0,
                     "spawnTime": 80,
                     "spellCount": 0,
@@ -481,7 +484,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 5,
                     "time": 0,
                     "spawnTime": 85,
                     "spellCount": 0,
@@ -507,7 +510,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 5,
                     "time": 0,
                     "spawnTime": 90,
                     "spellCount": 0,
@@ -533,7 +536,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 5,
                     "time": 0,
                     "spawnTime": 95,
                     "spellCount": 0,
@@ -559,7 +562,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 5,
                     "time": 0,
                     "spawnTime": 100,
                     "spellCount": 0,
@@ -585,7 +588,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 5,
                     "time": 0,
                     "spawnTime": 105,
                     "spellCount": 0,
@@ -611,7 +614,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 5,
                     "time": 0,
                     "spawnTime": 110,
                     "spellCount": 0,
@@ -637,7 +640,7 @@
                     "lives": 1,
                     "hp": 20,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 1,
                     "time": 0,
                     "spawnTime": 300,
                     "spellCount": 0,
@@ -663,7 +666,7 @@
                     "lives": 1,
                     "hp": 20,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 1,
                     "time": 0,
                     "spawnTime": 360,
                     "spellCount": 0,
@@ -689,7 +692,7 @@
                     "lives": 1,
                     "hp": 20,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 1,
                     "time": 0,
                     "spawnTime": 420,
                     "spellCount": 0,
@@ -715,7 +718,7 @@
                     "lives": 1,
                     "hp": 20,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 1,
                     "time": 0,
                     "spawnTime": 480,
                     "spellCount": 0,
@@ -739,9 +742,9 @@
                     "type": 0,
                     "moveType": 2,
                     "lives": 1,
-                    "hp": 10,
+                    "hp": 100,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 1,
                     "time": 0,
                     "spawnTime": 900,
                     "spellCount": 0,
@@ -760,396 +763,6 @@
                     }
                 },
                 {
-                    "name": "",
-                    "id": 17,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 930,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 170.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 2.5
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 18,
-                    "type": 0,
-                    "moveType": 2,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 960,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 220.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 3.0
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 19,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 990,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 270.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 3.5
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 20,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1020,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 320.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 4.0
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 21,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1050,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 370.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 4.5
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 22,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1080,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 420.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 5.0
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 23,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1110,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 470.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 5.5
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 24,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1140,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 520.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 6.0
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 25,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1170,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 570.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 6.5
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 26,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1200,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 620.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 7.0
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 27,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1230,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 670.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 7.5
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 28,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1260,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 720.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 8.0
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 29,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1290,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 770.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 8.5
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 30,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1320,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 820.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 9.0
-                    }
-                },
-                {
-                    "name": "",
-                    "id": 31,
-                    "type": 0,
-                    "moveType": 0,
-                    "lives": 1,
-                    "hp": 10,
-                    "radius": 12,
-                    "shootType": 0,
-                    "time": 0,
-                    "spawnTime": 1350,
-                    "spellCount": 0,
-                    "spellAmount": 0,
-                    "isAlive": 0,
-                    "isSpell": 0,
-                    "isInvincible": 0,
-                    "invincibleTime": 0,
-                    "pos": {
-                        "x": 870.0,
-                        "y": -32.0
-                    },
-                    "vel": {
-                        "x": 0.0,
-                        "y": 9.5
-                    }
-                },
-                {
                     "name": "Boss",
                     "id": 101,
                     "type": 101,
@@ -1157,11 +770,11 @@
                     "lives": 4,
                     "hp": 800,
                     "radius": 28,
-                    "shootType": 0,
+                    "shootType": 5,
                     "time": 0,
                     "spawnTime": 2700,
                     "spellCount": 0,
-                    "spellAmount": 0,
+                    "spellAmount": 4,
                     "isAlive": 0,
                     "isSpell": 0,
                     "isInvincible": 0,
@@ -1183,7 +796,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 1,
                     "time": 0,
                     "spawnTime": 1800,
                     "spellCount": 0,
@@ -1209,7 +822,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 6,
                     "time": 0,
                     "spawnTime": 1860,
                     "spellCount": 0,
@@ -1235,7 +848,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 6,
                     "time": 0,
                     "spawnTime": 1920,
                     "spellCount": 0,
@@ -1261,7 +874,7 @@
                     "lives": 1,
                     "hp": 10,
                     "radius": 12,
-                    "shootType": 0,
+                    "shootType": 6,
                     "time": 0,
                     "spawnTime": 1980,
                     "spellCount": 0,
@@ -1278,15 +891,926 @@
                         "x": 0.0,
                         "y": 2.0
                     }
+                },
+                {
+                    "name": "",
+                    "id": 36,
+                    "type": 0,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 10,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 60,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 17,
+                    "type": 0,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 100,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 1200,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 60.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 18,
+                    "type": 0,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 100,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 1500,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 180.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 19,
+                    "type": 0,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 100,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 1800,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 240.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 20,
+                    "type": 0,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 100,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 2100,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 30.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 21,
+                    "type": 0,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 100,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 2100,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 510.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
                 }
             ]
         },
         {
-            "stage_name": "",
+            "stage_name": "stage03",
             "fps": 60,
-            "bgm_name": "",
-            "bgm_path": "",
-            "enemies": []
+            "bgm_name": "notitle",
+            "bgm_path": "./",
+            "enemies": [
+                {
+                    "name": "",
+                    "id": 1,
+                    "type": 0,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 20,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 10,
+                    "spawnTime": 60,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 60.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 2,
+                    "type": 0,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 20,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 10,
+                    "spawnTime": 90,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 90.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 3,
+                    "type": 0,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 20,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 10,
+                    "spawnTime": 120,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 120.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 4,
+                    "type": 0,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 20,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 10,
+                    "spawnTime": 150,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 150.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 5,
+                    "type": 0,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 20,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 10,
+                    "spawnTime": 180,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 180.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 6,
+                    "type": 0,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 20,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 10,
+                    "spawnTime": 210,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 210.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 7,
+                    "type": 1,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 20,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 75,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 480.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 8,
+                    "type": 1,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 20,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 105,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 450.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 9,
+                    "type": 1,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 20,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 135,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 420.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 10,
+                    "type": 1,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 20,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 165,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 390.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 11,
+                    "type": 1,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 20,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 195,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 360.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 12,
+                    "type": 1,
+                    "moveType": 0,
+                    "lives": 1,
+                    "hp": 80,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 225,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 330.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 13,
+                    "type": 2,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 80,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 360,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 120.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 14,
+                    "type": 2,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 80,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 420,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 180.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 15,
+                    "type": 2,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 80,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 480,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 40.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 16,
+                    "type": 2,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 50,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 540,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 300.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 17,
+                    "type": 2,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 50,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 600,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 360.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 18,
+                    "type": 2,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 50,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 660,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 220.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 19,
+                    "type": 2,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 50,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 720,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 180.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 20,
+                    "type": 2,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 50,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 780,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 340.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 21,
+                    "type": 2,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 50,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 840,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 100.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 22,
+                    "type": 2,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 50,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 900,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 60.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 23,
+                    "type": 2,
+                    "moveType": 2,
+                    "lives": 1,
+                    "hp": 50,
+                    "radius": 12,
+                    "shootType": 1,
+                    "time": 0,
+                    "spawnTime": 960,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 24,
+                    "type": 0,
+                    "moveType": 4,
+                    "lives": 1,
+                    "hp": 150,
+                    "radius": 12,
+                    "shootType": 4,
+                    "time": 0,
+                    "spawnTime": 1500,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 25,
+                    "type": 0,
+                    "moveType": 4,
+                    "lives": 1,
+                    "hp": 150,
+                    "radius": 12,
+                    "shootType": 4,
+                    "time": 0,
+                    "spawnTime": 1710,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 120.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 26,
+                    "type": 0,
+                    "moveType": 4,
+                    "lives": 1,
+                    "hp": 150,
+                    "radius": 12,
+                    "shootType": 4,
+                    "time": 0,
+                    "spawnTime": 1920,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 420.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 27,
+                    "type": 0,
+                    "moveType": 4,
+                    "lives": 1,
+                    "hp": 200,
+                    "radius": 12,
+                    "shootType": 4,
+                    "time": 0,
+                    "spawnTime": 2130,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 120.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "",
+                    "id": 28,
+                    "type": 0,
+                    "moveType": 4,
+                    "lives": 1,
+                    "hp": 200,
+                    "radius": 12,
+                    "shootType": 4,
+                    "time": 0,
+                    "spawnTime": 2340,
+                    "spellCount": 0,
+                    "spellAmount": 0,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                },
+                {
+                    "name": "Boss",
+                    "id": 102,
+                    "type": 102,
+                    "moveType": 4,
+                    "lives": 5,
+                    "hp": 1000,
+                    "radius": 28,
+                    "shootType": 7,
+                    "time": 0,
+                    "spawnTime": 2700,
+                    "spellCount": 0,
+                    "spellAmount": 5,
+                    "isAlive": 0,
+                    "isSpell": 0,
+                    "isInvincible": 0,
+                    "invincibleTime": 0,
+                    "pos": {
+                        "x": 320.0,
+                        "y": -32.0
+                    },
+                    "vel": {
+                        "x": 0.0,
+                        "y": 2.0
+                    }
+                }
+            ]
         }
     ]
 }

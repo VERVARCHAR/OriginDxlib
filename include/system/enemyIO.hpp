@@ -88,6 +88,7 @@ inline bool LoadEnemyDataFromJson(int stageIdx, const std::string &stageInfoPath
     int idx = stageIdx - 1;
     Logger::Log("(LoadEnemyDataFromJson)\tstageIdx :" + std::to_string(stageIdx) + ", idx :" + std::to_string(idx), LogLevel::Info);
     *allStageLength = jStage["stages"].size();
+    Logger::Log("(LoadEnemyDataFromJson)\tallStageLength :" + std::to_string(jStage["stages"].size()), LogLevel::Info);
 
     // "stages"配列から指定のステージデータを取得
     if (!jStage.contains("stages") || !jStage["stages"].is_array() || idx >= jStage["stages"].size())

@@ -317,52 +317,27 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
         // TODO ステージクリア処理
         time = -120;
         stageInfo.stageScore = stageInfo.score - stageInfo.stageScore;
+
+        if (stageInfo.stage == allStageLength)
+        {
+            isStoryClear = true;
+        }
     }
 
     // ボス撃破時にゲームタイマーが0未満になるので，その間にリザルト
     if (time < 0)
     {
-        if (time == -1)
+        // DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
+        if (isStoryClear)
         {
-            if (Key[KEY_INPUT_RETURN] == 1)
-            {
-                if (isStoryClear)
-                {
-                    return;
-                }
-                else
-                {
-                    time = 0;
-                    stageInfo.stage += 1;
-                    isClearStage = false;
-                    loadEnemy();
-                }
-            }
-        }
-        else
-        {
-            time++;
-        }
-
-        if (stageInfo.stage == allStageLength)
-        {
-            // DrawFormatString(300, 300, GetColor(255, 255, 255), L"Clear...");
             DrawFormatStringToHandle(
                 299, 299,
                 GetColor(255, 255, 255),
                 resultFont,
                 L"Clear...");
-            DrawFormatStringToHandle(
-                300, 600,
-                GetColor(225, 160, 60),
-                resultFont,
-                L"Clear...");
-            isStoryClear = true;
         }
         else
         {
-            // DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
-
             DrawFormatStringToHandle(
                 49, 299,
                 GetColor(255, 255, 255),
@@ -383,6 +358,28 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
                 GetColor(255, 255, 255),
                 resultFont,
                 L"Push Enter...");
+        }
+
+        if (time == -1)
+        {
+            if (Key[KEY_INPUT_RETURN] == 1)
+            {
+                if (isStoryClear)
+                {
+                    return;
+                }
+                else
+                {
+                    time = 0;
+                    stageInfo.stage += 1;
+                    isClearStage = false;
+                    loadEnemy();
+                }
+            }
+        }
+        else
+        {
+            time++;
         }
     }
 

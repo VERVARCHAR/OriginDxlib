@@ -113,8 +113,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     int sceneChangeMinimumTime = 0;
 
     Title titleMenu;
-    titleMenu.setExtraEnabled(false);          // βはfalse
-    titleMenu.addCharacter({0, L"Reimu", -1}); // βは1キャラでOK
+    titleMenu.setExtraEnabled(false);         // βはfalse
+    titleMenu.addCharacter({0, L"MIKO", -1}); // βは1キャラでOK
     auto mode = titleMenu.startMode();
     auto charId = titleMenu.selectedCharacterId();
     // TODO :Loading
@@ -169,7 +169,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
                 player.init();
                 bMgr.init(bombs);
-                sMgr.init(1, 0, difficulty);
+                sMgr.init(3, 0, difficulty);
                 iMgr.init();
                 effecter.init();
 
@@ -269,14 +269,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             // bMgr.DEBUG_printAllBombs(bombs);
             // sMgr.DEBUG_print_enemies();
 
-            if (sMgr.isClearStage)
+            if (sMgr.isStoryClear)
             {
-                if (Key[KEY_INPUT_RETURN])
+                if (Key[KEY_INPUT_RETURN] == 1)
                     scene = RESULT;
             }
-
             break;
         case RESULT: // TODO リザルトの作成
+            DrawFormatString(10, 10, GetColor(255, 255, 255), L"Thank You for playing!!");
+            DrawFormatString(10, 20, GetColor(255, 255, 255), L"Coming soon to the full version!!");
+
+            DrawFormatString(900, 700, GetColor(255, 255, 255), L"Enter to title...");
+            if (Key[KEY_INPUT_RETURN] == 1)
+                scene = TITLE;
             break;
         case DEBUG: // [DEBUG] 以下デバッグ用
             effecter.effecterUpdate();

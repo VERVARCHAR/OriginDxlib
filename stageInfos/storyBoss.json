@@ -46,7 +46,42 @@
                 },
                 {
                     "spellName": "Spell No.7",
-                    "spellType": 1,
+                    "spellType": 7,
+                    "isDurability": false,
+                    "durabilityTime": 60
+                }
+            ]
+        },
+        {
+            "boss_name": "Boss02",
+            "spells": [
+                {
+                    "spellName": "Spell No.8",
+                    "spellType": 8,
+                    "isDurability": false,
+                    "durabilityTime": 60
+                },
+                {
+                    "spellName": "Spell No.9",
+                    "spellType": 9,
+                    "isDurability": false,
+                    "durabilityTime": 60
+                },
+                {
+                    "spellName": "Spell No.10",
+                    "spellType": 10,
+                    "isDurability": false,
+                    "durabilityTime": 60
+                },
+                {
+                    "spellName": "Spell No.11",
+                    "spellType": 11,
+                    "isDurability": false,
+                    "durabilityTime": 60
+                },
+                {
+                    "spellName": "Spell No.12",
+                    "spellType": 12,
                     "isDurability": false,
                     "durabilityTime": 60
                 }
