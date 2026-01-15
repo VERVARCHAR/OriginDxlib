@@ -18,11 +18,18 @@ Title::Title()
     selectedDifficulty_ = Difficulty::EASY;
     selectedCharacterId_ = 0;
 
+    menuFont = CreateFontToHandle(L"はんなり明朝", 32, 4, DX_FONTTYPE_ANTIALIASING);
+
     // 最低1キャラは居る想定（1体でもOK）
     // 既にどこかで追加するならここは不要
     // characters_.push_back({0, L"Player", -1});
 
     rebuildMainMenu();
+}
+
+Title::~Title()
+{
+    DeleteFontToHandle(menuFont);
 }
 
 void Title::addCharacter(const CharacterItem &c)
@@ -67,12 +74,18 @@ void Title::drawTextItem(int x, int y, bool selected, const wchar_t *text, bool 
                       : GetColor(120, 120, 120);
 
     if (selected)
-        DrawFormatString(x - 28, y + bounce, col, L"▶");
-    DrawFormatString(x, y, col, L"%s", text);
+        DrawFormatStringToHandle(x - 28, y + bounce, col, menuFont, L"▶");
+    DrawFormatStringToHandle(x, y, col, menuFont, L"%s", text);
 
     if (!enabled)
     {
-        DrawFormatString(x + 220, y, GetColor(140, 140, 140), L"(Locked)");
+        // DrawFormatString(x + 220, y, GetColor(140, 140, 140), L"(Locked)");
+        DrawFormatStringToHandle(
+            x + 220,
+            y,
+            GetColor(140, 140, 140),
+            menuFont,
+            L"(Locked)");
     }
 }
 
@@ -88,7 +101,7 @@ void Title::drawImageItem(int x, int y, bool selected, int graphHandle, bool ena
 
     if (selected)
     {
-        DrawFormatString(x - 28, y + bounce, GetColor(255, 255, 255), L"▶");
+        DrawFormatStringToHandle(x - 28, y + bounce, GetColor(255, 255, 255), menuFont, L"▶");
     }
 }
 
@@ -262,7 +275,7 @@ void Title::drawTitle(UI &ui, Scene &scene, Difficulty &difficulty, int &sceneCh
     // 描画
     if (state_ == State::MAIN)
     {
-        DrawFormatString(panelL + 30, panelT + 30, GetColor(230, 230, 230), L"MENU");
+        DrawFormatStringToHandle(panelL + 30, panelT + 30, GetColor(230, 230, 230), menuFont, L"MENU");
 
         for (int i = 0; i < (int)mainMenu_.size(); ++i)
         {
@@ -271,19 +284,19 @@ void Title::drawTitle(UI &ui, Scene &scene, Difficulty &difficulty, int &sceneCh
     }
     else if (state_ == State::SELECT_DIFFICULTY)
     {
-        DrawFormatString(panelL + 30, panelT + 30, GetColor(230, 230, 230),
-                         (startMode_ == StartMode::Story) ? L"DIFFICULTY (Story)" : L"DIFFICULTY (Extra)");
+        DrawFormatStringToHandle(panelL + 30, panelT + 30, GetColor(230, 230, 230), menuFont,
+                                 (startMode_ == StartMode::Story) ? L"DIFFICULTY (Story)" : L"DIFFICULTY (Extra)");
 
         // 3段固定。将来増やしても良い
         drawTextItem(x, y0 + dy * 0, subCursor_ == 0, L"EASY", true);
         drawTextItem(x, y0 + dy * 1, subCursor_ == 1, L"NORMAL", true);
         drawTextItem(x, y0 + dy * 2, subCursor_ == 2, L"HARD", true);
 
-        DrawFormatString(panelL + 30, panelB - 60, GetColor(200, 200, 200), L"Z: OK   X: Back");
+        DrawFormatStringToHandle(panelL + 30, panelB - 60, GetColor(200, 200, 200), menuFont, L"Z: OK   X: Back");
     }
     else if (state_ == State::SELECT_CHARACTER)
     {
-        DrawFormatString(panelL + 30, panelT + 30, GetColor(230, 230, 230), L"CHARACTER");
+        DrawFormatStringToHandle(panelL + 30, panelT + 30, GetColor(230, 230, 230), menuFont, L"CHARACTER");
 
         for (int i = 0; i < (int)characters_.size(); ++i)
         {
@@ -291,22 +304,22 @@ void Title::drawTitle(UI &ui, Scene &scene, Difficulty &difficulty, int &sceneCh
             // 画像で表示したい場合は portraitGraph を使うなど拡張できる
             drawTextItem(x, y0 + dy * i, sel, characters_[i].name.c_str(), true);
         }
-        DrawFormatString(panelL + 30, panelB - 60, GetColor(200, 200, 200), L"Z: Start   X: Back");
+        DrawFormatStringToHandle(panelL + 30, panelB - 60, GetColor(200, 200, 200), menuFont, L"Z: Start   X: Back");
     }
     else if (state_ == State::OPTIONS)
     {
-        DrawFormatString(panelL + 30, panelT + 30, GetColor(230, 230, 230), L"OPTIONS");
-        DrawFormatString(panelL + 30, panelT + 90, GetColor(200, 200, 200), L"(beta) Not implemented yet");
-        DrawFormatString(panelL + 30, panelB - 60, GetColor(200, 200, 200), L"X: Back");
+        DrawFormatStringToHandle(panelL + 30, panelT + 30, GetColor(230, 230, 230), menuFont, L"OPTIONS");
+        DrawFormatStringToHandle(panelL + 30, panelT + 90, GetColor(200, 200, 200), menuFont, L"(beta) Not implemented yet");
+        DrawFormatStringToHandle(panelL + 30, panelB - 60, GetColor(200, 200, 200), menuFont, L"X: Back");
     }
     else if (state_ == State::EXIT_CONFIRM)
     {
-        DrawFormatString(panelL + 30, panelT + 30, GetColor(230, 230, 230), L"EXIT");
-        DrawFormatString(panelL + 30, panelT + 100, GetColor(200, 200, 200), L"X: Back");
+        DrawFormatStringToHandle(panelL + 30, panelT + 30, GetColor(230, 230, 230), menuFont, L"EXIT");
+        DrawFormatStringToHandle(panelL + 30, panelT + 100, GetColor(200, 200, 200), menuFont, L"X: Back");
     }
 
     // 決定済み difficulty をゲーム側へ反映（“選択中”は Title が持つ）
     difficulty = selectedDifficulty_;
 
-    DrawFormatString(panelL + 30, panelB - 30, GetColor(128, 128, 128), L"beta 0.1");
+    DrawFormatStringToHandle(panelL + 30, panelB - 30, GetColor(128, 128, 128), menuFont, L"beta 0.1");
 }

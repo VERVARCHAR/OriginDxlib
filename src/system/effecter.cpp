@@ -39,6 +39,7 @@ void Effecter::loadEffecter()
     seShot = LoadSoundMem(L"..\\..\\assets\\SE\\se_beam06.mp3");
     ChangeVolumeSoundMem(128, seShot);
     seEnemyDead = LoadSoundMem(L"..\\..\\assets\\SE\\enemy_vanish.wav");
+    seBossDead = LoadSoundMem(L"..\\..\\assets\\SE\\boss_dead.wav");
     sePlayerDead = LoadSoundMem(L"..\\..\\assets\\SE\\player_dead.wav");
     seVanish = LoadSoundMem(L"..\\..\\assets\\SE\\bomb_vanish.wav");
     seGraze = LoadSoundMem(L"..\\..\\assets\\SE\\graze.wav");
@@ -207,6 +208,12 @@ void Effecter::playEnemyExplode(const Vec2d &pos)
     PlaySoundMem(seEnemyDead, DX_PLAYTYPE_BACK);
 }
 
+void Effecter::playBossExplode(const Vec2d &pos)
+{
+    spawnEffect(EffectType::EnemyExplode, pos);
+    PlaySoundMem(seBossDead, DX_PLAYTYPE_BACK);
+}
+
 void Effecter::playBulletVanish(const Vec2d &pos)
 {
     PlaySoundMem(seVanish, DX_PLAYTYPE_BACK);
@@ -241,6 +248,7 @@ void Effecter::playGraze(const Vec2d &pos)
 // SE だけ鳴らすAPIも一応用意
 void Effecter::playSE_Shot() { PlaySoundMem(seShot, DX_PLAYTYPE_BACK); }
 void Effecter::playSE_EnemyDead() { PlaySoundMem(seEnemyDead, DX_PLAYTYPE_BACK); }
+void Effecter::playSE_BossDead() { PlaySoundMem(seBossDead, DX_PLAYTYPE_BACK); }
 void Effecter::playSE_PlayerDead() { PlaySoundMem(sePlayerDead, DX_PLAYTYPE_BACK); }
 void Effecter::playSE_Bomb() { PlaySoundMem(seBomb, DX_PLAYTYPE_BACK); }
 void Effecter::PlaySE_BombVanish() { PlaySoundMem(seVanish, DX_PLAYTYPE_BACK); };

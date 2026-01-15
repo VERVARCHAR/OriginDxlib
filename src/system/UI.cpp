@@ -14,6 +14,8 @@ UI::UI()
 
 UI::~UI()
 {
+    DeleteFontToHandle(uiFont);
+    DeleteFontToHandle(talkFont);
 }
 
 void UI::getImage()
@@ -33,9 +35,16 @@ void UI::getInGameImage()
     spellImageHandle = LoadGraph(L"..\\..\\assets\\others\\spells.png");
     LoadDivGraph(L"..\\..\\assets\\others\\difficulty.png", 4, 1, 4, 512, 200, difficultyImageHandle);
     stageImageHandle[0] = LoadGraph(L"..\\..\\assets\\background\\st01\\st01.PNG");
+    stageImageHandle[1] = LoadGraph(L"..\\..\\assets\\background\\st02.PNG");
+    stageImageHandle[2] = LoadGraph(L"..\\..\\assets\\background\\st03.PNG");
     playerImageHandle = LoadGraph(L"..\\..\\assets\\player\\CutIn_PlayerChar01.png");
 
-    enemyImageHandle = LoadGraph(L"..\\..\\assets\\enemy\\cutin_lily.png");
+    uiFont = CreateFontToHandle(L"源真ゴシック", 42, 3, DX_FONTTYPE_ANTIALIASING);
+    talkFont = CreateFontToHandle(L"源真ゴシック", 32, 2, DX_FONTTYPE_ANTIALIASING);
+
+    bossCutInImageHandle[0] = LoadGraph(L"..\\..\\assets\\enemy\\cutin_Boss01.png");
+    bossCutInImageHandle[1] = LoadGraph(L"..\\..\\assets\\enemy\\cutin_Boss02.png");
+    bossCutInImageHandle[2] = LoadGraph(L"..\\..\\assets\\enemy\\cutin_Boss03.png");
 }
 
 void UI::loadPreLoadingImages()
@@ -68,13 +77,14 @@ void UI::drawTitle()
 
 void UI::drawUI(StageInfo stageInfo)
 {
-
     // 背景
     const int playLeft = 10;
     const int playTop = 10;
     const int playRight = (int)(WINDOW_WIDTH * 0.6) + 22; // ちょっとだけ狭めて縁取り
     const int playBottom = WINDOW_HEIGHT - 10;
-    DrawExtendGraph(0, -684 + (time) / 10, playRight, WINDOW_HEIGHT + (time) / 10, stageImageHandle[0], TRUE);
+
+    DrawExtendGraph(0, -684, playRight, WINDOW_HEIGHT, stageImageHandle[stageInfo.stage - 1], TRUE);
+    // DrawGraph(0, -10, stageImageHandle[stageInfo.stage - 1], TRUE);
     DrawGraph(0, 0, UIImageHandle, TRUE);
     // プレイエリア（左側）: 少し余白を残す
 
@@ -111,32 +121,65 @@ void UI::drawUI(StageInfo stageInfo)
     int diffX2 = diffX1 + diffW;
     int diffY2 = diffY1 + diffH;
 
-    DrawExtendGraph(
-        922, 15,
-        1178, 115,
-        difficultyImageHandle[stageInfo.difficulty - 1],
-        TRUE);
+    // DrawExtendGraph(
+    //     922, 10,
+    //     1178, 138,
+    //     difficultyImageHandle[stageInfo.difficulty - 1],
+    //     TRUE);
+    DrawGraph(WINDOW_WIDTH - 512 + 5, -50, difficultyImageHandle[stageInfo.difficulty - 1], TRUE);
 
     // ==============================
     // スコア
     // ==============================
     textY = diffY2 + 10;
-    DrawFormatString(1000, 155, GetColor(255, 255, 255), L"%12d", stageInfo.score);
-    textY += 30;
+    // DrawFormatString(1000, 155, GetColor(255, 255, 255), L"", stageInfo.score);
 
-    // ==============================
-    // グレイス表示
-    // ==============================
-    DrawFormatString(1000, 200, GetColor(255, 255, 255), L"%d", stageInfo.nowStatus.grazeCount);
+    if (highScore < stageInfo.score)
+    {
+        highScore = stageInfo.score;
+    }
 
-    // ==============================
-    // ライフ（星アイコン）
-    // ==============================
-    DrawFormatString(textX, textY, GetColor(255, 255, 255), L"LIFE");
-    textY += 20;
+    DrawFormatStringToHandle(
+        999, 99,
+        GetColor(255, 255, 255),
+        uiFont,
+        L"%12d",
+        highScore);
+    DrawFormatStringToHandle(
+        1000, 100,
+        GetColor(255, 223, 0),
+        uiFont,
+        L"%12d",
+        highScore);
+
+    DrawFormatStringToHandle(
+        999, 154,
+        GetColor(255, 255, 255),
+        uiFont,
+        L"%12d",
+        stageInfo.score);
+    DrawFormatStringToHandle(
+        1000, 155,
+        GetColor(255, 223, 0),
+        uiFont,
+        L"%12d",
+        stageInfo.score);
+
+    DrawFormatStringToHandle(
+        999, 204,
+        GetColor(255, 255, 255),
+        uiFont,
+        L"%12d",
+        stageInfo.nowStatus.grazeCount);
+    DrawFormatStringToHandle(
+        1000, 205,
+        GetColor(128, 255, 128),
+        uiFont,
+        L"%12d",
+        stageInfo.nowStatus.grazeCount);
 
     const int iconSize = 50; // 元コードと同じ 50x50
-    const int lifeBaseX = 1000;
+    const int lifeBaseX = 1050;
     const int lifeY1 = 280;
     const int lifeY2 = lifeY1 + iconSize;
 
@@ -149,13 +192,13 @@ void UI::drawUI(StageInfo stageInfo)
     textY = lifeY2 + 10;
 
     // ==============================
-    // ボム（ハートアイコン）
+    // ボム
     // ==============================
     // DrawFormatString(textX, textY, GetColor(255, 255, 255), L"BOMB");
     textY += 20;
 
-    const int spellBaseX = 1000;
-    const int spellY1 = 320;
+    const int spellBaseX = 1050;
+    const int spellY1 = 330;
     const int spellY2 = spellY1 + iconSize;
 
     for (int i = 0; i < stageInfo.nowStatus.spells; i++)
@@ -169,8 +212,21 @@ void UI::drawUI(StageInfo stageInfo)
     // ==============================
     // パワー表示
     // ==============================
-    DrawFormatString(1000, 400, GetColor(255, 255, 255),
-                     L"%lf / 5.00", stageInfo.nowStatus.power);
+    // DrawFormatString(1000, 400, GetColor(255, 255, 255),
+    //                  L"%lf / 5.00", stageInfo.nowStatus.power);
+
+    DrawFormatStringToHandle(
+        999, 389,
+        GetColor(255, 255, 255),
+        uiFont,
+        L"%.2lf / 5.00",
+        stageInfo.nowStatus.power);
+    DrawFormatStringToHandle(
+        1000, 390,
+        GetColor(128, 255, 128),
+        uiFont,
+        L"%.2lf / 5.00",
+        stageInfo.nowStatus.power);
 
     textY += 10;
 
@@ -211,13 +267,13 @@ void UI::drawBossStatus(EnemyStatus enemyStatus)
     // DrawBox(barX, barY, barX + barWidth, barY + barHeight, GetColor(255, 255, 255), FALSE);
 }
 
-void UI::talkUI(std::wstring talkString, int talkWho)
+void UI::talkUI(int stage, std::wstring talkString, int talkWho)
 {
     if (talkWho == 0)
     {
         // DrawBox(330, 200, (int)(WINDOW_WIDTH * 0.6) - 30, 500, GetColor(255, 0, 0), TRUE);
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
-        DrawGraph(500, 200, enemyImageHandle, TRUE);
+        DrawGraph(500, 200, bossCutInImageHandle[stage - 1], TRUE);
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
         DrawGraph(30, 180, playerImageHandle, TRUE);
     }
@@ -227,12 +283,20 @@ void UI::talkUI(std::wstring talkString, int talkWho)
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
         DrawGraph(30, 200, playerImageHandle, TRUE);
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
-        DrawGraph(500, 180, enemyImageHandle, TRUE);
+        DrawGraph(500, 180, bossCutInImageHandle[stage - 1], TRUE);
     }
 
     // [DEBUG]
-    printfDx(talkString.c_str());
-    DrawFormatString(100, 600, GetColor(255, 255, 255), talkString.c_str());
+    // printfDx(talkString.c_str());
+    // DrawFormatString(100, 600, GetColor(255, 255, 255), talkString.c_str());
+
+    DrawBox(10, 400, 780, 600, GetColor(0, 0, 0), TRUE);
+    DrawBox(20, 410, 770, 590, GetColor(225, 160, 60), TRUE);
+    DrawFormatStringToHandle(
+        30, 420,
+        GetColor(255, 255, 255),
+        talkFont,
+        talkString.c_str());
 }
 
 void UI::drawSpellCardText(EnemyStatus enemyStatus, SpellInfo spellInfo, int time)

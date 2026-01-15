@@ -113,8 +113,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     int sceneChangeMinimumTime = 0;
 
     Title titleMenu;
-    titleMenu.setExtraEnabled(false);          // βはfalse
-    titleMenu.addCharacter({0, L"Reimu", -1}); // βは1キャラでOK
+    titleMenu.setExtraEnabled(false);         // βはfalse
+    titleMenu.addCharacter({0, L"MIKO", -1}); // βは1キャラでOK
     auto mode = titleMenu.startMode();
     auto charId = titleMenu.selectedCharacterId();
     // TODO :Loading
@@ -157,8 +157,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             // }
             titleMenu.drawTitle(ui, scene, difficulty, sceneChangeMinimumTime);
 
-            GetMousePoint(&x, &y);
-            DrawFormatString(500, 500, GetColor(255, 0, 255), L"Mouse : %d,%d", x, y);
             break;
 
         case LOADING: // ローディング
@@ -171,7 +169,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
                 player.init();
                 bMgr.init(bombs);
-                sMgr.init(1, 0, difficulty);
+                sMgr.init(3, 0, difficulty);
                 iMgr.init();
                 effecter.init();
 
@@ -179,7 +177,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 sMgr.loadEnemy();
                 bMgr.setBombsHandle(ui.bombsImageHandle);
                 iMgr.loadImagehandle(ui.getLifeImageHandle(), ui.getSpellImageHandle());
-                effecter.setEnemyCutInImage(ui.getEnemyCutInHandle());
+                effecter.setEnemyCutInImage(ui.getEnemyCutInHandle(sMgr.getStageInfo().stage));
 
                 mode = titleMenu.startMode();
                 charId = titleMenu.selectedCharacterId();
@@ -197,6 +195,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
             // UIの表示
             ui.drawUI(sMgr.getStageInfo());
+            GetMousePoint(&x, &y);
+            DrawFormatString(500, 500, GetColor(255, 0, 255), L"Mouse : %d,%d", x, y);
 
             bossStatus = sMgr.enemies[sMgr.bossIndex]->getStatus();
 
@@ -218,10 +218,20 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 player.setPower(1);
             }
 
+            // [DEBUG] パワーを1増やす
+            if (Key[KEY_INPUT_C] == 1)
+            {
+                player.setExtend();
+            }
+
+            // 基本的なゲーム処理
+            sMgr.updateStage(&bMgr, &iMgr, bombs, &player, &effecter);
+
             // 会話中の処理
             if (sMgr.isTalk)
             {
-                ui.talkUI(sMgr.getTalkString(sMgr.talkCount), sMgr.getTalkWho(sMgr.talkCount));
+                effecter.setEnemyCutInImage(ui.getEnemyCutInHandle(sMgr.getStageInfo().stage));
+                ui.talkUI(sMgr.getStageInfo().stage, sMgr.getTalkString(sMgr.talkCount), sMgr.getTalkWho(sMgr.talkCount));
                 if (Key[KEY_INPUT_RETURN] == 1)
                 {
                     sMgr.talkCount++;
@@ -231,9 +241,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                     sMgr.endTalk();
                 }
             }
-
-            // 基本的なゲーム処理
-            sMgr.updateStage(&bMgr, &iMgr, bombs, &player, &effecter);
 
             // ゲームオーバーでなく，ポーズ中ならばポーズ画面を表示
             // TODO ポーズ処理
@@ -262,8 +269,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             // bMgr.DEBUG_printAllBombs(bombs);
             // sMgr.DEBUG_print_enemies();
 
+            if (sMgr.isStoryClear)
+            {
+                if (Key[KEY_INPUT_RETURN] == 1)
+                    scene = RESULT;
+            }
             break;
         case RESULT: // TODO リザルトの作成
+            DrawFormatString(10, 10, GetColor(255, 255, 255), L"Thank You for playing!!");
+            DrawFormatString(10, 20, GetColor(255, 255, 255), L"Coming soon to the full version!!");
+
+            DrawFormatString(900, 700, GetColor(255, 255, 255), L"Enter to title...");
+            if (Key[KEY_INPUT_RETURN] == 1)
+                scene = TITLE;
             break;
         case DEBUG: // [DEBUG] 以下デバッグ用
             effecter.effecterUpdate();

@@ -15,6 +15,7 @@
 StageManager::StageManager(int _stage, int _time, Difficulty _difficulty)
 {
     init(_stage, _time, _difficulty);
+    resultFont = CreateFontToHandle(L"源真ゴシック", 42, 3, DX_FONTTYPE_ANTIALIASING);
 }
 
 StageManager::~StageManager()
@@ -24,6 +25,7 @@ StageManager::~StageManager()
         delete enemies[i];
         enemies[i] = nullptr;
     }
+    DeleteFontToHandle(resultFont);
 }
 
 void StageManager::init(int _stage, int _time, Difficulty _difficulty)
@@ -31,6 +33,7 @@ void StageManager::init(int _stage, int _time, Difficulty _difficulty)
     stageInfo.stage = _stage;
     stageInfo.difficulty = _difficulty;
     stageInfo.score = 0;
+    stageInfo.stageScore = 0;
 
     time = _time;
     isTalk = false;
@@ -171,6 +174,16 @@ void StageManager::loadEnemy()
 
     // LoadEnemyImage("../../img/EnemyProtoType01.png", enemyImageHandle);
     LoadDivGraph(L"..\\..\\assets\\enemy\\Enemy.png", 16, 4, 4, 256, 256, enemyImageHandle);
+    enemyImageHandle[0] = LoadGraph(L"..\\..\\assets\\enemy\\zako00.png");
+    enemyImageHandle[1] = LoadGraph(L"..\\..\\assets\\enemy\\zako01.png");
+    enemyImageHandle[2] = LoadGraph(L"..\\..\\assets\\enemy\\zako02.png");
+    enemyImageHandle[3] = LoadGraph(L"..\\..\\assets\\enemy\\zako03.png");
+    enemyImageHandle[4] = LoadGraph(L"..\\..\\assets\\enemy\\zako04.png");
+    enemyImageHandle[5] = LoadGraph(L"..\\..\\assets\\enemy\\zako05.png");
+    enemyImageHandle[6] = LoadGraph(L"..\\..\\assets\\enemy\\zako06.png");
+    enemyImageHandle[10] = LoadGraph(L"..\\..\\assets\\enemy\\Boss01.png");
+    enemyImageHandle[11] = LoadGraph(L"..\\..\\assets\\enemy\\Boss02.png");
+    enemyImageHandle[12] = LoadGraph(L"..\\..\\assets\\enemy\\Boss03.png");
     Logger::Log("(loadEnemy) pass loadEnemy.", LogLevel::Info);
     // return 1;
 }
@@ -228,13 +241,20 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
             {
                 Logger::Log("(updateStage) pass spawnEnemy : " + to_string(i), LogLevel::Info);
                 enemies[i]->setIsAlive(true);
-                enemies[i]->setImageHandle(enemyImageHandle[enemies[i]->enemyStatus.type % 100]);
+                if (enemies[i]->enemyStatus.type < 100)
+                {
+                    enemies[i]->setImageHandle(enemyImageHandle[enemies[i]->enemyStatus.type % 100]);
+                }
+                else
+                {
+                    // BOSS
+                    enemies[i]->setImageHandle(enemyImageHandle[10 + enemies[i]->enemyStatus.type % 100]);
+                }
             }
 
             if (isTalk && i != bossIndex)
             {
                 enemies[i]->enemyStatus.isAlive = false;
-                // TODO effect
             }
 
             if (enemies[i] != nullptr && enemies[i]->enemyStatus.isAlive && !isTalk)
@@ -253,12 +273,12 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     stageInfo.nowStatus = player->getStatus();
 
     // [DEBUG]
-    player->debugStatus();
+    // player->debugStatus();
 
     // ポーズ中でない，ゲームオーバーでないならプレイヤー，弾幕の更新処理をする
     if (!isPause && !isGameOver)
     {
-        player->playerUpdate(bMgr, bombs, effecter);
+        player->playerUpdate(bMgr, bombs, effecter, enemies);
         bMgr->updateBombs(bombs);
         iMgr->updateItems(this, player);
 
@@ -281,7 +301,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
             enemies[i]->enemyDraw();
 
             // [DEBUG]
-            printfDx(L"enemy type:%d", enemies[i]->enemyStatus.type);
+            // printfDx(L"enemy type:%d", enemies[i]->enemyStatus.type);
         }
     }
 
@@ -296,41 +316,78 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
         bMgr->removeBomb(bombs, effecter);
         // TODO ステージクリア処理
         time = -120;
+        stageInfo.stageScore = stageInfo.score - stageInfo.stageScore;
+
+        if (stageInfo.stage == allStageLength)
+        {
+            isStoryClear = true;
+        }
     }
 
     // ボス撃破時にゲームタイマーが0未満になるので，その間にリザルト
     if (time < 0)
     {
+        // DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
+        if (isStoryClear)
+        {
+            DrawFormatStringToHandle(
+                299, 299,
+                GetColor(255, 255, 255),
+                resultFont,
+                L"Clear...");
+        }
+        else
+        {
+            DrawFormatStringToHandle(
+                49, 299,
+                GetColor(255, 255, 255),
+                resultFont,
+                L"Go to the Next Stage...");
+            DrawFormatStringToHandle(
+                50, 300,
+                GetColor(225, 160, 60),
+                resultFont,
+                L"Go to the Next Stage...");
+            DrawFormatStringToHandle(
+                50, 450,
+                GetColor(255, 255, 255),
+                resultFont,
+                L"Now Stage Score is %d", stageInfo.stageScore);
+            DrawFormatStringToHandle(
+                50, 600,
+                GetColor(255, 255, 255),
+                resultFont,
+                L"Push Enter...");
+        }
+
         if (time == -1)
         {
             if (Key[KEY_INPUT_RETURN] == 1)
             {
-                time = 0;
-                stageInfo.stage += 1;
-                isClearStage = false;
-                loadEnemy();
+                if (isStoryClear)
+                {
+                    return;
+                }
+                else
+                {
+                    time = 0;
+                    stageInfo.stage += 1;
+                    isClearStage = false;
+                    loadEnemy();
+                }
             }
         }
         else
         {
             time++;
         }
-        if (stageInfo.stage == allStageLength)
-        {
-            DrawFormatString(300, 300, GetColor(255, 255, 255), L"Clear...");
-            isStoryClear = true;
-        }
-        else
-        {
-            DrawFormatString(300, 300, GetColor(255, 255, 255), L"Go to the Next Stage...");
-        }
     }
 
     // [DEBUG]
-    printfDx(L"times : %d\n", time);
-    printfDx(L"Boss Index : %d\n", bossIndex);
-    printfDx(L"Clear : %d\n", isClearStage);
-    printfDx(L"Stage : %d\n", stageInfo.stage);
+    // printfDx(L"times : %d\n", time);
+    // printfDx(L"Boss Index : %d\n", bossIndex);
+    // printfDx(L"Clear : %d\n", isClearStage);
+    // printfDx(L"Stage : %d\n", stageInfo.stage);
 }
 
 void StageManager::getClearStage()

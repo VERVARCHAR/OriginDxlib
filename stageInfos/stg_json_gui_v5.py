@@ -71,6 +71,7 @@ DEFAULT_ENEMY = {
     "time": 0,
     "spawnTime": 60,
     "spellCount": 0,
+    "spellAmount":0,
     "isAlive": 0,
     "isSpell": 0,
     "isInvincible": 0,
@@ -646,6 +647,9 @@ class StageEditor(ttk.Frame):
 
         self.enemy_spell_count_var = tk.StringVar()
         add_labeled_entry("spellCount (int)", self.enemy_spell_count_var)
+        
+        self.enemy_spell_amount_var = tk.StringVar()
+        add_labeled_entry("spellAmount (int)", self.enemy_spell_amount_var)
 
         # isAlive / isSpell / isInvincible はチェックボックス (0/1 保存)
         self.enemy_is_alive_var = tk.BooleanVar()
@@ -827,6 +831,7 @@ class StageEditor(ttk.Frame):
         self.enemy_time_var.set(str(e.get("time", "")))
         self.enemy_spawn_time_var.set(str(e.get("spawnTime", "")))
         self.enemy_spell_count_var.set(str(e.get("spellCount", "")))
+        self.enemy_spell_amount_var.set(str(e.get("spellAmount", "")))
 
         self.enemy_is_alive_var.set(bool(e.get("isAlive", 0)))
         self.enemy_is_spell_var.set(bool(e.get("isSpell", 0)))
@@ -868,6 +873,7 @@ class StageEditor(ttk.Frame):
         e["time"] = parse_typed_value(self.enemy_time_var.get(), int)
         e["spawnTime"] = parse_typed_value(self.enemy_spawn_time_var.get(), int)
         e["spellCount"] = parse_typed_value(self.enemy_spell_count_var.get(), int)
+        e["spellAmount"] = parse_typed_value(self.enemy_spell_amount_var.get(), int)
 
         # フラグは 0/1 として保存
         e["isAlive"] = 1 if self.enemy_is_alive_var.get() else 0

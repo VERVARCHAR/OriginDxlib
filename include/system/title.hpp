@@ -44,6 +44,7 @@ class Title
 {
 public:
     Title();
+    ~Title();
 
     // βでは Extra を無効にしたい → false のまま
     void setExtraEnabled(bool v) { extraEnabled_ = v; }
@@ -81,6 +82,8 @@ private:
 
     std::vector<MenuItem> mainMenu_;
     std::vector<CharacterItem> characters_;
+
+    int menuFont;
 
     // 入力
     static bool up();

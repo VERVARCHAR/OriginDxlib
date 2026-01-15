@@ -24,6 +24,8 @@
 #include "object/player.hpp"
 #endif // _PLAYER_HPP_
 
+#include "object/playerStatus.hpp"
+
 #ifndef _EFFECTER_HPP_
 #define _EFFECTER_HPP_
 #include "system/effecter.hpp"
@@ -46,6 +48,7 @@ using json = nlohmann::json;
 class BombManager;
 struct BombInfo;
 class Player;
+struct Status;
 
 class Enemy; // ポインタ保持のため前方宣言
 class ItemManager;
@@ -85,17 +88,14 @@ typedef struct StageInfo
 {
     int stage;
     Difficulty difficulty;
-    int score;
+    int score = 0;
+    int stageScore = 0;
     PlayerStatus nowStatus;
 };
 
 class StageManager
 {
 private:
-    // TODO StageInfoへの移行
-    // int stage;      // ステージ
-    // int difficulty; // 難易度
-
     StageInfo stageInfo;
 
     int time;          // ステージタイマー
@@ -105,6 +105,8 @@ private:
     EnemyShootScript *enemyShootScript;   // 敵の弾幕コードクラス
     std::vector<EnemyStatus> loadEnemies; // 敵情報読み込みベクトル
     int enemyCount;                       // 敵カウンター
+
+    int resultFont;
 
 public:
     bool isPause = false;      // ポーズフラグ
@@ -117,9 +119,6 @@ public:
     bool isStoryClear = false;
     bool isExtraClear = false;
 
-    // TODO TalkData構造体への移行
-    // string talkString[20];
-    // int talkWho[20];
     int talkLineCount;
     TalkData talkData[20];
 
@@ -159,10 +158,8 @@ public:
         stageInfo.score += scoreValue;
     }
 
-    // TODO もっとちゃんとしたやつ作る
     void talk(int type); // 会話処理
 
-    // TODO 中身ちゃんとしたやつ作って
     std::wstring getTalkString(int talkCount) { return talkData[talkCount].talkString; } // 外部ファイルから会話内容を取得する
 
     // だれが話しているのかを取得する

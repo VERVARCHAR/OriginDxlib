@@ -1,1 +1,619 @@
 [Info] GameStart
+[Info] Into LoadEnemyDataFromJson
+[Info] (LoadEnemyDataFromJson)	Pass parsing Json.
+[Info] (LoadEnemyDataFromJson)	stageIdx :3, idx :2
+[Info] (LoadEnemyDataFromJson)	allStageLength :3
+[Info] (LoadEnemyDataFromJson)	pass get stage data from json
+[Info] (LoadEnemyDataFromJson)	pass get boss data from json
+[Info] (LoadEnemyDataFromJson)	pass to check boss size.
+[Info] (LoadEnemyDataFromJson)	pass to check boss array.
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:60
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:10
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id1
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:90
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:10
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id2
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:3
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:120
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:10
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id3
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:150
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:10
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id4
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:5
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:180
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:10
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id5
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:6
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:210
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:10
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id6
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:7
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:75
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id7
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:8
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:105
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id8
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:9
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:135
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id9
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:10
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:165
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id10
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:11
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:195
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id11
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:80
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:225
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id12
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:13
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:80
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:360
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id13
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:14
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:80
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:420
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id14
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:15
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:80
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:480
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id15
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:16
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:50
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:540
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id16
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:17
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:50
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:600
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id17
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:18
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:50
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:660
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id18
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:19
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:50
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:720
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id19
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:20
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:50
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:780
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id20
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:21
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:50
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:840
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id21
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:22
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:50
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:900
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id22
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:23
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:2
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:50
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:960
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id23
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:24
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:150
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:1500
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id24
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:25
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:150
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:1710
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id25
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:26
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:150
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:1920
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id26
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:27
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:200
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:2130
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id27
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:28
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:1
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:200
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:12
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:2340
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id28
+[Info] (LoadEnemyDataFromJson)	push back enemy data name:Boss
+[Info] (LoadEnemyDataFromJson)	push back enemy data id:102
+[Info] (LoadEnemyDataFromJson)	push back enemy data type:102
+[Info] (LoadEnemyDataFromJson)	push back enemy data moveType:4
+[Info] (LoadEnemyDataFromJson)	push back enemy data lives:5
+[Info] (LoadEnemyDataFromJson)	push back enemy data hp:1000
+[Info] (LoadEnemyDataFromJson)	push back enemy data radius:28
+[Info] (LoadEnemyDataFromJson)	push back enemy data shootType:7
+[Info] (LoadEnemyDataFromJson)	push back enemy data spawnTime:2700
+[Info] (LoadEnemyDataFromJson)	push back enemy data time:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data spellCount:5
+[Info] (LoadEnemyDataFromJson)	push back enemy data isAlive:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isSpell:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data isInvincible:0
+[Info] (LoadEnemyDataFromJson)	push back enemy data invincibleTime:0
+[Info] (LoadEnemyDataFromJson)	push back enemy id102
+[Info] (LoadEnemyDataFromJson)	push back spell data spellName:Spell No.8
+[Info] (LoadEnemyDataFromJson)	push back spell data spellType:8
+[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
+[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
+[Info] (LoadEnemyDataFromJson)	push back spell data spellName:Spell No.9
+[Info] (LoadEnemyDataFromJson)	push back spell data spellType:9
+[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
+[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
+[Info] (LoadEnemyDataFromJson)	push back spell data spellName:Spell No.10
+[Info] (LoadEnemyDataFromJson)	push back spell data spellType:10
+[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
+[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
+[Info] (LoadEnemyDataFromJson)	push back spell data spellName:Spell No.11
+[Info] (LoadEnemyDataFromJson)	push back spell data spellType:11
+[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
+[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
+[Info] (LoadEnemyDataFromJson)	push back spell data spellName:Spell No.12
+[Info] (LoadEnemyDataFromJson)	push back spell data spellType:12
+[Info] (LoadEnemyDataFromJson)	push back spell data isDurability:0
+[Info] (LoadEnemyDataFromJson)	push back spell data durabilityTime:60
+[Info] (LoadFromVector) index 0 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 60
+[Info] (LoadFromVector) index 1 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 90
+[Info] (LoadFromVector) index 2 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 120
+[Info] (LoadFromVector) index 3 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 150
+[Info] (LoadFromVector) index 4 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 180
+[Info] (LoadFromVector) index 5 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 210
+[Info] (LoadFromVector) index 6 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 75
+[Info] (LoadFromVector) index 7 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 105
+[Info] (LoadFromVector) index 8 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 135
+[Info] (LoadFromVector) index 9 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 165
+[Info] (LoadFromVector) index 10 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 195
+[Info] (LoadFromVector) index 11 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 225
+[Info] (LoadFromVector) index 12 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 360
+[Info] (LoadFromVector) index 13 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 420
+[Info] (LoadFromVector) index 14 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 480
+[Info] (LoadFromVector) index 15 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 540
+[Info] (LoadFromVector) index 16 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 600
+[Info] (LoadFromVector) index 17 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 660
+[Info] (LoadFromVector) index 18 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 720
+[Info] (LoadFromVector) index 19 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 780
+[Info] (LoadFromVector) index 20 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 840
+[Info] (LoadFromVector) index 21 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 900
+[Info] (LoadFromVector) index 22 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 960
+[Info] (LoadFromVector) index 23 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 1500
+[Info] (LoadFromVector) index 24 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 1710
+[Info] (LoadFromVector) index 25 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 1920
+[Info] (LoadFromVector) index 26 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 2130
+[Info] (LoadFromVector) index 27 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 2340
+[Info] (LoadFromVector) index 28 enemy registered
+[Info] (LoadFromVector) index enemy spawn time is 2700
+[Info] (LoadFromVector) 29 enemies registered
+[Info] (LoadFromVector) 5 spellCount registered
+[Info] (LoadTalkDataFromJson) 	ここまで来ても元凶は現れないのね、、、
+[Info] (LoadTalkDataFromJson) 	なんの元凶だって？
+[Info] (LoadTalkDataFromJson) 	ここには何もないわよ
+[Info] (LoadTalkDataFromJson) 	こんだけ桜がここから散ってるのに
+[Info] (LoadTalkDataFromJson) 	関係ないわけないでしょ
+[Info] (LoadTalkDataFromJson) 	血の気の多い巫女ねぇ
+[Info] (LoadTalkDataFromJson) 	いいわ、相手になってあげる
+[Info] (loadEnemy) pass loadEnemy.
+[Info] (updateStage) pass spawnEnemy : 0
+[Info] (updateStage) pass spawnEnemy : 6
+[Info] (updateStage) pass spawnEnemy : 1
+[Info] (updateStage) pass spawnEnemy : 7
+[Info] (updateStage) pass spawnEnemy : 2
+[Info] (updateStage) pass spawnEnemy : 8
+[Info] (updateStage) pass spawnEnemy : 3
+[Info] (updateStage) pass spawnEnemy : 9
+[Info] (updateStage) pass spawnEnemy : 4
+[Info] (updateStage) pass spawnEnemy : 10
+[Info] (updateStage) pass spawnEnemy : 5
+[Info] (updateStage) pass spawnEnemy : 11
+[Info] (updateStage) pass spawnEnemy : 12
+[Info] (updateStage) pass spawnEnemy : 13
+[Info] (updateStage) pass spawnEnemy : 14
+[Info] (updateStage) pass spawnEnemy : 15
+[Info] (updateStage) pass spawnEnemy : 16
+[Info] (updateStage) pass spawnEnemy : 17
+[Info] (updateStage) pass spawnEnemy : 18
+[Info] (updateStage) pass spawnEnemy : 19
+[Info] (updateStage) pass spawnEnemy : 20
+[Info] (updateStage) pass spawnEnemy : 21
+[Info] (updateStage) pass spawnEnemy : 22
+[Info] (updateStage) pass spawnEnemy : 23
+[Info] (updateStage) pass spawnEnemy : 24
+[Info] (updateStage) pass spawnEnemy : 25
+[Info] (updateStage) pass spawnEnemy : 26
+[Info] (updateStage) pass spawnEnemy : 27
+[Info] (updateStage) pass spawnEnemy : 28

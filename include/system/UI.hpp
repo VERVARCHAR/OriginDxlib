@@ -58,7 +58,10 @@ private:
     int gameImageHandle[7];
     int stageImageHandle[7];
     int playerImageHandle;
-    int enemyImageHandle;
+    int bossCutInImageHandle[7];
+    int uiFont;
+    int talkFont;
+    int highScore;
 
 public:
     UI();
@@ -67,8 +70,7 @@ public:
     int bombsImageHandle[32];
     int time = 0;
 
-    void
-    startLoading()
+    void startLoading()
     {
         minLoadingTime = 0;
     }
@@ -81,7 +83,7 @@ public:
     void drawBossStatus(EnemyStatus enemyStatus);
     void drawSpellCardText(EnemyStatus enemyStatus, SpellInfo spellInfo, int time);
     void loadingScreen();
-    void talkUI(std::wstring, int);
+    void talkUI(int, std::wstring, int);
     void drawBorderAllGetItem();
     PlayerStatus getPlayerStatus();
     EnemyStatus getEnemyStatus();
@@ -95,9 +97,9 @@ public:
         return spellImageHandle;
     }
 
-    int getEnemyCutInHandle()
+    int getEnemyCutInHandle(int stage)
     {
-        return enemyImageHandle;
+        return bossCutInImageHandle[stage - 1];
     }
 };
 

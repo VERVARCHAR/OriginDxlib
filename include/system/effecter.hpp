@@ -61,6 +61,7 @@ public:
     // --------- API（ゲームから呼びたい関数）---------
     void playHitSpark(const Vec2d &pos);
     void playEnemyExplode(const Vec2d &pos);
+    void playBossExplode(const Vec2d &pos);
     void playBulletVanish(const Vec2d &pos);
     void playPlayerExplode(const Vec2d &pos);
     void playSpell(const Vec2d &pos);
@@ -69,6 +70,7 @@ public:
 
     void playSE_Shot();
     void playSE_EnemyDead();
+    void playSE_BossDead();
     void playSE_PlayerDead();
     void playSE_Bomb();
     void PlaySE_BombVanish();
@@ -90,12 +92,18 @@ private:
     // SE ハンドル
     int seShot = -1;
     int seEnemyDead = -1;
+    int seBossDead = -1;
     int sePlayerDead = -1;
     int seBomb = -1;
     int seVanish = -1;
     int seGraze = -1;
     int seSpell = -1;
     int seCountdown = -1;
+
+    // BGM ハンドル
+    int bgmTitle = -1;
+    int bgmStage[7] = {-1};
+    int bgmBoss[7] = {-1};
 
     int getEmptyIndex();
     void spawnEffect(EffectType type, const Vec2d &pos);
