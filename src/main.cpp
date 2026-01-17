@@ -156,22 +156,27 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             //     sceneChangeMinimumTime++;
             // }
             titleMenu.drawTitle(ui, scene, difficulty, sceneChangeMinimumTime);
-
+            if (!CheckSoundMem(effecter.bgmTitle))
+            {
+                effecter.PlayBGM_Title();
+            }
             break;
 
         case LOADING: // ローディング
-
+            effecter.StopBGM_Title();
             // 各必要要素ローディング
             if (ui.minLoadingTime == 0)
             {
                 SetUseASyncLoadFlag(TRUE);
+
                 ui.getInGameImage();
 
                 player.init();
                 bMgr.init(bombs);
-                sMgr.init(3, 0, difficulty);
+                sMgr.init(1, 0, difficulty);
                 iMgr.init();
                 effecter.init();
+                effecter.loadBGM();
 
                 player.loadPlayerImage();
                 sMgr.loadEnemy();
@@ -185,7 +190,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 SetUseASyncLoadFlag(FALSE);
             }
             ui.loadingScreen();
-            if (GetASyncLoadNum() == 0 && ui.minLoadingTime > 120)
+            if (GetASyncLoadNum() == 0 && ui.minLoadingTime > 180)
             {
                 scene = INGAME;
                 break;
@@ -195,8 +200,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
             // UIの表示
             ui.drawUI(sMgr.getStageInfo());
-            GetMousePoint(&x, &y);
-            DrawFormatString(500, 500, GetColor(255, 0, 255), L"Mouse : %d,%d", x, y);
+
+            // [DEBUG]
+            // GetMousePoint(&x, &y);
+            // DrawFormatString(500, 500, GetColor(255, 0, 255), L"Mouse : %d,%d", x, y);
 
             bossStatus = sMgr.enemies[sMgr.bossIndex]->getStatus();
 
@@ -239,6 +246,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 if (sMgr.talkCount >= sMgr.talkLineCount)
                 {
                     sMgr.endTalk();
+                    effecter.StopBGM_Stage(sMgr.getStageInfo().stage);
+                    effecter.playBossBGM(sMgr.getStageInfo().stage);
                 }
             }
 
