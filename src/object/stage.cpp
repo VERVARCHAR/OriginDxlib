@@ -313,6 +313,7 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
     // ボス撃破処理
     if (isClearStage && time > 0)
     {
+        effecter->StopBGM_Boss(stageInfo.stage);
         bMgr->removeBomb(bombs, effecter);
         // TODO ステージクリア処理
         time = -120;
@@ -381,6 +382,11 @@ void StageManager::updateStage(BombManager *bMgr, ItemManager *iMgr, BombInfo bo
         {
             time++;
         }
+    }
+
+    if (time == 60)
+    {
+        effecter->playStageBGM(stageInfo.stage);
     }
 
     // [DEBUG]

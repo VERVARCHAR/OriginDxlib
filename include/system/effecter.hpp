@@ -21,6 +21,8 @@ enum class EffectType
     BulletVanish,
     TextPopup,
     Graze,
+    BGMStage,
+    BGMBoss
 };
 
 struct Effect
@@ -54,7 +56,8 @@ public:
 
     void init();
 
-    void loadEffecter();   // 画像・音読み込み
+    void loadEffecter(); // 画像・音読み込み
+    void loadBGM();
     void effecterUpdate(); // 毎フレーム更新
     void effecterDraw();   // 毎フレーム描画
 
@@ -67,6 +70,8 @@ public:
     void playSpell(const Vec2d &pos);
     void playEnemySpell(const Vec2d &pos);
     void playGraze(const Vec2d &pos);
+    void playStageBGM(int stage);
+    void playBossBGM(int stage);
 
     void playSE_Shot();
     void playSE_EnemyDead();
@@ -75,7 +80,18 @@ public:
     void playSE_Bomb();
     void PlaySE_BombVanish();
 
+    void PlayBGM_Title();
+    void PlayBGM_Stage(int stage);
+    void PlayBGM_Boss(int stage);
+
+    void StopBGM_Title() { StopSoundMem(bgmTitle); }
+    void StopBGM_Stage(int stage) { StopSoundMem(bgmStage[stage - 1]); };
+    // TODO stage
+    void StopBGM_Boss(int stage) { StopSoundMem(bgmBoss[0]); };
+
     void setEnemyCutInImage(int handle) { enemyCutInhandle = handle; };
+
+    int bgmTitle = -1;
 
 private:
     Effect effects[MAX_EFFECTS];
@@ -101,7 +117,6 @@ private:
     int seCountdown = -1;
 
     // BGM ハンドル
-    int bgmTitle = -1;
     int bgmStage[7] = {-1};
     int bgmBoss[7] = {-1};
 

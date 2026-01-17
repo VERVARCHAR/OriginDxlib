@@ -45,7 +45,18 @@ void Effecter::loadEffecter()
     seGraze = LoadSoundMem(L"..\\..\\assets\\SE\\graze.wav");
     seSpell = LoadSoundMem(L"..\\..\\assets\\SE\\spell.wav");
     // seBomb = LoadSoundMem("../../../se/bomb.wav");
+
+    bgmTitle = LoadSoundMem(L"..\\..\\assets\\music\\Title.mp3");
+
     SetUseASyncLoadFlag(FALSE);
+}
+
+void Effecter::loadBGM()
+{
+    bgmStage[0] = LoadSoundMem(L"..\\..\\assets\\music\\Stage01.mp3");
+    bgmStage[1] = LoadSoundMem(L"..\\..\\assets\\music\\Stage02.mp3");
+    bgmStage[2] = LoadSoundMem(L"..\\..\\assets\\music\\Stage03.mp3");
+    bgmBoss[0] = LoadSoundMem(L"..\\..\\assets\\music\\Boss.wav");
 }
 
 void Effecter::effecterUpdate()
@@ -118,9 +129,15 @@ void Effecter::effecterDraw()
         case EffectType::Graze:
             // handle = playerExplodeHandle[(int)(e.time / 6)];
             break;
-        // case EffectType::PlayerExplode:
-        //     handle = playerExplodeHandle[(int)(e.time / 6)];
-        //     break;
+            // case EffectType::PlayerExplode:
+            //     handle = playerExplodeHandle[(int)(e.time / 6)];
+            //     break;
+        case EffectType::BGMStage:
+            // DrawFormatString(550, 500, GetColor(255, 255, 255), L"BGM Stage!!");
+            break;
+        case EffectType::BGMBoss:
+            // DrawFormatString(550, 500, GetColor(255, 255, 255), L"BGM BOSS!!");
+            break;
         default:
             break;
         }
@@ -191,7 +208,7 @@ void Effecter::spawnEffect(EffectType type, const Vec2d &pos)
         e.lifeTime = 120;
         break;
     default:
-        e.lifeTime = 60;
+        e.lifeTime = 120;
         break;
     }
 }
@@ -245,6 +262,21 @@ void Effecter::playGraze(const Vec2d &pos)
     PlaySoundMem(seGraze, DX_PLAYTYPE_BACK);
 }
 
+void Effecter::playStageBGM(int stage)
+{
+    const Vec2d pos = {520, 700};
+    spawnEffect(EffectType::BGMStage, pos);
+    PlaySoundMem(bgmStage[stage - 1], DX_PLAYTYPE_BACK);
+}
+
+void Effecter::playBossBGM(int stage)
+{
+    const Vec2d pos = {520, 700};
+    spawnEffect(EffectType::BGMBoss, pos);
+    // TODO beta
+    PlaySoundMem(bgmBoss[0], DX_PLAYTYPE_BACK);
+}
+
 // SE だけ鳴らすAPIも一応用意
 void Effecter::playSE_Shot() { PlaySoundMem(seShot, DX_PLAYTYPE_BACK); }
 void Effecter::playSE_EnemyDead() { PlaySoundMem(seEnemyDead, DX_PLAYTYPE_BACK); }
@@ -252,4 +284,6 @@ void Effecter::playSE_BossDead() { PlaySoundMem(seBossDead, DX_PLAYTYPE_BACK); }
 void Effecter::playSE_PlayerDead() { PlaySoundMem(sePlayerDead, DX_PLAYTYPE_BACK); }
 void Effecter::playSE_Bomb() { PlaySoundMem(seBomb, DX_PLAYTYPE_BACK); }
 void Effecter::PlaySE_BombVanish() { PlaySoundMem(seVanish, DX_PLAYTYPE_BACK); };
-;
+void Effecter::PlayBGM_Title() { PlaySoundMem(bgmTitle, DX_PLAYTYPE_LOOP); };
+void Effecter::PlayBGM_Stage(int stage) { PlaySoundMem(bgmStage[stage - 1], DX_PLAYTYPE_LOOP); };
+void Effecter::PlayBGM_Boss(int stage) { PlaySoundMem(bgmBoss[stage - 1], DX_PLAYTYPE_LOOP); };
