@@ -84,6 +84,15 @@ public:
     void PlayBGM_Stage(int stage);
     void PlayBGM_Boss(int stage);
 
+    void StopBGM()
+    {
+        StopBGM_Title();
+        for (int s = 1; s <= 3; s++)
+        {
+            StopBGM_Stage(s);
+            StopBGM_Boss(s);
+        }
+    }
     void StopBGM_Title() { StopSoundMem(bgmTitle); }
     void StopBGM_Stage(int stage) { StopSoundMem(bgmStage[stage - 1]); };
     // TODO stage

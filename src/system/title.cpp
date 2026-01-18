@@ -156,7 +156,7 @@ void Title::updateMain(UI &ui, Scene &scene, int &sceneChangeMinimumTime)
         break;
 
     case MenuAction::Exit:
-        state_ = State::EXIT_CONFIRM;
+        scene = Scene::EXIT;
         break;
     }
 }
@@ -229,6 +229,10 @@ void Title::updateExit(Scene &scene)
         state_ = State::MAIN;
 
     // 「本当に終了」までやるならここで ok() を拾って終了フラグを返す設計にする
+    if (ok())
+    {
+        state_ = State::EXIT_CONFIRM;
+    }
 }
 
 void Title::drawTitle(UI &ui, Scene &scene, Difficulty &difficulty, int &sceneChangeMinimumTime)
