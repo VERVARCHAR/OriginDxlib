@@ -163,7 +163,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             break;
 
         case LOADING: // ローディング
-            effecter.StopBGM_Title();
+            effecter.StopBGM();
             // 各必要要素ローディング
             if (ui.minLoadingTime == 0)
             {
@@ -220,16 +220,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             }
 
             // [DEBUG] パワーを1増やす
-            if (Key[KEY_INPUT_0] == 1)
-            {
-                player.setPower(1);
-            }
+            // if (Key[KEY_INPUT_0] == 1)
+            // {
+            //     player.setPower(1);
+            // }
 
             // [DEBUG] パワーを1増やす
-            if (Key[KEY_INPUT_C] == 1)
-            {
-                player.setExtend();
-            }
+            // if (Key[KEY_INPUT_C] == 1)
+            // {
+            //     player.setExtend();
+            // }
 
             // 基本的なゲーム処理
             sMgr.updateStage(&bMgr, &iMgr, bombs, &player, &effecter);
@@ -266,6 +266,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             // ゲームオーバー時の処理
             if (sMgr.isGameOver)
             {
+                effecter.StopBGM();
                 DrawString(200, 200, L"Game Over...", GetColor(255, 255, 0));
                 if (Key[KEY_INPUT_R] == 1)
                 {
@@ -307,12 +308,20 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 effecter.playPlayerExplode(p);
             }
             break;
+        case EXIT:
+
+            break;
         default:
             break;
         }
 
         Draw();
         Wait();
+
+        if (scene == Scene::EXIT)
+        {
+            break;
+        }
     }
     Logger::Close();
     DxLib_End();

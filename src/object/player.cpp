@@ -211,6 +211,7 @@ void Player::Dead()
     if (!chattering)
     {
         status.lives -= 1;
+        status.spells = 3;
         status.invincible = true;
         status.invincibleTime = 3 * 60;
         chattering = true;

@@ -64,6 +64,7 @@ enum Scene
     INGAME,
     RESULT,
     DEBUG,
+    EXIT
 };
 
 enum Difficulty
